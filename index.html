@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quest Save Terminal</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #101010;
+      --panel-2: #171717;
+      --text: #e0e0e0;
+      --muted: #8d8d8d;
+      --accent: #d1d1d1;
+      --line: #333;
+      --danger: #7d1c1c;
+      --success: #2c6b3f;
+      --warning: #756221;
+      --blue: #253e66;
+      --main-gold: #b88a22;
+      --side-blue: #6eb6ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at top, rgba(120, 120, 120, 0.12), transparent 35%),
+        linear-gradient(180deg, #111, #030303 45%, #000);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      padding: 18px;
+    }
+
+    .screen {
+      width: min(1180px, 100%);
+      margin: auto;
+      border: 2px solid #444;
+      background: rgba(5, 5, 5, 0.94);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(255,255,255,0.03);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.025), rgba(255,255,255,0.025) 1px, transparent 1px, transparent 4px);
+      mix-blend-mode: overlay;
+    }
+
+    header, .content { position: relative; z-index: 1; }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(30px, 5vw, 56px);
+      letter-spacing: 7px;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      letter-spacing: 2px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tab, button.action {
+      border: 1px solid #555;
+      background: #141414;
+      color: var(--text);
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .tab:hover, .tab.active, button.action:hover {
+      background: #252525;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid.three { grid-template-columns: 0.95fr 1fr 0.9fr 0.9fr; }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), #090909);
+      padding: 18px;
+      min-height: 240px;
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: 3px;
+      font-weight: normal;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .main-heading { color: var(--main-gold); }
+    .side-heading { color: var(--side-blue); }
+
+    .prompt {
+      min-height: 100px;
+      font-size: 21px;
+      line-height: 1.45;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    .prompt::after {
+      content: "_";
+      animation: blink 0.8s infinite;
+      color: var(--accent);
+    }
+
+    @keyframes blink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 12px 0 7px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid #3a3a3a;
+      background: #080808;
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea { min-height: 86px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); background: #111; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    button.action { padding: 11px 14px; font-size: 15px; }
+    button.danger:hover { background: var(--danger); border-color: #b93333; }
+
+    .quest-list, .save-list { display: grid; gap: 10px; }
+
+    .quest-card, .save-card {
+      border: 1px solid #3a3a3a;
+      background: var(--panel-2);
+      padding: 14px;
+    }
+
+    .quest-card.main-quest {
+      border-color: var(--main-gold);
+      box-shadow: inset 4px 0 0 var(--main-gold);
+    }
+
+    .quest-card.side-quest {
+      border-color: var(--side-blue);
+      box-shadow: inset 4px 0 0 var(--side-blue);
+    }
+
+    .quest-card.completed-quest { opacity: 0.9; }
+
+    .quest-top, .save-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .quest-title, .save-title {
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .quest-desc, .save-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .badge {
+      border: 1px solid #555;
+      padding: 5px 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge.new { background: var(--blue); }
+    .badge.progress { background: var(--warning); }
+    .badge.complete { background: var(--success); }
+
+    .mini-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .mini-actions button {
+      border: 1px solid #444;
+      background: #0d0d0d;
+      color: var(--text);
+      padding: 7px 9px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .mini-actions button:hover { border-color: var(--accent); background: #222; }
+
+    .empty {
+      color: var(--muted);
+      border: 1px dashed #333;
+      padding: 16px;
+      line-height: 1.5;
+    }
+
+    .clock { color: var(--accent); font-size: 17px; margin-top: 8px; }
+    .status { margin-top: 14px; color: #cfcfcf; min-height: 24px; font-size: 16px; }
+    .stats { display: grid; gap: 10px; }
+    .stat { border: 1px solid #333; background: #111; padding: 12px; }
+    .stat-number { font-size: 28px; }
+    .stat-label { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-top: 4px; }
+
+    @media (max-height: 850px) { body { align-items: flex-start; } }
+    @media (max-width: 900px) {
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      h1 { letter-spacing: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <header>
+      <h1>Quest Terminal</h1>
+      <div class="subtitle">Save room archive / mission tracker</div>
+    </header>
+
+    <section class="content">
+      <nav class="tabs">
+        <button class="tab active" data-view="questsView">Quests</button>
+        <button class="tab" data-view="saveView">Save Folder</button>
+        <button class="tab" data-view="archiveView">Previous Saves</button>
+      </nav>
+
+      <section id="questsView" class="view active">
+        <div class="grid three">
+          <div class="panel">
+            <h2>Create Quest</h2>
+            <label for="questType">Quest type</label>
+            <select id="questType"><option value="main">Main Quest</option><option value="side">Side Quest</option></select>
+            <label for="questTitle">Quest name</label>
+            <input id="questTitle" type="text" maxlength="50" placeholder="Example: Study SQL" />
+            <label for="questDesc">Quest details</label>
+            <textarea id="questDesc" maxlength="250" placeholder="Example: Finish one lesson, practice queries, save notes..."></textarea>
+            <label for="questStatus">Starting status</label>
+            <select id="questStatus"><option value="new">New</option><option value="progress">In Progress</option><option value="complete">Complete</option></select>
+            <div class="actions"><button class="action" id="addQuestBtn">Add Quest</button></div>
+            <div id="questStatusText" class="status"></div>
+          </div>
+
+          <div class="panel"><h2 class="main-heading">Main Quests</h2><div id="mainQuestList" class="quest-list"></div></div>
+          <div class="panel"><h2 class="side-heading">Side Quests</h2><div id="sideQuestList" class="quest-list"></div></div>
+          <div class="panel"><h2>Completed Quests</h2><div id="completeQuestList" class="quest-list"></div></div>
+        </div>
+      </section>
+
+      <section id="saveView" class="view">
+        <div class="grid">
+          <div class="panel">
+            <h2>Save Folder</h2>
+            <div id="savePrompt" class="prompt"></div>
+            <label for="saveName">Save file name</label>
+            <input id="saveName" type="text" maxlength="40" placeholder="Example: Monday Quest Log" />
+            <div class="clock">Current time: <span id="clock"></span></div>
+            <div class="actions">
+              <button class="action" id="saveBtn">Save Current Quest Log</button>
+              <button class="action" id="newSaveBtn">Create New Save / Reset Board</button>
+              <button class="action danger" id="clearSavesBtn">Clear Saves</button>
+              <button class="action danger" id="clearCompletedBtn">Clear Completed Quests</button>
+            </div>
+            <div id="saveStatusText" class="status"></div>
+          </div>
+
+          <div class="panel">
+            <h2>Current Progress</h2>
+            <div class="stats">
+              <div class="stat"><div id="totalQuests" class="stat-number">0</div><div class="stat-label">Total quests</div></div>
+              <div class="stat"><div id="newQuests" class="stat-number">0</div><div class="stat-label">New</div></div>
+              <div class="stat"><div id="progressQuests" class="stat-number">0</div><div class="stat-label">In Progress</div></div>
+              <div class="stat"><div id="completeQuests" class="stat-number">0</div><div class="stat-label">Complete</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="archiveView" class="view"><div class="panel"><h2>Previous Saves</h2><div id="saveArchive" class="save-list"></div></div></section>
+    </section>
+  </main>
+
+  <script>
+    const QUEST_KEY = "quest_terminal_quests";
+    const SAVE_KEY = "quest_terminal_saves";
+
+    const tabs = document.querySelectorAll(".tab");
+    const views = document.querySelectorAll(".view");
+    const questTypeEl = document.getElementById("questType");
+    const questTitleEl = document.getElementById("questTitle");
+    const questDescEl = document.getElementById("questDesc");
+    const questStatusEl = document.getElementById("questStatus");
+    const addQuestBtn = document.getElementById("addQuestBtn");
+    const mainQuestList = document.getElementById("mainQuestList");
+    const sideQuestList = document.getElementById("sideQuestList");
+    const completeQuestList = document.getElementById("completeQuestList");
+    const questStatusText = document.getElementById("questStatusText");
+    const savePrompt = document.getElementById("savePrompt");
+    const saveNameEl = document.getElementById("saveName");
+    const saveBtn = document.getElementById("saveBtn");
+    const newSaveBtn = document.getElementById("newSaveBtn");
+    const clearSavesBtn = document.getElementById("clearSavesBtn");
+    const clearCompletedBtn = document.getElementById("clearCompletedBtn");
+    const saveStatusText = document.getElementById("saveStatusText");
+    const saveArchive = document.getElementById("saveArchive");
+    const clockEl = document.getElementById("clock");
+    const totalQuestsEl = document.getElementById("totalQuests");
+    const newQuestsEl = document.getElementById("newQuests");
+    const progressQuestsEl = document.getElementById("progressQuests");
+    const completeQuestsEl = document.getElementById("completeQuests");
+
+    function safeLoad(key, fallback) {
+      try { return JSON.parse(localStorage.getItem(key)) || fallback; }
+      catch { return fallback; }
+    }
+
+    function safeWrite(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+    function getQuests() { return safeLoad(QUEST_KEY, []); }
+    function writeQuests(quests) { safeWrite(QUEST_KEY, quests); }
+    function getSaves() { return safeLoad(SAVE_KEY, []); }
+    function writeSaves(saves) { safeWrite(SAVE_KEY, saves); }
+
+    function formatDateTime(date) {
+      return new Intl.DateTimeFormat(undefined, { weekday: "short", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" }).format(date);
+    }
+
+    function typeText(text, speed = 25) {
+      savePrompt.textContent = "";
+      let i = 0;
+      const timer = setInterval(() => {
+        savePrompt.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(timer);
+      }, speed);
+    }
+
+    function statusLabel(status) {
+      if (status === "progress") return "In Progress";
+      if (status === "complete") return "Complete";
+      return "New";
+    }
+
+    function statusClass(status) {
+      if (status === "progress") return "progress";
+      if (status === "complete") return "complete";
+      return "new";
+    }
+
+    function switchView(viewId) {
+      tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.view === viewId));
+      views.forEach(view => view.classList.toggle("active", view.id === viewId));
+      renderAll();
+    }
+
+    tabs.forEach(tab => tab.addEventListener("click", () => switchView(tab.dataset.view)));
+
+    function addQuest() {
+      const title = questTitleEl.value.trim();
+      const desc = questDescEl.value.trim();
+      if (!title) { questStatusText.textContent = "Quest name required."; return; }
+      const quests = getQuests();
+      quests.unshift({ id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()), type: questTypeEl.value, title, desc, status: questStatusEl.value, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+      writeQuests(quests);
+      questTitleEl.value = "";
+      questDescEl.value = "";
+      questStatusEl.value = "new";
+      questStatusText.textContent = "Quest added.";
+      renderAll();
+    }
+
+    function updateQuestStatus(id, nextStatus) {
+      const quests = getQuests().map(quest => quest.id !== id ? quest : { ...quest, status: nextStatus, updatedAt: new Date().toISOString() });
+      writeQuests(quests);
+      renderAll();
+    }
+
+    function deleteQuest(id) {
+      writeQuests(getQuests().filter(quest => quest.id !== id));
+      renderAll();
+    }
+
+    function escapeHTML(value) {
+      return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+    }
+
+    function renderQuestList(container, quests) {
+      container.innerHTML = "";
+      if (quests.length === 0) { container.innerHTML = '<div class="empty">No quests listed here yet.</div>'; return; }
+      quests.forEach(quest => {
+        const card = document.createElement("article");
+        card.className = "quest-card " + (quest.status === "complete" ? "completed-quest" : quest.type === "main" ? "main-quest" : "side-quest");
+        card.innerHTML = `<div class="quest-top"><div class="quest-title">${escapeHTML(quest.title)}</div><div class="badge ${statusClass(quest.status)}">${statusLabel(quest.status)}</div></div><div class="quest-desc">${quest.desc ? escapeHTML(quest.desc) : "No details added."}</div><div class="mini-actions"><button data-action="new">New</button><button data-action="progress">In Progress</button><button data-action="complete">Complete</button><button data-action="delete">Delete</button></div>`;
+        card.querySelector('[data-action="new"]').onclick = () => updateQuestStatus(quest.id, "new");
+        card.querySelector('[data-action="progress"]').onclick = () => updateQuestStatus(quest.id, "progress");
+        card.querySelector('[data-action="complete"]').onclick = () => updateQuestStatus(quest.id, "complete");
+        card.querySelector('[data-action="delete"]').onclick = () => deleteQuest(quest.id);
+        container.appendChild(card);
+      });
+    }
+
+    function renderQuests() {
+      const quests = getQuests();
+      renderQuestList(mainQuestList, quests.filter(q => q.type === "main" && q.status !== "complete"));
+      renderQuestList(sideQuestList, quests.filter(q => q.type === "side" && q.status !== "complete"));
+      renderQuestList(completeQuestList, quests.filter(q => q.status === "complete"));
+    }
+
+    function renderStats() {
+      const quests = getQuests();
+      totalQuestsEl.textContent = quests.length;
+      newQuestsEl.textContent = quests.filter(q => q.status === "new").length;
+      progressQuestsEl.textContent = quests.filter(q => q.status === "progress").length;
+      completeQuestsEl.textContent = quests.filter(q => q.status === "complete").length;
+    }
+
+    function createSaveSnapshot({ resetAfterSave = false } = {}) {
+      const quests = getQuests();
+      const saves = getSaves();
+      const now = new Date();
+      const pretty = formatDateTime(now);
+      const name = saveNameEl.value.trim() || "Quest Log " + (saves.length + 1);
+      const saveFile = { id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()), name, timestamp: now.toISOString(), displayTime: pretty, quests };
+      saves.unshift(saveFile);
+      writeSaves(saves);
+      saveNameEl.value = "";
+      if (resetAfterSave) {
+        writeQuests([]);
+        typeText(name + " saved. A new blank quest board has started.");
+        saveStatusText.textContent = "New save created. Current quest board reset.";
+      } else {
+        typeText(name + " saved around " + pretty + ".");
+        saveStatusText.textContent = "Quest log saved.";
+      }
+      renderAll();
+    }
+
+    function saveCurrentProgress() { createSaveSnapshot({ resetAfterSave: false }); }
+    function createNewSaveAndReset() { createSaveSnapshot({ resetAfterSave: true }); switchView("questsView"); }
+
+    function loadSave(id) {
+      const save = getSaves().find(item => item.id === id);
+      if (!save) return;
+      writeQuests(save.quests || []);
+      typeText(save.name + " loaded.");
+      saveStatusText.textContent = "Loaded previous save.";
+      switchView("questsView");
+    }
+
+    function deleteSave(id) {
+      writeSaves(getSaves().filter(item => item.id !== id));
+      renderArchive();
+    }
+
+    function renderArchive() {
+      const saves = getSaves();
+      saveArchive.innerHTML = "";
+      if (saves.length === 0) { saveArchive.innerHTML = '<div class="empty">No previous saves yet. Go to Save Folder and create one.</div>'; return; }
+      saves.forEach(save => {
+        const quests = save.quests || [];
+        const completed = quests.filter(q => q.status === "complete").length;
+        const inProgress = quests.filter(q => q.status === "progress").length;
+        const card = document.createElement("article");
+        card.className = "save-card";
+        card.innerHTML = `<div class="save-top"><div class="save-title">${escapeHTML(save.name)}</div><div class="badge">Save</div></div><div class="save-meta">Saved: ${escapeHTML(save.displayTime)}<br>Quests: ${quests.length} total / ${inProgress} in progress / ${completed} complete</div><div class="mini-actions"><button data-action="load">View This Save</button><button data-action="delete">Delete Save</button></div>`;
+        card.querySelector('[data-action="load"]').onclick = () => loadSave(save.id);
+        card.querySelector('[data-action="delete"]').onclick = () => deleteSave(save.id);
+        saveArchive.appendChild(card);
+      });
+    }
+
+    function clearSaves() {
+      localStorage.removeItem(SAVE_KEY);
+      saveStatusText.textContent = "All previous saves cleared.";
+      typeText("The save archive has been cleared.");
+      renderAll();
+    }
+
+    function clearCompletedQuests() {
+      const quests = getQuests();
+      const completedCount = quests.filter(quest => quest.status === "complete").length;
+      const activeQuests = quests.filter(quest => quest.status === "new" || quest.status === "progress");
+      if (completedCount === 0) {
+        saveStatusText.textContent = "No completed quests to clear.";
+        typeText("There are no completed quest records to clear.");
+        return;
+      }
+      writeQuests(activeQuests);
+      saveStatusText.textContent = completedCount + " completed quest record(s) cleared. Active quests were kept.";
+      typeText("Only completed quest records have been cleared.");
+      renderAll();
+    }
+
+    function updateClock() { clockEl.textContent = formatDateTime(new Date()); }
+    function renderAll() { renderQuests(); renderStats(); renderArchive(); }
+
+    addQuestBtn.addEventListener("click", addQuest);
+    saveBtn.addEventListener("click", saveCurrentProgress);
+    newSaveBtn.addEventListener("click", createNewSaveAndReset);
+    clearSavesBtn.addEventListener("click", clearSaves);
+    clearCompletedBtn.addEventListener("click", clearCompletedQuests);
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    typeText("Create today’s quests. Save the quest log. Start a new save when you want a fresh board.");
+    renderAll();
+  </script>
+</body>
+</html>
