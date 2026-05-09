@@ -93,6 +93,45 @@
       text-transform: uppercase;
     }
 
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .player-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--line);
+      background: #0d0d0d;
+      padding: 10px 12px;
+      min-width: 230px;
+    }
+
+        .player-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .player-name {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    .player-status {
+      color: var(--complete-green);
+      font-size: 13px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
     .tabs {
       display: flex;
       gap: 10px;
@@ -194,7 +233,7 @@
     }
 
     textarea {
-      min-height: 86px;
+      min-height: 130px;
       resize: vertical;
     }
 
@@ -239,7 +278,12 @@
     .quest-card, .save-card {
       border: 1px solid #3a3a3a;
       background: var(--panel-2);
-      padding: 14px;
+      padding: 12px;
+    }
+
+    .quest-card {
+      display: grid;
+      gap: 8px;
     }
 
     .quest-top, .save-top {
@@ -250,9 +294,10 @@
     }
 
     .quest-title, .save-title {
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: 1px;
       text-transform: uppercase;
+      line-height: 1.25;
     }
 
     .quest-desc, .save-meta {
@@ -260,6 +305,102 @@
       color: var(--muted);
       line-height: 1.45;
       font-size: 14px;
+    }
+
+    .quest-desc {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .micro-task-builder {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .micro-task-builder input {
+      flex: 1;
+    }
+
+    .draft-micro-list,
+    .micro-list {
+      display: none;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .micro-list.open {
+      display: grid;
+    }
+
+    .draft-micro-item,
+    .micro-item {
+      border: 1px solid #2a2a2a;
+      background: #090909;
+      padding: 7px 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .micro-item label {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 13px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .micro-item input[type="checkbox"] {
+      width: auto;
+      accent-color: var(--complete-green);
+    }
+
+    .micro-item.done span {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .progress-wrap {
+      margin-top: 2px;
+      border: 1px solid #2c2c2c;
+      background: #090909;
+      padding: 7px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 7px;
+      border: 1px solid #3a3a3a;
+      background: #050505;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--complete-green);
+      transition: width 0.2s ease;
     }
 
     .badge {
@@ -305,24 +446,48 @@
 
     .mini-actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 4px;
     }
 
-    .mini-actions button {
+    .status-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .utility-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .mini-actions button,
+    .status-actions button,
+    .utility-actions button {
       border: 1px solid #444;
       background: #0d0d0d;
       color: var(--text);
-      padding: 7px 9px;
+      padding: 7px 8px;
       font-family: inherit;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
     }
 
-    .mini-actions button:hover {
+    .mini-actions button:hover,
+    .status-actions button:hover,
+    .utility-actions button:hover {
       border-color: var(--accent);
       background: #222;
+    }
+
+    .toggle-steps-btn {
+      width: 100%;
+      text-align: center;
+      color: var(--muted);
     }
 
     .empty {
@@ -368,6 +533,72 @@
       margin-top: 4px;
     }
 
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 50;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .info-modal {
+      width: min(760px, 100%);
+      max-height: 82vh;
+      border: 1px solid var(--accent);
+      background: linear-gradient(180deg, #141414, #050505);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .info-modal-title {
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .info-modal-body {
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .close-modal {
+      border: 1px solid #555;
+      background: #111;
+      color: var(--text);
+      padding: 8px 11px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      border-color: var(--accent);
+      background: #222;
+    }
+
     @media (max-height: 850px) {
       body {
         align-items: flex-start;
@@ -387,9 +618,19 @@
 </head>
 <body>
   <main class="screen">
-    <header>
-      <h1>Quest Terminal</h1>
-      <div class="subtitle">Save room archive / mission tracker</div>
+    <header class="terminal-header">
+      <div>
+        <h1>Quest Terminal</h1>
+        <div class="subtitle">Save room archive / mission tracker</div>
+      </div>
+
+      <div class="player-card">
+        <div>
+          <div class="player-label">Player File</div>
+          <div class="player-name">Siam</div>
+          <div class="player-status">Status: Active</div>
+        </div>
+      </div>
     </header>
 
     <section class="content">
@@ -413,7 +654,14 @@
             <input id="questTitle" type="text" maxlength="50" placeholder="Example: Clean the room" />
 
             <label for="questDesc">Quest details</label>
-            <textarea id="questDesc" maxlength="250" placeholder="Example: Clear desk, laundry, garbage, vacuum..."></textarea>
+            <textarea id="questDesc" maxlength="3000" placeholder="Example: Clear desk, laundry, garbage, vacuum... You can write a long description here."></textarea>
+
+            <label for="microTaskInput">Micro tasks</label>
+            <div class="micro-task-builder">
+              <input id="microTaskInput" type="text" maxlength="90" placeholder="Example: Watch one SQL lesson" />
+              <button class="action" id="addMicroTaskBtn" type="button">Add</button>
+            </div>
+            <div id="draftMicroList" class="draft-micro-list"></div>
 
             <label for="questStatus">Starting status</label>
             <select id="questStatus">
@@ -487,6 +735,16 @@
     </section>
   </main>
 
+  <div id="infoModal" class="modal-overlay">
+    <div class="info-modal">
+      <div class="info-modal-header">
+        <div id="infoModalTitle" class="info-modal-title">Quest Information</div>
+        <button id="closeInfoModal" class="close-modal">Close</button>
+      </div>
+      <div id="infoModalBody" class="info-modal-body"></div>
+    </div>
+  </div>
+
   <script>
     const QUEST_KEY = "quest_terminal_quests";
     const SAVE_KEY = "quest_terminal_saves";
@@ -497,9 +755,13 @@
     const questTitleEl = document.getElementById("questTitle");
     const questDescEl = document.getElementById("questDesc");
     const questStatusEl = document.getElementById("questStatus");
+    const microTaskInput = document.getElementById("microTaskInput");
+    const addMicroTaskBtn = document.getElementById("addMicroTaskBtn");
+    const draftMicroList = document.getElementById("draftMicroList");
     const addQuestBtn = document.getElementById("addQuestBtn");
     const cancelEditBtn = document.getElementById("cancelEditBtn");
     let editingQuestId = null;
+    let draftMicroTasks = [];
     const mainQuestList = document.getElementById("mainQuestList");
     const sideQuestList = document.getElementById("sideQuestList");
     const completeQuestList = document.getElementById("completeQuestList");
@@ -513,6 +775,10 @@
     const saveStatusText = document.getElementById("saveStatusText");
     const saveArchive = document.getElementById("saveArchive");
     const clockEl = document.getElementById("clock");
+    const infoModal = document.getElementById("infoModal");
+    const infoModalTitle = document.getElementById("infoModalTitle");
+    const infoModalBody = document.getElementById("infoModalBody");
+    const closeInfoModal = document.getElementById("closeInfoModal");
 
     const totalQuestsEl = document.getElementById("totalQuests");
     const newQuestsEl = document.getElementById("newQuests");
@@ -591,10 +857,50 @@
       tab.addEventListener("click", () => switchView(tab.dataset.view));
     });
 
+    function renderDraftMicroTasks() {
+      draftMicroList.innerHTML = "";
+
+      if (draftMicroTasks.length === 0) {
+        draftMicroList.innerHTML = '<div class="empty">No micro tasks added yet.</div>';
+        return;
+      }
+
+      draftMicroTasks.forEach(task => {
+        const item = document.createElement("div");
+        item.className = "draft-micro-item";
+        item.innerHTML = `
+          <span>${escapeHTML(task.text)}</span>
+          <button type="button">Remove</button>
+        `;
+        item.querySelector("button").onclick = () => {
+          draftMicroTasks = draftMicroTasks.filter(existing => existing.id !== task.id);
+          renderDraftMicroTasks();
+        };
+        draftMicroList.appendChild(item);
+      });
+    }
+
+    function addDraftMicroTask() {
+      const text = microTaskInput.value.trim();
+      if (!text) return;
+
+      draftMicroTasks.push({
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()),
+        text,
+        done: false
+      });
+
+      microTaskInput.value = "";
+      renderDraftMicroTasks();
+    }
+
     function resetQuestForm() {
       editingQuestId = null;
       questTitleEl.value = "";
       questDescEl.value = "";
+      microTaskInput.value = "";
+      draftMicroTasks = [];
+      renderDraftMicroTasks();
       questTypeEl.value = "main";
       questStatusEl.value = "new";
       addQuestBtn.textContent = "Add Quest";
@@ -621,6 +927,7 @@
             type: questTypeEl.value,
             title,
             desc,
+            microTasks: draftMicroTasks,
             status: questStatusEl.value,
             updatedAt: new Date().toISOString()
           };
@@ -638,6 +945,7 @@
         type: questTypeEl.value,
         title,
         desc,
+        microTasks: draftMicroTasks,
         status: questStatusEl.value,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
@@ -652,7 +960,38 @@
     function updateQuestStatus(id, nextStatus) {
       const quests = getQuests().map(quest => {
         if (quest.id !== id) return quest;
-        return { ...quest, status: nextStatus, updatedAt: new Date().toISOString() };
+
+        const microTasks = quest.microTasks || [];
+        const updatedMicroTasks = nextStatus === "complete"
+          ? microTasks.map(task => ({ ...task, done: true }))
+          : microTasks;
+
+        return {
+          ...quest,
+          status: nextStatus,
+          microTasks: updatedMicroTasks,
+          updatedAt: new Date().toISOString()
+        };
+      });
+
+      writeQuests(quests);
+      renderAll();
+    }
+
+    function toggleMicroTask(questId, microTaskId) {
+      const quests = getQuests().map(quest => {
+        if (quest.id !== questId) return quest;
+
+        const microTasks = (quest.microTasks || []).map(task => {
+          if (task.id !== microTaskId) return task;
+          return { ...task, done: !task.done };
+        });
+
+        const total = microTasks.length;
+        const done = microTasks.filter(task => task.done).length;
+        const status = total > 0 && done === total ? "complete" : quest.status === "complete" ? "progress" : quest.status;
+
+        return { ...quest, microTasks, status, updatedAt: new Date().toISOString() };
       });
 
       writeQuests(quests);
@@ -667,11 +1006,26 @@
       questTypeEl.value = quest.type;
       questTitleEl.value = quest.title;
       questDescEl.value = quest.desc || "";
+      draftMicroTasks = (quest.microTasks || []).map(task => ({ ...task }));
+      renderDraftMicroTasks();
       questStatusEl.value = quest.status;
       addQuestBtn.textContent = "Update Quest";
       cancelEditBtn.style.display = "inline-block";
       questStatusText.textContent = "Editing quest. Make changes, then click Update Quest.";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openQuestInfo(id) {
+      const quest = getQuests().find(item => item.id === id);
+      if (!quest) return;
+
+      infoModalTitle.textContent = quest.title;
+      infoModalBody.textContent = quest.desc || "No detailed information added.";
+      infoModal.classList.add("active");
+    }
+
+    function closeQuestInfo() {
+      infoModal.classList.remove("active");
     }
 
     function deleteQuest(id) {
@@ -691,16 +1045,46 @@
       quests.forEach(quest => {
         const card = document.createElement("article");
         card.className = "quest-card " + (quest.status === "complete" ? "completed-quest" : quest.type === "main" ? "main-quest" : "side-quest");
+        const microTasks = quest.microTasks || [];
+        const completedMicroTasks = microTasks.filter(task => task.done).length;
+        const totalMicroTasks = microTasks.length;
+        const progressPercent = totalMicroTasks === 0 ? 0 : Math.round((completedMicroTasks / totalMicroTasks) * 100);
+        const microTaskHTML = totalMicroTasks === 0
+          ? '<div class="empty">No micro tasks added.</div>'
+          : microTasks.map(task => `
+              <div class="micro-item ${task.done ? "done" : ""}">
+                <label>
+                  <input type="checkbox" data-micro-id="${task.id}" ${task.done ? "checked" : ""} />
+                  <span>${escapeHTML(task.text)}</span>
+                </label>
+              </div>
+            `).join("");
+        const completeButtonLabel = quest.status === "complete" ? "Undo" : "Done";
+
         card.innerHTML = `
           <div class="quest-top">
             <div class="quest-title">${escapeHTML(quest.title)}</div>
             <div class="badge ${statusClass(quest.status)}">${statusLabel(quest.status)}</div>
           </div>
           <div class="quest-desc">${quest.desc ? escapeHTML(quest.desc) : "No details added."}</div>
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span>Micro progress</span>
+              <span>${completedMicroTasks} / ${totalMicroTasks}</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${progressPercent}%"></div></div>
+          </div>
           <div class="mini-actions">
+            <button class="toggle-steps-btn" data-action="toggleSteps">Show Steps</button>
+          </div>
+          <div class="micro-list">${microTaskHTML}</div>
+          <div class="status-actions">
             <button data-action="new">New</button>
-            <button data-action="progress">In Progress</button>
-            <button data-action="complete">Complete</button>
+            <button data-action="progress">Progress</button>
+            <button data-action="complete">${completeButtonLabel}</button>
+          </div>
+          <div class="utility-actions">
+            <button data-action="read">Info</button>
             <button data-action="edit">Edit</button>
             <button data-action="delete">Delete</button>
           </div>
@@ -708,9 +1092,27 @@
 
         card.querySelector('[data-action="new"]').onclick = () => updateQuestStatus(quest.id, "new");
         card.querySelector('[data-action="progress"]').onclick = () => updateQuestStatus(quest.id, "progress");
-        card.querySelector('[data-action="complete"]').onclick = () => updateQuestStatus(quest.id, "complete");
+        card.querySelector('[data-action="complete"]').onclick = () => {
+          if (quest.status === "complete") {
+            updateQuestStatus(quest.id, "progress");
+          } else {
+            updateQuestStatus(quest.id, "complete");
+          }
+        };
+        card.querySelector('[data-action="read"]').onclick = () => openQuestInfo(quest.id);
         card.querySelector('[data-action="edit"]').onclick = () => editQuest(quest.id);
         card.querySelector('[data-action="delete"]').onclick = () => deleteQuest(quest.id);
+
+        const stepsButton = card.querySelector('[data-action="toggleSteps"]');
+        const stepsList = card.querySelector('.micro-list');
+        stepsButton.onclick = () => {
+          stepsList.classList.toggle('open');
+          stepsButton.textContent = stepsList.classList.contains('open') ? 'Hide Steps' : 'Show Steps';
+        };
+
+        card.querySelectorAll('[data-micro-id]').forEach(input => {
+          input.onchange = () => toggleMicroTask(quest.id, input.dataset.microId);
+        });
 
         container.appendChild(card);
       });
@@ -865,6 +1267,20 @@
       renderStats();
       renderArchive();
     }
+
+    addMicroTaskBtn.addEventListener("click", addDraftMicroTask);
+    microTaskInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addDraftMicroTask();
+      }
+    });
+    renderDraftMicroTasks();
+
+    closeInfoModal.addEventListener("click", closeQuestInfo);
+    infoModal.addEventListener("click", event => {
+      if (event.target === infoModal) closeQuestInfo();
+    });
 
     addQuestBtn.addEventListener("click", addQuest);
     cancelEditBtn.addEventListener("click", () => {
