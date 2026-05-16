@@ -6,130 +6,191 @@
   <title>Quest Save Terminal</title>
   <style>
     :root {
-      --bg: #050505;
-      --panel: #101010;
-      --panel-2: #171717;
-      --text: #e0e0e0;
-      --muted: #8d8d8d;
-      --accent: #d1d1d1;
-      --line: #333;
-      --danger: #7d1c1c;
-      --success: #2c6b3f;
-      --warning: #756221;
-      --blue: #253e66;
-      --main-gold: #b88a22;
+      --bg: #040404;
+      --panel: #10100f;
+      --panel-2: #171716;
+      --text: #e8e2d4;
+      --muted: #9a9388;
+      --accent: #d8d0bd;
+      --line: rgba(216, 208, 189, 0.18);
+      --danger: #8f2f2f;
+      --success: #2e7a47;
+      --warning: #766124;
+      --main-gold: #c39a3b;
+      --main-gold-soft: #e0c878;
       --side-blue: #6eb6ff;
-      --complete-green: #45b86b;
+      --complete-green: #47c06f;
+      --failed-red: #b24d4d;
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      overflow-x: hidden;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background:
-        radial-gradient(circle at top, rgba(120, 120, 120, 0.12), transparent 35%),
-        linear-gradient(180deg, #111, #030303 45%, #000);
+      min-height: 100dvh;
+      background: #000;
       color: var(--text);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       padding: 18px;
     }
 
     .screen {
-      width: min(1180px, 100%);
-      margin: auto;
-      border: 2px solid #444;
-      background: rgba(5, 5, 5, 0.94);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(255,255,255,0.03);
-      padding: 22px;
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(216, 208, 189, 0.24);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(216, 208, 189, 0.10), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(110, 182, 255, 0.055), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 18%),
+        linear-gradient(180deg, #111315 0%, #090909 48%, #050505 100%);
+      box-shadow:
+        0 24px 70px rgba(0,0,0,0.86),
+        inset 0 0 80px rgba(255,255,255,0.018),
+        inset 0 0 140px rgba(0,0,0,0.38);
+      padding: 24px;
+      min-height: calc(100vh - 36px);
       position: relative;
-      overflow: hidden;
     }
 
-    .screen::before {
-      content: "";
+    .screen::after {
+      content: "SAVE ROOM TERMINAL";
       position: absolute;
-      inset: 0;
+      right: 18px;
+      bottom: 10px;
+      color: rgba(216,208,189,0.08);
+      font-size: 11px;
+      letter-spacing: 4px;
       pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.025),
-        rgba(255,255,255,0.025) 1px,
-        transparent 1px,
-        transparent 4px
-      );
-      mix-blend-mode: overlay;
-    }
-
-    header, .content {
-      position: relative;
-      z-index: 1;
     }
 
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
+      padding-bottom: 18px;
       margin-bottom: 18px;
     }
 
     h1 {
       margin: 0 0 6px;
-      font-size: clamp(30px, 5vw, 56px);
-      letter-spacing: 7px;
-      font-weight: 700;
+      font-size: clamp(28px, 5vw, 50px);
+      letter-spacing: 4px;
+      font-weight: 800;
       text-transform: uppercase;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #f2ead8;
+      text-shadow: 0 0 14px rgba(216, 208, 189, 0.10);
     }
 
     .subtitle {
       color: var(--muted);
-      letter-spacing: 2px;
-      font-size: 14px;
+      letter-spacing: 1.4px;
+      font-size: 13px;
       text-transform: uppercase;
-    }
-
-    .terminal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
+      font-weight: 600;
     }
 
     .player-card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border: 1px solid var(--line);
-      background: #0d0d0d;
-      padding: 10px 12px;
-      min-width: 230px;
+      min-width: 340px;
+      border: 1px solid rgba(224, 200, 120, 0.30);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(224,200,120,0.13), transparent 30%),
+        linear-gradient(135deg, rgba(224,200,120,0.075), transparent 42%),
+        linear-gradient(180deg, #151411, #060606);
+      padding: 16px 16px 15px 18px;
+      position: relative;
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.42),
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 -22px 38px rgba(0,0,0,0.36);
     }
 
-        .player-label {
+    .player-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 3px;
+      background: linear-gradient(180deg, transparent, var(--main-gold-soft), transparent);
+      box-shadow: 0 0 18px rgba(224, 200, 120, 0.34);
+    }
+
+    .player-label {
       color: var(--muted);
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+      font-weight: 600;
     }
 
     .player-name {
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 4px;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+      color: #fff5df;
+      font-weight: 700;
     }
 
     .player-status {
-      color: var(--complete-green);
-      font-size: 13px;
-      margin-top: 4px;
+      color: #55f28a;
+      font-size: 12px;
       text-transform: uppercase;
+      margin-top: 2px;
+      letter-spacing: 0.8px;
+    }
+
+    .rank-title {
+      color: #dec77e;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 11px;
+      font-weight: 700;
+    }
+
+    .level-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: #f7f0de;
+      margin-top: 7px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .xp-bar {
+      height: 13px;
+      border: 1px solid rgba(216,208,189,0.30);
+      background: linear-gradient(180deg, #030303, #0d0c0a);
+      margin-top: 8px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.95), 0 0 12px rgba(224, 200, 120, 0.06);
+    }
+
+    .xp-fill {
+      height: 100%;
+      width: 0%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.30), transparent 38%),
+        linear-gradient(90deg, #765414, #c39a3b 45%, #f1dd92 100%);
+      box-shadow: 0 0 18px rgba(224, 200, 120, 0.40);
+      transition: width 0.25s ease;
+    }
+
+    .xp-note {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 7px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
     }
 
     .tabs {
@@ -137,98 +198,117 @@
       gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
-    .tab {
-      border: 1px solid #555;
-      background: #141414;
+    button {
+      border: 1px solid rgba(216,208,189,0.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+        linear-gradient(180deg, #181816, #0d0d0c);
       color: var(--text);
-      padding: 12px 16px;
+      padding: 10px 13px;
       font-family: inherit;
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
       transition: 0.15s ease;
     }
 
-    .tab:hover, .tab.active {
-      background: #252525;
+    button:hover, button.active {
+      background: linear-gradient(180deg, #27251f, #141311);
       border-color: var(--accent);
       transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.28);
     }
 
-    .view {
-      display: none;
+    button.danger, .delete-btn {
+      border-color: rgba(178, 77, 77, 0.65);
+      color: #ffc0c0;
+      background: linear-gradient(180deg, rgba(143,47,47,0.20), #0d0d0c);
     }
 
-    .view.active {
-      display: block;
+    button.danger:hover, .delete-btn:hover {
+      background: linear-gradient(180deg, #8f2f2f, #431414);
+      color: white;
     }
 
-    .grid {
+    .fail-btn {
+      border-color: rgba(160, 115, 55, 0.7);
+      color: #f0c880;
+      background: linear-gradient(180deg, rgba(154,129,46,0.20), #0d0d0c);
+    }
+
+    .fail-btn:hover {
+      background: linear-gradient(180deg, #6d541c, #2a210e);
+      color: #ffe3a3;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .grid-quests {
+      display: grid;
+      grid-template-columns: 340px repeat(3, minmax(230px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .grid-save {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
-    }
-
-    .grid.three {
-      grid-template-columns: 0.95fr 1fr 0.9fr 0.9fr;
+      align-items: start;
     }
 
     .panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--panel), #090909);
+      border: 1px solid rgba(216,208,189,0.18);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,208,189,0.045), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.018), transparent 30%),
+        linear-gradient(180deg, #111214, #080808);
       padding: 18px;
-      min-height: 240px;
+      min-height: 220px;
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.32),
+        inset 0 0 0 1px rgba(255,255,255,0.014),
+        inset 0 -30px 50px rgba(0,0,0,0.22);
     }
 
     .panel h2 {
       margin: 0 0 14px;
-      font-size: 22px;
-      letter-spacing: 3px;
-      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 2px;
+      font-weight: 800;
       text-transform: uppercase;
       border-bottom: 1px solid var(--line);
       padding-bottom: 10px;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .prompt {
-      min-height: 100px;
-      font-size: 21px;
-      line-height: 1.45;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 18px;
-      margin-bottom: 18px;
-    }
-
-    .prompt::after {
-      content: "_";
-      animation: blink 0.8s infinite;
-      color: var(--accent);
-    }
-
-    @keyframes blink {
-      0%, 45% { opacity: 1; }
-      46%, 100% { opacity: 0; }
-    }
+    .main-heading { color: var(--main-gold); text-shadow: 0 0 12px rgba(195,154,59,0.18); }
+    .side-heading { color: var(--side-blue); text-shadow: 0 0 12px rgba(110,182,255,0.16); }
+    .complete-heading { color: var(--complete-green); text-shadow: 0 0 12px rgba(69,184,107,0.16); }
+    .failed-heading { color: #ff9d9d; }
 
     label {
       display: block;
       color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 1px;
+      font-size: 12px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
       margin: 12px 0 7px;
+      font-weight: 600;
     }
 
     input, textarea, select {
       width: 100%;
-      border: 1px solid #3a3a3a;
+      border: 1px solid rgba(216,208,189,0.22);
       background: #080808;
       color: var(--text);
       padding: 12px 14px;
       font-family: inherit;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
     }
 
@@ -240,7 +320,51 @@
     input:focus, textarea:focus, select:focus {
       border-color: var(--accent);
       background: #111;
+      box-shadow: 0 0 0 2px rgba(216,208,189,0.06);
     }
+
+    .mission-time-box, .template-box {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #111, #080808);
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .mission-time-label, .template-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .mission-time-value {
+      color: #f3ead8;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .template-preview {
+      border: 1px solid rgba(216,208,189,0.14);
+      background: rgba(0,0,0,0.22);
+      color: #b8afa2;
+      padding: 10px 11px;
+      margin-top: 9px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .micro-builder {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .micro-builder input { flex: 1; }
 
     .actions {
       display: flex;
@@ -249,62 +373,56 @@
       margin-top: 16px;
     }
 
-    button.action {
-      border: 1px solid #555;
-      background: #141414;
-      color: var(--text);
-      padding: 11px 14px;
-      font-family: inherit;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.15s ease;
-    }
+    .actions button { flex: 1; }
 
-    button.action:hover {
-      background: #242424;
-      border-color: var(--accent);
-    }
-
-    button.danger:hover {
-      background: var(--danger);
-      border-color: #b93333;
-    }
-
-    .quest-list, .save-list {
+    .quest-list, .save-list, .draft-list, .default-list {
       display: grid;
       gap: 10px;
     }
 
-    .quest-card, .save-card {
-      border: 1px solid #3a3a3a;
-      background: var(--panel-2);
-      padding: 12px;
+    .quest-card, .save-card, .draft-item, .empty, .stat, .default-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 40%),
+        linear-gradient(180deg, #191918, #111110);
+      padding: 14px;
+      border-radius: 3px;
+      box-shadow:
+        0 8px 22px rgba(0,0,0,0.30),
+        inset 0 0 0 1px rgba(255,255,255,0.012);
     }
 
     .quest-card {
       display: grid;
-      gap: 8px;
+      gap: 11px;
+      padding: 16px;
     }
 
-    .quest-top, .save-top {
+    .quest-card.main { border-color: rgba(195,154,59,0.72); box-shadow: inset 4px 0 0 var(--main-gold), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.side { border-color: rgba(110,182,255,0.62); box-shadow: inset 4px 0 0 var(--side-blue), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.complete { border-color: rgba(69,184,107,0.62); box-shadow: inset 4px 0 0 var(--complete-green), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.failed { border-color: rgba(178,77,77,0.62); box-shadow: inset 4px 0 0 var(--failed-red), 0 8px 22px rgba(0,0,0,0.28); opacity: 0.96; }
+
+    .quest-top, .save-top, .draft-item {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
     }
 
-    .quest-title, .save-title {
+    .quest-title, .save-title, .default-title {
       font-size: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      line-height: 1.25;
+      letter-spacing: 0.3px;
+      line-height: 1.35;
+      font-weight: 800;
+      color: #fff0d2;
     }
 
-    .quest-desc, .save-meta {
-      margin-top: 8px;
-      color: var(--muted);
-      line-height: 1.45;
+    .quest-desc, .save-meta, .default-meta {
+      color: #b8afa2;
+      line-height: 1.58;
       font-size: 14px;
+      margin-top: 5px;
     }
 
     .quest-desc {
@@ -314,68 +432,29 @@
       overflow: hidden;
     }
 
-    .micro-task-builder {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
+    .date-complete { color: var(--complete-green); font-size: 12px; margin-top: 4px; }
+    .date-failed { color: #ff9d9d; font-size: 12px; margin-top: 4px; }
+
+    .badge {
+      border: 1px solid rgba(216,208,189,0.24);
+      padding: 6px 9px;
+      font-size: 11px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 800;
     }
 
-    .micro-task-builder input {
-      flex: 1;
-    }
-
-    .draft-micro-list,
-    .micro-list {
-      display: none;
-      gap: 7px;
-      margin-top: 8px;
-    }
-
-    .micro-list.open {
-      display: grid;
-    }
-
-    .draft-micro-item,
-    .micro-item {
-      border: 1px solid #2a2a2a;
-      background: #090909;
-      padding: 7px 9px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      color: var(--text);
-      font-size: 13px;
-    }
-
-    .micro-item label {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text);
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 13px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .micro-item input[type="checkbox"] {
-      width: auto;
-      accent-color: var(--complete-green);
-    }
-
-    .micro-item.done span {
-      color: var(--muted);
-      text-decoration: line-through;
-    }
+    .badge.new { background: #1f3558; color: #cfe3ff; }
+    .badge.progress { background: #6f5a1f; color: #ffecae; }
+    .badge.complete { background: #245d38; color: #bfffd2; }
+    .badge.failed { background: #6b2525; color: #ffc4c4; }
 
     .progress-wrap {
-      margin-top: 2px;
-      border: 1px solid #2c2c2c;
+      border: 1px solid rgba(216,208,189,0.16);
       background: #090909;
-      padding: 7px;
+      padding: 8px;
+      margin-top: 10px;
     }
 
     .progress-label {
@@ -386,11 +465,11 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .progress-bar {
-      height: 7px;
+      height: 8px;
       border: 1px solid #3a3a3a;
       background: #050505;
       overflow: hidden;
@@ -399,251 +478,437 @@
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: var(--complete-green);
+      background: linear-gradient(90deg, #245d38, #45b86b, #94f0ad);
       transition: width 0.2s ease;
     }
 
-    .badge {
-      border: 1px solid #555;
-      padding: 5px 8px;
-      font-size: 12px;
-      white-space: nowrap;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .steps-toggle { width: 100%; margin-top: 8px; }
+
+    .micro-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 8px;
     }
 
-    .badge.new { background: var(--blue); }
-    .badge.progress { background: var(--warning); }
-    .badge.complete { background: var(--success); }
+    .micro-list.hidden { display: none; }
 
-    .quest-card.main-quest {
-      border-color: var(--main-gold);
-      box-shadow: inset 4px 0 0 var(--main-gold);
-    }
-
-    .quest-card.side-quest {
-      border-color: var(--side-blue);
-      box-shadow: inset 4px 0 0 var(--side-blue);
-    }
-
-    .quest-card.completed-quest {
-      opacity: 0.95;
-      border-color: var(--complete-green);
-      box-shadow: inset 4px 0 0 var(--complete-green);
-    }
-
-    .main-heading {
-      color: var(--main-gold);
-    }
-
-    .side-heading {
-      color: var(--side-blue);
-    }
-
-    .complete-heading {
-      color: var(--complete-green);
-    }
-
-    .mini-actions {
+    .micro-item {
+      border: 1px solid #2a2a2a;
+      background: #090909;
+      padding: 8px 9px;
       display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .status-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .utility-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-top: 2px;
-    }
-
-    .mini-actions button,
-    .status-actions button,
-    .utility-actions button {
-      border: 1px solid #444;
-      background: #0d0d0d;
+      align-items: center;
+      gap: 9px;
       color: var(--text);
-      padding: 7px 8px;
-      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .micro-item input { width: auto; margin: 0; accent-color: var(--complete-green); }
+    .micro-item.done span { color: var(--muted); text-decoration: line-through; }
+
+    .button-grid, .default-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .button-grid button, .default-actions button {
+      min-height: 36px;
       font-size: 12px;
-      cursor: pointer;
-    }
-
-    .mini-actions button:hover,
-    .status-actions button:hover,
-    .utility-actions button:hover {
-      border-color: var(--accent);
-      background: #222;
-    }
-
-    .toggle-steps-btn {
-      width: 100%;
-      text-align: center;
-      color: var(--muted);
+      font-weight: 700;
+      padding: 8px 10px;
     }
 
     .empty {
       color: var(--muted);
-      border: 1px dashed #333;
-      padding: 16px;
+      border-style: dashed;
       line-height: 1.5;
+      box-shadow: none;
     }
 
-    .clock {
-      color: var(--accent);
-      font-size: 17px;
-      margin-top: 8px;
-    }
-
-    .status {
-      margin-top: 14px;
-      color: #cfcfcf;
-      min-height: 24px;
-      font-size: 16px;
+    .prompt {
+      min-height: 100px;
+      font-size: 20px;
+      line-height: 1.45;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      color: #f0eadf;
     }
 
     .stats {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
-    .stat {
-      border: 1px solid #333;
-      background: #111;
-      padding: 12px;
+    .streak-box {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
     }
 
-    .stat-number {
-      font-size: 28px;
+    .streak-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        radial-gradient(circle at center, rgba(195,154,59,0.10), transparent 48%),
+        linear-gradient(180deg, #191918, #10100f);
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      text-align: center;
     }
 
-    .stat-label {
+    .streak-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid rgba(224,200,120,0.45);
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle, rgba(224,200,120,0.12), transparent 58%),
+        linear-gradient(180deg, #111, #050505);
+      box-shadow:
+        0 0 24px rgba(224,200,120,0.10),
+        inset 0 0 18px rgba(0,0,0,0.70);
+    }
+
+    .streak-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: #f1dd92;
+      line-height: 1;
+    }
+
+    .streak-label {
+      margin-top: 5px;
       color: var(--muted);
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 12px;
-      margin-top: 4px;
     }
 
-    .modal-overlay {
+    .streak-timer {
+      color: #f0eadf;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .streak-state {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .streak-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: 100%;
+    }
+
+    .streak-actions button {
+      min-height: 38px;
+      font-size: 12px;
+    }
+
+    .stat-number { font-size: 30px; font-weight: 900; color: #f0eadf; }
+    .stat-label { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-top: 4px; }
+
+    .data-box {
+      min-height: 150px;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .helper-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .status-message {
+      margin-top: 14px;
+      color: #cfcfcf;
+      min-height: 24px;
+      font-size: 15px;
+    }
+
+    .failed-zone {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .elements-panel { min-height: 520px; }
+
+    .elements-header {
+      display: grid;
+      grid-template-columns: 54px 1fr 54px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .elements-header h2 {
+      margin: 0 0 6px;
+      text-align: center;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .elements-week-label {
+      color: #f3ead8;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .elements-header button {
+      height: 48px;
+      font-size: 18px;
+    }
+
+    .elements-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .element-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+        linear-gradient(180deg, #151514, #090909);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .element-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .element-title-row span {
+      color: #f3ead8;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .element-title-row em {
+      color: var(--muted);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .element-strip { height: 8px; width: 100%; }
+    .fire-strip { background: linear-gradient(90deg, #441010, #c63f3f, #ff8a68); }
+    .earth-strip { background: linear-gradient(90deg, #102d18, #2f9b55, #74d38a); }
+    .water-strip { background: linear-gradient(90deg, #102844, #2478c8, #71c8ff); }
+    .air-strip { background: linear-gradient(90deg, #2a2a2a, #777, #aaa); }
+
+    .element-block-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .element-block {
+      min-height: 72px;
+      border: 1px solid rgba(216,208,189,0.20);
+      background: linear-gradient(180deg, #111, #070707);
+      cursor: pointer;
+    }
+
+    .element-block.fire.active { background: linear-gradient(180deg, #ff6a4a, #8d1e1e); }
+    .element-block.earth.active { background: linear-gradient(180deg, #6ed88c, #1f6f3d); }
+    .element-block.air {
+      cursor: not-allowed;
+      opacity: 0.48;
+      background: repeating-linear-gradient(135deg, #151515, #151515 8px, #101010 8px, #101010 16px);
+    }
+
+    .water-week-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .water-day-block {
+      min-height: 72px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(216,208,189,0.20);
+      background: #070707;
+      overflow: hidden;
+    }
+
+    .water-segment {
+      border-right: 1px solid rgba(216,208,189,0.12);
+      background: linear-gradient(180deg, #111, #070707);
+      cursor: pointer;
+    }
+
+    .water-segment:last-child { border-right: 0; }
+    .water-segment.active { background: linear-gradient(180deg, #66c8ff, #1765a8); }
+
+    .modal {
       position: fixed;
       inset: 0;
       display: none;
       justify-content: center;
       align-items: center;
       padding: 18px;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0,0,0,0.82);
       z-index: 50;
     }
 
-    .modal-overlay.active {
-      display: flex;
-    }
+    .modal.open { display: flex; }
 
-    .info-modal {
+    .modal-card {
       width: min(760px, 100%);
       max-height: 82vh;
+      overflow: auto;
       border: 1px solid var(--accent);
       background: linear-gradient(180deg, #141414, #050505);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
       padding: 18px;
-      display: flex;
-      flex-direction: column;
     }
 
-    .info-modal-header {
+    .modal-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
       gap: 12px;
       border-bottom: 1px solid var(--line);
       padding-bottom: 12px;
       margin-bottom: 12px;
     }
 
-    .info-modal-title {
-      font-size: 22px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
-    }
-
-    .info-modal-body {
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 16px;
-      white-space: pre-wrap;
-      overflow-y: auto;
-      padding-right: 8px;
-    }
-
-    .close-modal {
-      border: 1px solid #555;
-      background: #111;
-      color: var(--text);
-      padding: 8px 11px;
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .close-modal:hover {
-      border-color: var(--accent);
-      background: #222;
-    }
-
-    @media (max-height: 850px) {
-      body {
-        align-items: flex-start;
-      }
-    }
+    .modal-title { font-size: 22px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; }
+    .modal-body { white-space: pre-wrap; line-height: 1.7; }
 
     @media (max-width: 900px) {
-      .grid, .grid.three {
-        grid-template-columns: 1fr;
+      body {
+        padding: 0;
+        display: block;
+        overflow-y: auto;
+        background: #000;
       }
 
-      h1 {
-        letter-spacing: 4px;
+      .screen {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border: 0;
+        padding: 14px;
       }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .player-card { min-width: auto; width: 100%; }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(5,5,5,.98);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tabs button {
+        width: 100%;
+        min-width: 0;
+        padding: 12px 4px;
+        font-size: 12px;
+      }
+
+      .grid-quests, .grid-save {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .elements-header { grid-template-columns: 44px 1fr 44px; }
+      .element-block-row { gap: 8px; }
+      .element-block, .water-day-block { min-height: 58px; }
+      .water-week-grid { grid-template-columns: 1fr; }
+      .button-grid, .default-actions { grid-template-columns: 1fr; }
+      .actions button { width: 100%; flex-basis: 100%; min-height: 44px; }
+      .button-grid button { min-height: 42px; font-size: 13px; }
+      .quest-card { padding: 14px; }
+      input, textarea, select, button { font-size: 16px; }
+      textarea { min-height: 105px; }
+      h1 { letter-spacing: 3px; font-size: 32px; }
+      h2 { font-size: 18px; letter-spacing: 1.5px; }
     }
   </style>
 </head>
 <body>
   <main class="screen">
-    <header class="terminal-header">
+    <header>
       <div>
         <h1>Quest Terminal</h1>
         <div class="subtitle">Save room archive / mission tracker</div>
       </div>
-
       <div class="player-card">
-        <div>
-          <div class="player-label">Player File</div>
-          <div class="player-name">Siam</div>
-          <div class="player-status">Status: Active</div>
+        <div class="player-label">Player File</div>
+        <div class="player-name">Siam</div>
+        <div class="player-status">Status: Active</div>
+        <div id="rankTitle" class="rank-title">Rank: Rookie</div>
+        <div class="level-row">
+          <span id="levelText">Level 1</span>
+          <span id="xpText">0 / 100 XP</span>
         </div>
+        <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
+        <div id="xpNote" class="xp-note">Complete quests to rank up</div>
       </div>
     </header>
 
     <section class="content">
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
+        <button class="tab" data-view="elementsView">Elements</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
       </nav>
 
       <section id="questsView" class="view active">
-        <div class="grid three">
+        <div class="grid-quests">
           <div class="panel">
             <h2>Create Quest</h2>
+
+            <div class="mission-time-box">
+              <div class="mission-time-label">Current Date / Time</div>
+              <div id="missionDateTime" class="mission-time-value">Loading...</div>
+            </div>
+
+            <div class="template-box">
+              <div class="template-label">Saved Defaults</div>
+              <div id="defaultSummary" class="template-preview">No saved defaults yet. Create a quest, then click Save Default.</div>
+              <div class="actions">
+                <button type="button" id="openDefaultsBtn">Load Defaults</button>
+                <button type="button" id="saveFormDefaultBtn">Save Default</button>
+              </div>
+            </div>
+
             <label for="questType">Quest type</label>
             <select id="questType">
               <option value="main">Main Quest</option>
@@ -654,27 +919,28 @@
             <input id="questTitle" type="text" maxlength="50" placeholder="Example: Clean the room" />
 
             <label for="questDesc">Quest details</label>
-            <textarea id="questDesc" maxlength="3000" placeholder="Example: Clear desk, laundry, garbage, vacuum... You can write a long description here."></textarea>
+            <textarea id="questDesc" maxlength="3000" placeholder="Write details here..."></textarea>
 
-            <label for="microTaskInput">Micro tasks</label>
-            <div class="micro-task-builder">
-              <input id="microTaskInput" type="text" maxlength="90" placeholder="Example: Watch one SQL lesson" />
-              <button class="action" id="addMicroTaskBtn" type="button">Add</button>
+            <label for="microInput">Micro tasks</label>
+            <div class="micro-builder">
+              <input id="microInput" type="text" maxlength="90" placeholder="Example: Watch one SQL lesson" />
+              <button type="button" id="addMicroBtn">Add</button>
             </div>
-            <div id="draftMicroList" class="draft-micro-list"></div>
+            <div id="draftList" class="draft-list" style="margin-top:10px;"></div>
 
             <label for="questStatus">Starting status</label>
             <select id="questStatus">
               <option value="new">New</option>
               <option value="progress">In Progress</option>
               <option value="complete">Complete</option>
+              <option value="failed">Failed</option>
             </select>
 
             <div class="actions">
-              <button class="action" id="addQuestBtn">Add Quest</button>
-              <button class="action danger" id="cancelEditBtn" style="display:none;">Cancel Edit</button>
+              <button id="submitQuestBtn">Add Quest</button>
+              <button id="cancelEditBtn" class="danger" style="display:none;">Cancel Edit</button>
             </div>
-            <div id="questStatusText" class="status"></div>
+            <div id="questStatusText" class="status-message"></div>
           </div>
 
           <div class="panel">
@@ -694,24 +960,78 @@
         </div>
       </section>
 
+      <section id="elementsView" class="view">
+        <div class="panel elements-panel">
+          <div class="elements-header">
+            <button type="button" id="prevWeekBtn">◀</button>
+            <div>
+              <h2>Elements</h2>
+              <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
+            </div>
+            <button type="button" id="nextWeekBtn">▶</button>
+          </div>
+
+          <div class="elements-grid">
+            <div class="element-card">
+              <div class="element-title-row"><span>Fire</span><em>Combat</em></div>
+              <div class="element-strip fire-strip"></div>
+              <div id="fireGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card">
+              <div class="element-title-row"><span>Earth</span><em>Strength</em></div>
+              <div class="element-strip earth-strip"></div>
+              <div id="earthGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card">
+              <div class="element-title-row"><span>Water</span><em>Career</em></div>
+              <div class="element-strip water-strip"></div>
+              <div id="waterGrid" class="water-week-grid"></div>
+            </div>
+
+            <div class="element-card">
+              <div class="element-title-row"><span>Air</span><em>Peace</em></div>
+              <div class="element-strip air-strip"></div>
+              <div id="airGrid" class="element-block-row"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="saveView" class="view">
-        <div class="grid">
+        <div class="grid-save">
           <div class="panel">
             <h2>Save Folder</h2>
-            <div id="savePrompt" class="prompt"></div>
+            <div id="savePrompt" class="prompt">Create quests. Save the quest log. Export your archive when moving devices.</div>
 
             <label for="saveName">Save file name</label>
             <input id="saveName" type="text" maxlength="40" placeholder="Example: Monday Reset Save" />
 
-            <div class="clock">Current time: <span id="clock"></span></div>
+            <div class="helper-text">Current time: <span id="clock"></span></div>
 
             <div class="actions">
-              <button class="action" id="saveBtn">Save Current Quest Log</button>
-              <button class="action" id="newSaveBtn">Create New Save / Reset Board</button>
-              <button class="action danger" id="clearSavesBtn">Clear Saves</button>
-              <button class="action danger" id="clearCompletedBtn">Clear Completed Quests</button>
+              <button id="saveBtn">Save Current Quest Log</button>
+              <button id="resetBoardBtn">Create New Save / Reset Board</button>
+              <button id="soundBtn">Sound: On</button>
+              <button id="clearSavesBtn" class="danger">Clear Saves</button>
+              <button id="clearCompletedBtn" class="danger">Clear Completed Quests</button>
             </div>
-            <div id="saveStatusText" class="status"></div>
+            <div id="saveStatusText" class="status-message"></div>
+
+            <div style="margin-top:18px;">
+              <h2>Export / Import</h2>
+              <label for="dataBox">Save data</label>
+              <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
+              <div class="helper-text">Export = copy current quests/saves/defaults/elements. Import = replace this browser with pasted backup data.</div>
+              <div class="actions">
+                <button id="exportBtn">Export Data</button>
+                <button id="copyBtn">Copy Export</button>
+                <button id="downloadBtn">Download Backup</button>
+                <button id="importBtn">Import Data</button>
+                <button id="clearBoxBtn">Clear Box</button>
+              </div>
+            </div>
           </div>
 
           <div class="panel">
@@ -721,6 +1041,35 @@
               <div class="stat"><div id="newQuests" class="stat-number">0</div><div class="stat-label">New</div></div>
               <div class="stat"><div id="progressQuests" class="stat-number">0</div><div class="stat-label">In Progress</div></div>
               <div class="stat"><div id="completeQuests" class="stat-number">0</div><div class="stat-label">Complete</div></div>
+              <div class="stat"><div id="failedQuests" class="stat-number">0</div><div class="stat-label">Failed</div></div>
+              <div class="stat"><div id="xpCount" class="stat-number">0</div><div class="stat-label">XP</div></div>
+              <div class="stat"><div id="levelCount" class="stat-number">1</div><div class="stat-label">Level</div></div>
+              <div class="stat"><div id="streakCount" class="stat-number">0</div><div class="stat-label">Day streak</div></div>
+            </div>
+
+            <div class="streak-box">
+              <h2>Main Quest Streak</h2>
+              <div class="streak-card">
+                <div class="streak-circle">
+                  <div>
+                    <div id="mainStreakNumber" class="streak-number">0</div>
+                    <div class="streak-label">Days</div>
+                  </div>
+                </div>
+                <div id="mainStreakTimer" class="streak-timer">Timer: Not started</div>
+                <div id="mainStreakState" class="streak-state">Start the streak when you are ready.</div>
+                <div class="streak-actions">
+                  <button type="button" id="startStreakBtn">Start</button>
+                  <button type="button" id="setStreakBtn">Set Streak</button>
+                  <button type="button" id="resetStreakBtn" class="danger">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="failed-zone">
+              <h2 class="failed-heading">Failed Quests</h2>
+              <div class="helper-text">Quests you could not meet by the end. They stay here instead of cluttering Main or Side.</div>
+              <div id="failedQuestList" class="quest-list" style="margin-top:10px;"></div>
             </div>
           </div>
         </div>
@@ -735,566 +1084,1417 @@
     </section>
   </main>
 
-  <div id="infoModal" class="modal-overlay">
-    <div class="info-modal">
-      <div class="info-modal-header">
-        <div id="infoModalTitle" class="info-modal-title">Quest Information</div>
-        <button id="closeInfoModal" class="close-modal">Close</button>
+  <div id="infoModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div id="modalTitle" class="modal-title">Quest</div>
+        <button id="closeModal">Close</button>
       </div>
-      <div id="infoModalBody" class="info-modal-body"></div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="defaultsModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Default Folder</div>
+        <button id="closeDefaultsModal">Close</button>
+      </div>
+      <div id="defaultsModalBody" class="default-list"></div>
+    </div>
+  </div>
+
+  <div id="streakModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Set Main Streak</div>
+        <button id="closeStreakModal">Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="streak-card">
+          <div class="streak-circle">
+            <div>
+              <div id="streakModalNumber" class="streak-number">0</div>
+              <div class="streak-label">Days</div>
+            </div>
+          </div>
+          <div class="streak-state">Use + or - to adjust your restored streak.</div>
+          <div class="streak-actions">
+            <button type="button" id="minusStreakBtn">-</button>
+            <button type="button" id="plusStreakBtn">+</button>
+            <button type="button" id="applyStreakBtn">Apply</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const QUEST_KEY = "quest_terminal_quests";
-    const SAVE_KEY = "quest_terminal_saves";
+    var STORE_QUESTS = 'quest_terminal_quests';
+    var STORE_SAVES = 'quest_terminal_saves';
+    var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
+    var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
+    var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
+    var STORE_STREAK = 'qt_main_quest_streak_v1';
+    var VERSION = 'merged-old-save-v2-streak';
+    var editingQuestId = null;
+    var draftTasks = [];
+    var currentElementWeek = getWeekStart(new Date());
+    var streakDraftValue = 0;
 
-    const tabs = document.querySelectorAll(".tab");
-    const views = document.querySelectorAll(".view");
-    const questTypeEl = document.getElementById("questType");
-    const questTitleEl = document.getElementById("questTitle");
-    const questDescEl = document.getElementById("questDesc");
-    const questStatusEl = document.getElementById("questStatus");
-    const microTaskInput = document.getElementById("microTaskInput");
-    const addMicroTaskBtn = document.getElementById("addMicroTaskBtn");
-    const draftMicroList = document.getElementById("draftMicroList");
-    const addQuestBtn = document.getElementById("addQuestBtn");
-    const cancelEditBtn = document.getElementById("cancelEditBtn");
-    let editingQuestId = null;
-    let draftMicroTasks = [];
-    const mainQuestList = document.getElementById("mainQuestList");
-    const sideQuestList = document.getElementById("sideQuestList");
-    const completeQuestList = document.getElementById("completeQuestList");
-    const questStatusText = document.getElementById("questStatusText");
-    const savePrompt = document.getElementById("savePrompt");
-    const saveNameEl = document.getElementById("saveName");
-    const saveBtn = document.getElementById("saveBtn");
-    const newSaveBtn = document.getElementById("newSaveBtn");
-    const clearSavesBtn = document.getElementById("clearSavesBtn");
-    const clearCompletedBtn = document.getElementById("clearCompletedBtn");
-    const saveStatusText = document.getElementById("saveStatusText");
-    const saveArchive = document.getElementById("saveArchive");
-    const clockEl = document.getElementById("clock");
-    const infoModal = document.getElementById("infoModal");
-    const infoModalTitle = document.getElementById("infoModalTitle");
-    const infoModalBody = document.getElementById("infoModalBody");
-    const closeInfoModal = document.getElementById("closeInfoModal");
+    function byId(id) {
+      return document.getElementById(id);
+    }
 
-    const totalQuestsEl = document.getElementById("totalQuests");
-    const newQuestsEl = document.getElementById("newQuests");
-    const progressQuestsEl = document.getElementById("progressQuests");
-    const completeQuestsEl = document.getElementById("completeQuests");
-
-    function safeLoad(key, fallback) {
+    function readStore(key, fallback) {
       try {
-        return JSON.parse(localStorage.getItem(key)) || fallback;
-      } catch {
+        var raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
         return fallback;
       }
     }
 
-    function safeWrite(key, value) {
+    function writeStore(key, value) {
       localStorage.setItem(key, JSON.stringify(value));
     }
 
     function getQuests() {
-      return safeLoad(QUEST_KEY, []);
+      return readStore(STORE_QUESTS, []);
     }
 
-    function writeQuests(quests) {
-      safeWrite(QUEST_KEY, quests);
+    function setQuests(value) {
+      writeStore(STORE_QUESTS, value);
     }
 
     function getSaves() {
-      return safeLoad(SAVE_KEY, []);
+      return readStore(STORE_SAVES, []);
     }
 
-    function writeSaves(saves) {
-      safeWrite(SAVE_KEY, saves);
+    function setSaves(value) {
+      writeStore(STORE_SAVES, value);
     }
 
-    function formatDateTime(date) {
+    function getCustomDefaults() {
+      return readStore(STORE_DEFAULTS, []);
+    }
+
+    function setCustomDefaults(value) {
+      writeStore(STORE_DEFAULTS, value);
+    }
+
+    function getStreakData() {
+      return readStore(STORE_STREAK, {
+        active: false,
+        count: 0,
+        startedAt: null,
+        updatedAt: null
+      });
+    }
+
+    function setStreakData(value) {
+      writeStore(STORE_STREAK, value);
+    }
+
+    function makeId() {
+      if (window.crypto && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return String(Date.now()) + '-' + String(Math.random());
+    }
+
+    function nowIso() {
+      return new Date().toISOString();
+    }
+
+    function formatDateTime(value) {
+      var date = value ? new Date(value) : new Date();
       return new Intl.DateTimeFormat(undefined, {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
       }).format(date);
     }
 
-    function typeText(text, speed = 25) {
-      savePrompt.textContent = "";
-      let i = 0;
-      const timer = setInterval(() => {
-        savePrompt.textContent += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(timer);
-      }, speed);
+    function dateKey(value) {
+      var date = new Date(value);
+      if (isNaN(date.getTime())) return null;
+      return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+    }
+
+    function getWeekStart(date) {
+      var d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      var day = d.getDay();
+      var diff = day === 0 ? -6 : 1 - day;
+      d.setDate(d.getDate() + diff);
+      return d;
+    }
+
+    function addDays(date, amount) {
+      var d = new Date(date);
+      d.setDate(d.getDate() + amount);
+      return d;
+    }
+
+    function shortDate(value) {
+      return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(value);
+    }
+
+    function weekKey(date) {
+      return dateKey(getWeekStart(date));
+    }
+
+    function getElementsStore() {
+      return readStore(STORE_ELEMENTS, {});
+    }
+
+    function setElementsStore(value) {
+      writeStore(STORE_ELEMENTS, value);
+    }
+
+    function getWeekElements() {
+      var all = getElementsStore();
+      var key = weekKey(currentElementWeek);
+      if (!all[key]) {
+        all[key] = {
+          fire: [false, false, false],
+          earth: [false, false, false],
+          water: [
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false]
+          ],
+          air: [false, false, false]
+        };
+        setElementsStore(all);
+      }
+      return all[key];
+    }
+
+    function saveWeekElements(data) {
+      var all = getElementsStore();
+      all[weekKey(currentElementWeek)] = data;
+      setElementsStore(all);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function isSoundOn() {
+      return localStorage.getItem(STORE_SOUND) !== 'false';
+    }
+
+    function setSound(value) {
+      localStorage.setItem(STORE_SOUND, String(value));
+      byId('soundBtn').textContent = value ? 'Sound: On' : 'Sound: Off';
+    }
+
+    function beep(type) {
+      if (!isSoundOn()) return;
+      try {
+        var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        var ctx = new AudioContextClass();
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        var freq = 240;
+        var duration = 0.06;
+
+        if (type === 'save') { freq = 440; duration = 0.12; }
+        if (type === 'complete') { freq = 660; duration = 0.15; }
+        if (type === 'fail') { freq = 120; duration = 0.12; }
+        if (type === 'load') { freq = 330; duration = 0.12; }
+
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.035, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (error) {}
     }
 
     function statusLabel(status) {
-      if (status === "progress") return "In Progress";
-      if (status === "complete") return "Complete";
-      return "New";
+      if (status === 'progress') return 'In Progress';
+      if (status === 'complete') return 'Complete';
+      if (status === 'failed') return 'Failed';
+      return 'New';
     }
 
-    function statusClass(status) {
-      if (status === "progress") return "progress";
-      if (status === "complete") return "complete";
-      return "new";
-    }
+    function showView(viewId) {
+      var views = document.querySelectorAll('.view');
+      var tabs = document.querySelectorAll('.tab');
 
-    function switchView(viewId) {
-      tabs.forEach(tab => tab.classList.toggle("active", tab.dataset.view === viewId));
-      views.forEach(view => view.classList.toggle("active", view.id === viewId));
+      views.forEach(function(view) {
+        view.classList.toggle('active', view.id === viewId);
+      });
+
+      tabs.forEach(function(tab) {
+        tab.classList.toggle('active', tab.getAttribute('data-view') === viewId);
+      });
+
+      beep('click');
       renderAll();
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => switchView(tab.dataset.view));
-    });
+    function renderDraftTasks() {
+      var box = byId('draftList');
+      box.innerHTML = '';
 
-    function renderDraftMicroTasks() {
-      draftMicroList.innerHTML = "";
-
-      if (draftMicroTasks.length === 0) {
-        draftMicroList.innerHTML = '<div class="empty">No micro tasks added yet.</div>';
+      if (draftTasks.length === 0) {
+        box.innerHTML = '<div class="empty">No micro tasks added yet.</div>';
         return;
       }
 
-      draftMicroTasks.forEach(task => {
-        const item = document.createElement("div");
-        item.className = "draft-micro-item";
-        item.innerHTML = `
-          <span>${escapeHTML(task.text)}</span>
-          <button type="button">Remove</button>
-        `;
-        item.querySelector("button").onclick = () => {
-          draftMicroTasks = draftMicroTasks.filter(existing => existing.id !== task.id);
-          renderDraftMicroTasks();
-        };
-        draftMicroList.appendChild(item);
+      draftTasks.forEach(function(task) {
+        var item = document.createElement('div');
+        item.className = 'draft-item';
+        item.innerHTML = '<span>' + escapeHtml(task.text) + '</span><button type="button" data-draft-remove="' + task.id + '">Remove</button>';
+        box.appendChild(item);
       });
     }
 
-    function addDraftMicroTask() {
-      const text = microTaskInput.value.trim();
+    function addDraftTask() {
+      var input = byId('microInput');
+      var text = input.value.trim();
       if (!text) return;
 
-      draftMicroTasks.push({
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()),
-        text,
+      draftTasks.push({
+        id: makeId(),
+        text: text,
         done: false
       });
 
-      microTaskInput.value = "";
-      renderDraftMicroTasks();
+      input.value = '';
+      beep('click');
+      renderDraftTasks();
     }
 
     function resetQuestForm() {
       editingQuestId = null;
-      questTitleEl.value = "";
-      questDescEl.value = "";
-      microTaskInput.value = "";
-      draftMicroTasks = [];
-      renderDraftMicroTasks();
-      questTypeEl.value = "main";
-      questStatusEl.value = "new";
-      addQuestBtn.textContent = "Add Quest";
-      cancelEditBtn.style.display = "none";
+      draftTasks = [];
+      byId('questType').value = 'main';
+      byId('questTitle').value = '';
+      byId('questDesc').value = '';
+      byId('questStatus').value = 'new';
+      byId('microInput').value = '';
+      byId('submitQuestBtn').textContent = 'Add Quest';
+      byId('cancelEditBtn').style.display = 'none';
+      renderDraftTasks();
     }
 
-    function addQuest() {
-      const title = questTitleEl.value.trim();
-      const desc = questDescEl.value.trim();
+    function renderDefaultSummary() {
+      var defaults = getCustomDefaults();
+      var summary = byId('defaultSummary');
+      if (!summary) return;
 
-      if (!title) {
-        questStatusText.textContent = "Quest name required.";
+      if (defaults.length === 0) {
+        summary.textContent = 'No saved defaults yet. Create a quest, then click Save Default.';
         return;
       }
 
-      const quests = getQuests();
+      summary.innerHTML = '<strong>' + defaults.length + ' saved default' + (defaults.length === 1 ? '' : 's') + '</strong><br>Click Load Defaults to choose one.';
+    }
 
-      if (editingQuestId) {
-        const updatedQuests = quests.map(quest => {
-          if (quest.id !== editingQuestId) return quest;
+    function openDefaultsModal() {
+      renderDefaultsModal();
+      byId('defaultsModal').classList.add('open');
+      beep('click');
+    }
 
-          return {
-            ...quest,
-            type: questTypeEl.value,
-            title,
-            desc,
-            microTasks: draftMicroTasks,
-            status: questStatusEl.value,
-            updatedAt: new Date().toISOString()
-          };
-        });
+    function closeDefaultsModal() {
+      byId('defaultsModal').classList.remove('open');
+    }
 
-        writeQuests(updatedQuests);
-        questStatusText.textContent = "Quest updated.";
-        resetQuestForm();
-        renderAll();
+    function renderDefaultsModal() {
+      var body = byId('defaultsModalBody');
+      var defaults = getCustomDefaults();
+      body.innerHTML = '';
+
+      if (defaults.length === 0) {
+        body.innerHTML = '<div class="empty">No saved defaults yet. Make a quest first, then press Save Default on its card.</div>';
         return;
       }
 
-      quests.unshift({
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
-        type: questTypeEl.value,
-        title,
-        desc,
-        microTasks: draftMicroTasks,
-        status: questStatusEl.value,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+      defaults.forEach(function(template) {
+        var card = document.createElement('div');
+        card.className = 'default-card';
+        card.setAttribute('data-default-id', template.id);
+        var typeLabel = template.type === 'main' ? 'Main Quest' : 'Side Quest';
+        var taskCount = template.tasks ? template.tasks.length : 0;
+
+        card.innerHTML =
+          '<div class="default-title">' + escapeHtml(template.title) + '</div>' +
+          '<div class="default-meta">' + typeLabel + ' · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>' + escapeHtml(template.desc || 'No description saved.') + '</div>' +
+          '<div class="default-actions">' +
+            '<button type="button" data-default-action="add">Add Quest</button>' +
+            '<button type="button" data-default-action="load">Load to Form</button>' +
+            '<button type="button" class="danger" data-default-action="remove">Delete Default</button>' +
+          '</div>';
+        body.appendChild(card);
+      });
+    }
+
+    function getDefaultById(id) {
+      return getCustomDefaults().find(function(template) {
+        return template.id === id;
+      });
+    }
+
+    function loadDefaultIntoFormById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      editingQuestId = null;
+      byId('questType').value = template.type || 'main';
+      byId('questTitle').value = template.title || '';
+      byId('questDesc').value = template.desc || '';
+      byId('questStatus').value = 'new';
+      byId('submitQuestBtn').textContent = 'Add Quest';
+      byId('cancelEditBtn').style.display = 'none';
+      draftTasks = (template.tasks || []).map(function(text) {
+        return { id: makeId(), text: text, done: false };
       });
 
-      writeQuests(quests);
-      questStatusText.textContent = "Quest added.";
+      renderDraftTasks();
+      closeDefaultsModal();
+      showView('questsView');
+      byId('questStatusText').textContent = template.title + ' loaded. Edit it, then click Add Quest.';
+      setTimeout(function() {
+        byId('questTitle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        byId('questTitle').focus();
+      }, 100);
+      beep('click');
+    }
+
+    function addDefaultAsQuestById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      var time = nowIso();
+      var quests = getQuests();
+      quests.unshift({
+        id: makeId(),
+        type: template.type || 'main',
+        title: template.title || 'Saved Default',
+        desc: template.desc || '',
+        microTasks: (template.tasks || []).map(function(text) {
+          return { id: makeId(), text: text, done: false };
+        }),
+        status: 'new',
+        createdAt: time,
+        updatedAt: time,
+        completedAt: null,
+        failedAt: null
+      });
+
+      setQuests(quests);
+      closeDefaultsModal();
+      showView('questsView');
+      byId('questStatusText').textContent = template.title + ' added from saved defaults.';
+      beep('click');
+      renderAll();
+    }
+
+    function removeDefaultById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      var defaults = getCustomDefaults().filter(function(item) {
+        return item.id !== id;
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      renderDefaultsModal();
+      byId('questStatusText').textContent = template.title + ' removed from saved defaults.';
+      beep('fail');
+    }
+
+    function saveQuestAsDefault(id) {
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
+      if (!quest) return;
+
+      var defaultName = prompt('Name this default:', quest.title);
+      if (defaultName === null) return;
+      defaultName = defaultName.trim();
+
+      if (!defaultName) {
+        byId('questStatusText').textContent = 'Default name required.';
+        return;
+      }
+
+      var defaults = getCustomDefaults();
+      defaults.unshift({
+        id: makeId(),
+        type: quest.type || 'main',
+        title: defaultName,
+        desc: quest.desc || '',
+        tasks: (quest.microTasks || []).map(function(task) {
+          return task.text;
+        }),
+        createdAt: nowIso()
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      byId('questStatusText').textContent = defaultName + ' saved as a reusable default.';
+      beep('save');
+    }
+
+    function saveCurrentFormAsDefault() {
+      var title = byId('questTitle').value.trim();
+      var desc = byId('questDesc').value.trim();
+      var type = byId('questType').value;
+
+      if (!title) {
+        byId('questStatusText').textContent = 'Type a quest name first, then click Save Default.';
+        return;
+      }
+
+      var defaults = getCustomDefaults();
+      defaults.unshift({
+        id: makeId(),
+        type: type,
+        title: title,
+        desc: desc,
+        tasks: draftTasks.map(function(task) {
+          return task.text;
+        }),
+        createdAt: nowIso()
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      renderDefaultsModal();
+      byId('questStatusText').textContent = title + ' saved to Default Folder.';
+      beep('save');
+      openDefaultsModal();
+    }
+
+    function saveQuestFromForm() {
+      var title = byId('questTitle').value.trim();
+      if (!title) {
+        byId('questStatusText').textContent = 'Quest name required.';
+        return;
+      }
+
+      var time = nowIso();
+      var status = byId('questStatus').value;
+      var quest = {
+        id: editingQuestId || makeId(),
+        type: byId('questType').value,
+        title: title,
+        desc: byId('questDesc').value.trim(),
+        microTasks: draftTasks.slice(),
+        status: status,
+        createdAt: time,
+        updatedAt: time,
+        completedAt: status === 'complete' ? time : null,
+        failedAt: status === 'failed' ? time : null
+      };
+
+      var quests = getQuests();
+
+      if (editingQuestId) {
+        quests = quests.map(function(oldQuest) {
+          if (oldQuest.id !== editingQuestId) return oldQuest;
+          quest.createdAt = oldQuest.createdAt || time;
+          quest.completedAt = status === 'complete' ? (oldQuest.completedAt || time) : null;
+          quest.failedAt = status === 'failed' ? (oldQuest.failedAt || time) : null;
+          return quest;
+        });
+        byId('questStatusText').textContent = 'Quest updated.';
+      } else {
+        quests.unshift(quest);
+        byId('questStatusText').textContent = 'Quest added.';
+      }
+
+      setQuests(quests);
+      beep('click');
       resetQuestForm();
       renderAll();
     }
 
     function updateQuestStatus(id, nextStatus) {
-      const quests = getQuests().map(quest => {
+      var time = nowIso();
+      var quests = getQuests().map(function(quest) {
         if (quest.id !== id) return quest;
 
-        const microTasks = quest.microTasks || [];
-        const updatedMicroTasks = nextStatus === "complete"
-          ? microTasks.map(task => ({ ...task, done: true }))
-          : microTasks;
+        var tasks = quest.microTasks || [];
+        if (nextStatus === 'complete') {
+          tasks = tasks.map(function(task) {
+            return Object.assign({}, task, { done: true });
+          });
+        }
 
-        return {
-          ...quest,
+        return Object.assign({}, quest, {
           status: nextStatus,
-          microTasks: updatedMicroTasks,
-          updatedAt: new Date().toISOString()
-        };
+          microTasks: tasks,
+          updatedAt: time,
+          completedAt: nextStatus === 'complete' ? (quest.completedAt || time) : null,
+          failedAt: nextStatus === 'failed' ? (quest.failedAt || time) : null
+        });
       });
 
-      writeQuests(quests);
+      setQuests(quests);
+      if (nextStatus === 'complete') beep('complete');
+      else if (nextStatus === 'failed') beep('fail');
+      else beep('click');
       renderAll();
     }
 
-    function toggleMicroTask(questId, microTaskId) {
-      const quests = getQuests().map(quest => {
+    function toggleMicroTask(questId, taskId) {
+      var time = nowIso();
+      var quests = getQuests().map(function(quest) {
         if (quest.id !== questId) return quest;
 
-        const microTasks = (quest.microTasks || []).map(task => {
-          if (task.id !== microTaskId) return task;
-          return { ...task, done: !task.done };
+        var tasks = (quest.microTasks || []).map(function(task) {
+          if (task.id !== taskId) return task;
+          return Object.assign({}, task, { done: !task.done });
         });
 
-        const total = microTasks.length;
-        const done = microTasks.filter(task => task.done).length;
-        const status = total > 0 && done === total ? "complete" : quest.status === "complete" ? "progress" : quest.status;
+        var total = tasks.length;
+        var done = tasks.filter(function(task) { return task.done; }).length;
+        var finished = total > 0 && done === total;
 
-        return { ...quest, microTasks, status, updatedAt: new Date().toISOString() };
+        return Object.assign({}, quest, {
+          microTasks: tasks,
+          status: finished ? 'complete' : (quest.status === 'complete' || quest.status === 'failed' ? 'progress' : quest.status),
+          completedAt: finished ? (quest.completedAt || time) : null,
+          failedAt: null,
+          updatedAt: time
+        });
       });
 
-      writeQuests(quests);
+      setQuests(quests);
+      beep('click');
+      renderAll();
+    }
+
+    function deleteQuest(id) {
+      var quests = getQuests().filter(function(quest) {
+        return quest.id !== id;
+      });
+      setQuests(quests);
+      byId('questStatusText').textContent = 'Quest deleted.';
+      beep('fail');
       renderAll();
     }
 
     function editQuest(id) {
-      const quest = getQuests().find(item => item.id === id);
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
       if (!quest) return;
 
       editingQuestId = id;
-      questTypeEl.value = quest.type;
-      questTitleEl.value = quest.title;
-      questDescEl.value = quest.desc || "";
-      draftMicroTasks = (quest.microTasks || []).map(task => ({ ...task }));
-      renderDraftMicroTasks();
-      questStatusEl.value = quest.status;
-      addQuestBtn.textContent = "Update Quest";
-      cancelEditBtn.style.display = "inline-block";
-      questStatusText.textContent = "Editing quest. Make changes, then click Update Quest.";
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      byId('questType').value = quest.type || 'main';
+      byId('questTitle').value = quest.title || '';
+      byId('questDesc').value = quest.desc || '';
+      byId('questStatus').value = quest.status || 'new';
+      draftTasks = (quest.microTasks || []).map(function(task) {
+        return Object.assign({}, task);
+      });
+      byId('submitQuestBtn').textContent = 'Update Quest';
+      byId('cancelEditBtn').style.display = 'inline-block';
+      byId('questStatusText').textContent = 'Editing quest. Make changes, then update.';
+      renderDraftTasks();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function openQuestInfo(id) {
-      const quest = getQuests().find(item => item.id === id);
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
       if (!quest) return;
 
-      infoModalTitle.textContent = quest.title;
-      infoModalBody.textContent = quest.desc || "No detailed information added.";
-      infoModal.classList.add("active");
+      var lines = [];
+      lines.push(quest.desc || 'No detailed information added.');
+      lines.push('');
+      lines.push('Micro Tasks:');
+
+      if ((quest.microTasks || []).length === 0) {
+        lines.push('None added.');
+      } else {
+        (quest.microTasks || []).forEach(function(task) {
+          lines.push((task.done ? '[x] ' : '[ ] ') + task.text);
+        });
+      }
+
+      if (quest.completedAt) lines.push('\nCompleted: ' + formatDateTime(quest.completedAt));
+      if (quest.failedAt) lines.push('\nFailed: ' + formatDateTime(quest.failedAt));
+
+      byId('modalTitle').textContent = quest.title;
+      byId('modalBody').textContent = lines.join('\n');
+      byId('infoModal').classList.add('open');
+      beep('click');
     }
 
-    function closeQuestInfo() {
-      infoModal.classList.remove("active");
+    function createQuestCard(quest) {
+      var card = document.createElement('article');
+      var cardType = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
+      card.className = 'quest-card ' + cardType;
+      card.setAttribute('data-quest-id', quest.id);
+
+      var tasks = quest.microTasks || [];
+      var doneCount = tasks.filter(function(task) { return task.done; }).length;
+      var percent = tasks.length > 0 ? Math.round((doneCount / tasks.length) * 100) : 0;
+
+      var dateHtml = '';
+      if (quest.completedAt) {
+        dateHtml += '<div class="date-complete">Completed: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
+      }
+      if (quest.failedAt) {
+        dateHtml += '<div class="date-failed">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
+      }
+
+      var microHtml = '';
+      if (tasks.length > 0) {
+        microHtml += '<div class="progress-wrap">';
+        microHtml += '<div class="progress-label"><span>Micro progress</span><span>' + doneCount + ' / ' + tasks.length + '</span></div>';
+        microHtml += '<div class="progress-bar"><div class="progress-fill" style="width:' + percent + '%"></div></div>';
+        microHtml += '</div>';
+        microHtml += '<button class="steps-toggle" data-action="toggleSteps">Show Steps</button>';
+        microHtml += '<div class="micro-list hidden">';
+        tasks.forEach(function(task) {
+          microHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
+          microHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
+          microHtml += '<span>' + escapeHtml(task.text) + '</span>';
+          microHtml += '</label>';
+        });
+        microHtml += '</div>';
+      }
+
+      card.innerHTML =
+        '<div class="quest-top">' +
+          '<div><div class="quest-title">' + escapeHtml(quest.title) + '</div>' + dateHtml + '</div>' +
+          '<div class="badge ' + escapeHtml(quest.status) + '">' + statusLabel(quest.status) + '</div>' +
+        '</div>' +
+        '<div class="quest-desc">' + escapeHtml(quest.desc || "No details added.") + '</div>' +
+        microHtml +
+        '<div class="button-grid">' +
+          '<button data-action="new">New</button>' +
+          '<button data-action="progress">Progress</button>' +
+          '<button data-action="complete">' + (quest.status === "complete" ? "Undo" : "Done") + '</button>' +
+        '</div>' +
+        '<div class="button-grid">' +
+          '<button class="fail-btn" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+          '<button data-action="info">Info</button>' +
+          '<button data-action="edit">Edit</button>' +
+        '</div>' +
+        '<div class="button-grid">' +
+          '<button class="delete-btn" data-action="delete">Delete</button>' +
+        '</div>';
+
+      return card;
     }
 
-    function deleteQuest(id) {
-      const quests = getQuests().filter(quest => quest.id !== id);
-      writeQuests(quests);
-      renderAll();
-    }
-
-    function renderQuestList(container, quests) {
-      container.innerHTML = "";
+    function renderQuestList(containerId, quests) {
+      var container = byId(containerId);
+      container.innerHTML = '';
 
       if (quests.length === 0) {
         container.innerHTML = '<div class="empty">No quests listed here yet.</div>';
         return;
       }
 
-      quests.forEach(quest => {
-        const card = document.createElement("article");
-        card.className = "quest-card " + (quest.status === "complete" ? "completed-quest" : quest.type === "main" ? "main-quest" : "side-quest");
-        const microTasks = quest.microTasks || [];
-        const completedMicroTasks = microTasks.filter(task => task.done).length;
-        const totalMicroTasks = microTasks.length;
-        const progressPercent = totalMicroTasks === 0 ? 0 : Math.round((completedMicroTasks / totalMicroTasks) * 100);
-        const microTaskHTML = totalMicroTasks === 0
-          ? '<div class="empty">No micro tasks added.</div>'
-          : microTasks.map(task => `
-              <div class="micro-item ${task.done ? "done" : ""}">
-                <label>
-                  <input type="checkbox" data-micro-id="${task.id}" ${task.done ? "checked" : ""} />
-                  <span>${escapeHTML(task.text)}</span>
-                </label>
-              </div>
-            `).join("");
-        const completeButtonLabel = quest.status === "complete" ? "Undo" : "Done";
-
-        card.innerHTML = `
-          <div class="quest-top">
-            <div class="quest-title">${escapeHTML(quest.title)}</div>
-            <div class="badge ${statusClass(quest.status)}">${statusLabel(quest.status)}</div>
-          </div>
-          <div class="quest-desc">${quest.desc ? escapeHTML(quest.desc) : "No details added."}</div>
-          <div class="progress-wrap">
-            <div class="progress-label">
-              <span>Micro progress</span>
-              <span>${completedMicroTasks} / ${totalMicroTasks}</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${progressPercent}%"></div></div>
-          </div>
-          <div class="mini-actions">
-            <button class="toggle-steps-btn" data-action="toggleSteps">Show Steps</button>
-          </div>
-          <div class="micro-list">${microTaskHTML}</div>
-          <div class="status-actions">
-            <button data-action="new">New</button>
-            <button data-action="progress">Progress</button>
-            <button data-action="complete">${completeButtonLabel}</button>
-          </div>
-          <div class="utility-actions">
-            <button data-action="read">Info</button>
-            <button data-action="edit">Edit</button>
-            <button data-action="delete">Delete</button>
-          </div>
-        `;
-
-        card.querySelector('[data-action="new"]').onclick = () => updateQuestStatus(quest.id, "new");
-        card.querySelector('[data-action="progress"]').onclick = () => updateQuestStatus(quest.id, "progress");
-        card.querySelector('[data-action="complete"]').onclick = () => {
-          if (quest.status === "complete") {
-            updateQuestStatus(quest.id, "progress");
-          } else {
-            updateQuestStatus(quest.id, "complete");
-          }
-        };
-        card.querySelector('[data-action="read"]').onclick = () => openQuestInfo(quest.id);
-        card.querySelector('[data-action="edit"]').onclick = () => editQuest(quest.id);
-        card.querySelector('[data-action="delete"]').onclick = () => deleteQuest(quest.id);
-
-        const stepsButton = card.querySelector('[data-action="toggleSteps"]');
-        const stepsList = card.querySelector('.micro-list');
-        stepsButton.onclick = () => {
-          stepsList.classList.toggle('open');
-          stepsButton.textContent = stepsList.classList.contains('open') ? 'Hide Steps' : 'Show Steps';
-        };
-
-        card.querySelectorAll('[data-micro-id]').forEach(input => {
-          input.onchange = () => toggleMicroTask(quest.id, input.dataset.microId);
-        });
-
-        container.appendChild(card);
+      quests.forEach(function(quest) {
+        container.appendChild(createQuestCard(quest));
       });
     }
 
-    function renderQuests() {
-      const quests = getQuests();
-      renderQuestList(mainQuestList, quests.filter(q => q.type === "main" && q.status !== "complete"));
-      renderQuestList(sideQuestList, quests.filter(q => q.type === "side" && q.status !== "complete"));
-      renderQuestList(completeQuestList, quests.filter(q => q.status === "complete"));
+    function calculateLevel(totalXp) {
+      var level = 1;
+      var used = 0;
+      var needed = 100;
+
+      while (totalXp >= used + needed) {
+        used += needed;
+        level += 1;
+        needed = 100 + ((level - 1) * 50);
+      }
+
+      var current = totalXp - used;
+      return {
+        level: level,
+        current: current,
+        needed: needed,
+        toNext: needed - current,
+        percent: Math.min(100, Math.round((current / needed) * 100)),
+        rank: getRankTitle(level)
+      };
+    }
+
+    function getRankTitle(level) {
+      if (level >= 20) return 'Legend';
+      if (level >= 15) return 'Elite Hunter';
+      if (level >= 10) return 'Veteran';
+      if (level >= 7) return 'Specialist';
+      if (level >= 5) return 'Operator';
+      if (level >= 3) return 'Survivor';
+      return 'Rookie';
+    }
+
+    function calculateStreak(completedQuests) {
+      var days = new Set(completedQuests.map(function(quest) {
+        return dateKey(quest.completedAt);
+      }).filter(Boolean));
+
+      if (days.size === 0) return 0;
+
+      var cursor = new Date();
+      if (!days.has(dateKey(cursor))) {
+        cursor.setDate(cursor.getDate() - 1);
+        if (!days.has(dateKey(cursor))) return 0;
+      }
+
+      var streak = 0;
+      while (days.has(dateKey(cursor))) {
+        streak += 1;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      return streak;
     }
 
     function renderStats() {
-      const quests = getQuests();
-      totalQuestsEl.textContent = quests.length;
-      newQuestsEl.textContent = quests.filter(q => q.status === "new").length;
-      progressQuestsEl.textContent = quests.filter(q => q.status === "progress").length;
-      completeQuestsEl.textContent = quests.filter(q => q.status === "complete").length;
+      var quests = getQuests();
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
+      var xp = completed.reduce(function(sum, quest) {
+        return sum + (quest.type === 'main' ? 50 : 20);
+      }, 0);
+      var level = calculateLevel(xp);
+
+      byId('totalQuests').textContent = quests.length;
+      byId('newQuests').textContent = quests.filter(function(quest) { return quest.status === 'new'; }).length;
+      byId('progressQuests').textContent = quests.filter(function(quest) { return quest.status === 'progress'; }).length;
+      byId('completeQuests').textContent = completed.length;
+      byId('failedQuests').textContent = failed.length;
+      byId('xpCount').textContent = xp;
+      byId('levelCount').textContent = level.level;
+      byId('streakCount').textContent = calculateStreak(completed);
+      byId('rankTitle').textContent = 'Rank: ' + level.rank;
+      byId('levelText').textContent = 'Level ' + level.level;
+      byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
+      byId('xpFill').style.width = level.percent + '%';
+      byId('xpNote').textContent = level.toNext + ' XP until next level';
+      renderMainStreak();
     }
 
-    function createSaveSnapshot({ resetAfterSave = false } = {}) {
-      const quests = getQuests();
-      const saves = getSaves();
-      const now = new Date();
-      const pretty = formatDateTime(now);
-      const name = saveNameEl.value.trim() || "Quest Log " + (saves.length + 1);
+    function formatDuration(ms) {
+      if (!ms || ms < 0) return '0d 00h 00m 00s';
+      var totalSeconds = Math.floor(ms / 1000);
+      var days = Math.floor(totalSeconds / 86400);
+      var hours = Math.floor((totalSeconds % 86400) / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
+      return days + 'd ' + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm ' + String(seconds).padStart(2, '0') + 's';
+    }
 
-      const saveFile = {
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
-        name,
+    function renderMainStreak() {
+      if (!byId('mainStreakNumber')) return;
+      var data = getStreakData();
+      byId('mainStreakNumber').textContent = data.count || 0;
+
+      if (!data.active || !data.startedAt) {
+        byId('mainStreakTimer').textContent = 'Timer: Not started';
+        byId('mainStreakState').textContent = 'Start the streak when you are ready.';
+        return;
+      }
+
+      var started = new Date(data.startedAt);
+      byId('mainStreakTimer').textContent = 'Timer: ' + formatDuration(Date.now() - started.getTime());
+      byId('mainStreakState').textContent = 'Active since ' + formatDateTime(data.startedAt);
+    }
+
+    function startMainStreak() {
+      var data = getStreakData();
+      if (!data.startedAt) {
+        data.startedAt = nowIso();
+      }
+      data.active = true;
+      data.updatedAt = nowIso();
+      setStreakData(data);
+      renderMainStreak();
+      beep('save');
+    }
+
+    function resetMainStreak() {
+      setStreakData({
+        active: false,
+        count: 0,
+        startedAt: null,
+        updatedAt: nowIso()
+      });
+      if (byId('saveStatusText')) byId('saveStatusText').textContent = 'Main Quest Streak reset.';
+      renderMainStreak();
+      beep('fail');
+    }
+
+    function openStreakModal() {
+      var current = getStreakData();
+      streakDraftValue = current.count || 0;
+      renderStreakModal();
+      byId('streakModal').classList.add('open');
+      beep('click');
+    }
+
+    function closeStreakModal() {
+      byId('streakModal').classList.remove('open');
+    }
+
+    function renderStreakModal() {
+      if (!byId('streakModalNumber')) return;
+      byId('streakModalNumber').textContent = streakDraftValue;
+    }
+
+    function changeStreakDraft(amount) {
+      streakDraftValue += amount;
+      if (streakDraftValue < 0) streakDraftValue = 0;
+      renderStreakModal();
+      beep('click');
+    }
+
+    function applyStreakDraft() {
+      var current = getStreakData();
+      current.count = streakDraftValue;
+      current.active = true;
+      if (!current.startedAt) current.startedAt = nowIso();
+      current.updatedAt = nowIso();
+      setStreakData(current);
+      byId('saveStatusText').textContent = 'Main Quest Streak set to ' + streakDraftValue + ' day(s).';
+      closeStreakModal();
+      renderMainStreak();
+      beep('save');
+    }
+
+    function setMainStreakManually() {
+      openStreakModal();
+    }
+
+    function createSaveSnapshot(resetAfterSave) {
+      var quests = getQuests();
+      var saves = getSaves();
+      var now = new Date();
+      var pretty = formatDateTime(now);
+      var name = byId('saveName').value.trim() || 'Quest Log ' + (saves.length + 1);
+
+      var saveFile = {
+        id: makeId(),
+        name: name,
         timestamp: now.toISOString(),
         displayTime: pretty,
         quests: quests
       };
 
       saves.unshift(saveFile);
-      writeSaves(saves);
-      saveNameEl.value = "";
+      setSaves(saves);
+      byId('saveName').value = '';
 
       if (resetAfterSave) {
-        writeQuests([]);
-        typeText(name + " saved. A new blank quest board has started.");
-        saveStatusText.textContent = "New save created. Current quest board reset.";
+        setQuests([]);
+        byId('savePrompt').textContent = name + ' saved. A new blank quest board has started.';
+        byId('saveStatusText').textContent = 'New save created. Current quest board reset.';
       } else {
-        typeText(name + " saved around " + pretty + ".");
-        saveStatusText.textContent = "Quest log saved.";
+        byId('savePrompt').textContent = name + ' saved around ' + pretty + '.';
+        byId('saveStatusText').textContent = 'Quest log saved.';
       }
 
+      beep('save');
       renderAll();
     }
 
-    function saveCurrentProgress() {
-      createSaveSnapshot({ resetAfterSave: false });
-    }
-
-    function createNewSaveAndReset() {
-      createSaveSnapshot({ resetAfterSave: true });
-      switchView("questsView");
-    }
-
     function loadSave(id) {
-      const save = getSaves().find(item => item.id === id);
+      var save = getSaves().find(function(item) { return item.id === id; });
       if (!save) return;
 
-      writeQuests(save.quests || []);
-      typeText(save.name + " loaded.");
-      saveStatusText.textContent = "Loaded previous save.";
-      switchView("questsView");
+      setQuests(save.quests || []);
+      byId('savePrompt').textContent = save.name + ' loaded.';
+      byId('saveStatusText').textContent = 'Loaded previous save.';
+      beep('load');
+      showView('questsView');
     }
 
     function deleteSave(id) {
-      const saves = getSaves().filter(item => item.id !== id);
-      writeSaves(saves);
+      var saves = getSaves().filter(function(item) { return item.id !== id; });
+      setSaves(saves);
+      beep('fail');
       renderArchive();
     }
 
     function renderArchive() {
-      const saves = getSaves();
-      saveArchive.innerHTML = "";
+      var container = byId('saveArchive');
+      var saves = getSaves();
+      container.innerHTML = '';
 
       if (saves.length === 0) {
-        saveArchive.innerHTML = '<div class="empty">No previous saves yet. Go to Save Folder and create one.</div>';
+        container.innerHTML = '<div class="empty">No previous saves yet. Go to Save Folder and create one.</div>';
         return;
       }
 
-      saves.forEach(save => {
-        const quests = save.quests || [];
-        const completed = quests.filter(q => q.status === "complete").length;
-        const inProgress = quests.filter(q => q.status === "progress").length;
-        const card = document.createElement("article");
-        card.className = "save-card";
-        card.innerHTML = `
-          <div class="save-top">
-            <div class="save-title">${escapeHTML(save.name)}</div>
-            <div class="badge">Save</div>
-          </div>
-          <div class="save-meta">
-            Saved: ${escapeHTML(save.displayTime)}<br>
-            Quests: ${quests.length} total / ${inProgress} in progress / ${completed} complete
-          </div>
-          <div class="mini-actions">
-            <button data-action="load">View This Save</button>
-            <button data-action="delete">Delete Save</button>
-          </div>
-        `;
-
-        card.querySelector('[data-action="load"]').onclick = () => loadSave(save.id);
-        card.querySelector('[data-action="delete"]').onclick = () => deleteSave(save.id);
-        saveArchive.appendChild(card);
+      saves.forEach(function(save) {
+        var quests = save.quests || [];
+        var complete = quests.filter(function(quest) { return quest.status === 'complete'; }).length;
+        var failed = quests.filter(function(quest) { return quest.status === 'failed'; }).length;
+        var progress = quests.filter(function(quest) { return quest.status === 'progress'; }).length;
+        var card = document.createElement('article');
+        card.className = 'save-card';
+        card.setAttribute('data-save-id', save.id);
+        card.innerHTML =
+          '<div class="save-top">' +
+            '<div class="save-title">' + escapeHtml(save.name) + '</div>' +
+            '<div class="badge">Save</div>' +
+          '</div>' +
+          '<div class="save-meta">Saved: ' + escapeHtml(save.displayTime || formatDateTime(save.timestamp)) + '<br>' +
+          'Quests: ' + quests.length + ' total / ' + progress + ' in progress / ' + complete + ' complete / ' + failed + ' failed</div>' +
+          '<div class="actions">' +
+            '<button data-save-action="load">View This Save</button>' +
+            '<button class="danger" data-save-action="delete">Delete Save</button>' +
+          '</div>';
+        container.appendChild(card);
       });
     }
 
     function clearSaves() {
-      localStorage.removeItem(SAVE_KEY);
-      saveStatusText.textContent = "All previous saves cleared.";
-      typeText("The save archive has been cleared.");
+      localStorage.removeItem(STORE_SAVES);
+      byId('saveStatusText').textContent = 'All previous saves cleared.';
+      byId('savePrompt').textContent = 'The save archive has been cleared.';
+      beep('fail');
       renderAll();
     }
 
-    function clearCompletedQuests() {
-      const quests = getQuests();
-      const completedCount = quests.filter(quest => quest.status === "complete").length;
-      const activeQuests = quests.filter(quest => quest.status === "new" || quest.status === "progress");
+    function clearCompleted() {
+      var quests = getQuests();
+      var completedCount = quests.filter(function(quest) { return quest.status === 'complete'; }).length;
+      var activeQuests = quests.filter(function(quest) {
+        return quest.status === 'new' || quest.status === 'progress' || quest.status === 'failed';
+      });
 
       if (completedCount === 0) {
-        saveStatusText.textContent = "No completed quests to clear.";
-        typeText("There are no completed quest records to clear.");
+        byId('saveStatusText').textContent = 'No completed quests to clear.';
+        byId('savePrompt').textContent = 'There are no completed quest records to clear.';
         return;
       }
 
-      writeQuests(activeQuests);
-      saveStatusText.textContent = completedCount + " completed quest record(s) cleared. Active quests were kept.";
-      typeText("Only completed quest records have been cleared.");
+      setQuests(activeQuests);
+      byId('saveStatusText').textContent = completedCount + ' completed quest record(s) cleared. Active and failed quests were kept.';
+      byId('savePrompt').textContent = 'Only completed quest records have been cleared.';
+      beep('fail');
       renderAll();
     }
 
-    function escapeHTML(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    function exportData() {
+      var payload = {
+        app: 'Quest Terminal',
+        version: VERSION,
+        exportedAt: nowIso(),
+        quests: getQuests(),
+        saves: getSaves(),
+        defaults: getCustomDefaults(),
+        elements: getElementsStore(),
+        streak: getStreakData()
+      };
+      byId('dataBox').value = JSON.stringify(payload, null, 2);
+      byId('dataBox').focus();
+      byId('dataBox').select();
+      byId('saveStatusText').textContent = 'Export created. Copy the text or download it.';
+      beep('save');
     }
 
-    function updateClock() {
-      clockEl.textContent = formatDateTime(new Date());
+    function copyExport() {
+      if (!byId('dataBox').value.trim()) exportData();
+      byId('dataBox').focus();
+      byId('dataBox').select();
+      try {
+        document.execCommand('copy');
+        byId('saveStatusText').textContent = 'Export copied.';
+      } catch (error) {
+        byId('saveStatusText').textContent = 'Copy manually if browser blocks auto-copy.';
+      }
+    }
+
+    function downloadBackup() {
+      var raw = byId('dataBox').value.trim();
+      if (!raw) {
+        exportData();
+        raw = byId('dataBox').value;
+      }
+      var blob = new Blob([raw], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'quest-terminal-backup.json';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      byId('saveStatusText').textContent = 'Backup downloaded.';
+    }
+
+    function importData() {
+      var raw = byId('dataBox').value.trim();
+      if (!raw) {
+        byId('saveStatusText').textContent = 'Paste exported backup text first.';
+        return;
+      }
+
+      var data;
+      try {
+        data = JSON.parse(raw);
+      } catch (error) {
+        byId('saveStatusText').textContent = 'Import failed: invalid backup text.';
+        return;
+      }
+
+      if (!Array.isArray(data.quests) || !Array.isArray(data.saves)) {
+        byId('saveStatusText').textContent = 'Import failed: backup must contain quests and saves.';
+        return;
+      }
+
+      if (!confirm('Import backup? Current quests and saves will be replaced.')) return;
+      setQuests(data.quests);
+      setSaves(data.saves);
+      if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
+      if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
+      if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
+      byId('saveStatusText').textContent = 'Import complete.';
+      byId('savePrompt').textContent = 'Imported quest archive loaded.';
+      beep('load');
+      renderDefaultSummary();
+      renderAll();
+    }
+
+    function renderElements() {
+      var data = getWeekElements();
+      var start = getWeekStart(currentElementWeek);
+      var end = addDays(start, 6);
+      byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
+
+      var fire = byId('fireGrid');
+      var earth = byId('earthGrid');
+      var water = byId('waterGrid');
+      var air = byId('airGrid');
+      fire.innerHTML = '';
+      earth.innerHTML = '';
+      water.innerHTML = '';
+      air.innerHTML = '';
+
+      data.fire.forEach(function(active, index) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block fire' + (active ? ' active' : '');
+        block.setAttribute('data-element', 'fire');
+        block.setAttribute('data-index', index);
+        fire.appendChild(block);
+      });
+
+      data.earth.forEach(function(active, index) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block earth' + (active ? ' active' : '');
+        block.setAttribute('data-element', 'earth');
+        block.setAttribute('data-index', index);
+        earth.appendChild(block);
+      });
+
+      data.water.forEach(function(day, dayIndex) {
+        var dayBlock = document.createElement('div');
+        dayBlock.className = 'water-day-block';
+        day.forEach(function(active, segmentIndex) {
+          var segment = document.createElement('button');
+          segment.type = 'button';
+          segment.className = 'water-segment' + (active ? ' active' : '');
+          segment.setAttribute('data-element', 'water');
+          segment.setAttribute('data-day', dayIndex);
+          segment.setAttribute('data-segment', segmentIndex);
+          dayBlock.appendChild(segment);
+        });
+        water.appendChild(dayBlock);
+      });
+
+      data.air.forEach(function() {
+        var block = document.createElement('div');
+        block.className = 'element-block air';
+        air.appendChild(block);
+      });
+    }
+
+    function toggleElementBlock(element, index) {
+      var data = getWeekElements();
+      data[element][index] = !data[element][index];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function toggleWaterSegment(day, segment) {
+      var data = getWeekElements();
+      data.water[day][segment] = !data.water[day][segment];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function shiftElementWeek(amount) {
+      currentElementWeek = addDays(currentElementWeek, amount * 7);
+      renderElements();
+      beep('click');
     }
 
     function renderAll() {
-      renderQuests();
+      var quests = getQuests();
+
+      renderQuestList('mainQuestList', quests.filter(function(quest) {
+        return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
+      }));
+
+      renderQuestList('sideQuestList', quests.filter(function(quest) {
+        return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+      }));
+
+      renderQuestList('completeQuestList', quests.filter(function(quest) {
+        return quest.status === 'complete';
+      }));
+
+      renderQuestList('failedQuestList', quests.filter(function(quest) {
+        return quest.status === 'failed';
+      }));
+
       renderStats();
       renderArchive();
+      renderElements();
+      setSound(isSoundOn());
     }
 
-    addMicroTaskBtn.addEventListener("click", addDraftMicroTask);
-    microTaskInput.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        addDraftMicroTask();
-      }
-    });
-    renderDraftMicroTasks();
+    function bindEvents() {
+      document.querySelector('.tabs').addEventListener('click', function(event) {
+        var button = event.target.closest('[data-view]');
+        if (!button) return;
+        showView(button.getAttribute('data-view'));
+      });
 
-    closeInfoModal.addEventListener("click", closeQuestInfo);
-    infoModal.addEventListener("click", event => {
-      if (event.target === infoModal) closeQuestInfo();
-    });
+      byId('addMicroBtn').addEventListener('click', addDraftTask);
+      byId('openDefaultsBtn').addEventListener('click', openDefaultsModal);
+      byId('saveFormDefaultBtn').addEventListener('click', saveCurrentFormAsDefault);
+      byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
+      byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
 
-    addQuestBtn.addEventListener("click", addQuest);
-    cancelEditBtn.addEventListener("click", () => {
-      resetQuestForm();
-      questStatusText.textContent = "Edit cancelled.";
-    });
-    saveBtn.addEventListener("click", saveCurrentProgress);
-    newSaveBtn.addEventListener("click", createNewSaveAndReset);
-    clearSavesBtn.addEventListener("click", clearSaves);
-    clearCompletedBtn.addEventListener("click", clearCompletedQuests);
+      byId('microInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          addDraftTask();
+        }
+      });
 
-    updateClock();
-    setInterval(updateClock, 1000);
-    typeText("Create today’s quests. Save the quest log. Start a new save when you want a fresh board.");
+      byId('draftList').addEventListener('click', function(event) {
+        var id = event.target.getAttribute('data-draft-remove');
+        if (!id) return;
+        draftTasks = draftTasks.filter(function(task) { return task.id !== id; });
+        beep('fail');
+        renderDraftTasks();
+      });
+
+      byId('submitQuestBtn').addEventListener('click', saveQuestFromForm);
+
+      byId('cancelEditBtn').addEventListener('click', function() {
+        resetQuestForm();
+        byId('questStatusText').textContent = 'Edit cancelled.';
+      });
+
+      document.body.addEventListener('click', function(event) {
+        var clicked = event.target.closest('button');
+
+        if (clicked && clicked.id === 'startStreakBtn') {
+          startMainStreak();
+          return;
+        }
+
+        if (clicked && clicked.id === 'setStreakBtn') {
+          openStreakModal();
+          return;
+        }
+
+        if (clicked && clicked.id === 'minusStreakBtn') {
+          changeStreakDraft(-1);
+          return;
+        }
+
+        if (clicked && clicked.id === 'plusStreakBtn') {
+          changeStreakDraft(1);
+          return;
+        }
+
+        if (clicked && clicked.id === 'applyStreakBtn') {
+          applyStreakDraft();
+          return;
+        }
+
+        if (clicked && clicked.id === 'resetStreakBtn') {
+          resetMainStreak();
+          return;
+        }
+
+        if (event.target && event.target.id === 'saveFormDefaultBtn') {
+          saveCurrentFormAsDefault();
+          return;
+        }
+
+        if (event.target && event.target.id === 'openDefaultsBtn') {
+          openDefaultsModal();
+          return;
+        }
+
+        var actionButton = event.target.closest('[data-action]');
+        if (actionButton) {
+          var card = actionButton.closest('[data-quest-id]');
+          if (!card) return;
+          var questId = card.getAttribute('data-quest-id');
+          var action = actionButton.getAttribute('data-action');
+
+          if (action === 'new') updateQuestStatus(questId, 'new');
+          if (action === 'progress') updateQuestStatus(questId, 'progress');
+          if (action === 'complete') {
+            var quest = getQuests().find(function(item) { return item.id === questId; });
+            updateQuestStatus(questId, quest && quest.status === 'complete' ? 'progress' : 'complete');
+          }
+          if (action === 'failed') {
+            var failedQuest = getQuests().find(function(item) { return item.id === questId; });
+            updateQuestStatus(questId, failedQuest && failedQuest.status === 'failed' ? 'progress' : 'failed');
+          }
+          if (action === 'info') openQuestInfo(questId);
+          if (action === 'edit') editQuest(questId);
+          if (action === 'saveDefault') saveQuestAsDefault(questId);
+          if (action === 'delete') deleteQuest(questId);
+          if (action === 'toggleSteps') {
+            var microList = card.querySelector('.micro-list');
+            if (!microList) return;
+            microList.classList.toggle('hidden');
+            actionButton.textContent = microList.classList.contains('hidden') ? 'Show Steps' : 'Hide Steps';
+            beep('click');
+          }
+        }
+
+        var taskInput = event.target.closest('[data-action="toggleTask"]');
+        if (taskInput) {
+          var taskCard = taskInput.closest('[data-quest-id]');
+          if (!taskCard) return;
+          toggleMicroTask(taskCard.getAttribute('data-quest-id'), taskInput.getAttribute('data-task-id'));
+        }
+
+        var elementButton = event.target.closest('[data-element]');
+        if (elementButton) {
+          var element = elementButton.getAttribute('data-element');
+          if (element === 'fire' || element === 'earth') {
+            toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
+            return;
+          }
+          if (element === 'water') {
+            toggleWaterSegment(Number(elementButton.getAttribute('data-day')), Number(elementButton.getAttribute('data-segment')));
+            return;
+          }
+        }
+
+        var saveButton = event.target.closest('[data-save-action]');
+        if (saveButton) {
+          var saveCard = saveButton.closest('[data-save-id]');
+          if (!saveCard) return;
+          var saveId = saveCard.getAttribute('data-save-id');
+          var saveAction = saveButton.getAttribute('data-save-action');
+          if (saveAction === 'load') loadSave(saveId);
+          if (saveAction === 'delete') deleteSave(saveId);
+        }
+      });
+
+      byId('saveBtn').addEventListener('click', function() { createSaveSnapshot(false); });
+      byId('resetBoardBtn').addEventListener('click', function() { createSaveSnapshot(true); });
+      byId('startStreakBtn').addEventListener('click', startMainStreak);
+      byId('setStreakBtn').addEventListener('click', setMainStreakManually);
+      byId('resetStreakBtn').addEventListener('click', resetMainStreak);
+      byId('soundBtn').addEventListener('click', function() { setSound(!isSoundOn()); beep('click'); });
+      byId('clearSavesBtn').addEventListener('click', clearSaves);
+      byId('clearCompletedBtn').addEventListener('click', clearCompleted);
+      byId('exportBtn').addEventListener('click', exportData);
+      byId('copyBtn').addEventListener('click', copyExport);
+      byId('downloadBtn').addEventListener('click', downloadBackup);
+      byId('importBtn').addEventListener('click', importData);
+
+      byId('clearBoxBtn').addEventListener('click', function() {
+        byId('dataBox').value = '';
+        byId('saveStatusText').textContent = 'Export/import box cleared.';
+      });
+
+      byId('closeModal').addEventListener('click', function() {
+        byId('infoModal').classList.remove('open');
+      });
+
+      byId('infoModal').addEventListener('click', function(event) {
+        if (event.target === byId('infoModal')) {
+          byId('infoModal').classList.remove('open');
+        }
+      });
+
+      byId('closeDefaultsModal').addEventListener('click', closeDefaultsModal);
+      byId('closeStreakModal').addEventListener('click', closeStreakModal);
+      byId('streakModal').addEventListener('click', function(event) {
+        if (event.target === byId('streakModal')) {
+          closeStreakModal();
+        }
+      });
+
+      byId('defaultsModal').addEventListener('click', function(event) {
+        if (event.target === byId('defaultsModal')) {
+          closeDefaultsModal();
+        }
+      });
+
+      byId('defaultsModalBody').addEventListener('click', function(event) {
+        var button = event.target.closest('[data-default-action]');
+        if (!button) return;
+
+        var card = button.closest('[data-default-id]');
+        if (!card) return;
+
+        var id = card.getAttribute('data-default-id');
+        var action = button.getAttribute('data-default-action');
+
+        if (action === 'add') addDefaultAsQuestById(id);
+        if (action === 'load') loadDefaultIntoFormById(id);
+        if (action === 'remove') removeDefaultById(id);
+      });
+    }
+
+    function updateDateTimeDisplays() {
+      var current = formatDateTime();
+      byId('clock').textContent = current;
+      byId('missionDateTime').textContent = current;
+      renderMainStreak();
+    }
+
+    bindEvents();
+    renderDefaultSummary();
+    renderDraftTasks();
+    setSound(isSoundOn());
+    updateDateTimeDisplays();
+    setInterval(updateDateTimeDisplays, 1000);
     renderAll();
   </script>
 </body>
