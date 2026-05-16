@@ -245,6 +245,119 @@
       color: #ffe3a3;
     }
 
+    .action-new {
+      border-color: rgba(73, 128, 255, 0.65);
+      color: #dbe7ff;
+      background: linear-gradient(180deg, rgba(73,128,255,0.18), #0d0d0c);
+    }
+
+    .action-new:hover {
+      background: linear-gradient(180deg, #3f6fe0, #1d2f66);
+      color: #ffffff;
+    }
+
+    .action-progress {
+      border-color: rgba(201, 154, 54, 0.72);
+      color: #ffe9b0;
+      background: linear-gradient(180deg, rgba(201,154,54,0.20), #0d0d0c);
+    }
+
+    .action-progress:hover {
+      background: linear-gradient(180deg, #8e6a18, #3c2b0b);
+      color: #fff2cc;
+    }
+
+    .action-done {
+      border-color: rgba(69, 184, 107, 0.7);
+      color: #c9ffd8;
+      background: linear-gradient(180deg, rgba(69,184,107,0.20), #0d0d0c);
+    }
+
+    .action-done:hover {
+      background: linear-gradient(180deg, #2f8a4b, #123820);
+      color: #ffffff;
+    }
+
+    .action-more {
+      border-color: rgba(170, 170, 170, 0.45);
+      color: #ece7d8;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), #0d0d0c);
+    }
+
+    .action-more:hover {
+      background: linear-gradient(180deg, #2c2c2c, #121212);
+      color: #ffffff;
+    }
+
+    .action-fail {
+      border-color: rgba(230, 150, 48, 0.85);
+      color: #ffd39a;
+      background: linear-gradient(180deg, rgba(190,112,24,0.28), #171006);
+      box-shadow: 0 0 12px rgba(190, 112, 24, 0.14);
+    }
+
+    .action-fail:hover {
+      background: linear-gradient(180deg, #9a5d16, #3a2108);
+      color: #fff0d1;
+    }
+
+    .action-info {
+      border-color: rgba(120, 160, 255, 0.65);
+      color: #dce7ff;
+      background: linear-gradient(180deg, rgba(120,160,255,0.16), #0d0d0c);
+    }
+
+    .action-info:hover {
+      background: linear-gradient(180deg, #365ca8, #14294d);
+      color: #ffffff;
+    }
+
+    .action-edit {
+      border-color: rgba(142, 92, 204, 0.65);
+      color: #eadbff;
+      background: linear-gradient(180deg, rgba(142,92,204,0.16), #0d0d0c);
+    }
+
+    .action-edit:hover {
+      background: linear-gradient(180deg, #6d43a5, #2c193f);
+      color: #ffffff;
+    }
+
+    .action-delete {
+      border-color: rgba(230, 55, 55, 0.95);
+      color: #ffd1d1;
+      background: linear-gradient(180deg, rgba(155,15,15,0.45), #120404);
+      box-shadow: 0 0 16px rgba(180, 25, 25, 0.24);
+    }
+
+    .action-delete:hover {
+      background: linear-gradient(180deg, #9c1f1f, #3d0909);
+      color: #ffffff;
+    }
+
+    .action-add-quest {
+      border-color: rgba(69, 184, 107, 0.78);
+      color: #d5ffe1;
+      background: linear-gradient(180deg, rgba(69,184,107,0.26), #071108);
+      box-shadow: 0 0 14px rgba(69,184,107,0.12);
+    }
+
+    .action-add-quest:hover {
+      background: linear-gradient(180deg, #2f8a4b, #123820);
+      color: #ffffff;
+    }
+
+    .action-add-micro {
+      border-color: rgba(67, 178, 212, 0.72);
+      color: #d7f8ff;
+      background: linear-gradient(180deg, rgba(67,178,212,0.18), #071014);
+    }
+
+    .action-add-micro:hover {
+      background: linear-gradient(180deg, #267da0, #103949);
+      color: #ffffff;
+    }
+
     .view { display: none; }
     .view.active { display: block; }
 
@@ -518,6 +631,11 @@
       font-size: 12px;
       font-weight: 700;
       padding: 8px 10px;
+    }
+
+    .quest-more-actions {
+      display: grid;
+      gap: 8px;
     }
 
     .empty {
@@ -852,8 +970,51 @@
       .water-week-grid { grid-template-columns: 1fr; }
       .button-grid, .default-actions { grid-template-columns: 1fr; }
       .actions button { width: 100%; flex-basis: 100%; min-height: 44px; }
-      .button-grid button { min-height: 42px; font-size: 13px; }
-      .quest-card { padding: 14px; }
+      .button-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+      }
+
+      .quest-more-actions {
+        display: none;
+      }
+
+      .quest-card.actions-open .quest-more-actions {
+        display: grid;
+      }
+
+      .button-grid button {
+        min-height: 38px;
+        font-size: 12px;
+        padding: 8px 6px;
+      }
+
+      .button-grid .delete-btn {
+        grid-column: auto;
+      }
+
+      .quest-more-actions .button-grid:last-child {
+        grid-template-columns: 1fr 1fr;
+      }
+      .quest-card {
+        padding: 13px;
+        gap: 9px;
+      }
+
+      .quest-title {
+        font-size: 18px;
+      }
+
+      .quest-desc {
+        font-size: 14px;
+        line-height: 1.35;
+        -webkit-line-clamp: 2;
+      }
+
+      .badge {
+        font-size: 10px;
+        padding: 6px 8px;
+      }
       input, textarea, select, button { font-size: 16px; }
       textarea { min-height: 105px; }
       h1 { letter-spacing: 3px; font-size: 32px; }
@@ -924,7 +1085,7 @@
             <label for="microInput">Micro tasks</label>
             <div class="micro-builder">
               <input id="microInput" type="text" maxlength="90" placeholder="Example: Watch one SQL lesson" />
-              <button type="button" id="addMicroBtn">Add</button>
+              <button type="button" id="addMicroBtn" class="action-add-micro">Add</button>
             </div>
             <div id="draftList" class="draft-list" style="margin-top:10px;"></div>
 
@@ -937,7 +1098,7 @@
             </select>
 
             <div class="actions">
-              <button id="submitQuestBtn">Add Quest</button>
+              <button id="submitQuestBtn" class="action-add-quest">Add Quest</button>
               <button id="cancelEditBtn" class="danger" style="display:none;">Cancel Edit</button>
             </div>
             <div id="questStatusText" class="status-message"></div>
@@ -1789,20 +1950,23 @@
           '<div><div class="quest-title">' + escapeHtml(quest.title) + '</div>' + dateHtml + '</div>' +
           '<div class="badge ' + escapeHtml(quest.status) + '">' + statusLabel(quest.status) + '</div>' +
         '</div>' +
-        '<div class="quest-desc">' + escapeHtml(quest.desc || "No details added.") + '</div>' +
+        (quest.desc ? '<div class="quest-desc">' + escapeHtml(quest.desc) + '</div>' : '') +
         microHtml +
-        '<div class="button-grid">' +
-          '<button data-action="new">New</button>' +
-          '<button data-action="progress">Progress</button>' +
-          '<button data-action="complete">' + (quest.status === "complete" ? "Undo" : "Done") + '</button>' +
+        '<div class="button-grid primary-actions">' +
+          '<button class="action-progress" data-action="progress">Progress</button>' +
+          '<button class="action-done" data-action="complete">' + (quest.status === "complete" ? "Undo" : "Done") + '</button>' +
+          '<button class="action-more" data-action="more">More</button>' +
         '</div>' +
-        '<div class="button-grid">' +
-          '<button class="fail-btn" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
-          '<button data-action="info">Info</button>' +
-          '<button data-action="edit">Edit</button>' +
-        '</div>' +
-        '<div class="button-grid">' +
-          '<button class="delete-btn" data-action="delete">Delete</button>' +
+        '<div class="quest-more-actions">' +
+          '<div class="button-grid">' +
+            '<button class="action-new" data-action="new">New</button>' +
+            '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+            '<button class="action-info" data-action="info">Info</button>' +
+          '</div>' +
+          '<div class="button-grid">' +
+            '<button class="action-edit" data-action="edit">Edit</button>' +
+            '<button class="action-delete" data-action="delete">Delete</button>' +
+          '</div>' +
         '</div>';
 
       return card;
@@ -2384,6 +2548,11 @@
           if (action === 'edit') editQuest(questId);
           if (action === 'saveDefault') saveQuestAsDefault(questId);
           if (action === 'delete') deleteQuest(questId);
+          if (action === 'more') {
+            card.classList.toggle('actions-open');
+            actionButton.textContent = card.classList.contains('actions-open') ? 'Less' : 'More';
+            beep('click');
+          }
           if (action === 'toggleSteps') {
             var microList = card.querySelector('.micro-list');
             if (!microList) return;
