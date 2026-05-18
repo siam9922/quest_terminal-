@@ -195,11 +195,80 @@
 
     .tabs {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       position: relative;
       z-index: 2;
+      padding: 10px;
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #121211, #070707);
+      box-shadow:
+        0 10px 26px rgba(0,0,0,0.32),
+        inset 0 0 0 1px rgba(255,255,255,0.012);
+    }
+
+    .tabs::before {
+      content: "NAVIGATION";
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      padding: 0 7px;
+      background: #080808;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .tab {
+      position: relative;
+      flex: 0 0 auto;
+      min-width: 120px;
+      border-color: rgba(216,208,189,0.20);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+        linear-gradient(180deg, #171715, #0b0b0a);
+      color: #d8d0bd;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 12px 14px;
+    }
+
+    .tab::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 5px;
+      height: 2px;
+      background: transparent;
+      transition: 0.15s ease;
+    }
+
+    .tab:hover {
+      border-color: rgba(224,200,120,0.45);
+      color: #fff0d2;
+    }
+
+    .tab.active {
+      border-color: rgba(224,200,120,0.70);
+      color: #fff0d2;
+      background:
+        linear-gradient(180deg, rgba(224,200,120,0.12), transparent 48%),
+        linear-gradient(180deg, #211f18, #0c0b09);
+      box-shadow:
+        0 0 16px rgba(224,200,120,0.10),
+        inset 0 0 0 1px rgba(224,200,120,0.08);
+    }
+
+    .tab.active::after {
+      background: linear-gradient(90deg, transparent, var(--main-gold-soft), transparent);
     }
 
     button {
@@ -507,8 +576,24 @@
 
     .quest-card {
       display: grid;
-      gap: 11px;
-      padding: 16px;
+      gap: 12px;
+      padding: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quest-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent 32%);
+      opacity: 0.65;
+    }
+
+    .quest-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .quest-card.main { border-color: rgba(195,154,59,0.72); box-shadow: inset 4px 0 0 var(--main-gold), 0 8px 22px rgba(0,0,0,0.28); }
@@ -521,6 +606,19 @@
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
+    }
+
+    .quest-main-info {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .quest-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .quest-title, .save-title, .default-title {
@@ -627,15 +725,31 @@
     }
 
     .button-grid button, .default-actions button {
-      min-height: 36px;
+      min-height: 38px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       padding: 8px 10px;
+    }
+
+    .primary-actions {
+      margin-top: 2px;
+      grid-template-columns: 1.1fr 1.1fr 0.8fr;
     }
 
     .quest-more-actions {
       display: grid;
       gap: 8px;
+      border-top: 1px solid rgba(216,208,189,0.12);
+      padding-top: 10px;
+      margin-top: 1px;
+    }
+
+    .quest-more-actions .button-grid:last-child {
+      grid-template-columns: 1fr 1.35fr;
+    }
+
+    .quest-more-actions .action-delete {
+      font-weight: 900;
     }
 
     .empty {
@@ -660,6 +774,134 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
+
+    .daily-briefing {
+      margin-bottom: 18px;
+      min-height: auto;
+    }
+
+    .briefing-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .briefing-header h2 {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .briefing-status {
+      border: 1px solid rgba(224,200,120,0.35);
+      color: #f1dd92;
+      background: rgba(0,0,0,0.22);
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      white-space: nowrap;
+    }
+
+    .briefing-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .briefing-item {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.022), transparent 45%), #090909;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .briefing-item span {
+      display: block;
+      color: #f0eadf;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .briefing-item small {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 800;
+    }
+
+    .section-toggle {
+      width: 100%;
+      text-align: left;
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 10px;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .section-toggle:hover {
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .collapsible-content.collapsed,
+    .archive-filters.collapsed {
+      display: none;
+    }
+
+    .archive-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .archive-filter {
+      min-height: 34px;
+      padding: 7px 11px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .archive-filter.active {
+      border-color: rgba(69,184,107,0.65);
+      color: #c9ffd8;
+      background: linear-gradient(180deg, rgba(69,184,107,0.18), #0d0d0c);
+    }
+
+    .priority-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(216,208,189,0.20);
+      padding: 4px 7px;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      line-height: 1;
+      border-radius: 2px;
+    }
+
+    .priority-critical { color: #ffd1d1; border-color: rgba(220,70,70,0.75); background: rgba(120,20,20,0.18); }
+    .priority-normal { color: #ffe9b0; border-color: rgba(201,154,54,0.65); background: rgba(201,154,54,0.12); }
+    .priority-low { color: #d7f8ff; border-color: rgba(67,178,212,0.55); background: rgba(67,178,212,0.10); }
 
     .streak-box {
       margin-top: 16px;
@@ -762,7 +1004,18 @@
       padding-top: 16px;
     }
 
-    .elements-panel { min-height: 520px; }
+    .elements-panel {
+      min-height: 520px;
+    }
+
+    .elements-subtitle {
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
 
     .elements-header {
       display: grid;
@@ -800,11 +1053,29 @@
     .element-card {
       border: 1px solid rgba(216,208,189,0.16);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+        radial-gradient(circle at 85% 0%, rgba(216,208,189,0.055), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
         linear-gradient(180deg, #151514, #090909);
       padding: 16px;
       display: grid;
       gap: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.018);
+    }
+
+    .element-card.fire-card {
+      border-color: rgba(198,63,63,0.28);
+    }
+
+    .element-card.earth-card {
+      border-color: rgba(47,155,85,0.28);
+    }
+
+    .element-card.water-card {
+      border-color: rgba(36,120,200,0.30);
+    }
+
+    .element-card.air-card {
+      border-color: rgba(160,160,160,0.20);
     }
 
     .element-title-row {
@@ -812,6 +1083,18 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 12px;
+    }
+
+    .element-count {
+      color: #f3ead8;
+      border: 1px solid rgba(216,208,189,0.16);
+      background: rgba(0,0,0,0.22);
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      white-space: nowrap;
     }
 
     .element-title-row span {
@@ -846,12 +1129,55 @@
     .element-block {
       min-height: 72px;
       border: 1px solid rgba(216,208,189,0.20);
-      background: linear-gradient(180deg, #111, #070707);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #111, #070707);
       cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #d8d0bd;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      text-align: center;
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
     }
 
-    .element-block.fire.active { background: linear-gradient(180deg, #ff6a4a, #8d1e1e); }
-    .element-block.earth.active { background: linear-gradient(180deg, #6ed88c, #1f6f3d); }
+    .element-block:hover,
+    .water-segment:hover {
+      transform: translateY(-1px);
+      border-color: rgba(216,208,189,0.36);
+    }
+
+    .element-block.active::after,
+    .water-segment.active::after {
+      content: "✓";
+      position: absolute;
+      right: 6px;
+      top: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .element-block.fire.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
+        linear-gradient(180deg, #ff6a4a, #8d1e1e);
+      box-shadow: 0 0 18px rgba(255,80,60,0.18);
+      color: #fff5f0;
+    }
+
+    .element-block.earth.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
+        linear-gradient(180deg, #6ed88c, #1f6f3d);
+      box-shadow: 0 0 18px rgba(80,220,120,0.16);
+      color: #f2fff6;
+    }
     .element-block.air {
       cursor: not-allowed;
       opacity: 0.48;
@@ -864,23 +1190,60 @@
       gap: 10px;
     }
 
+    .water-day-card {
+      display: grid;
+      gap: 6px;
+    }
+
+    .water-day-label {
+      color: var(--muted);
+      text-align: center;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(216,208,189,0.12);
+      background: rgba(0,0,0,0.20);
+      padding: 5px 4px;
+    }
+
     .water-day-block {
-      min-height: 72px;
+      min-height: 78px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border: 1px solid rgba(216,208,189,0.20);
       background: #070707;
       overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.012), 0 8px 18px rgba(0,0,0,0.18);
     }
 
     .water-segment {
       border-right: 1px solid rgba(216,208,189,0.12);
-      background: linear-gradient(180deg, #111, #070707);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+        linear-gradient(180deg, #111, #070707);
       cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #d8d0bd;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 4px;
+      position: relative;
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
     }
 
     .water-segment:last-child { border-right: 0; }
-    .water-segment.active { background: linear-gradient(180deg, #66c8ff, #1765a8); }
+    .water-segment.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), transparent 35%),
+        linear-gradient(180deg, #66c8ff, #1765a8);
+      color: #f4fbff;
+      box-shadow: inset 0 0 14px rgba(255,255,255,0.10);
+    }
 
     .modal {
       position: fixed;
@@ -944,19 +1307,36 @@
         position: sticky;
         top: 0;
         z-index: 20;
-        background: rgba(5,5,5,.98);
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(10,10,10,0.98), rgba(3,3,3,0.98));
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 7px;
+        padding: 12px 8px;
+        border: 1px solid rgba(216,208,189,0.14);
+        border-left: 0;
+        border-right: 0;
+        margin-left: -14px;
+        margin-right: -14px;
+        scrollbar-width: none;
       }
 
-      .tabs button {
-        width: 100%;
-        min-width: 0;
-        padding: 12px 4px;
-        font-size: 12px;
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tabs::before {
+        display: none;
+      }
+
+      .tabs button,
+      .tab {
+        min-width: 112px;
+        width: auto;
+        padding: 12px 10px;
+        font-size: 11px;
+        white-space: nowrap;
       }
 
       .grid-quests, .grid-save {
@@ -968,6 +1348,9 @@
       .element-block-row { gap: 8px; }
       .element-block, .water-day-block { min-height: 58px; }
       .water-week-grid { grid-template-columns: 1fr; }
+      .water-day-card { grid-template-columns: 54px 1fr; align-items: stretch; }
+      .water-day-label { display: grid; place-items: center; }
+      .water-day-block { min-height: 58px; }
       .button-grid, .default-actions { grid-template-columns: 1fr; }
       .actions button { width: 100%; flex-basis: 100%; min-height: 44px; }
       .button-grid {
@@ -984,17 +1367,17 @@
       }
 
       .button-grid button {
-        min-height: 38px;
+        min-height: 40px;
         font-size: 12px;
         padding: 8px 6px;
       }
 
-      .button-grid .delete-btn {
-        grid-column: auto;
+      .primary-actions {
+        grid-template-columns: 1fr 1fr 0.8fr;
       }
 
       .quest-more-actions .button-grid:last-child {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1.25fr;
       }
       .quest-card {
         padding: 13px;
@@ -1002,7 +1385,16 @@
       }
 
       .quest-title {
-        font-size: 18px;
+        font-size: 17px;
+        line-height: 1.25;
+      }
+
+      .quest-title-row {
+        align-items: flex-start;
+      }
+
+      .quest-main-info {
+        gap: 5px;
       }
 
       .quest-desc {
@@ -1052,6 +1444,23 @@
       </nav>
 
       <section id="questsView" class="view active">
+        <div class="daily-briefing panel">
+          <div class="briefing-header">
+            <div>
+              <h2>Daily Briefing</h2>
+              <div class="helper-text">Quick scan of today’s mission board.</div>
+            </div>
+            <div id="briefingStatus" class="briefing-status">Standing by</div>
+          </div>
+          <div class="briefing-grid">
+            <div class="briefing-item"><span id="briefMainCount">0</span><small>Main Active</small></div>
+            <div class="briefing-item"><span id="briefSideCount">0</span><small>Side Active</small></div>
+            <div class="briefing-item"><span id="briefCompleteCount">0</span><small>Complete</small></div>
+            <div class="briefing-item"><span id="briefFailedCount">0</span><small>Failed</small></div>
+            <div class="briefing-item"><span id="briefMainClear">0 / 0</span><small>Main Progress</small></div>
+          </div>
+        </div>
+
         <div class="grid-quests">
           <div class="panel">
             <h2>Create Quest</h2>
@@ -1079,6 +1488,13 @@
             <label for="questTitle">Quest name</label>
             <input id="questTitle" type="text" maxlength="50" placeholder="Example: Clean the room" />
 
+            <label for="questPriority">Priority</label>
+            <select id="questPriority">
+              <option value="normal">Normal</option>
+              <option value="critical">Critical</option>
+              <option value="low">Low</option>
+            </select>
+
             <label for="questDesc">Quest details</label>
             <textarea id="questDesc" maxlength="3000" placeholder="Write details here..."></textarea>
 
@@ -1104,19 +1520,24 @@
             <div id="questStatusText" class="status-message"></div>
           </div>
 
-          <div class="panel">
-            <h2 class="main-heading">Main Quests</h2>
-            <div id="mainQuestList" class="quest-list"></div>
+          <div class="panel quest-section-panel" data-section="main">
+            <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">▼ Main Quests</button>
+            <div id="mainQuestList" class="quest-list collapsible-content"></div>
           </div>
 
-          <div class="panel">
-            <h2 class="side-heading">Side Quests</h2>
-            <div id="sideQuestList" class="quest-list"></div>
+          <div class="panel quest-section-panel" data-section="side">
+            <button type="button" class="section-toggle side-heading" data-collapse-target="sideQuestList">▼ Side Quests</button>
+            <div id="sideQuestList" class="quest-list collapsible-content"></div>
           </div>
 
-          <div class="panel">
-            <h2 class="complete-heading">Completed Quests</h2>
-            <div id="completeQuestList" class="quest-list"></div>
+          <div class="panel quest-section-panel" data-section="complete">
+            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ Completed Quests</button>
+            <div class="archive-filters" id="archiveFilters">
+              <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
+              <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
+              <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
+            </div>
+            <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
         </div>
       </section>
@@ -1128,31 +1549,32 @@
             <div>
               <h2>Elements</h2>
               <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
+              <div class="elements-subtitle">Weekly discipline board</div>
             </div>
             <button type="button" id="nextWeekBtn">▶</button>
           </div>
 
           <div class="elements-grid">
-            <div class="element-card">
-              <div class="element-title-row"><span>Fire</span><em>Combat</em></div>
+            <div class="element-card fire-card">
+              <div class="element-title-row"><span>Fire</span><em>Combat</em><b id="fireCount" class="element-count">0 / 3</b></div>
               <div class="element-strip fire-strip"></div>
               <div id="fireGrid" class="element-block-row"></div>
             </div>
 
-            <div class="element-card">
-              <div class="element-title-row"><span>Earth</span><em>Strength</em></div>
+            <div class="element-card earth-card">
+              <div class="element-title-row"><span>Earth</span><em>Strength</em><b id="earthCount" class="element-count">0 / 3</b></div>
               <div class="element-strip earth-strip"></div>
               <div id="earthGrid" class="element-block-row"></div>
             </div>
 
-            <div class="element-card">
-              <div class="element-title-row"><span>Water</span><em>Career</em></div>
+            <div class="element-card water-card">
+              <div class="element-title-row"><span>Water</span><em>Career</em><b id="waterCount" class="element-count">0 / 21</b></div>
               <div class="element-strip water-strip"></div>
               <div id="waterGrid" class="water-week-grid"></div>
             </div>
 
-            <div class="element-card">
-              <div class="element-title-row"><span>Air</span><em>Peace</em></div>
+            <div class="element-card air-card">
+              <div class="element-title-row"><span>Air</span><em>Peace</em><b class="element-count">Locked</b></div>
               <div class="element-strip air-strip"></div>
               <div id="airGrid" class="element-block-row"></div>
             </div>
@@ -1173,7 +1595,7 @@
 
             <div class="actions">
               <button id="saveBtn">Save Current Quest Log</button>
-              <button id="resetBoardBtn">Create New Save / Reset Board</button>
+              <button id="resetBoardBtn">Start New Day</button>
               <button id="soundBtn">Sound: On</button>
               <button id="clearSavesBtn" class="danger">Clear Saves</button>
               <button id="clearCompletedBtn" class="danger">Clear Completed Quests</button>
@@ -1297,11 +1719,13 @@
     var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
     var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
     var STORE_STREAK = 'qt_main_quest_streak_v1';
-    var VERSION = 'merged-old-save-v2-streak';
+    var STORE_XP = 'qt_player_xp_v1';
+    var VERSION = 'merged-old-save-v3-xp-ranks';
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
     var streakDraftValue = 0;
+    var archiveFilter = 'all';
 
     function byId(id) {
       return document.getElementById(id);
@@ -1355,6 +1779,33 @@
 
     function setStreakData(value) {
       writeStore(STORE_STREAK, value);
+    }
+
+    function getXpData() {
+      return readStore(STORE_XP, {
+        totalXp: 0,
+        awardedQuestIds: []
+      });
+    }
+
+    function setXpData(value) {
+      writeStore(STORE_XP, value);
+    }
+
+    function getQuestXp(quest) {
+      if (!quest) return 0;
+      return quest.type === 'main' ? 100 : 40;
+    }
+
+    function awardQuestXpOnce(quest) {
+      if (!quest || quest.status !== 'complete') return;
+      var data = getXpData();
+      if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+      if (data.awardedQuestIds.indexOf(quest.id) !== -1) return;
+
+      data.totalXp = (data.totalXp || 0) + getQuestXp(quest);
+      data.awardedQuestIds.push(quest.id);
+      setXpData(data);
     }
 
     function makeId() {
@@ -1551,6 +2002,7 @@
       editingQuestId = null;
       draftTasks = [];
       byId('questType').value = 'main';
+      byId('questPriority').value = 'normal';
       byId('questTitle').value = '';
       byId('questDesc').value = '';
       byId('questStatus').value = 'new';
@@ -1763,6 +2215,7 @@
       var quest = {
         id: editingQuestId || makeId(),
         type: byId('questType').value,
+        priority: byId('questPriority').value,
         title: title,
         desc: byId('questDesc').value.trim(),
         microTasks: draftTasks.slice(),
@@ -1790,6 +2243,7 @@
       }
 
       setQuests(quests);
+      if (quest.status === 'complete') awardQuestXpOnce(quest);
       beep('click');
       resetQuestForm();
       renderAll();
@@ -1797,6 +2251,7 @@
 
     function updateQuestStatus(id, nextStatus) {
       var time = nowIso();
+      var completedQuest = null;
       var quests = getQuests().map(function(quest) {
         if (quest.id !== id) return quest;
 
@@ -1807,16 +2262,20 @@
           });
         }
 
-        return Object.assign({}, quest, {
+        var updatedQuest = Object.assign({}, quest, {
           status: nextStatus,
           microTasks: tasks,
           updatedAt: time,
           completedAt: nextStatus === 'complete' ? (quest.completedAt || time) : null,
           failedAt: nextStatus === 'failed' ? (quest.failedAt || time) : null
         });
+
+        if (nextStatus === 'complete') completedQuest = updatedQuest;
+        return updatedQuest;
       });
 
       setQuests(quests);
+      if (completedQuest) awardQuestXpOnce(completedQuest);
       if (nextStatus === 'complete') beep('complete');
       else if (nextStatus === 'failed') beep('fail');
       else beep('click');
@@ -1825,6 +2284,7 @@
 
     function toggleMicroTask(questId, taskId) {
       var time = nowIso();
+      var completedQuest = null;
       var quests = getQuests().map(function(quest) {
         if (quest.id !== questId) return quest;
 
@@ -1837,16 +2297,20 @@
         var done = tasks.filter(function(task) { return task.done; }).length;
         var finished = total > 0 && done === total;
 
-        return Object.assign({}, quest, {
+        var updatedQuest = Object.assign({}, quest, {
           microTasks: tasks,
           status: finished ? 'complete' : (quest.status === 'complete' || quest.status === 'failed' ? 'progress' : quest.status),
           completedAt: finished ? (quest.completedAt || time) : null,
           failedAt: null,
           updatedAt: time
         });
+
+        if (finished) completedQuest = updatedQuest;
+        return updatedQuest;
       });
 
       setQuests(quests);
+      if (completedQuest) awardQuestXpOnce(completedQuest);
       beep('click');
       renderAll();
     }
@@ -1869,6 +2333,7 @@
 
       editingQuestId = id;
       byId('questType').value = quest.type || 'main';
+      byId('questPriority').value = quest.priority || 'normal';
       byId('questTitle').value = quest.title || '';
       byId('questDesc').value = quest.desc || '';
       byId('questStatus').value = quest.status || 'new';
@@ -1921,6 +2386,9 @@
       var percent = tasks.length > 0 ? Math.round((doneCount / tasks.length) * 100) : 0;
 
       var dateHtml = '';
+      var priority = quest.priority || 'normal';
+      var priorityLabel = priority === 'critical' ? 'Critical' : priority === 'low' ? 'Low' : 'Normal';
+      var priorityHtml = '<div class="priority-tag priority-' + escapeHtml(priority) + '">' + priorityLabel + '</div>';
       if (quest.completedAt) {
         dateHtml += '<div class="date-complete">Completed: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
       }
@@ -1947,7 +2415,10 @@
 
       card.innerHTML =
         '<div class="quest-top">' +
-          '<div><div class="quest-title">' + escapeHtml(quest.title) + '</div>' + dateHtml + '</div>' +
+          '<div class="quest-main-info">' +
+            '<div class="quest-title-row"><div class="quest-title">' + escapeHtml(quest.title) + '</div>' + priorityHtml + '</div>' +
+            dateHtml +
+          '</div>' +
           '<div class="badge ' + escapeHtml(quest.status) + '">' + statusLabel(quest.status) + '</div>' +
         '</div>' +
         (quest.desc ? '<div class="quest-desc">' + escapeHtml(quest.desc) + '</div>' : '') +
@@ -1986,36 +2457,61 @@
       });
     }
 
+    function xpNeededForLevel(level) {
+      return 500 + ((level - 1) * 150);
+    }
+
     function calculateLevel(totalXp) {
       var level = 1;
       var used = 0;
-      var needed = 100;
+      var needed = xpNeededForLevel(level);
 
-      while (totalXp >= used + needed) {
+      while (totalXp >= used + needed && level < 100) {
         used += needed;
         level += 1;
-        needed = 100 + ((level - 1) * 50);
+        needed = xpNeededForLevel(level);
       }
 
       var current = totalXp - used;
+      if (level >= 100) {
+        current = needed;
+      }
+
       return {
         level: level,
-        current: current,
+        current: Math.max(0, current),
         needed: needed,
-        toNext: needed - current,
-        percent: Math.min(100, Math.round((current / needed) * 100)),
+        toNext: level >= 100 ? 0 : Math.max(0, needed - current),
+        percent: level >= 100 ? 100 : Math.min(100, Math.round((current / needed) * 100)),
         rank: getRankTitle(level)
       };
     }
 
     function getRankTitle(level) {
-      if (level >= 20) return 'Legend';
-      if (level >= 15) return 'Elite Hunter';
-      if (level >= 10) return 'Veteran';
-      if (level >= 7) return 'Specialist';
-      if (level >= 5) return 'Operator';
-      if (level >= 3) return 'Survivor';
-      return 'Rookie';
+      var ranks = [
+        'Rookie', 'Awakened Rookie', 'Survivor', 'Steady Survivor', 'Field Operator',
+        'Disciplined Operator', 'Specialist', 'Focused Specialist', 'Veteran', 'Battle Veteran',
+        'Elite Agent', 'Iron Agent', 'Night Runner', 'Relentless Runner', 'Pathfinder',
+        'Silent Pathfinder', 'Hunter', 'Prime Hunter', 'Biohazard Hunter', 'S-Class Survivor',
+        'Shadow Walker', 'Shadow Breaker', 'Dread Fighter', 'Dread Slayer', 'Mission Keeper',
+        'Mission Breaker', 'Quest Sentinel', 'Quest Warden', 'Discipline Guard', 'Discipline Knight',
+        'Iron Warden', 'Iron Vanguard', 'Apex Initiate', 'Apex Operator', 'Apex Specialist',
+        'Apex Veteran', 'Apex Agent', 'Apex Hunter', 'Apex Survivor', 'Apex Warden',
+        'Ghost Rookie', 'Ghost Survivor', 'Ghost Operator', 'Ghost Specialist', 'Ghost Veteran',
+        'Ghost Agent', 'Ghost Hunter', 'Ghost Warden', 'Ghost Vanguard', 'Ghost Legend',
+        'Crimson Rookie', 'Crimson Survivor', 'Crimson Operator', 'Crimson Specialist', 'Crimson Veteran',
+        'Crimson Agent', 'Crimson Hunter', 'Crimson Warden', 'Crimson Vanguard', 'Crimson Legend',
+        'Obsidian Rookie', 'Obsidian Survivor', 'Obsidian Operator', 'Obsidian Specialist', 'Obsidian Veteran',
+        'Obsidian Agent', 'Obsidian Hunter', 'Obsidian Warden', 'Obsidian Vanguard', 'Obsidian Legend',
+        'Mythic Rookie', 'Mythic Survivor', 'Mythic Operator', 'Mythic Specialist', 'Mythic Veteran',
+        'Mythic Agent', 'Mythic Hunter', 'Mythic Warden', 'Mythic Vanguard', 'Mythic Legend',
+        'Nightmare Rookie', 'Nightmare Survivor', 'Nightmare Operator', 'Nightmare Specialist', 'Nightmare Veteran',
+        'Nightmare Agent', 'Nightmare Hunter', 'Nightmare Warden', 'Nightmare Vanguard', 'Nightmare Legend',
+        'Final Survivor', 'Final Operator', 'Final Specialist', 'Final Veteran', 'Final Agent',
+        'Final Hunter', 'Final Warden', 'Final Vanguard', 'Final Legend', 'Sovereign Legend'
+      ];
+      var index = Math.max(1, Math.min(100, level)) - 1;
+      return ranks[index];
     }
 
     function calculateStreak(completedQuests) {
@@ -2043,9 +2539,8 @@
       var quests = getQuests();
       var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
       var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
-      var xp = completed.reduce(function(sum, quest) {
-        return sum + (quest.type === 'main' ? 50 : 20);
-      }, 0);
+      var xpData = getXpData();
+      var xp = xpData.totalXp || 0;
       var level = calculateLevel(xp);
 
       byId('totalQuests').textContent = quests.length;
@@ -2060,7 +2555,7 @@
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.toNext + ' XP until next level';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +100 / Side +40';
       renderMainStreak();
     }
 
@@ -2275,7 +2770,8 @@
         saves: getSaves(),
         defaults: getCustomDefaults(),
         elements: getElementsStore(),
-        streak: getStreakData()
+        streak: getStreakData(),
+        xp: getXpData()
       };
       byId('dataBox').value = JSON.stringify(payload, null, 2);
       byId('dataBox').focus();
@@ -2340,6 +2836,7 @@
       if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
       if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
       if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
+      if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
       byId('saveStatusText').textContent = 'Import complete.';
       byId('savePrompt').textContent = 'Imported quest archive loaded.';
       beep('load');
@@ -2353,6 +2850,15 @@
       var end = addDays(start, 6);
       byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
 
+      var fireDone = data.fire.filter(Boolean).length;
+      var earthDone = data.earth.filter(Boolean).length;
+      var waterDone = data.water.reduce(function(sum, day) {
+        return sum + day.filter(Boolean).length;
+      }, 0);
+      if (byId('fireCount')) byId('fireCount').textContent = fireDone + ' / 3';
+      if (byId('earthCount')) byId('earthCount').textContent = earthDone + ' / 3';
+      if (byId('waterCount')) byId('waterCount').textContent = waterDone + ' / 21';
+
       var fire = byId('fireGrid');
       var earth = byId('earthGrid');
       var water = byId('waterGrid');
@@ -2362,25 +2868,39 @@
       water.innerHTML = '';
       air.innerHTML = '';
 
+      var fireLabels = ['Kickboxing', 'Kickboxing', 'Muay Thai'];
       data.fire.forEach(function(active, index) {
         var block = document.createElement('button');
         block.type = 'button';
         block.className = 'element-block fire' + (active ? ' active' : '');
         block.setAttribute('data-element', 'fire');
         block.setAttribute('data-index', index);
+        block.textContent = fireLabels[index] || 'Fire';
         fire.appendChild(block);
       });
 
+      var earthLabels = ['Push', 'Pull', 'Legs'];
       data.earth.forEach(function(active, index) {
         var block = document.createElement('button');
         block.type = 'button';
         block.className = 'element-block earth' + (active ? ' active' : '');
         block.setAttribute('data-element', 'earth');
         block.setAttribute('data-index', index);
+        block.textContent = earthLabels[index] || 'Earth';
         earth.appendChild(block);
       });
 
+      var waterLabels = ['SQL', 'Career', 'Cert'];
+      var dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       data.water.forEach(function(day, dayIndex) {
+        var dayCard = document.createElement('div');
+        dayCard.className = 'water-day-card';
+
+        var label = document.createElement('div');
+        label.className = 'water-day-label';
+        label.textContent = dayLabels[dayIndex] || 'Day';
+        dayCard.appendChild(label);
+
         var dayBlock = document.createElement('div');
         dayBlock.className = 'water-day-block';
         day.forEach(function(active, segmentIndex) {
@@ -2390,9 +2910,11 @@
           segment.setAttribute('data-element', 'water');
           segment.setAttribute('data-day', dayIndex);
           segment.setAttribute('data-segment', segmentIndex);
+          segment.textContent = waterLabels[segmentIndex] || 'Water';
           dayBlock.appendChild(segment);
         });
-        water.appendChild(dayBlock);
+        dayCard.appendChild(dayBlock);
+        water.appendChild(dayCard);
       });
 
       data.air.forEach(function() {
@@ -2424,8 +2946,41 @@
       beep('click');
     }
 
+    function renderBriefing(quests) {
+      var mainActive = quests.filter(function(quest) {
+        return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
+      });
+      var sideActive = quests.filter(function(quest) {
+        return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+      });
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
+      var mainAll = quests.filter(function(quest) { return quest.type === 'main'; });
+      var mainComplete = mainAll.filter(function(quest) { return quest.status === 'complete'; });
+
+      if (byId('briefMainCount')) byId('briefMainCount').textContent = mainActive.length;
+      if (byId('briefSideCount')) byId('briefSideCount').textContent = sideActive.length;
+      if (byId('briefCompleteCount')) byId('briefCompleteCount').textContent = completed.length;
+      if (byId('briefFailedCount')) byId('briefFailedCount').textContent = failed.length;
+      if (byId('briefMainClear')) byId('briefMainClear').textContent = mainComplete.length + ' / ' + mainAll.length;
+
+      if (byId('briefingStatus')) {
+        if (mainAll.length === 0) byId('briefingStatus').textContent = 'No main quests';
+        else if (mainComplete.length === mainAll.length) byId('briefingStatus').textContent = 'Main Quests Complete';
+        else byId('briefingStatus').textContent = 'Mission active';
+      }
+    }
+
+    function getFilteredCompletedQuests(quests) {
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      if (archiveFilter === 'main') return completed.filter(function(quest) { return quest.type === 'main'; });
+      if (archiveFilter === 'side') return completed.filter(function(quest) { return quest.type === 'side'; });
+      return completed;
+    }
+
     function renderAll() {
       var quests = getQuests();
+      renderBriefing(quests);
 
       renderQuestList('mainQuestList', quests.filter(function(quest) {
         return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
@@ -2435,9 +2990,7 @@
         return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
       }));
 
-      renderQuestList('completeQuestList', quests.filter(function(quest) {
-        return quest.status === 'complete';
-      }));
+      renderQuestList('completeQuestList', getFilteredCompletedQuests(quests));
 
       renderQuestList('failedQuestList', quests.filter(function(quest) {
         return quest.status === 'failed';
@@ -2457,8 +3010,17 @@
       });
 
       byId('addMicroBtn').addEventListener('click', addDraftTask);
-      byId('openDefaultsBtn').addEventListener('click', openDefaultsModal);
-      byId('saveFormDefaultBtn').addEventListener('click', saveCurrentFormAsDefault);
+      byId('openDefaultsBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openDefaultsModal();
+      });
+
+      byId('saveFormDefaultBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        saveCurrentFormAsDefault();
+      });
       byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
       byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
 
@@ -2517,16 +3079,7 @@
           return;
         }
 
-        if (event.target && event.target.id === 'saveFormDefaultBtn') {
-          saveCurrentFormAsDefault();
-          return;
-        }
-
-        if (event.target && event.target.id === 'openDefaultsBtn') {
-          openDefaultsModal();
-          return;
-        }
-
+        
         var actionButton = event.target.closest('[data-action]');
         if (actionButton) {
           var card = actionButton.closest('[data-quest-id]');
@@ -2638,6 +3191,8 @@
       byId('defaultsModalBody').addEventListener('click', function(event) {
         var button = event.target.closest('[data-default-action]');
         if (!button) return;
+        event.preventDefault();
+        event.stopPropagation();
 
         var card = button.closest('[data-default-id]');
         if (!card) return;
@@ -2645,9 +3200,20 @@
         var id = card.getAttribute('data-default-id');
         var action = button.getAttribute('data-default-action');
 
-        if (action === 'add') addDefaultAsQuestById(id);
-        if (action === 'load') loadDefaultIntoFormById(id);
-        if (action === 'remove') removeDefaultById(id);
+        if (action === 'add') {
+          addDefaultAsQuestById(id);
+          return;
+        }
+
+        if (action === 'load') {
+          loadDefaultIntoFormById(id);
+          return;
+        }
+
+        if (action === 'remove') {
+          removeDefaultById(id);
+          return;
+        }
       });
     }
 
