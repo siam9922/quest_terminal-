@@ -1527,7 +1527,7 @@
 
     .routine-task-editor {
       width: 100%;
-      min-height: 100%;
+      min-height: 58px;
       height: auto;
       border: 0;
       background: transparent;
@@ -1554,7 +1554,7 @@
     }
 
     .routine-row.merged .routine-task-editor {
-      min-height: inherit;
+      min-height: 100%;
     }
 
     .routine-actions {
@@ -3963,19 +3963,29 @@
           '<div class="routine-actions"><button type="button" class="routine-undo-btn" data-routine-undo-index="' + index + '"' + (history.undo.length ? '' : ' disabled') + '>Undo</button><button type="button" class="routine-redo-btn" data-routine-redo-index="' + index + '"' + (history.redo.length ? '' : ' disabled') + '>Redo</button>' + unmergeHtml + '</div>';
         var taskEditor = row.querySelector('.routine-task-editor');
         taskEditor.value = block.task || '';
-        routineAutoGrowTextarea(taskEditor);
         row.querySelector('.routine-status-select').value = block.state;
         board.appendChild(row);
+        routineAutoGrowTextarea(taskEditor, true);
       });
     }
 
-    function routineAutoGrowTextarea(el) {
+    function routineAutoGrowTextarea(el, allowShrink) {
       if (!el) return;
       var row = el.closest ? el.closest('.routine-row') : null;
       var rowMin = row && row.dataset.rowMinHeight ? Number(row.dataset.rowMinHeight) : 58;
       var currentHeight = el.offsetHeight || 0;
+
+      if (allowShrink) {
+        el.style.height = '0px';
+        currentHeight = 0;
+      }
+
       var targetHeight = Math.max(el.scrollHeight, currentHeight, rowMin, 58);
       el.style.height = targetHeight + 'px';
+
+      if (row) {
+        row.style.minHeight = Math.max(rowMin, targetHeight) + 'px';
+      }
     }
 
     function saveRoutineVisibleWithoutRender(data) {
@@ -4181,7 +4191,8 @@
           if (!routineBlocksMatch(before, after)) routinePushUndo(selectedRoutineDay, index, before);
           data[selectedRoutineDay][index] = after;
           setRoutineData(data);
-          renderRoutineBoard();
+          routineAutoGrowTextarea(taskEl, false);
+          byId('routineStatusText').textContent = 'Hour edited. Save routine to make this the reset point.';
         }, true);
 
         board.addEventListener('change', function(event) {
@@ -4194,9 +4205,11 @@
           data[selectedRoutineDay][index].state = selectEl.value;
           routinePushUndo(selectedRoutineDay, index, before);
           setRoutineData(data);
-          routineUpdateRowVisual(selectEl.closest('.routine-row'), selectEl.value);
+          var currentRow = selectEl.closest('.routine-row');
+          routineUpdateRowVisual(currentRow, selectEl.value);
+          var taskEditor = currentRow ? currentRow.querySelector('.routine-task-editor') : null;
+          routineAutoGrowTextarea(taskEditor, false);
           byId('routineStatusText').textContent = 'Status changed. Save routine to make this the reset point.';
-          renderRoutineBoard();
         });
 
         board.addEventListener('click', function(event) {
@@ -4214,7 +4227,7 @@
       if (byId('routineMergeBtn')) byId('routineMergeBtn').addEventListener('click', mergeRoutineHours);
       if (byId('routineUndoLastMergeBtn')) byId('routineUndoLastMergeBtn').addEventListener('click', undoLastRoutineMerge);
       if (byId('routineMergeTask')) {
-        routineAutoGrowTextarea(byId('routineMergeTask'));
+        routineAutoGrowTextarea(byId('routineMergeTask'), true);
         byId('routineMergeTask').addEventListener('input', function(event) { routineAutoGrowTextarea(event.target); });
       }
     }
