@@ -1279,6 +1279,237 @@
     .modal-title { font-size: 22px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; }
     .modal-body { white-space: pre-wrap; line-height: 1.7; }
 
+
+
+    /* ===== Routine Hour Blocks ===== */
+    .routine-panel { min-height: 520px; }
+
+    .routine-title-box {
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+    }
+
+    .routine-main-title {
+      margin: 0;
+      color: #f5f1e8;
+      font-size: clamp(30px, 7vw, 62px);
+      line-height: 1;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: 950;
+      text-shadow: 0 0 18px rgba(255,255,255,0.12);
+    }
+
+    .routine-focus {
+      color: #f1dd92;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-top: 8px;
+    }
+
+    .routine-top-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .routine-info-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%), rgba(0,0,0,0.28);
+      padding: 12px;
+    }
+
+    .routine-info-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 5px;
+    }
+
+    .routine-info-card strong {
+      display: block;
+      color: #f3ead8;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .routine-day-switcher {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .routine-day-switcher button {
+      min-height: 40px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 900;
+    }
+
+    .routine-day-switcher button.active {
+      border-color: rgba(241,221,146,0.75);
+      color: #fff0d2;
+      background: linear-gradient(180deg, rgba(241,221,146,0.16), #0d0d0c);
+    }
+
+    .routine-merge-panel {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.022), transparent 45%), rgba(0,0,0,0.22);
+      padding: 12px;
+      margin-bottom: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .routine-merge-title {
+      color: #f1dd92;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .routine-merge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .routine-merge-panel label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      display: grid;
+      gap: 5px;
+      margin: 0;
+    }
+
+    .routine-merge-panel select,
+    .routine-merge-panel input,
+    .routine-merge-panel textarea {
+      width: 100%;
+      border: 1px solid rgba(216,208,189,0.20);
+      background: #080808;
+      color: var(--text);
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .routine-merge-panel textarea { min-height: 70px; resize: vertical; }
+
+    .routine-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .routine-board {
+      border: 1px solid rgba(216,208,189,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), transparent 30%), #060606;
+      display: grid;
+    }
+
+    .routine-row {
+      display: grid;
+      grid-template-columns: 92px 90px 1fr;
+      min-height: 58px;
+      border-bottom: 1px solid rgba(216,208,189,0.12);
+    }
+
+    .routine-row:last-child { border-bottom: 0; }
+
+    .routine-hour {
+      border-right: 1px solid rgba(216,208,189,0.14);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 950;
+      display: grid;
+      place-items: center end;
+      padding-right: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      background: rgba(0,0,0,0.22);
+    }
+
+    .routine-state {
+      border-right: 1px solid rgba(216,208,189,0.14);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .routine-state.free { color: #ffe9b0; background: rgba(201,154,54,0.11); }
+    .routine-state.busy { color: #c9ffd8; background: rgba(69,184,107,0.10); }
+    .routine-state.none { color: #b8afa2; background: rgba(255,255,255,0.045); }
+
+    .routine-status-select {
+      width: 100%;
+      border: 1px solid rgba(216,208,189,0.18);
+      background: #080808;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 7px 5px;
+      outline: none;
+    }
+
+    .routine-status-select.free { color: #ffe9b0; }
+    .routine-status-select.busy { color: #c9ffd8; }
+    .routine-status-select.none { color: #b8afa2; }
+
+    .routine-task {
+      padding: 10px 12px;
+      color: #f3ead8;
+      line-height: 1.45;
+      outline: none;
+      font-size: 14px;
+      min-height: 58px;
+      white-space: pre-wrap;
+    }
+
+    .routine-task:focus {
+      background: rgba(255,255,255,0.045);
+      box-shadow: inset 0 0 0 2px rgba(241,221,146,0.28);
+    }
+
+    .routine-task.free { color: #ffe9b0; }
+    .routine-task.busy { color: #dfffe8; }
+    .routine-task.none { color: #9a9388; background: rgba(255,255,255,0.018); }
+
+    .routine-note-line {
+      margin-top: 12px;
+      border: 1px solid rgba(216,208,189,0.18);
+      background: rgba(0,0,0,0.28);
+      padding: 10px 12px;
+      text-align: center;
+      color: #d8eaff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 12px;
+    }
+
     @media (max-width: 900px) {
       body {
         padding: 0;
@@ -1412,6 +1643,20 @@
       h1 { letter-spacing: 3px; font-size: 32px; }
       h2 { font-size: 18px; letter-spacing: 1.5px; }
     }
+
+
+    @media (max-width: 900px) {
+      .routine-top-grid { grid-template-columns: 1fr; }
+      .routine-day-switcher { grid-template-columns: repeat(7, minmax(54px, 1fr)); overflow-x: auto; }
+      .routine-merge-grid { grid-template-columns: 1fr; }
+      .routine-controls { grid-template-columns: 1fr; }
+      .routine-row { grid-template-columns: 70px 68px 1fr; }
+      .routine-hour { font-size: 10px; padding-right: 7px; }
+      .routine-state { font-size: 9px; }
+      .routine-task { font-size: 13px; padding: 9px; }
+      .routine-main-title { font-size: 34px; letter-spacing: 3px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1438,6 +1683,7 @@
     <section class="content">
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
+        <button class="tab" data-view="routineView">Routine</button>
         <button class="tab" data-view="elementsView">Elements</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
@@ -1539,6 +1785,66 @@
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
+        </div>
+      </section>
+
+
+      <section id="routineView" class="view">
+        <div class="panel routine-panel">
+          <div class="routine-title-box">
+            <h2 class="routine-main-title">Daily Routine</h2>
+            <div class="routine-focus">◎ Follow today’s day / edit hour blocks</div>
+          </div>
+
+          <div class="routine-top-grid">
+            <div class="routine-info-card"><span>Date</span><strong id="routineDateNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Time</span><strong id="routineTimeNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Current Day</span><strong id="routineDayNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Routine To Follow</span><strong id="routineFollowNow">Loading...</strong></div>
+          </div>
+
+          <div id="routineDaySwitcher" class="routine-day-switcher">
+            <button type="button" data-routine-day="monday">Mon</button>
+            <button type="button" data-routine-day="tuesday">Tue</button>
+            <button type="button" data-routine-day="wednesday">Wed</button>
+            <button type="button" data-routine-day="thursday">Thu</button>
+            <button type="button" data-routine-day="friday">Fri</button>
+            <button type="button" data-routine-day="saturday">Sat</button>
+            <button type="button" data-routine-day="sunday">Sun</button>
+          </div>
+
+          <div class="routine-merge-panel">
+            <div class="routine-merge-title">Merge Hour Blocks</div>
+            <div class="routine-merge-grid">
+              <label>Start Hour
+                <select id="routineMergeStart"></select>
+              </label>
+              <label>End Hour
+                <select id="routineMergeEnd"></select>
+              </label>
+              <label>Status
+                <select id="routineMergeState">
+                  <option value="busy">Busy</option>
+                  <option value="free">Free</option>
+                  <option value="none">None</option>
+                </select>
+              </label>
+            </div>
+            <label>Activity / Task
+              <textarea id="routineMergeTask" placeholder="Example: Career Block&#10;- Azure DBA&#10;- SQL practice"></textarea>
+            </label>
+            <button id="routineMergeBtn" class="action-add-quest" type="button">Merge Selected Hours</button>
+          </div>
+
+          <div class="routine-controls">
+            <button id="routineSaveBtn" class="action-add-quest" type="button">Save Routine Changes</button>
+            <button id="routineResetBtn" class="danger" type="button">Reset Routine</button>
+          </div>
+
+          <div id="routineStatusText" class="status-message"></div>
+          <div id="routineBoard" class="routine-board"></div>
+
+          <div class="routine-note-line">Write FREE, BUSY, or NONE by using the dropdown beside each hour. Merge hours to create one larger block.</div>
         </div>
       </section>
 
@@ -1720,6 +2026,7 @@
     var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
     var STORE_STREAK = 'qt_main_quest_streak_v1';
     var STORE_XP = 'qt_player_xp_v1';
+    var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var VERSION = 'merged-old-save-v3-xp-ranks';
     var editingQuestId = null;
     var draftTasks = [];
@@ -2557,6 +2864,7 @@
       byId('xpFill').style.width = level.percent + '%';
       byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +100 / Side +40';
       renderMainStreak();
+      renderRoutineTop();
     }
 
     function formatDuration(ms) {
@@ -2771,7 +3079,8 @@
         defaults: getCustomDefaults(),
         elements: getElementsStore(),
         streak: getStreakData(),
-        xp: getXpData()
+        xp: getXpData(),
+        routine: getRoutineData()
       };
       byId('dataBox').value = JSON.stringify(payload, null, 2);
       byId('dataBox').focus();
@@ -2837,6 +3146,7 @@
       if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
       if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
+      if (data.routine && typeof data.routine === 'object') setRoutineData(data.routine);
       byId('saveStatusText').textContent = 'Import complete.';
       byId('savePrompt').textContent = 'Imported quest archive loaded.';
       beep('load');
@@ -2999,6 +3309,7 @@
       renderStats();
       renderArchive();
       renderElements();
+      renderRoutineBoard();
       setSound(isSoundOn());
     }
 
@@ -3217,6 +3528,270 @@
       });
     }
 
+
+
+    /* ===== Routine Hour Blocks Logic ===== */
+    var selectedRoutineDay = routineTodayKey();
+
+    function routineTodayKey() {
+      return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][new Date().getDay()];
+    }
+
+    function routineTitleDay(key) {
+      return key.charAt(0).toUpperCase() + key.slice(1);
+    }
+
+    function routineFormatDateOnly() {
+      return new Intl.DateTimeFormat(undefined, {
+        weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'
+      }).format(new Date());
+    }
+
+    function routineFormatTimeOnly() {
+      return new Intl.DateTimeFormat(undefined, {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(new Date());
+    }
+
+    function routineFormatHour(hour) {
+      if (hour < 12) return hour + ' AM';
+      if (hour === 12) return '12 PM';
+      return (hour - 12) + ' PM';
+    }
+
+    function routineMakeHour(hour, state, task, span) {
+      return { hour: hour, state: state, task: task || '', span: span || 1, hidden: false };
+    }
+
+    function routineBlankDay() {
+      var hours = [];
+      for (var h = 5; h <= 23; h++) {
+        hours.push(routineMakeHour(h, 'none', ''));
+      }
+      return hours;
+    }
+
+    function routineSetRange(day, startHour, endHour, state, task) {
+      for (var h = startHour; h <= endHour; h++) {
+        var block = day.find(function(item) { return item.hour === h; });
+        if (block) {
+          block.state = state;
+          block.task = task;
+          block.span = 1;
+          block.hidden = false;
+        }
+      }
+    }
+
+    function createDefaultRoutineData() {
+      var data = {
+        monday: routineBlankDay(),
+        tuesday: routineBlankDay(),
+        wednesday: routineBlankDay(),
+        thursday: routineBlankDay(),
+        friday: routineBlankDay(),
+        saturday: routineBlankDay(),
+        sunday: routineBlankDay()
+      };
+
+      routineSetRange(data.monday, 5, 5, 'busy', 'Wake up + get ready');
+      routineSetRange(data.monday, 6, 8, 'busy', 'Gym with Ilsung / weight lifting');
+      routineSetRange(data.monday, 9, 11, 'free', 'Free Time\n- Eat\n- Shower\n- Relax\n- Gaming\n- Quest system\n- YouTube\n- Nap / Walk / Errands');
+      routineSetRange(data.monday, 12, 14, 'busy', 'Career Block\n- Azure DBA study\n- SQL practice\n- Career refinement');
+      routineSetRange(data.monday, 15, 23, 'free', 'Free Time\n- Relax\n- Gaming\n- Entertainment\n- Optional project work\n- Optional social time\n- Sleep prep');
+
+      ['tuesday','wednesday','thursday','friday','saturday','sunday'].forEach(function(dayKey) {
+        routineSetRange(data[dayKey], 5, 5, 'busy', 'Wake up + get ready');
+        routineSetRange(data[dayKey], 6, 8, 'busy', 'Career Block\n- Azure DBA\n- SQL\n- Career refinement');
+      });
+
+      routineSetRange(data.tuesday, 9, 16, 'free', 'Free Time\n- Relax\n- Gaming\n- Food\n- Errands\n- Quest system\n- Optional walk\n- Optional project work');
+      routineSetRange(data.tuesday, 17, 20, 'busy', 'Travel + Kickboxing + Return home');
+      routineSetRange(data.tuesday, 21, 23, 'free', 'Free Time\n- Shower\n- Eat\n- Relax\n- Sleep prep');
+
+      routineSetRange(data.wednesday, 9, 23, 'free', 'Mostly Free Day\n- 10k steps\n- Recovery\n- Light cleanup / errands\n- Gaming\n- Quest system\n- YouTube\n- Light coding / projects');
+
+      routineSetRange(data.thursday, 9, 16, 'free', 'Free Time\n- Relax\n- Food\n- Gaming\n- Optional project work\n- Recovery before training');
+      routineSetRange(data.thursday, 17, 20, 'busy', 'Travel + Kickboxing + Muay Thai + Return home');
+      routineSetRange(data.thursday, 21, 23, 'free', 'Free Time\n- Shower\n- Eat\n- Relax\n- Sleep prep');
+
+      routineSetRange(data.friday, 9, 23, 'free', 'Mostly Free Day\n- 10k steps\n- Recovery\n- Self-care\n- Room cleanup\n- Gaming\n- Quest system\n- YouTube\n- Walks');
+
+      routineSetRange(data.saturday, 9, 11, 'free', 'Open Block');
+      routineSetRange(data.saturday, 12, 13, 'busy', 'Qarisab');
+      routineSetRange(data.saturday, 14, 16, 'busy', 'Afternoon\nGym OR Walk');
+      routineSetRange(data.saturday, 17, 23, 'free', 'Evening Free Time\n- Gaming\n- Relaxing\n- Quest system\n- Entertainment');
+
+      routineSetRange(data.sunday, 9, 11, 'free', 'Open Block');
+      routineSetRange(data.sunday, 12, 13, 'busy', 'Qarisab');
+      routineSetRange(data.sunday, 14, 16, 'busy', 'Afternoon Gym');
+      routineSetRange(data.sunday, 17, 23, 'free', 'Evening Free Time\n- Relax\n- Reset mentally\n- Entertainment\n- Sleep prep');
+
+      return data;
+    }
+
+    function getRoutineData() {
+      var parsed = readStore(STORE_ROUTINE, null);
+      if (!parsed || Array.isArray(parsed) || !parsed.monday) {
+        parsed = createDefaultRoutineData();
+        setRoutineData(parsed);
+      }
+      return parsed;
+    }
+
+    function setRoutineData(data) {
+      writeStore(STORE_ROUTINE, data);
+    }
+
+    function renderRoutineTop() {
+      if (!byId('routineDateNow')) return;
+      var currentDay = routineTitleDay(routineTodayKey());
+      byId('routineDateNow').textContent = routineFormatDateOnly();
+      byId('routineTimeNow').textContent = routineFormatTimeOnly();
+      byId('routineDayNow').textContent = currentDay;
+      byId('routineFollowNow').textContent = currentDay + ' routine';
+    }
+
+    function populateRoutineMergeOptions() {
+      var start = byId('routineMergeStart');
+      var end = byId('routineMergeEnd');
+      if (!start || !end || start.children.length > 0) return;
+      for (var h = 5; h <= 23; h++) {
+        var optionA = document.createElement('option');
+        optionA.value = String(h);
+        optionA.textContent = routineFormatHour(h);
+        start.appendChild(optionA);
+
+        var optionB = document.createElement('option');
+        optionB.value = String(h);
+        optionB.textContent = routineFormatHour(h);
+        end.appendChild(optionB);
+      }
+      start.value = '9';
+      end.value = '11';
+    }
+
+    function renderRoutineBoard() {
+      populateRoutineMergeOptions();
+      renderRoutineTop();
+      var board = byId('routineBoard');
+      if (!board) return;
+
+      var data = getRoutineData();
+      var day = data[selectedRoutineDay] || routineBlankDay();
+      board.innerHTML = '';
+
+      document.querySelectorAll('[data-routine-day]').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-routine-day') === selectedRoutineDay);
+      });
+
+      day.forEach(function(block, index) {
+        if (block.hidden) return;
+        var span = block.span || 1;
+        var endHour = block.hour + span - 1;
+        var hourLabel = span > 1 ? routineFormatHour(block.hour) + ' - ' + routineFormatHour(endHour) : routineFormatHour(block.hour);
+        var row = document.createElement('div');
+        row.className = 'routine-row';
+        row.style.minHeight = String(58 * span) + 'px';
+        row.innerHTML =
+          '<div class="routine-hour">' + escapeHtml(hourLabel) + '</div>' +
+          '<div class="routine-state ' + escapeHtml(block.state) + '"><select class="routine-status-select ' + escapeHtml(block.state) + '" data-routine-state-index="' + index + '"><option value="busy">Busy</option><option value="free">Free</option><option value="none">None</option></select></div>' +
+          '<div class="routine-task ' + escapeHtml(block.state) + '" contenteditable="true" data-routine-task-index="' + index + '"></div>';
+        row.querySelector('.routine-task').textContent = block.task;
+        row.querySelector('.routine-status-select').value = block.state;
+        board.appendChild(row);
+      });
+    }
+
+    function saveRoutineVisibleWithoutRender(data) {
+      document.querySelectorAll('[data-routine-task-index]').forEach(function(taskEl) {
+        var index = Number(taskEl.getAttribute('data-routine-task-index'));
+        if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+          data[selectedRoutineDay][index].task = taskEl.textContent.trim();
+        }
+      });
+      document.querySelectorAll('[data-routine-state-index]').forEach(function(selectEl) {
+        var index = Number(selectEl.getAttribute('data-routine-state-index'));
+        if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+          data[selectedRoutineDay][index].state = selectEl.value;
+        }
+      });
+    }
+
+    function saveRoutineBoard() {
+      var data = getRoutineData();
+      if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
+      saveRoutineVisibleWithoutRender(data);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = routineTitleDay(selectedRoutineDay) + ' routine saved.';
+      beep('save');
+      renderRoutineBoard();
+    }
+
+    function mergeRoutineHours() {
+      var data = getRoutineData();
+      if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
+      saveRoutineVisibleWithoutRender(data);
+
+      var startHour = Number(byId('routineMergeStart').value);
+      var endHour = Number(byId('routineMergeEnd').value);
+      var state = byId('routineMergeState').value;
+      var task = byId('routineMergeTask').value.trim();
+
+      if (endHour < startHour) {
+        byId('routineStatusText').textContent = 'End hour must be after start hour.';
+        return;
+      }
+
+      var span = endHour - startHour + 1;
+      data[selectedRoutineDay].forEach(function(block) {
+        if (block.hour >= startHour && block.hour <= endHour) {
+          block.hidden = true;
+          block.span = 1;
+        }
+      });
+
+      var firstBlock = data[selectedRoutineDay].find(function(block) { return block.hour === startHour; });
+      if (firstBlock) {
+        firstBlock.hidden = false;
+        firstBlock.span = span;
+        firstBlock.state = state;
+        firstBlock.task = task || (state === 'none' ? '' : routineTitleDay(selectedRoutineDay) + ' block');
+      }
+
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Merged ' + routineFormatHour(startHour) + ' to ' + routineFormatHour(endHour) + '.';
+      beep('save');
+      renderRoutineBoard();
+    }
+
+    function resetRoutineBoard() {
+      if (!confirm('Reset routine back to default?')) return;
+      setRoutineData(createDefaultRoutineData());
+      selectedRoutineDay = routineTodayKey();
+      byId('routineStatusText').textContent = 'Routine reset.';
+      beep('fail');
+      renderRoutineBoard();
+    }
+
+    function bindRoutineEvents() {
+      var switcher = byId('routineDaySwitcher');
+      if (switcher) {
+        switcher.addEventListener('click', function(event) {
+          var btn = event.target.closest('[data-routine-day]');
+          if (!btn) return;
+          selectedRoutineDay = btn.getAttribute('data-routine-day');
+          byId('routineStatusText').textContent = 'Viewing ' + routineTitleDay(selectedRoutineDay) + '.';
+          renderRoutineBoard();
+          beep('click');
+        });
+      }
+
+      if (byId('routineSaveBtn')) byId('routineSaveBtn').addEventListener('click', saveRoutineBoard);
+      if (byId('routineResetBtn')) byId('routineResetBtn').addEventListener('click', resetRoutineBoard);
+      if (byId('routineMergeBtn')) byId('routineMergeBtn').addEventListener('click', mergeRoutineHours);
+    }
+
     function updateDateTimeDisplays() {
       var current = formatDateTime();
       byId('clock').textContent = current;
@@ -3225,6 +3800,7 @@
     }
 
     bindEvents();
+    bindRoutineEvents();
     renderDefaultSummary();
     renderDraftTasks();
     setSound(isSoundOn());
