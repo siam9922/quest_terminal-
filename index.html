@@ -1379,6 +1379,13 @@
       letter-spacing: 1px;
     }
 
+
+    .routine-merge-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
     .routine-merge-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -1409,7 +1416,7 @@
       outline: none;
     }
 
-    .routine-merge-panel textarea { min-height: 70px; resize: vertical; }
+    .routine-merge-panel textarea { min-height: 92px; resize: none; overflow: hidden !important; line-height: 1.45; }
 
     .routine-controls {
       display: grid;
@@ -1426,12 +1433,36 @@
 
     .routine-row {
       display: grid;
-      grid-template-columns: 92px 90px 1fr;
+      grid-template-columns: 140px 90px 1fr 96px;
       min-height: 58px;
       border-bottom: 1px solid rgba(216,208,189,0.12);
     }
 
     .routine-row:last-child { border-bottom: 0; }
+
+    .routine-row.merged {
+      border-color: rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), transparent 38%);
+    }
+
+    .routine-row.merged .routine-hour {
+      color: var(--muted);
+      background: rgba(0,0,0,0.22);
+      align-content: center;
+      gap: 3px;
+      text-align: right;
+    }
+
+    .routine-span-badge {
+      display: block;
+      color: rgba(216,208,189,0.50);
+      font-size: 8px;
+      font-weight: 950;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
 
     .routine-hour {
       border-right: 1px solid rgba(216,208,189,0.14);
@@ -1456,8 +1487,8 @@
       letter-spacing: 0.8px;
     }
 
-    .routine-state.free { color: #ffe9b0; background: rgba(201,154,54,0.11); }
-    .routine-state.busy { color: #c9ffd8; background: rgba(69,184,107,0.10); }
+    .routine-state.free { color: #c9ffd8; background: rgba(69,184,107,0.11); }
+    .routine-state.busy { color: #e0c878; background: rgba(142,95,45,0.16); }
     .routine-state.none { color: #b8afa2; background: rgba(255,255,255,0.045); }
 
     .routine-status-select {
@@ -1474,28 +1505,106 @@
       outline: none;
     }
 
-    .routine-status-select.free { color: #ffe9b0; }
-    .routine-status-select.busy { color: #c9ffd8; }
+    .routine-status-select.free { color: #c9ffd8; }
+    .routine-status-select.busy { color: #e0c878; }
     .routine-status-select.none { color: #b8afa2; }
 
     .routine-task {
-      padding: 10px 12px;
+      padding: 0;
       color: #f3ead8;
       line-height: 1.45;
       outline: none;
       font-size: 14px;
       min-height: 58px;
       white-space: pre-wrap;
+      display: flex;
+      align-items: stretch;
     }
 
-    .routine-task:focus {
+    .routine-task.free { color: #dfffe8; }
+    .routine-task.busy { color: #e8d0a0; }
+    .routine-task.none { color: #9a9388; background: rgba(255,255,255,0.018); }
+
+    .routine-task-editor {
+      width: 100%;
+      min-height: 100%;
+      height: auto;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.45;
+      resize: none;
+      outline: none;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      overflow: hidden;
+      display: block;
+    }
+
+    .routine-task-editor:focus {
       background: rgba(255,255,255,0.045);
       box-shadow: inset 0 0 0 2px rgba(241,221,146,0.28);
     }
 
-    .routine-task.free { color: #ffe9b0; }
-    .routine-task.busy { color: #dfffe8; }
-    .routine-task.none { color: #9a9388; background: rgba(255,255,255,0.018); }
+    .routine-row.merged .routine-task {
+      min-height: inherit;
+    }
+
+    .routine-row.merged .routine-task-editor {
+      min-height: inherit;
+    }
+
+    .routine-actions {
+      border-left: 1px solid rgba(216,208,189,0.14);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      align-content: center;
+      padding: 6px;
+      background: rgba(0,0,0,0.16);
+    }
+
+    .routine-actions button {
+      min-height: 28px;
+      padding: 4px 5px;
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .routine-actions button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+
+    .routine-unmerge-btn {
+      grid-column: 1 / -1;
+      min-height: 24px !important;
+      padding: 3px 5px !important;
+      font-size: 9px !important;
+      letter-spacing: 0.3px !important;
+      border-color: rgba(241,221,146,0.38);
+      color: #e8d0a0;
+      background: linear-gradient(180deg, rgba(142,95,45,0.12), #0d0d0c);
+    }
+
+    .routine-unmerge-btn:hover {
+      background: linear-gradient(180deg, #705024, #2b1b09);
+      color: #ffffff;
+    }
+
+    .routine-global-merge-undo {
+      border-color: rgba(241,221,146,0.55);
+      color: #fff0d2;
+      background: linear-gradient(180deg, rgba(142,95,45,0.18), #0d0d0c);
+    }
 
     .routine-note-line {
       margin-top: 12px;
@@ -1650,10 +1759,13 @@
       .routine-day-switcher { grid-template-columns: repeat(7, minmax(54px, 1fr)); overflow-x: auto; }
       .routine-merge-grid { grid-template-columns: 1fr; }
       .routine-controls { grid-template-columns: 1fr; }
-      .routine-row { grid-template-columns: 70px 68px 1fr; }
+      .routine-merge-actions { grid-template-columns: 1fr; }
+      .routine-row { grid-template-columns: 92px 64px 1fr; }
       .routine-hour { font-size: 10px; padding-right: 7px; }
       .routine-state { font-size: 9px; }
-      .routine-task { font-size: 13px; padding: 9px; }
+      .routine-task { font-size: 13px; }
+      .routine-task-editor { font-size: 13px; padding: 9px; min-height: 56px; }
+      .routine-actions { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; border-left: 0; border-top: 1px solid rgba(216,208,189,0.12); }
       .routine-main-title { font-size: 34px; letter-spacing: 3px; }
     }
 
@@ -1833,7 +1945,7 @@
             <label>Activity / Task
               <textarea id="routineMergeTask" placeholder="Example: Career Block&#10;- Azure DBA&#10;- SQL practice"></textarea>
             </label>
-            <button id="routineMergeBtn" class="action-add-quest" type="button">Merge Selected Hours</button>
+            <div class="routine-merge-actions"><button id="routineMergeBtn" class="action-add-quest" type="button">Merge Selected Hours</button><button id="routineUndoLastMergeBtn" class="routine-global-merge-undo" type="button">Undo Last Merge</button></div>
           </div>
 
           <div class="routine-controls">
@@ -1844,7 +1956,7 @@
           <div id="routineStatusText" class="status-message"></div>
           <div id="routineBoard" class="routine-board"></div>
 
-          <div class="routine-note-line">Write FREE, BUSY, or NONE by using the dropdown beside each hour. Merge hours to create one larger block.</div>
+          <div class="routine-note-line">Edit text directly inside each hour. Save commits the routine. Reset restores the last saved routine. Use Undo/Redo beside each hour.</div>
         </div>
       </section>
 
@@ -2027,6 +2139,7 @@
     var STORE_STREAK = 'qt_main_quest_streak_v1';
     var STORE_XP = 'qt_player_xp_v1';
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
+    var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
     var VERSION = 'merged-old-save-v3-xp-ranks';
     var editingQuestId = null;
     var draftTasks = [];
@@ -3109,7 +3222,8 @@
         elements: getElementsStore(),
         streak: getStreakData(),
         xp: getXpData(),
-        routine: getRoutineData()
+        routine: getRoutineData(),
+        savedRoutine: getSavedRoutineData()
       };
       byId('dataBox').value = JSON.stringify(payload, null, 2);
       byId('dataBox').focus();
@@ -3175,7 +3289,9 @@
       if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
       if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
+      if (data.savedRoutine && typeof data.savedRoutine === 'object') setSavedRoutineData(data.savedRoutine);
       if (data.routine && typeof data.routine === 'object') setRoutineData(data.routine);
+      else if (data.savedRoutine && typeof data.savedRoutine === 'object') setRoutineData(data.savedRoutine);
       byId('saveStatusText').textContent = 'Import complete.';
       byId('savePrompt').textContent = 'Imported quest archive loaded.';
       beep('load');
@@ -3421,6 +3537,28 @@
 
         
 
+        var sectionToggle = event.target.closest('.section-toggle');
+        if (sectionToggle) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          var targetId = sectionToggle.getAttribute('data-collapse-target');
+          var target = targetId ? byId(targetId) : null;
+          if (!target) return;
+
+          var isCollapsed = target.classList.toggle('collapsed');
+
+          if (targetId === 'completeQuestList') {
+            var filters = byId('archiveFilters');
+            if (filters) filters.classList.toggle('collapsed', isCollapsed);
+          }
+
+          var cleanTitle = sectionToggle.textContent.replace(/^[▼▶]\s*/, '').trim();
+          sectionToggle.textContent = (isCollapsed ? '▶ ' : '▼ ') + cleanTitle;
+          beep('click');
+          return;
+        }
+
         var archiveButton = event.target.closest('[data-archive-filter]');
         if (archiveButton) {
           event.preventDefault();
@@ -3578,6 +3716,8 @@
 
     /* ===== Routine Hour Blocks Logic ===== */
     var selectedRoutineDay = routineTodayKey();
+    var routineHistory = {};
+    var routineMergeHistory = {};
 
     function routineTodayKey() {
       return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][new Date().getDay()];
@@ -3607,6 +3747,14 @@
 
     function routineMakeHour(hour, state, task, span) {
       return { hour: hour, state: state, task: task || '', span: span || 1, hidden: false };
+    }
+
+    function routineClone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function routineBlocksMatch(a, b) {
+      return JSON.stringify(a || null) === JSON.stringify(b || null);
     }
 
     function routineBlankDay() {
@@ -3676,17 +3824,31 @@
       return data;
     }
 
+    function getSavedRoutineData() {
+      var saved = readStore(STORE_ROUTINE_SAVED, null);
+      if (!saved || Array.isArray(saved) || !saved.monday) {
+        saved = readStore(STORE_ROUTINE, null);
+        if (!saved || Array.isArray(saved) || !saved.monday) saved = createDefaultRoutineData();
+        setSavedRoutineData(saved);
+      }
+      return saved;
+    }
+
+    function setSavedRoutineData(data) {
+      writeStore(STORE_ROUTINE_SAVED, routineClone(data));
+    }
+
     function getRoutineData() {
       var parsed = readStore(STORE_ROUTINE, null);
       if (!parsed || Array.isArray(parsed) || !parsed.monday) {
-        parsed = createDefaultRoutineData();
+        parsed = routineClone(getSavedRoutineData());
         setRoutineData(parsed);
       }
       return parsed;
     }
 
     function setRoutineData(data) {
-      writeStore(STORE_ROUTINE, data);
+      writeStore(STORE_ROUTINE, routineClone(data));
     }
 
     function renderRoutineTop() {
@@ -3717,6 +3879,57 @@
       end.value = '11';
     }
 
+    function routineHistoryKey(dayKey, index) {
+      return dayKey + ':' + String(index);
+    }
+
+    function routineGetHistory(dayKey, index) {
+      var key = routineHistoryKey(dayKey, index);
+      if (!routineHistory[key]) routineHistory[key] = { undo: [], redo: [] };
+      return routineHistory[key];
+    }
+
+    function routinePushUndo(dayKey, index, beforeBlock) {
+      var history = routineGetHistory(dayKey, index);
+      history.undo.push(routineClone(beforeBlock));
+      if (history.undo.length > 30) history.undo.shift();
+      history.redo = [];
+    }
+
+
+    function routineGetMergeHistory(dayKey) {
+      if (!routineMergeHistory[dayKey]) routineMergeHistory[dayKey] = [];
+      return routineMergeHistory[dayKey];
+    }
+
+    function routinePushMergeSnapshot(dayKey, beforeDay, label) {
+      var stack = routineGetMergeHistory(dayKey);
+      stack.push({ beforeDay: routineClone(beforeDay), label: label || 'merge' });
+      if (stack.length > 20) stack.shift();
+    }
+
+
+    function routineApplyBlock(dayKey, index, newBlock, keepHistory) {
+      var data = getRoutineData();
+      if (!data[dayKey]) data[dayKey] = routineBlankDay();
+      var current = data[dayKey][index];
+      if (!current) return;
+      if (keepHistory && !routineBlocksMatch(current, newBlock)) routinePushUndo(dayKey, index, current);
+      data[dayKey][index] = Object.assign({}, current, routineClone(newBlock));
+      setRoutineData(data);
+    }
+
+    function routineUpdateRowVisual(row, state) {
+      var stateBox = row.querySelector('.routine-state');
+      var select = row.querySelector('.routine-status-select');
+      var taskBox = row.querySelector('.routine-task');
+      [stateBox, select, taskBox].forEach(function(el) {
+        if (!el) return;
+        el.classList.remove('free', 'busy', 'none');
+        el.classList.add(state);
+      });
+    }
+
     function renderRoutineBoard() {
       populateRoutineMergeOptions();
       renderRoutineTop();
@@ -3737,23 +3950,39 @@
         var endHour = block.hour + span - 1;
         var hourLabel = span > 1 ? routineFormatHour(block.hour) + ' - ' + routineFormatHour(endHour) : routineFormatHour(block.hour);
         var row = document.createElement('div');
-        row.className = 'routine-row';
+        var history = routineGetHistory(selectedRoutineDay, index);
+        row.className = span > 1 ? 'routine-row merged' : 'routine-row';
         row.style.minHeight = String(58 * span) + 'px';
+        row.dataset.rowMinHeight = String(58 * span);
+        var hourHtml = escapeHtml(hourLabel) + (span > 1 ? '<span class="routine-span-badge">Merged ' + span + ' hours</span>' : '');
+        var unmergeHtml = span > 1 ? '<button type="button" class="routine-unmerge-btn" data-routine-unmerge-index="' + index + '">Unmerge</button>' : '';
         row.innerHTML =
-          '<div class="routine-hour">' + escapeHtml(hourLabel) + '</div>' +
+          '<div class="routine-hour">' + hourHtml + '</div>' +
           '<div class="routine-state ' + escapeHtml(block.state) + '"><select class="routine-status-select ' + escapeHtml(block.state) + '" data-routine-state-index="' + index + '"><option value="busy">Busy</option><option value="free">Free</option><option value="none">None</option></select></div>' +
-          '<div class="routine-task ' + escapeHtml(block.state) + '" contenteditable="true" data-routine-task-index="' + index + '"></div>';
-        row.querySelector('.routine-task').textContent = block.task;
+          '<div class="routine-task ' + escapeHtml(block.state) + '"><textarea class="routine-task-editor" data-routine-task-index="' + index + '" spellcheck="false"></textarea></div>' +
+          '<div class="routine-actions"><button type="button" class="routine-undo-btn" data-routine-undo-index="' + index + '"' + (history.undo.length ? '' : ' disabled') + '>Undo</button><button type="button" class="routine-redo-btn" data-routine-redo-index="' + index + '"' + (history.redo.length ? '' : ' disabled') + '>Redo</button>' + unmergeHtml + '</div>';
+        var taskEditor = row.querySelector('.routine-task-editor');
+        taskEditor.value = block.task || '';
+        routineAutoGrowTextarea(taskEditor);
         row.querySelector('.routine-status-select').value = block.state;
         board.appendChild(row);
       });
+    }
+
+    function routineAutoGrowTextarea(el) {
+      if (!el) return;
+      var row = el.closest ? el.closest('.routine-row') : null;
+      var rowMin = row && row.dataset.rowMinHeight ? Number(row.dataset.rowMinHeight) : 58;
+      var currentHeight = el.offsetHeight || 0;
+      var targetHeight = Math.max(el.scrollHeight, currentHeight, rowMin, 58);
+      el.style.height = targetHeight + 'px';
     }
 
     function saveRoutineVisibleWithoutRender(data) {
       document.querySelectorAll('[data-routine-task-index]').forEach(function(taskEl) {
         var index = Number(taskEl.getAttribute('data-routine-task-index'));
         if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
-          data[selectedRoutineDay][index].task = taskEl.textContent.trim();
+          data[selectedRoutineDay][index].task = taskEl.value;
         }
       });
       document.querySelectorAll('[data-routine-state-index]').forEach(function(selectEl) {
@@ -3764,58 +3993,146 @@
       });
     }
 
-    function saveRoutineBoard() {
+    function saveRoutineDraftFromVisible() {
       var data = getRoutineData();
       if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
       saveRoutineVisibleWithoutRender(data);
       setRoutineData(data);
-      byId('routineStatusText').textContent = routineTitleDay(selectedRoutineDay) + ' routine saved.';
+      return data;
+    }
+
+    function saveRoutineBoard() {
+      var data = saveRoutineDraftFromVisible();
+      setSavedRoutineData(data);
+      byId('routineStatusText').textContent = routineTitleDay(selectedRoutineDay) + ' routine saved. Reset will return to this saved version.';
       beep('save');
       renderRoutineBoard();
     }
 
     function mergeRoutineHours() {
-      var data = getRoutineData();
+      var data = saveRoutineDraftFromVisible();
       if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
-      saveRoutineVisibleWithoutRender(data);
 
       var startHour = Number(byId('routineMergeStart').value);
       var endHour = Number(byId('routineMergeEnd').value);
       var state = byId('routineMergeState').value;
-      var task = byId('routineMergeTask').value.trim();
+      var task = byId('routineMergeTask').value;
 
       if (endHour < startHour) {
         byId('routineStatusText').textContent = 'End hour must be after start hour.';
         return;
       }
 
+      var beforeDay = routineClone(data[selectedRoutineDay]);
       var span = endHour - startHour + 1;
+      var mergeLabel = routineFormatHour(startHour) + ' to ' + routineFormatHour(endHour);
+      routinePushMergeSnapshot(selectedRoutineDay, beforeDay, mergeLabel);
       data[selectedRoutineDay].forEach(function(block) {
         if (block.hour >= startHour && block.hour <= endHour) {
           block.hidden = true;
           block.span = 1;
+          delete block.mergeBefore;
         }
       });
 
-      var firstBlock = data[selectedRoutineDay].find(function(block) { return block.hour === startHour; });
+      var firstIndex = data[selectedRoutineDay].findIndex(function(block) { return block.hour === startHour; });
+      var firstBlock = data[selectedRoutineDay][firstIndex];
       if (firstBlock) {
+        routinePushUndo(selectedRoutineDay, firstIndex, beforeDay[firstIndex]);
         firstBlock.hidden = false;
         firstBlock.span = span;
         firstBlock.state = state;
-        firstBlock.task = task || (state === 'none' ? '' : routineTitleDay(selectedRoutineDay) + ' block');
+        firstBlock.task = task.trim() || (state === 'none' ? '' : routineTitleDay(selectedRoutineDay) + ' block');
+        firstBlock.mergeBefore = routineClone(beforeDay);
       }
 
       setRoutineData(data);
-      byId('routineStatusText').textContent = 'Merged ' + routineFormatHour(startHour) + ' to ' + routineFormatHour(endHour) + '.';
+      byId('routineStatusText').textContent = 'Merged ' + mergeLabel + '. Use Undo Merge to restore the previous hour layout.';
       beep('save');
       renderRoutineBoard();
     }
 
+    function undoRoutineHour(index) {
+      saveRoutineDraftFromVisible();
+      var history = routineGetHistory(selectedRoutineDay, index);
+      if (!history.undo.length) return;
+      var data = getRoutineData();
+      var current = routineClone(data[selectedRoutineDay][index]);
+      var previous = history.undo.pop();
+      history.redo.push(current);
+      data[selectedRoutineDay][index] = Object.assign({}, data[selectedRoutineDay][index], previous);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Undo applied to ' + routineFormatHour(data[selectedRoutineDay][index].hour) + '.';
+      renderRoutineBoard();
+    }
+
+    function redoRoutineHour(index) {
+      saveRoutineDraftFromVisible();
+      var history = routineGetHistory(selectedRoutineDay, index);
+      if (!history.redo.length) return;
+      var data = getRoutineData();
+      var current = routineClone(data[selectedRoutineDay][index]);
+      var next = history.redo.pop();
+      history.undo.push(current);
+      data[selectedRoutineDay][index] = Object.assign({}, data[selectedRoutineDay][index], next);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Redo applied to ' + routineFormatHour(data[selectedRoutineDay][index].hour) + '.';
+      renderRoutineBoard();
+    }
+
+
+    function undoRoutineMerge(index) {
+      saveRoutineDraftFromVisible();
+      var data = getRoutineData();
+      if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+      var block = data[selectedRoutineDay][index];
+      if (block.mergeBefore && Array.isArray(block.mergeBefore)) {
+        data[selectedRoutineDay] = routineClone(block.mergeBefore);
+        setRoutineData(data);
+        byId('routineStatusText').textContent = 'Merge undone. Previous hour layout restored.';
+        beep('click');
+        renderRoutineBoard();
+        return;
+      }
+
+      var span = block.span || 1;
+      if (span <= 1) return;
+      for (var i = index; i < index + span && data[selectedRoutineDay][i]; i++) {
+        data[selectedRoutineDay][i].hidden = false;
+        data[selectedRoutineDay][i].span = 1;
+        data[selectedRoutineDay][i].state = block.state;
+        data[selectedRoutineDay][i].task = block.task;
+        delete data[selectedRoutineDay][i].mergeBefore;
+      }
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Merged block split into separate hours.';
+      beep('click');
+      renderRoutineBoard();
+    }
+
+    function undoLastRoutineMerge() {
+      saveRoutineDraftFromVisible();
+      var stack = routineGetMergeHistory(selectedRoutineDay);
+      if (!stack.length) {
+        byId('routineStatusText').textContent = 'No merge to undo for ' + routineTitleDay(selectedRoutineDay) + '.';
+        return;
+      }
+      var snapshot = stack.pop();
+      var data = getRoutineData();
+      data[selectedRoutineDay] = routineClone(snapshot.beforeDay);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Last merge undone: ' + snapshot.label + '.';
+      beep('click');
+      renderRoutineBoard();
+    }
+
     function resetRoutineBoard() {
-      if (!confirm('Reset routine back to default?')) return;
-      setRoutineData(createDefaultRoutineData());
-      selectedRoutineDay = routineTodayKey();
-      byId('routineStatusText').textContent = 'Routine reset.';
+      if (!confirm('Reset routine back to the last saved version?')) return;
+      var saved = getSavedRoutineData();
+      setRoutineData(saved);
+      routineHistory = {};
+      routineMergeHistory = {};
+      byId('routineStatusText').textContent = 'Routine restored to the last saved version.';
       beep('fail');
       renderRoutineBoard();
     }
@@ -3826,6 +4143,7 @@
         switcher.addEventListener('click', function(event) {
           var btn = event.target.closest('[data-routine-day]');
           if (!btn) return;
+          saveRoutineDraftFromVisible();
           selectedRoutineDay = btn.getAttribute('data-routine-day');
           byId('routineStatusText').textContent = 'Viewing ' + routineTitleDay(selectedRoutineDay) + '.';
           renderRoutineBoard();
@@ -3833,9 +4151,72 @@
         });
       }
 
+      var board = byId('routineBoard');
+      if (board) {
+        board.addEventListener('focusin', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          var index = Number(taskEl.getAttribute('data-routine-task-index'));
+          var data = getRoutineData();
+          if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+            taskEl.dataset.beforeBlock = JSON.stringify(data[selectedRoutineDay][index]);
+          }
+        });
+
+        board.addEventListener('input', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          routineAutoGrowTextarea(taskEl);
+        });
+
+        board.addEventListener('blur', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          var index = Number(taskEl.getAttribute('data-routine-task-index'));
+          var data = getRoutineData();
+          if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+          var before = taskEl.dataset.beforeBlock ? JSON.parse(taskEl.dataset.beforeBlock) : routineClone(data[selectedRoutineDay][index]);
+          var after = routineClone(data[selectedRoutineDay][index]);
+          after.task = taskEl.value;
+          if (!routineBlocksMatch(before, after)) routinePushUndo(selectedRoutineDay, index, before);
+          data[selectedRoutineDay][index] = after;
+          setRoutineData(data);
+          renderRoutineBoard();
+        }, true);
+
+        board.addEventListener('change', function(event) {
+          var selectEl = event.target.closest('[data-routine-state-index]');
+          if (!selectEl) return;
+          var index = Number(selectEl.getAttribute('data-routine-state-index'));
+          var data = getRoutineData();
+          if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+          var before = routineClone(data[selectedRoutineDay][index]);
+          data[selectedRoutineDay][index].state = selectEl.value;
+          routinePushUndo(selectedRoutineDay, index, before);
+          setRoutineData(data);
+          routineUpdateRowVisual(selectEl.closest('.routine-row'), selectEl.value);
+          byId('routineStatusText').textContent = 'Status changed. Save routine to make this the reset point.';
+          renderRoutineBoard();
+        });
+
+        board.addEventListener('click', function(event) {
+          var undoBtn = event.target.closest('[data-routine-undo-index]');
+          var redoBtn = event.target.closest('[data-routine-redo-index]');
+          var unmergeBtn = event.target.closest('[data-routine-unmerge-index]');
+          if (undoBtn) undoRoutineHour(Number(undoBtn.getAttribute('data-routine-undo-index')));
+          if (redoBtn) redoRoutineHour(Number(redoBtn.getAttribute('data-routine-redo-index')));
+          if (unmergeBtn) undoRoutineMerge(Number(unmergeBtn.getAttribute('data-routine-unmerge-index')));
+        });
+      }
+
       if (byId('routineSaveBtn')) byId('routineSaveBtn').addEventListener('click', saveRoutineBoard);
       if (byId('routineResetBtn')) byId('routineResetBtn').addEventListener('click', resetRoutineBoard);
       if (byId('routineMergeBtn')) byId('routineMergeBtn').addEventListener('click', mergeRoutineHours);
+      if (byId('routineUndoLastMergeBtn')) byId('routineUndoLastMergeBtn').addEventListener('click', undoLastRoutineMerge);
+      if (byId('routineMergeTask')) {
+        routineAutoGrowTextarea(byId('routineMergeTask'));
+        byId('routineMergeTask').addEventListener('input', function(event) { routineAutoGrowTextarea(event.target); });
+      }
     }
 
     function updateDateTimeDisplays() {
