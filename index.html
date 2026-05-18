@@ -1912,7 +1912,7 @@
               <h2>Export / Import</h2>
               <label for="dataBox">Save data</label>
               <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
-              <div class="helper-text">Export = copy current quests/saves/defaults/elements. Import = replace this browser with pasted backup data.</div>
+              <div class="helper-text">Export = copy current quests/saves/defaults/elements/routine. Import = replace this browser with pasted backup data.</div>
               <div class="actions">
                 <button id="exportBtn">Export Data</button>
                 <button id="copyBtn">Copy Export</button>
@@ -2114,6 +2114,20 @@
       data.awardedQuestIds.push(quest.id);
       setXpData(data);
     }
+
+    function revokeQuestXpIfAwarded(quest) {
+      if (!quest) return;
+      var data = getXpData();
+      if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+
+      var index = data.awardedQuestIds.indexOf(quest.id);
+      if (index === -1) return;
+
+      data.awardedQuestIds.splice(index, 1);
+      data.totalXp = Math.max(0, (data.totalXp || 0) - getQuestXp(quest));
+      setXpData(data);
+    }
+
 
     function makeId() {
       if (window.crypto && crypto.randomUUID) {
@@ -2559,17 +2573,21 @@
     function updateQuestStatus(id, nextStatus) {
       var time = nowIso();
       var completedQuest = null;
+      var questBeforeChange = getQuests().find(function(item) { return item.id === id; });
+
+      if (questBeforeChange && questBeforeChange.status === 'complete' && nextStatus !== 'complete') {
+        revokeQuestXpIfAwarded(questBeforeChange);
+      }
+
       var quests = getQuests().map(function(quest) {
         if (quest.id !== id) return quest;
 
         var tasks = quest.microTasks || [];
         if (nextStatus === 'complete') {
-          tasks = tasks.map(function(task) {
-            return Object.assign({}, task, { done: true });
-          });
+          tasks = tasks.map(function(task) { return Object.assign({}, task, { done: true }); });
         }
 
-        var updatedQuest = Object.assign({}, quest, {
+        var updated = Object.assign({}, quest, {
           status: nextStatus,
           microTasks: tasks,
           updatedAt: time,
@@ -2577,8 +2595,8 @@
           failedAt: nextStatus === 'failed' ? (quest.failedAt || time) : null
         });
 
-        if (nextStatus === 'complete') completedQuest = updatedQuest;
-        return updatedQuest;
+        if (nextStatus === 'complete') completedQuest = updated;
+        return updated;
       });
 
       setQuests(quests);
@@ -2592,6 +2610,8 @@
     function toggleMicroTask(questId, taskId) {
       var time = nowIso();
       var completedQuest = null;
+      var questBeforeChange = getQuests().find(function(item) { return item.id === questId; });
+
       var quests = getQuests().map(function(quest) {
         if (quest.id !== questId) return quest;
 
@@ -2603,18 +2623,23 @@
         var total = tasks.length;
         var done = tasks.filter(function(task) { return task.done; }).length;
         var finished = total > 0 && done === total;
+        var nextStatus = finished ? 'complete' : (quest.status === 'complete' || quest.status === 'failed' ? 'progress' : quest.status);
 
-        var updatedQuest = Object.assign({}, quest, {
+        var updated = Object.assign({}, quest, {
           microTasks: tasks,
-          status: finished ? 'complete' : (quest.status === 'complete' || quest.status === 'failed' ? 'progress' : quest.status),
+          status: nextStatus,
           completedAt: finished ? (quest.completedAt || time) : null,
           failedAt: null,
           updatedAt: time
         });
 
-        if (finished) completedQuest = updatedQuest;
-        return updatedQuest;
+        if (finished) completedQuest = updated;
+        return updated;
       });
+
+      if (questBeforeChange && questBeforeChange.status === 'complete' && !completedQuest) {
+        revokeQuestXpIfAwarded(questBeforeChange);
+      }
 
       setQuests(quests);
       if (completedQuest) awardQuestXpOnce(completedQuest);
@@ -2623,10 +2648,12 @@
     }
 
     function deleteQuest(id) {
-      var quests = getQuests().filter(function(quest) {
-        return quest.id !== id;
-      });
-      setQuests(quests);
+      var questToDelete = getQuests().find(function(quest) { return quest.id === id; });
+      if (questToDelete && questToDelete.status === 'complete') {
+        revokeQuestXpIfAwarded(questToDelete);
+      }
+
+      setQuests(getQuests().filter(function(quest) { return quest.id !== id; }));
       byId('questStatusText').textContent = 'Quest deleted.';
       beep('fail');
       renderAll();
@@ -3051,20 +3078,22 @@
 
     function clearCompleted() {
       var quests = getQuests();
-      var completedCount = quests.filter(function(quest) { return quest.status === 'complete'; }).length;
-      var activeQuests = quests.filter(function(quest) {
-        return quest.status === 'new' || quest.status === 'progress' || quest.status === 'failed';
-      });
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var active = quests.filter(function(quest) { return quest.status !== 'complete'; });
 
-      if (completedCount === 0) {
+      if (completed.length === 0) {
         byId('saveStatusText').textContent = 'No completed quests to clear.';
-        byId('savePrompt').textContent = 'There are no completed quest records to clear.';
         return;
       }
 
-      setQuests(activeQuests);
-      byId('saveStatusText').textContent = completedCount + ' completed quest record(s) cleared. Active and failed quests were kept.';
-      byId('savePrompt').textContent = 'Only completed quest records have been cleared.';
+      if (!confirm('Clear completed quests from current board? XP from those quests will also be removed.')) return;
+
+      completed.forEach(function(quest) {
+        revokeQuestXpIfAwarded(quest);
+      });
+
+      setQuests(active);
+      byId('saveStatusText').textContent = 'Completed quests cleared and XP adjusted.';
       beep('fail');
       renderAll();
     }
@@ -3391,6 +3420,23 @@
         }
 
         
+
+        var archiveButton = event.target.closest('[data-archive-filter]');
+        if (archiveButton) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          archiveFilter = archiveButton.getAttribute('data-archive-filter');
+
+          document.querySelectorAll('[data-archive-filter]').forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-archive-filter') === archiveFilter);
+          });
+
+          renderAll();
+          beep('click');
+          return;
+        }
+
         var actionButton = event.target.closest('[data-action]');
         if (actionButton) {
           var card = actionButton.closest('[data-quest-id]');
