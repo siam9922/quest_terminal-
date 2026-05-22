@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quest Save Terminal</title>
   <style>
-    :root {
+        :root {
       --bg: #040404;
       --panel: #10100f;
       --panel-2: #171716;
@@ -1769,10 +1766,119 @@
       .routine-main-title { font-size: 34px; letter-spacing: 3px; }
     }
 
+.mission-reminder {
+  margin-bottom: 18px;
+  min-height: auto;
+  border-color: rgba(224, 200, 120, 0.26);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(224,200,120,0.09), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 35%),
+    linear-gradient(180deg, #12110f, #070707);
+}
+
+.mission-reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.mission-reminder-header h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  color: #f1dd92;
+}
+
+.mission-reminder-badge {
+  border: 1px solid rgba(224,200,120,0.45);
+  color: #f1dd92;
+  background: rgba(0,0,0,0.28);
+  padding: 8px 11px;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.mission-reminder-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 14px;
+}
+
+.mission-column {
+  border: 1px solid rgba(216,208,189,0.16);
+  background: rgba(0,0,0,0.22);
+  padding: 14px;
+}
+
+.mission-column h3 {
+  margin: 0 0 10px;
+  color: #f3ead8;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mission-column ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #d8d0bd;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.truth-column {
+  border-color: rgba(178,77,77,0.35);
+}
+
+.truth-column h3 {
+  color: #ffb3b3;
+}
+
+.main-line {
+  margin-top: 14px;
+  border: 1px solid rgba(69,184,107,0.34);
+  background: rgba(69,184,107,0.08);
+  color: #c9ffd8;
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .mission-reminder-header {
+    align-items: flex-start;
+  }
+
+  .mission-reminder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-column ul {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .main-line {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
   </style>
 </head>
+
 <body>
-  <main class="screen">
+<main class="screen">
     <header>
       <div>
         <h1>Quest Terminal</h1>
@@ -1785,7 +1891,7 @@
         <div id="rankTitle" class="rank-title">Rank: Rookie</div>
         <div class="level-row">
           <span id="levelText">Level 1</span>
-          <span id="xpText">0 / 100 XP</span>
+          <span id="xpText">0 / 200 XP</span>
         </div>
         <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
         <div id="xpNote" class="xp-note">Complete quests to rank up</div>
@@ -1818,7 +1924,54 @@
             <div class="briefing-item"><span id="briefMainClear">0 / 0</span><small>Main Progress</small></div>
           </div>
         </div>
+<div class="mission-reminder panel">
+  <div class="mission-reminder-header">
+    <div>
+      <h2>Everyday Mission</h2>
+      <div class="helper-text">Read this before you touch the quest board.</div>
+    </div>
+    <div class="mission-reminder-badge">Execute</div>
+  </div>
 
+  <div class="mission-reminder-grid">
+    <div class="mission-column">
+      <h3>Do this every day</h3>
+      <ul>
+        <li>Study DP-300</li>
+        <li>Practice SQL</li>
+        <li>Work on resume / career</li>
+        <li>Apply to jobs</li>
+        <li>Train your body</li>
+        <li>Pray / reconnect with Allah</li>
+        <li>Avoid N/A + endless scrolling</li>
+        <li>Sleep properly</li>
+        <li>Repeat tomorrow</li>
+      </ul>
+    </div>
+
+    <div class="mission-column truth-column">
+      <h3>Brutal Truth: What You Must Stop</h3>
+      <ul>
+        <li>Stop hiding behind planning.</li>
+        <li>Stop waiting to feel ready.</li>
+        <li>Stop using certifications as a cave.</li>
+        <li>Stop turning one bad day into your identity.</li>
+        <li>Stop asking for reassurance instead of acting.</li>
+        <li>Stop letting N/A steal your self-respect.</li>
+        <li>Stop consuming YouTube like it is progress.</li>
+        <li>Stop rebuilding systems instead of executing.</li>
+        <li>Stop thinking your future changes without applications.</li>
+        <li>Stop treating confusion as failure.</li>
+        <li>Stop trying to fix your whole life in one night.</li>
+        <li>Stop disappearing when things feel uncomfortable.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-line">
+    Build skills. Apply anyway. Train. Pray. Sleep. Repeat.
+  </div>
+</div>
         <div class="grid-quests">
           <div class="panel">
             <h2>Create Quest</h2>
@@ -2046,6 +2199,11 @@
               <div class="stat"><div id="xpCount" class="stat-number">0</div><div class="stat-label">XP</div></div>
               <div class="stat"><div id="levelCount" class="stat-number">1</div><div class="stat-label">Level</div></div>
               <div class="stat"><div id="streakCount" class="stat-number">0</div><div class="stat-label">Day streak</div></div>
+              <div class="stat">
+                <div id="mealPassCount" class="stat-number">0</div>
+                <div class="stat-label">Meal Passes</div>
+                <button type="button" id="useMealPassBtn" class="action-done" style="width:100%; margin-top:10px;">Use Meal Pass</button>
+              </div>
             </div>
 
             <div class="streak-box">
@@ -2129,8 +2287,8 @@
       </div>
     </div>
   </div>
-
   <script>
+    
     var STORE_QUESTS = 'quest_terminal_quests';
     var STORE_SAVES = 'quest_terminal_saves';
     var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
@@ -2138,9 +2296,10 @@
     var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
     var STORE_STREAK = 'qt_main_quest_streak_v1';
     var STORE_XP = 'qt_player_xp_v1';
+    var STORE_REWARDS = 'qt_rewards_meal_pass_v1';
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
-    var VERSION = 'merged-old-save-v3-xp-ranks';
+    var VERSION = 'merged-old-save-v4-meal-pass';
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
@@ -2208,38 +2367,101 @@
       });
     }
 
+    function getRewardData() {
+      return readStore(STORE_REWARDS, {
+        mealPasses: 0,
+        usedMealPasses: 0,
+        awardedLevels: []
+      });
+    }
+    
+    function setRewardData(value) {
+      writeStore(STORE_REWARDS, value);
+    }
+
     function setXpData(value) {
       writeStore(STORE_XP, value);
     }
 
     function getQuestXp(quest) {
       if (!quest) return 0;
-      return quest.type === 'main' ? 100 : 40;
+      return quest.type === 'main' ? 5 : 2;
     }
 
     function awardQuestXpOnce(quest) {
-      if (!quest || quest.status !== 'complete') return;
-      var data = getXpData();
-      if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
-      if (data.awardedQuestIds.indexOf(quest.id) !== -1) return;
+    if (!quest || quest.status !== 'complete') return;
 
-      data.totalXp = (data.totalXp || 0) + getQuestXp(quest);
-      data.awardedQuestIds.push(quest.id);
-      setXpData(data);
+    var data = getXpData();
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+    if (data.awardedQuestIds.indexOf(quest.id) !== -1) return;
+
+    var beforeLevel = calculateLevel(data.totalXp || 0).level;
+
+    data.totalXp = (data.totalXp || 0) + getQuestXp(quest);
+    data.awardedQuestIds.push(quest.id);
+    setXpData(data);
+
+    var afterLevel = calculateLevel(data.totalXp || 0).level;
+    awardMealPassesForLevelUp(beforeLevel, afterLevel);
+  }
+
+  function revokeQuestXpIfAwarded(quest) {
+    if (!quest) return;
+    var data = getXpData();
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+
+    var index = data.awardedQuestIds.indexOf(quest.id);
+    if (index === -1) return;
+
+    data.awardedQuestIds.splice(index, 1);
+    data.totalXp = Math.max(0, (data.totalXp || 0) - getQuestXp(quest));
+    setXpData(data);
     }
 
-    function revokeQuestXpIfAwarded(quest) {
-      if (!quest) return;
-      var data = getXpData();
-      if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+  function awardMealPassesForLevelUp(beforeLevel, afterLevel) {
+    if (afterLevel <= beforeLevel) return;
 
-      var index = data.awardedQuestIds.indexOf(quest.id);
-      if (index === -1) return;
+  var rewards = getRewardData();
+  if (!Array.isArray(rewards.awardedLevels)) rewards.awardedLevels = [];
 
-      data.awardedQuestIds.splice(index, 1);
-      data.totalXp = Math.max(0, (data.totalXp || 0) - getQuestXp(quest));
-      setXpData(data);
+  var earned = 0;
+
+  for (var level = beforeLevel + 1; level <= afterLevel; level += 1) {
+    if (rewards.awardedLevels.indexOf(level) === -1) {
+      rewards.awardedLevels.push(level);
+      earned += 1;
     }
+  }
+
+  if (earned <= 0) return;
+
+  rewards.mealPasses = (rewards.mealPasses || 0) + earned;
+  rewards.lastEarnedAt = nowIso();
+  setRewardData(rewards);
+   byId('questStatusText').textContent = 'LEVEL UP REWARD: +' + earned + ' Meal Pass' + (earned > 1 ? 'es' : '') + ' earned.';
+  }
+
+function useMealPass() {
+  var rewards = getRewardData();
+  rewards.mealPasses = rewards.mealPasses || 0;
+  rewards.usedMealPasses = rewards.usedMealPasses || 0;
+
+  if (rewards.mealPasses <= 0) {
+    byId('saveStatusText').textContent = 'No Meal Pass available. Level up to earn one.';
+    beep('fail');
+    return;
+  }
+
+  if (!confirm('Use 1 Meal Pass?')) return;
+
+  rewards.mealPasses -= 1;
+  rewards.usedMealPasses += 1;
+  rewards.lastUsedAt = nowIso();
+  setRewardData(rewards);
+
+  byId('saveStatusText').textContent = 'Meal Pass used. Enjoy the reward.';
+  beep('complete');
+  renderAll();}
 
 
     function makeId() {
@@ -2905,7 +3127,8 @@
     }
 
     function xpNeededForLevel(level) {
-      return 500 + ((level - 1) * 150);
+      var baseXp = 200;
+      return Math.ceil(baseXp * Math.pow(1.10, level - 1));
     }
 
     function calculateLevel(totalXp) {
@@ -2989,6 +3212,7 @@
       var xpData = getXpData();
       var xp = xpData.totalXp || 0;
       var level = calculateLevel(xp);
+      var rewards = getRewardData();
 
       byId('totalQuests').textContent = quests.length;
       byId('newQuests').textContent = quests.filter(function(quest) { return quest.status === 'new'; }).length;
@@ -2998,11 +3222,12 @@
       byId('xpCount').textContent = xp;
       byId('levelCount').textContent = level.level;
       byId('streakCount').textContent = calculateStreak(completed);
+      if (byId('mealPassCount')) byId('mealPassCount').textContent = rewards.mealPasses || 0;
       byId('rankTitle').textContent = 'Rank: ' + level.rank;
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +100 / Side +40';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2';
       renderMainStreak();
       renderRoutineTop();
     }
@@ -3106,12 +3331,20 @@
       var name = byId('saveName').value.trim() || 'Quest Log ' + (saves.length + 1);
 
       var saveFile = {
-        id: makeId(),
-        name: name,
-        timestamp: now.toISOString(),
-        displayTime: pretty,
-        quests: quests
-      };
+      id: makeId(),
+      name: name,
+      timestamp: now.toISOString(),
+      displayTime: pretty,
+
+      quests: getQuests(),
+      defaults: getCustomDefaults(),
+      elements: getElementsStore(),
+      streak: getStreakData(),
+      xp: getXpData(),
+      rewards: getRewardData(),
+      routine: getRoutineData(),
+      savedRoutine: getSavedRoutineData()
+    };
 
       saves.unshift(saveFile);
       setSaves(saves);
@@ -3123,7 +3356,7 @@
         byId('saveStatusText').textContent = 'New save created. Current quest board reset.';
       } else {
         byId('savePrompt').textContent = name + ' saved around ' + pretty + '.';
-        byId('saveStatusText').textContent = 'Quest log saved.';
+        byId('saveStatusText').textContent = 'Full terminal save created.';
       }
 
       beep('save');
@@ -3131,15 +3364,24 @@
     }
 
     function loadSave(id) {
-      var save = getSaves().find(function(item) { return item.id === id; });
-      if (!save) return;
+    var save = getSaves().find(function(item) { return item.id === id; });
+    if (!save) return;
+    
+    setQuests(save.quests || []);
 
-      setQuests(save.quests || []);
-      byId('savePrompt').textContent = save.name + ' loaded.';
-      byId('saveStatusText').textContent = 'Loaded previous save.';
-      beep('load');
-      showView('questsView');
-    }
+    if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
+    if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
+    if (save.streak && typeof save.streak === 'object') setStreakData(save.streak);
+    if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
+    if (save.rewards && typeof save.rewards === 'object') setRewardData(save.rewards);
+    if (save.routine && typeof save.routine === 'object') setRoutineData(save.routine);
+    if (save.savedRoutine && typeof save.savedRoutine === 'object') setSavedRoutineData(save.savedRoutine);
+
+    byId('savePrompt').textContent = save.name + ' loaded.';
+    byId('saveStatusText').textContent = 'Full terminal save loaded.';
+    beep('load');
+    showView('questsView');
+  }
 
     function deleteSave(id) {
       var saves = getSaves().filter(function(item) { return item.id !== id; });
@@ -3222,6 +3464,7 @@
         elements: getElementsStore(),
         streak: getStreakData(),
         xp: getXpData(),
+        rewards: getRewardData(),
         routine: getRoutineData(),
         savedRoutine: getSavedRoutineData()
       };
@@ -3289,6 +3532,7 @@
       if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
       if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
+      if (data.rewards && typeof data.rewards === 'object') setRewardData(data.rewards);
       if (data.savedRoutine && typeof data.savedRoutine === 'object') setSavedRoutineData(data.savedRoutine);
       if (data.routine && typeof data.routine === 'object') setRoutineData(data.routine);
       else if (data.savedRoutine && typeof data.savedRoutine === 'object') setRoutineData(data.savedRoutine);
@@ -3535,6 +3779,11 @@
           return;
         }
 
+        if (clicked && clicked.id === 'useMealPassBtn') {
+          useMealPass();
+          return;
+        }
+
         
 
         var sectionToggle = event.target.closest('.section-toggle');
@@ -3643,9 +3892,6 @@
 
       byId('saveBtn').addEventListener('click', function() { createSaveSnapshot(false); });
       byId('resetBoardBtn').addEventListener('click', function() { createSaveSnapshot(true); });
-      byId('startStreakBtn').addEventListener('click', startMainStreak);
-      byId('setStreakBtn').addEventListener('click', setMainStreakManually);
-      byId('resetStreakBtn').addEventListener('click', resetMainStreak);
       byId('soundBtn').addEventListener('click', function() { setSound(!isSoundOn()); beep('click'); });
       byId('clearSavesBtn').addEventListener('click', clearSaves);
       byId('clearCompletedBtn').addEventListener('click', clearCompleted);
