@@ -2046,6 +2046,71 @@
   }
 }
 
+/* ===== COLLAPSE BUTTONS FOR PHONE SECTIONS ===== */
+.section-toggle-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mini-toggle-btn {
+  min-height: 30px;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-color: rgba(216,208,189,0.28);
+  color: #f1dd92;
+  background: rgba(0,0,0,0.28);
+}
+
+.mini-toggle-btn:hover {
+  transform: none;
+}
+
+.collapsed-section {
+  display: none !important;
+}
+
+@media (max-width: 1200px) {
+  .briefing-header,
+  .mission-reminder-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .briefing-header .section-toggle-wrap,
+  .mission-reminder-header .section-toggle-wrap {
+    justify-content: space-between;
+  }
+
+  .grid-quests {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .quest-section-panel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .complete-heading,
+  .side-heading,
+  .main-heading {
+    white-space: normal;
+  }
+
+  .briefing-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .briefing-item:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
   </style>
 </head>
 
@@ -2086,9 +2151,12 @@
               <h2>Daily Briefing</h2>
               <div class="helper-text">Quick scan of today’s mission board.</div>
             </div>
-            <div id="briefingStatus" class="briefing-status">Standing by</div>
+            <div class="section-toggle-wrap">
+              <div id="briefingStatus" class="briefing-status">Standing by</div>
+              <button type="button" id="toggleBriefingBtn" class="mini-toggle-btn">Hide</button>
+            </div>
           </div>
-          <div class="briefing-grid">
+          <div id="dailyBriefingBody" class="briefing-grid">
             <div class="briefing-item"><span id="briefMainCount">0</span><small>Main Active</small></div>
             <div class="briefing-item"><span id="briefSideCount">0</span><small>Side Active</small></div>
             <div class="briefing-item"><span id="briefCompleteCount">0</span><small>Complete</small></div>
@@ -2102,10 +2170,13 @@
       <h2>Everyday Mission</h2>
       <div class="helper-text">Read this before you touch the quest board.</div>
     </div>
-    <div class="mission-reminder-badge">Execute</div>
+    <div class="section-toggle-wrap">
+      <div class="mission-reminder-badge">Execute</div>
+      <button type="button" id="toggleMissionBtn" class="mini-toggle-btn">Hide</button>
+    </div>
   </div>
 
-  <div class="mission-reminder-grid">
+  <div id="missionReminderBody" class="mission-reminder-grid">
     <div class="mission-column">
       <h3>Do this every day</h3>
       <ul>
@@ -2115,7 +2186,7 @@
         <li>Apply to jobs</li>
         <li>Train your body</li>
         <li>Pray / reconnect with Allah</li>
-        <li>>Avoid cheap dopamine + endless scrolling</li>
+        <li>Avoid cheap dopamine + endless scrolling</li>
         <li>Sleep properly</li>
         <li>Repeat tomorrow</li>
       </ul>
@@ -2140,7 +2211,7 @@
     </div>
   </div>
 
-  <div class="main-line">
+  <div id="missionMainLine" class="main-line">
     Build skills. Apply anyway. Train. Pray. Sleep. Repeat.
   </div>
 </div>
@@ -4657,8 +4728,36 @@ function useMealPass() {
       renderMainStreak();
     }
 
+
+    function setupMobileSectionToggles() {
+      var briefingBtn = byId('toggleBriefingBtn');
+      var briefingBody = byId('dailyBriefingBody');
+
+      if (briefingBtn && briefingBody) {
+        briefingBtn.addEventListener('click', function() {
+          briefingBody.classList.toggle('collapsed-section');
+          briefingBtn.textContent = briefingBody.classList.contains('collapsed-section') ? 'Show' : 'Hide';
+        });
+      }
+
+      var missionBtn = byId('toggleMissionBtn');
+      var missionBody = byId('missionReminderBody');
+      var missionLine = byId('missionMainLine');
+
+      if (missionBtn && missionBody && missionLine) {
+        missionBtn.addEventListener('click', function() {
+          missionBody.classList.toggle('collapsed-section');
+          missionLine.classList.toggle('collapsed-section');
+
+          var isClosed = missionBody.classList.contains('collapsed-section');
+          missionBtn.textContent = isClosed ? 'Show' : 'Hide';
+        });
+      }
+    }
+
     bindEvents();
     bindRoutineEvents();
+    setupMobileSectionToggles();
     renderDefaultSummary();
     renderDraftTasks();
     setSound(isSoundOn());
