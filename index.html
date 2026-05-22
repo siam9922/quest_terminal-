@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quest Save Terminal</title>
+
   <style>
         :root {
       --bg: #040404;
@@ -1874,6 +1878,174 @@
   }
 }
 
+/* ===== PHONE LAYOUT FIX ===== */
+@media (max-width: 1200px) {
+  body {
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border: 0;
+    padding: 14px;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: 3px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .player-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 7px;
+    padding: 12px 8px;
+    margin-left: -14px;
+    margin-right: -14px;
+    border-left: 0;
+    border-right: 0;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs::before {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: 120px;
+    white-space: nowrap;
+    font-size: 11px;
+    padding: 12px 10px;
+  }
+
+  .daily-briefing {
+    margin-bottom: 14px;
+  }
+
+  .briefing-header {
+    align-items: flex-start;
+  }
+
+  .briefing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .briefing-item {
+    padding: 10px;
+  }
+
+  .briefing-item span {
+    font-size: 20px;
+  }
+
+  .mission-reminder {
+    margin-bottom: 14px;
+    padding: 14px;
+  }
+
+  .mission-reminder-header {
+    align-items: flex-start;
+  }
+
+  .mission-reminder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-column {
+    padding: 12px;
+  }
+
+  .mission-column ul {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .main-line {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .grid-quests,
+  .grid-save {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .panel {
+    padding: 14px;
+    min-width: 0;
+  }
+
+  .panel h2 {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+  }
+
+  .quest-card,
+  .save-card,
+  .default-card,
+  .stat {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .quest-top,
+  .save-top,
+  .draft-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .button-grid,
+  .default-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primary-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quest-more-actions .button-grid:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 16px;
+  }
+}
+
   </style>
 </head>
 
@@ -1943,7 +2115,7 @@
         <li>Apply to jobs</li>
         <li>Train your body</li>
         <li>Pray / reconnect with Allah</li>
-        <li>Avoid N/A + endless scrolling</li>
+        <li>>Avoid cheap dopamine + endless scrolling</li>
         <li>Sleep properly</li>
         <li>Repeat tomorrow</li>
       </ul>
@@ -1957,7 +2129,7 @@
         <li>Stop using certifications as a cave.</li>
         <li>Stop turning one bad day into your identity.</li>
         <li>Stop asking for reassurance instead of acting.</li>
-        <li>Stop letting N/A steal your self-respect.</li>
+        <li>Stop feeding the habit that weakens you</li>
         <li>Stop consuming YouTube like it is progress.</li>
         <li>Stop rebuilding systems instead of executing.</li>
         <li>Stop thinking your future changes without applications.</li>
