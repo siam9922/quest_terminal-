@@ -1,0 +1,4769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quest Save Terminal</title>
+
+  <style>
+        :root {
+      --bg: #040404;
+      --panel: #10100f;
+      --panel-2: #171716;
+      --text: #e8e2d4;
+      --muted: #9a9388;
+      --accent: #d8d0bd;
+      --line: rgba(216, 208, 189, 0.18);
+      --danger: #8f2f2f;
+      --success: #2e7a47;
+      --warning: #766124;
+      --main-gold: #c39a3b;
+      --main-gold-soft: #e0c878;
+      --side-blue: #6eb6ff;
+      --complete-green: #47c06f;
+      --failed-red: #b24d4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #000;
+      color: var(--text);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      padding: 18px;
+    }
+
+    .screen {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      border: 1px solid rgba(216, 208, 189, 0.24);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(216, 208, 189, 0.10), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(110, 182, 255, 0.055), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 18%),
+        linear-gradient(180deg, #111315 0%, #090909 48%, #050505 100%);
+      box-shadow:
+        0 24px 70px rgba(0,0,0,0.86),
+        inset 0 0 80px rgba(255,255,255,0.018),
+        inset 0 0 140px rgba(0,0,0,0.38);
+      padding: 24px;
+      min-height: calc(100vh - 36px);
+      position: relative;
+    }
+
+    .screen::after {
+      content: "SAVE ROOM TERMINAL";
+      position: absolute;
+      right: 18px;
+      bottom: 10px;
+      color: rgba(216,208,189,0.08);
+      font-size: 11px;
+      letter-spacing: 4px;
+      pointer-events: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 5vw, 50px);
+      letter-spacing: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #f2ead8;
+      text-shadow: 0 0 14px rgba(216, 208, 189, 0.10);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      letter-spacing: 1.4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .player-card {
+      min-width: 340px;
+      border: 1px solid rgba(224, 200, 120, 0.30);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(224,200,120,0.13), transparent 30%),
+        linear-gradient(135deg, rgba(224,200,120,0.075), transparent 42%),
+        linear-gradient(180deg, #151411, #060606);
+      padding: 16px 16px 15px 18px;
+      position: relative;
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.42),
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 -22px 38px rgba(0,0,0,0.36);
+    }
+
+    .player-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 3px;
+      background: linear-gradient(180deg, transparent, var(--main-gold-soft), transparent);
+      box-shadow: 0 0 18px rgba(224, 200, 120, 0.34);
+    }
+
+    .player-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .player-name {
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+      color: #fff5df;
+      font-weight: 700;
+    }
+
+    .player-status {
+      color: #55f28a;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      letter-spacing: 0.8px;
+    }
+
+    .rank-title {
+      color: #dec77e;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 11px;
+      font-weight: 700;
+    }
+
+    .level-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: #f7f0de;
+      margin-top: 7px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .xp-bar {
+      height: 13px;
+      border: 1px solid rgba(216,208,189,0.30);
+      background: linear-gradient(180deg, #030303, #0d0c0a);
+      margin-top: 8px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.95), 0 0 12px rgba(224, 200, 120, 0.06);
+    }
+
+    .xp-fill {
+      height: 100%;
+      width: 0%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.30), transparent 38%),
+        linear-gradient(90deg, #765414, #c39a3b 45%, #f1dd92 100%);
+      box-shadow: 0 0 18px rgba(224, 200, 120, 0.40);
+      transition: width 0.25s ease;
+    }
+
+    .xp-note {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 7px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+      padding: 10px;
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #121211, #070707);
+      box-shadow:
+        0 10px 26px rgba(0,0,0,0.32),
+        inset 0 0 0 1px rgba(255,255,255,0.012);
+    }
+
+    .tabs::before {
+      content: "NAVIGATION";
+      position: absolute;
+      top: -9px;
+      left: 12px;
+      padding: 0 7px;
+      background: #080808;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .tab {
+      position: relative;
+      flex: 0 0 auto;
+      min-width: 120px;
+      border-color: rgba(216,208,189,0.20);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+        linear-gradient(180deg, #171715, #0b0b0a);
+      color: #d8d0bd;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 12px 14px;
+    }
+
+    .tab::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 5px;
+      height: 2px;
+      background: transparent;
+      transition: 0.15s ease;
+    }
+
+    .tab:hover {
+      border-color: rgba(224,200,120,0.45);
+      color: #fff0d2;
+    }
+
+    .tab.active {
+      border-color: rgba(224,200,120,0.70);
+      color: #fff0d2;
+      background:
+        linear-gradient(180deg, rgba(224,200,120,0.12), transparent 48%),
+        linear-gradient(180deg, #211f18, #0c0b09);
+      box-shadow:
+        0 0 16px rgba(224,200,120,0.10),
+        inset 0 0 0 1px rgba(224,200,120,0.08);
+    }
+
+    .tab.active::after {
+      background: linear-gradient(90deg, transparent, var(--main-gold-soft), transparent);
+    }
+
+    button {
+      border: 1px solid rgba(216,208,189,0.24);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+        linear-gradient(180deg, #181816, #0d0d0c);
+      color: var(--text);
+      padding: 10px 13px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    button:hover, button.active {
+      background: linear-gradient(180deg, #27251f, #141311);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+    }
+
+    button.danger, .delete-btn {
+      border-color: rgba(178, 77, 77, 0.65);
+      color: #ffc0c0;
+      background: linear-gradient(180deg, rgba(143,47,47,0.20), #0d0d0c);
+    }
+
+    button.danger:hover, .delete-btn:hover {
+      background: linear-gradient(180deg, #8f2f2f, #431414);
+      color: white;
+    }
+
+    .fail-btn {
+      border-color: rgba(160, 115, 55, 0.7);
+      color: #f0c880;
+      background: linear-gradient(180deg, rgba(154,129,46,0.20), #0d0d0c);
+    }
+
+    .fail-btn:hover {
+      background: linear-gradient(180deg, #6d541c, #2a210e);
+      color: #ffe3a3;
+    }
+
+    .action-new {
+      border-color: rgba(73, 128, 255, 0.65);
+      color: #dbe7ff;
+      background: linear-gradient(180deg, rgba(73,128,255,0.18), #0d0d0c);
+    }
+
+    .action-new:hover {
+      background: linear-gradient(180deg, #3f6fe0, #1d2f66);
+      color: #ffffff;
+    }
+
+    .action-progress {
+      border-color: rgba(201, 154, 54, 0.72);
+      color: #ffe9b0;
+      background: linear-gradient(180deg, rgba(201,154,54,0.20), #0d0d0c);
+    }
+
+    .action-progress:hover {
+      background: linear-gradient(180deg, #8e6a18, #3c2b0b);
+      color: #fff2cc;
+    }
+
+    .action-done {
+      border-color: rgba(69, 184, 107, 0.7);
+      color: #c9ffd8;
+      background: linear-gradient(180deg, rgba(69,184,107,0.20), #0d0d0c);
+    }
+
+    .action-done:hover {
+      background: linear-gradient(180deg, #2f8a4b, #123820);
+      color: #ffffff;
+    }
+
+    .action-more {
+      border-color: rgba(170, 170, 170, 0.45);
+      color: #ece7d8;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), #0d0d0c);
+    }
+
+    .action-more:hover {
+      background: linear-gradient(180deg, #2c2c2c, #121212);
+      color: #ffffff;
+    }
+
+    .action-fail {
+      border-color: rgba(230, 150, 48, 0.85);
+      color: #ffd39a;
+      background: linear-gradient(180deg, rgba(190,112,24,0.28), #171006);
+      box-shadow: 0 0 12px rgba(190, 112, 24, 0.14);
+    }
+
+    .action-fail:hover {
+      background: linear-gradient(180deg, #9a5d16, #3a2108);
+      color: #fff0d1;
+    }
+
+    .action-info {
+      border-color: rgba(120, 160, 255, 0.65);
+      color: #dce7ff;
+      background: linear-gradient(180deg, rgba(120,160,255,0.16), #0d0d0c);
+    }
+
+    .action-info:hover {
+      background: linear-gradient(180deg, #365ca8, #14294d);
+      color: #ffffff;
+    }
+
+    .action-edit {
+      border-color: rgba(142, 92, 204, 0.65);
+      color: #eadbff;
+      background: linear-gradient(180deg, rgba(142,92,204,0.16), #0d0d0c);
+    }
+
+    .action-edit:hover {
+      background: linear-gradient(180deg, #6d43a5, #2c193f);
+      color: #ffffff;
+    }
+
+    .action-delete {
+      border-color: rgba(230, 55, 55, 0.95);
+      color: #ffd1d1;
+      background: linear-gradient(180deg, rgba(155,15,15,0.45), #120404);
+      box-shadow: 0 0 16px rgba(180, 25, 25, 0.24);
+    }
+
+    .action-delete:hover {
+      background: linear-gradient(180deg, #9c1f1f, #3d0909);
+      color: #ffffff;
+    }
+
+    .action-add-quest {
+      border-color: rgba(69, 184, 107, 0.78);
+      color: #d5ffe1;
+      background: linear-gradient(180deg, rgba(69,184,107,0.26), #071108);
+      box-shadow: 0 0 14px rgba(69,184,107,0.12);
+    }
+
+    .action-add-quest:hover {
+      background: linear-gradient(180deg, #2f8a4b, #123820);
+      color: #ffffff;
+    }
+
+    .action-add-micro {
+      border-color: rgba(67, 178, 212, 0.72);
+      color: #d7f8ff;
+      background: linear-gradient(180deg, rgba(67,178,212,0.18), #071014);
+    }
+
+    .action-add-micro:hover {
+      background: linear-gradient(180deg, #267da0, #103949);
+      color: #ffffff;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .grid-quests {
+      display: grid;
+      grid-template-columns: 340px repeat(3, minmax(230px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .grid-save {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid rgba(216,208,189,0.18);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,208,189,0.045), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.018), transparent 30%),
+        linear-gradient(180deg, #111214, #080808);
+      padding: 18px;
+      min-height: 220px;
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.32),
+        inset 0 0 0 1px rgba(255,255,255,0.014),
+        inset 0 -30px 50px rgba(0,0,0,0.22);
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .main-heading { color: var(--main-gold); text-shadow: 0 0 12px rgba(195,154,59,0.18); }
+    .side-heading { color: var(--side-blue); text-shadow: 0 0 12px rgba(110,182,255,0.16); }
+    .complete-heading { color: var(--complete-green); text-shadow: 0 0 12px rgba(69,184,107,0.16); }
+    .failed-heading { color: #ff9d9d; }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin: 12px 0 7px;
+      font-weight: 600;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(216,208,189,0.22);
+      background: #080808;
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      background: #111;
+      box-shadow: 0 0 0 2px rgba(216,208,189,0.06);
+    }
+
+    .mission-time-box, .template-box {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #111, #080808);
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .mission-time-label, .template-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .mission-time-value {
+      color: #f3ead8;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .template-preview {
+      border: 1px solid rgba(216,208,189,0.14);
+      background: rgba(0,0,0,0.22);
+      color: #b8afa2;
+      padding: 10px 11px;
+      margin-top: 9px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .micro-builder {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .micro-builder input { flex: 1; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .actions button { flex: 1; }
+
+    .quest-list, .save-list, .draft-list, .default-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quest-card, .save-card, .draft-item, .empty, .stat, .default-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 40%),
+        linear-gradient(180deg, #191918, #111110);
+      padding: 14px;
+      border-radius: 3px;
+      box-shadow:
+        0 8px 22px rgba(0,0,0,0.30),
+        inset 0 0 0 1px rgba(255,255,255,0.012);
+    }
+
+    .quest-card {
+      display: grid;
+      gap: 12px;
+      padding: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quest-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent 32%);
+      opacity: 0.65;
+    }
+
+    .quest-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quest-card.main { border-color: rgba(195,154,59,0.72); box-shadow: inset 4px 0 0 var(--main-gold), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.side { border-color: rgba(110,182,255,0.62); box-shadow: inset 4px 0 0 var(--side-blue), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.complete { border-color: rgba(69,184,107,0.62); box-shadow: inset 4px 0 0 var(--complete-green), 0 8px 22px rgba(0,0,0,0.28); }
+    .quest-card.failed { border-color: rgba(178,77,77,0.62); box-shadow: inset 4px 0 0 var(--failed-red), 0 8px 22px rgba(0,0,0,0.28); opacity: 0.96; }
+
+    .quest-top, .save-top, .draft-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .quest-main-info {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .quest-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .quest-title, .save-title, .default-title {
+      font-size: 16px;
+      letter-spacing: 0.3px;
+      line-height: 1.35;
+      font-weight: 800;
+      color: #fff0d2;
+    }
+
+    .quest-desc, .save-meta, .default-meta {
+      color: #b8afa2;
+      line-height: 1.58;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .quest-desc {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .date-complete { color: var(--complete-green); font-size: 12px; margin-top: 4px; }
+    .date-failed { color: #ff9d9d; font-size: 12px; margin-top: 4px; }
+
+    .badge {
+      border: 1px solid rgba(216,208,189,0.24);
+      padding: 6px 9px;
+      font-size: 11px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+    }
+
+    .badge.new { background: #1f3558; color: #cfe3ff; }
+    .badge.progress { background: #6f5a1f; color: #ffecae; }
+    .badge.complete { background: #245d38; color: #bfffd2; }
+    .badge.failed { background: #6b2525; color: #ffc4c4; }
+
+    .progress-wrap {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: #090909;
+      padding: 8px;
+      margin-top: 10px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      border: 1px solid #3a3a3a;
+      background: #050505;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #245d38, #45b86b, #94f0ad);
+      transition: width 0.2s ease;
+    }
+
+    .steps-toggle { width: 100%; margin-top: 8px; }
+
+    .micro-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .micro-list.hidden { display: none; }
+
+    .micro-item {
+      border: 1px solid #2a2a2a;
+      background: #090909;
+      padding: 8px 9px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .micro-item input { width: auto; margin: 0; accent-color: var(--complete-green); }
+    .micro-item.done span { color: var(--muted); text-decoration: line-through; }
+
+    .button-grid, .default-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .button-grid button, .default-actions button {
+      min-height: 38px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 10px;
+    }
+
+    .primary-actions {
+      margin-top: 2px;
+      grid-template-columns: 1.1fr 1.1fr 0.8fr;
+    }
+
+    .quest-more-actions {
+      display: grid;
+      gap: 8px;
+      border-top: 1px solid rgba(216,208,189,0.12);
+      padding-top: 10px;
+      margin-top: 1px;
+    }
+
+    .quest-more-actions .button-grid:last-child {
+      grid-template-columns: 1fr 1.35fr;
+    }
+
+    .quest-more-actions .action-delete {
+      font-weight: 900;
+    }
+
+    .empty {
+      color: var(--muted);
+      border-style: dashed;
+      line-height: 1.5;
+      box-shadow: none;
+    }
+
+    .prompt {
+      min-height: 100px;
+      font-size: 20px;
+      line-height: 1.45;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      color: #f0eadf;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .daily-briefing {
+      margin-bottom: 18px;
+      min-height: auto;
+    }
+
+    .briefing-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .briefing-header h2 {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .briefing-status {
+      border: 1px solid rgba(224,200,120,0.35);
+      color: #f1dd92;
+      background: rgba(0,0,0,0.22);
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      white-space: nowrap;
+    }
+
+    .briefing-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .briefing-item {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.022), transparent 45%), #090909;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .briefing-item span {
+      display: block;
+      color: #f0eadf;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .briefing-item small {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 800;
+    }
+
+    .section-toggle {
+      width: 100%;
+      text-align: left;
+      margin: 0 0 14px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 10px;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .section-toggle:hover {
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .collapsible-content.collapsed,
+    .archive-filters.collapsed {
+      display: none;
+    }
+
+    .archive-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .archive-filter {
+      min-height: 34px;
+      padding: 7px 11px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .archive-filter.active {
+      border-color: rgba(69,184,107,0.65);
+      color: #c9ffd8;
+      background: linear-gradient(180deg, rgba(69,184,107,0.18), #0d0d0c);
+    }
+
+    .priority-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(216,208,189,0.20);
+      padding: 4px 7px;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      line-height: 1;
+      border-radius: 2px;
+    }
+
+    .priority-critical { color: #ffd1d1; border-color: rgba(220,70,70,0.75); background: rgba(120,20,20,0.18); }
+    .priority-normal { color: #ffe9b0; border-color: rgba(201,154,54,0.65); background: rgba(201,154,54,0.12); }
+    .priority-low { color: #d7f8ff; border-color: rgba(67,178,212,0.55); background: rgba(67,178,212,0.10); }
+
+    .streak-box {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .streak-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        radial-gradient(circle at center, rgba(195,154,59,0.10), transparent 48%),
+        linear-gradient(180deg, #191918, #10100f);
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .streak-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid rgba(224,200,120,0.45);
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle, rgba(224,200,120,0.12), transparent 58%),
+        linear-gradient(180deg, #111, #050505);
+      box-shadow:
+        0 0 24px rgba(224,200,120,0.10),
+        inset 0 0 18px rgba(0,0,0,0.70);
+    }
+
+    .streak-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: #f1dd92;
+      line-height: 1;
+    }
+
+    .streak-label {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .streak-timer {
+      color: #f0eadf;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .streak-state {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .streak-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: 100%;
+    }
+
+    .streak-actions button {
+      min-height: 38px;
+      font-size: 12px;
+    }
+
+    .stat-number { font-size: 30px; font-weight: 900; color: #f0eadf; }
+    .stat-label { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-top: 4px; }
+
+    .data-box {
+      min-height: 150px;
+      font-family: Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .helper-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .status-message {
+      margin-top: 14px;
+      color: #cfcfcf;
+      min-height: 24px;
+      font-size: 15px;
+    }
+
+    .failed-zone {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .elements-panel {
+      min-height: 520px;
+    }
+
+    .elements-subtitle {
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .elements-header {
+      display: grid;
+      grid-template-columns: 54px 1fr 54px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .elements-header h2 {
+      margin: 0 0 6px;
+      text-align: center;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .elements-week-label {
+      color: #f3ead8;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .elements-header button {
+      height: 48px;
+      font-size: 18px;
+    }
+
+    .elements-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .element-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(216,208,189,0.055), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+        linear-gradient(180deg, #151514, #090909);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(255,255,255,0.018);
+    }
+
+    .element-card.fire-card {
+      border-color: rgba(198,63,63,0.28);
+    }
+
+    .element-card.earth-card {
+      border-color: rgba(47,155,85,0.28);
+    }
+
+    .element-card.water-card {
+      border-color: rgba(36,120,200,0.30);
+    }
+
+    .element-card.air-card {
+      border-color: rgba(160,160,160,0.20);
+    }
+
+    .element-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .element-count {
+      color: #f3ead8;
+      border: 1px solid rgba(216,208,189,0.16);
+      background: rgba(0,0,0,0.22);
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      white-space: nowrap;
+    }
+
+    .element-title-row span {
+      color: #f3ead8;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .element-title-row em {
+      color: var(--muted);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .element-strip { height: 8px; width: 100%; }
+    .fire-strip { background: linear-gradient(90deg, #441010, #c63f3f, #ff8a68); }
+    .earth-strip { background: linear-gradient(90deg, #102d18, #2f9b55, #74d38a); }
+    .water-strip { background: linear-gradient(90deg, #102844, #2478c8, #71c8ff); }
+    .air-strip { background: linear-gradient(90deg, #2a2a2a, #777, #aaa); }
+
+    .element-block-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .element-block {
+      min-height: 72px;
+      border: 1px solid rgba(216,208,189,0.20);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+        linear-gradient(180deg, #111, #070707);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #d8d0bd;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      text-align: center;
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .element-block:hover,
+    .water-segment:hover {
+      transform: translateY(-1px);
+      border-color: rgba(216,208,189,0.36);
+    }
+
+    .element-block.active::after,
+    .water-segment.active::after {
+      content: "✓";
+      position: absolute;
+      right: 6px;
+      top: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .element-block.fire.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
+        linear-gradient(180deg, #ff6a4a, #8d1e1e);
+      box-shadow: 0 0 18px rgba(255,80,60,0.18);
+      color: #fff5f0;
+    }
+
+    .element-block.earth.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
+        linear-gradient(180deg, #6ed88c, #1f6f3d);
+      box-shadow: 0 0 18px rgba(80,220,120,0.16);
+      color: #f2fff6;
+    }
+    .element-block.air {
+      cursor: not-allowed;
+      opacity: 0.48;
+      background: repeating-linear-gradient(135deg, #151515, #151515 8px, #101010 8px, #101010 16px);
+    }
+
+    .water-week-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .water-day-card {
+      display: grid;
+      gap: 6px;
+    }
+
+    .water-day-label {
+      color: var(--muted);
+      text-align: center;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(216,208,189,0.12);
+      background: rgba(0,0,0,0.20);
+      padding: 5px 4px;
+    }
+
+    .water-day-block {
+      min-height: 78px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(216,208,189,0.20);
+      background: #070707;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.012), 0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .water-segment {
+      border-right: 1px solid rgba(216,208,189,0.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+        linear-gradient(180deg, #111, #070707);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #d8d0bd;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 4px;
+      position: relative;
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .water-segment:last-child { border-right: 0; }
+    .water-segment.active {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), transparent 35%),
+        linear-gradient(180deg, #66c8ff, #1765a8);
+      color: #f4fbff;
+      box-shadow: inset 0 0 14px rgba(255,255,255,0.10);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      background: rgba(0,0,0,0.82);
+      z-index: 50;
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: 82vh;
+      overflow: auto;
+      border: 1px solid var(--accent);
+      background: linear-gradient(180deg, #141414, #050505);
+      padding: 18px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title { font-size: 22px; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; }
+    .modal-body { white-space: pre-wrap; line-height: 1.7; }
+
+
+
+    /* ===== Routine Hour Blocks ===== */
+    .routine-panel { min-height: 520px; }
+
+    .routine-title-box {
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+    }
+
+    .routine-main-title {
+      margin: 0;
+      color: #f5f1e8;
+      font-size: clamp(30px, 7vw, 62px);
+      line-height: 1;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: 950;
+      text-shadow: 0 0 18px rgba(255,255,255,0.12);
+    }
+
+    .routine-focus {
+      color: #f1dd92;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-top: 8px;
+    }
+
+    .routine-top-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .routine-info-card {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%), rgba(0,0,0,0.28);
+      padding: 12px;
+    }
+
+    .routine-info-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 5px;
+    }
+
+    .routine-info-card strong {
+      display: block;
+      color: #f3ead8;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .routine-day-switcher {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .routine-day-switcher button {
+      min-height: 40px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 900;
+    }
+
+    .routine-day-switcher button.active {
+      border-color: rgba(241,221,146,0.75);
+      color: #fff0d2;
+      background: linear-gradient(180deg, rgba(241,221,146,0.16), #0d0d0c);
+    }
+
+    .routine-merge-panel {
+      border: 1px solid rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.022), transparent 45%), rgba(0,0,0,0.22);
+      padding: 12px;
+      margin-bottom: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .routine-merge-title {
+      color: #f1dd92;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+
+    .routine-merge-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .routine-merge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .routine-merge-panel label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      display: grid;
+      gap: 5px;
+      margin: 0;
+    }
+
+    .routine-merge-panel select,
+    .routine-merge-panel input,
+    .routine-merge-panel textarea {
+      width: 100%;
+      border: 1px solid rgba(216,208,189,0.20);
+      background: #080808;
+      color: var(--text);
+      padding: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .routine-merge-panel textarea { min-height: 92px; resize: none; overflow: hidden !important; line-height: 1.45; }
+
+    .routine-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .routine-board {
+      border: 1px solid rgba(216,208,189,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), transparent 30%), #060606;
+      display: grid;
+    }
+
+    .routine-row {
+      display: grid;
+      grid-template-columns: 140px 90px 1fr 96px;
+      min-height: 58px;
+      border-bottom: 1px solid rgba(216,208,189,0.12);
+    }
+
+    .routine-row:last-child { border-bottom: 0; }
+
+    .routine-row.merged {
+      border-color: rgba(216,208,189,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), transparent 38%);
+    }
+
+    .routine-row.merged .routine-hour {
+      color: var(--muted);
+      background: rgba(0,0,0,0.22);
+      align-content: center;
+      gap: 3px;
+      text-align: right;
+    }
+
+    .routine-span-badge {
+      display: block;
+      color: rgba(216,208,189,0.50);
+      font-size: 8px;
+      font-weight: 950;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+
+    .routine-hour {
+      border-right: 1px solid rgba(216,208,189,0.14);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 950;
+      display: grid;
+      place-items: center end;
+      padding-right: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      background: rgba(0,0,0,0.22);
+    }
+
+    .routine-state {
+      border-right: 1px solid rgba(216,208,189,0.14);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .routine-state.free { color: #c9ffd8; background: rgba(69,184,107,0.11); }
+    .routine-state.busy { color: #e0c878; background: rgba(142,95,45,0.16); }
+    .routine-state.none { color: #b8afa2; background: rgba(255,255,255,0.045); }
+
+    .routine-status-select {
+      width: 100%;
+      border: 1px solid rgba(216,208,189,0.18);
+      background: #080808;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 7px 5px;
+      outline: none;
+    }
+
+    .routine-status-select.free { color: #c9ffd8; }
+    .routine-status-select.busy { color: #e0c878; }
+    .routine-status-select.none { color: #b8afa2; }
+
+    .routine-task {
+      padding: 0;
+      color: #f3ead8;
+      line-height: 1.45;
+      outline: none;
+      font-size: 14px;
+      min-height: 58px;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .routine-task.free { color: #dfffe8; }
+    .routine-task.busy { color: #e8d0a0; }
+    .routine-task.none { color: #9a9388; background: rgba(255,255,255,0.018); }
+
+    .routine-task-editor {
+      width: 100%;
+      min-height: 58px;
+      height: auto;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.45;
+      resize: none;
+      outline: none;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      overflow: hidden;
+      display: block;
+    }
+
+    .routine-task-editor:focus {
+      background: rgba(255,255,255,0.045);
+      box-shadow: inset 0 0 0 2px rgba(241,221,146,0.28);
+    }
+
+    .routine-row.merged .routine-task {
+      min-height: inherit;
+    }
+
+    .routine-row.merged .routine-task-editor {
+      min-height: 100%;
+    }
+
+    .routine-actions {
+      border-left: 1px solid rgba(216,208,189,0.14);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      align-content: center;
+      padding: 6px;
+      background: rgba(0,0,0,0.16);
+    }
+
+    .routine-actions button {
+      min-height: 28px;
+      padding: 4px 5px;
+      font-size: 10px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .routine-actions button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+
+    .routine-unmerge-btn {
+      grid-column: 1 / -1;
+      min-height: 24px !important;
+      padding: 3px 5px !important;
+      font-size: 9px !important;
+      letter-spacing: 0.3px !important;
+      border-color: rgba(241,221,146,0.38);
+      color: #e8d0a0;
+      background: linear-gradient(180deg, rgba(142,95,45,0.12), #0d0d0c);
+    }
+
+    .routine-unmerge-btn:hover {
+      background: linear-gradient(180deg, #705024, #2b1b09);
+      color: #ffffff;
+    }
+
+    .routine-global-merge-undo {
+      border-color: rgba(241,221,146,0.55);
+      color: #fff0d2;
+      background: linear-gradient(180deg, rgba(142,95,45,0.18), #0d0d0c);
+    }
+
+    .routine-note-line {
+      margin-top: 12px;
+      border: 1px solid rgba(216,208,189,0.18);
+      background: rgba(0,0,0,0.28);
+      padding: 10px 12px;
+      text-align: center;
+      color: #d8eaff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 0;
+        display: block;
+        overflow-y: auto;
+        background: #000;
+      }
+
+      .screen {
+        width: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
+        border: 0;
+        padding: 14px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .player-card { min-width: auto; width: 100%; }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background:
+          linear-gradient(180deg, rgba(10,10,10,0.98), rgba(3,3,3,0.98));
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 7px;
+        padding: 12px 8px;
+        border: 1px solid rgba(216,208,189,0.14);
+        border-left: 0;
+        border-right: 0;
+        margin-left: -14px;
+        margin-right: -14px;
+        scrollbar-width: none;
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tabs::before {
+        display: none;
+      }
+
+      .tabs button,
+      .tab {
+        min-width: 112px;
+        width: auto;
+        padding: 12px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+
+      .grid-quests, .grid-save {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .elements-header { grid-template-columns: 44px 1fr 44px; }
+      .element-block-row { gap: 8px; }
+      .element-block, .water-day-block { min-height: 58px; }
+      .water-week-grid { grid-template-columns: 1fr; }
+      .water-day-card { grid-template-columns: 54px 1fr; align-items: stretch; }
+      .water-day-label { display: grid; place-items: center; }
+      .water-day-block { min-height: 58px; }
+      .button-grid, .default-actions { grid-template-columns: 1fr; }
+      .actions button { width: 100%; flex-basis: 100%; min-height: 44px; }
+      .button-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+      }
+
+      .quest-more-actions {
+        display: none;
+      }
+
+      .quest-card.actions-open .quest-more-actions {
+        display: grid;
+      }
+
+      .button-grid button {
+        min-height: 40px;
+        font-size: 12px;
+        padding: 8px 6px;
+      }
+
+      .primary-actions {
+        grid-template-columns: 1fr 1fr 0.8fr;
+      }
+
+      .quest-more-actions .button-grid:last-child {
+        grid-template-columns: 1fr 1.25fr;
+      }
+      .quest-card {
+        padding: 13px;
+        gap: 9px;
+      }
+
+      .quest-title {
+        font-size: 17px;
+        line-height: 1.25;
+      }
+
+      .quest-title-row {
+        align-items: flex-start;
+      }
+
+      .quest-main-info {
+        gap: 5px;
+      }
+
+      .quest-desc {
+        font-size: 14px;
+        line-height: 1.35;
+        -webkit-line-clamp: 2;
+      }
+
+      .badge {
+        font-size: 10px;
+        padding: 6px 8px;
+      }
+      input, textarea, select, button { font-size: 16px; }
+      textarea { min-height: 105px; }
+      h1 { letter-spacing: 3px; font-size: 32px; }
+      h2 { font-size: 18px; letter-spacing: 1.5px; }
+    }
+
+
+    @media (max-width: 900px) {
+      .routine-top-grid { grid-template-columns: 1fr; }
+      .routine-day-switcher { grid-template-columns: repeat(7, minmax(54px, 1fr)); overflow-x: auto; }
+      .routine-merge-grid { grid-template-columns: 1fr; }
+      .routine-controls { grid-template-columns: 1fr; }
+      .routine-merge-actions { grid-template-columns: 1fr; }
+      .routine-row { grid-template-columns: 92px 64px 1fr; }
+      .routine-hour { font-size: 10px; padding-right: 7px; }
+      .routine-state { font-size: 9px; }
+      .routine-task { font-size: 13px; }
+      .routine-task-editor { font-size: 13px; padding: 9px; min-height: 56px; }
+      .routine-actions { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; border-left: 0; border-top: 1px solid rgba(216,208,189,0.12); }
+      .routine-main-title { font-size: 34px; letter-spacing: 3px; }
+    }
+
+.mission-reminder {
+  margin-bottom: 18px;
+  min-height: auto;
+  border-color: rgba(224, 200, 120, 0.26);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(224,200,120,0.09), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 35%),
+    linear-gradient(180deg, #12110f, #070707);
+}
+
+.mission-reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.mission-reminder-header h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  color: #f1dd92;
+}
+
+.mission-reminder-badge {
+  border: 1px solid rgba(224,200,120,0.45);
+  color: #f1dd92;
+  background: rgba(0,0,0,0.28);
+  padding: 8px 11px;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.mission-reminder-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 14px;
+}
+
+.mission-column {
+  border: 1px solid rgba(216,208,189,0.16);
+  background: rgba(0,0,0,0.22);
+  padding: 14px;
+}
+
+.mission-column h3 {
+  margin: 0 0 10px;
+  color: #f3ead8;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mission-column ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #d8d0bd;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.truth-column {
+  border-color: rgba(178,77,77,0.35);
+}
+
+.truth-column h3 {
+  color: #ffb3b3;
+}
+
+.main-line {
+  margin-top: 14px;
+  border: 1px solid rgba(69,184,107,0.34);
+  background: rgba(69,184,107,0.08);
+  color: #c9ffd8;
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .mission-reminder-header {
+    align-items: flex-start;
+  }
+
+  .mission-reminder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-column ul {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .main-line {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+/* ===== PHONE LAYOUT FIX ===== */
+@media (max-width: 1200px) {
+  body {
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border: 0;
+    padding: 14px;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: 3px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .player-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 7px;
+    padding: 12px 8px;
+    margin-left: -14px;
+    margin-right: -14px;
+    border-left: 0;
+    border-right: 0;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs::before {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: 120px;
+    white-space: nowrap;
+    font-size: 11px;
+    padding: 12px 10px;
+  }
+
+  .daily-briefing {
+    margin-bottom: 14px;
+  }
+
+  .briefing-header {
+    align-items: flex-start;
+  }
+
+  .briefing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .briefing-item {
+    padding: 10px;
+  }
+
+  .briefing-item span {
+    font-size: 20px;
+  }
+
+  .mission-reminder {
+    margin-bottom: 14px;
+    padding: 14px;
+  }
+
+  .mission-reminder-header {
+    align-items: flex-start;
+  }
+
+  .mission-reminder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-column {
+    padding: 12px;
+  }
+
+  .mission-column ul {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .main-line {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .grid-quests,
+  .grid-save {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .panel {
+    padding: 14px;
+    min-width: 0;
+  }
+
+  .panel h2 {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+  }
+
+  .quest-card,
+  .save-card,
+  .default-card,
+  .stat {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .quest-top,
+  .save-top,
+  .draft-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .button-grid,
+  .default-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primary-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quest-more-actions .button-grid:last-child {
+    grid-template-columns: 1fr;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 16px;
+  }
+}
+
+/* ===== COLLAPSE BUTTONS FOR PHONE SECTIONS ===== */
+.section-toggle-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mini-toggle-btn {
+  min-height: 30px;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-color: rgba(216,208,189,0.28);
+  color: #f1dd92;
+  background: rgba(0,0,0,0.28);
+}
+
+.mini-toggle-btn:hover {
+  transform: none;
+}
+
+.collapsed-section {
+  display: none !important;
+}
+
+@media (max-width: 1200px) {
+  .briefing-header,
+  .mission-reminder-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .briefing-header .section-toggle-wrap,
+  .mission-reminder-header .section-toggle-wrap {
+    justify-content: space-between;
+  }
+
+  .grid-quests {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .quest-section-panel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .complete-heading,
+  .side-heading,
+  .main-heading {
+    white-space: normal;
+  }
+
+  .briefing-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .briefing-item:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+<main class="screen">
+    <header>
+      <div>
+        <h1>Quest Terminal</h1>
+        <div class="subtitle">Save room archive / mission tracker</div>
+      </div>
+      <div class="player-card">
+        <div class="player-label">Player File</div>
+        <div class="player-name">Siam</div>
+        <div class="player-status">Status: Active</div>
+        <div id="rankTitle" class="rank-title">Rank: Rookie</div>
+        <div class="level-row">
+          <span id="levelText">Level 1</span>
+          <span id="xpText">0 / 200 XP</span>
+        </div>
+        <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
+        <div id="xpNote" class="xp-note">Complete quests to rank up</div>
+      </div>
+    </header>
+
+    <section class="content">
+      <nav class="tabs">
+        <button class="tab active" data-view="questsView">Quests</button>
+        <button class="tab" data-view="routineView">Routine</button>
+        <button class="tab" data-view="elementsView">Elements</button>
+        <button class="tab" data-view="saveView">Save Folder</button>
+        <button class="tab" data-view="archiveView">Previous Saves</button>
+      </nav>
+
+      <section id="questsView" class="view active">
+        <div class="daily-briefing panel">
+          <div class="briefing-header">
+            <div>
+              <h2>Daily Briefing</h2>
+              <div class="helper-text">Quick scan of today’s mission board.</div>
+            </div>
+            <div class="section-toggle-wrap">
+              <div id="briefingStatus" class="briefing-status">Standing by</div>
+              <button type="button" id="toggleBriefingBtn" class="mini-toggle-btn">Hide</button>
+            </div>
+          </div>
+          <div id="dailyBriefingBody" class="briefing-grid">
+            <div class="briefing-item"><span id="briefMainCount">0</span><small>Main Active</small></div>
+            <div class="briefing-item"><span id="briefSideCount">0</span><small>Side Active</small></div>
+            <div class="briefing-item"><span id="briefCompleteCount">0</span><small>Complete</small></div>
+            <div class="briefing-item"><span id="briefFailedCount">0</span><small>Failed</small></div>
+            <div class="briefing-item"><span id="briefMainClear">0 / 0</span><small>Main Progress</small></div>
+          </div>
+        </div>
+<div class="mission-reminder panel">
+  <div class="mission-reminder-header">
+    <div>
+      <h2>Everyday Mission</h2>
+      <div class="helper-text">Read this before you touch the quest board.</div>
+    </div>
+    <div class="section-toggle-wrap">
+      <div class="mission-reminder-badge">Execute</div>
+      <button type="button" id="toggleMissionBtn" class="mini-toggle-btn">Hide</button>
+    </div>
+  </div>
+
+  <div id="missionReminderBody" class="mission-reminder-grid">
+    <div class="mission-column">
+      <h3>Do this every day</h3>
+      <ul>
+        <li>Study DP-300</li>
+        <li>Practice SQL</li>
+        <li>Work on resume / career</li>
+        <li>Apply to jobs</li>
+        <li>Train your body</li>
+        <li>Pray / reconnect with Allah</li>
+        <li>Avoid cheap dopamine + endless scrolling</li>
+        <li>Sleep properly</li>
+        <li>Repeat tomorrow</li>
+      </ul>
+    </div>
+
+    <div class="mission-column truth-column">
+      <h3>Brutal Truth: What You Must Stop</h3>
+      <ul>
+        <li>Stop hiding behind planning.</li>
+        <li>Stop waiting to feel ready.</li>
+        <li>Stop using certifications as a cave.</li>
+        <li>Stop turning one bad day into your identity.</li>
+        <li>Stop asking for reassurance instead of acting.</li>
+        <li>Stop feeding the habit that weakens you</li>
+        <li>Stop consuming YouTube like it is progress.</li>
+        <li>Stop rebuilding systems instead of executing.</li>
+        <li>Stop thinking your future changes without applications.</li>
+        <li>Stop treating confusion as failure.</li>
+        <li>Stop trying to fix your whole life in one night.</li>
+        <li>Stop disappearing when things feel uncomfortable.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="missionMainLine" class="main-line">
+    Build skills. Apply anyway. Train. Pray. Sleep. Repeat.
+  </div>
+</div>
+        <div class="grid-quests">
+          <div class="panel">
+            <h2>Create Quest</h2>
+
+            <div class="mission-time-box">
+              <div class="mission-time-label">Current Date / Time</div>
+              <div id="missionDateTime" class="mission-time-value">Loading...</div>
+            </div>
+
+            <div class="template-box">
+              <div class="template-label">Saved Defaults</div>
+              <div id="defaultSummary" class="template-preview">No saved defaults yet. Create a quest, then click Save Default.</div>
+              <div class="actions">
+                <button type="button" id="openDefaultsBtn">Load Defaults</button>
+                <button type="button" id="saveFormDefaultBtn">Save Default</button>
+              </div>
+            </div>
+
+            <label for="questType">Quest type</label>
+            <select id="questType">
+              <option value="main">Main Quest</option>
+              <option value="side">Side Quest</option>
+            </select>
+
+            <label for="questTitle">Quest name</label>
+            <input id="questTitle" type="text" maxlength="50" placeholder="Example: Clean the room" />
+
+            <label for="questPriority">Priority</label>
+            <select id="questPriority">
+              <option value="normal">Normal</option>
+              <option value="critical">Critical</option>
+              <option value="low">Low</option>
+            </select>
+
+            <label for="questDesc">Quest details</label>
+            <textarea id="questDesc" maxlength="3000" placeholder="Write details here..."></textarea>
+
+            <label for="microInput">Micro tasks</label>
+            <div class="micro-builder">
+              <input id="microInput" type="text" maxlength="90" placeholder="Example: Watch one SQL lesson" />
+              <button type="button" id="addMicroBtn" class="action-add-micro">Add</button>
+            </div>
+            <div id="draftList" class="draft-list" style="margin-top:10px;"></div>
+
+            <label for="questStatus">Starting status</label>
+            <select id="questStatus">
+              <option value="new">New</option>
+              <option value="progress">In Progress</option>
+              <option value="complete">Complete</option>
+              <option value="failed">Failed</option>
+            </select>
+
+            <div class="actions">
+              <button id="submitQuestBtn" class="action-add-quest">Add Quest</button>
+              <button id="cancelEditBtn" class="danger" style="display:none;">Cancel Edit</button>
+            </div>
+            <div id="questStatusText" class="status-message"></div>
+          </div>
+
+          <div class="panel quest-section-panel" data-section="main">
+            <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">▼ Main Quests</button>
+            <div id="mainQuestList" class="quest-list collapsible-content"></div>
+          </div>
+
+          <div class="panel quest-section-panel" data-section="side">
+            <button type="button" class="section-toggle side-heading" data-collapse-target="sideQuestList">▼ Side Quests</button>
+            <div id="sideQuestList" class="quest-list collapsible-content"></div>
+          </div>
+
+          <div class="panel quest-section-panel" data-section="complete">
+            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ Completed Quests</button>
+            <div class="archive-filters" id="archiveFilters">
+              <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
+              <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
+              <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
+            </div>
+            <div id="completeQuestList" class="quest-list collapsible-content"></div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="routineView" class="view">
+        <div class="panel routine-panel">
+          <div class="routine-title-box">
+            <h2 class="routine-main-title">Daily Routine</h2>
+            <div class="routine-focus">◎ Follow today’s day / edit hour blocks</div>
+          </div>
+
+          <div class="routine-top-grid">
+            <div class="routine-info-card"><span>Date</span><strong id="routineDateNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Time</span><strong id="routineTimeNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Current Day</span><strong id="routineDayNow">Loading...</strong></div>
+            <div class="routine-info-card"><span>Routine To Follow</span><strong id="routineFollowNow">Loading...</strong></div>
+          </div>
+
+          <div id="routineDaySwitcher" class="routine-day-switcher">
+            <button type="button" data-routine-day="monday">Mon</button>
+            <button type="button" data-routine-day="tuesday">Tue</button>
+            <button type="button" data-routine-day="wednesday">Wed</button>
+            <button type="button" data-routine-day="thursday">Thu</button>
+            <button type="button" data-routine-day="friday">Fri</button>
+            <button type="button" data-routine-day="saturday">Sat</button>
+            <button type="button" data-routine-day="sunday">Sun</button>
+          </div>
+
+          <div class="routine-merge-panel">
+            <div class="routine-merge-title">Merge Hour Blocks</div>
+            <div class="routine-merge-grid">
+              <label>Start Hour
+                <select id="routineMergeStart"></select>
+              </label>
+              <label>End Hour
+                <select id="routineMergeEnd"></select>
+              </label>
+              <label>Status
+                <select id="routineMergeState">
+                  <option value="busy">Busy</option>
+                  <option value="free">Free</option>
+                  <option value="none">None</option>
+                </select>
+              </label>
+            </div>
+            <label>Activity / Task
+              <textarea id="routineMergeTask" placeholder="Example: Career Block&#10;- Azure DBA&#10;- SQL practice"></textarea>
+            </label>
+            <div class="routine-merge-actions"><button id="routineMergeBtn" class="action-add-quest" type="button">Merge Selected Hours</button><button id="routineUndoLastMergeBtn" class="routine-global-merge-undo" type="button">Undo Last Merge</button></div>
+          </div>
+
+          <div class="routine-controls">
+            <button id="routineSaveBtn" class="action-add-quest" type="button">Save Routine Changes</button>
+            <button id="routineResetBtn" class="danger" type="button">Reset Routine</button>
+          </div>
+
+          <div id="routineStatusText" class="status-message"></div>
+          <div id="routineBoard" class="routine-board"></div>
+
+          <div class="routine-note-line">Edit text directly inside each hour. Save commits the routine. Reset restores the last saved routine. Use Undo/Redo beside each hour.</div>
+        </div>
+      </section>
+
+      <section id="elementsView" class="view">
+        <div class="panel elements-panel">
+          <div class="elements-header">
+            <button type="button" id="prevWeekBtn">◀</button>
+            <div>
+              <h2>Elements</h2>
+              <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
+              <div class="elements-subtitle">Weekly discipline board</div>
+            </div>
+            <button type="button" id="nextWeekBtn">▶</button>
+          </div>
+
+          <div class="elements-grid">
+            <div class="element-card fire-card">
+              <div class="element-title-row"><span>Fire</span><em>Combat</em><b id="fireCount" class="element-count">0 / 3</b></div>
+              <div class="element-strip fire-strip"></div>
+              <div id="fireGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card earth-card">
+              <div class="element-title-row"><span>Earth</span><em>Strength</em><b id="earthCount" class="element-count">0 / 3</b></div>
+              <div class="element-strip earth-strip"></div>
+              <div id="earthGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card water-card">
+              <div class="element-title-row"><span>Water</span><em>Career</em><b id="waterCount" class="element-count">0 / 21</b></div>
+              <div class="element-strip water-strip"></div>
+              <div id="waterGrid" class="water-week-grid"></div>
+            </div>
+
+            <div class="element-card air-card">
+              <div class="element-title-row"><span>Air</span><em>Peace</em><b class="element-count">Locked</b></div>
+              <div class="element-strip air-strip"></div>
+              <div id="airGrid" class="element-block-row"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="saveView" class="view">
+        <div class="grid-save">
+          <div class="panel">
+            <h2>Save Folder</h2>
+            <div id="savePrompt" class="prompt">Create quests. Save the quest log. Export your archive when moving devices.</div>
+
+            <label for="saveName">Save file name</label>
+            <input id="saveName" type="text" maxlength="40" placeholder="Example: Monday Reset Save" />
+
+            <div class="helper-text">Current time: <span id="clock"></span></div>
+
+            <div class="actions">
+              <button id="saveBtn">Save Current Quest Log</button>
+              <button id="resetBoardBtn">Start New Day</button>
+              <button id="soundBtn">Sound: On</button>
+              <button id="clearSavesBtn" class="danger">Clear Saves</button>
+              <button id="clearCompletedBtn" class="danger">Clear Completed Quests</button>
+            </div>
+            <div id="saveStatusText" class="status-message"></div>
+
+            <div style="margin-top:18px;">
+              <h2>Export / Import</h2>
+              <label for="dataBox">Save data</label>
+              <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
+              <div class="helper-text">Export = copy current quests/saves/defaults/elements/routine. Import = replace this browser with pasted backup data.</div>
+              <div class="actions">
+                <button id="exportBtn">Export Data</button>
+                <button id="copyBtn">Copy Export</button>
+                <button id="downloadBtn">Download Backup</button>
+                <button id="importBtn">Import Data</button>
+                <button id="clearBoxBtn">Clear Box</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Current Progress</h2>
+            <div class="stats">
+              <div class="stat"><div id="totalQuests" class="stat-number">0</div><div class="stat-label">Total quests</div></div>
+              <div class="stat"><div id="newQuests" class="stat-number">0</div><div class="stat-label">New</div></div>
+              <div class="stat"><div id="progressQuests" class="stat-number">0</div><div class="stat-label">In Progress</div></div>
+              <div class="stat"><div id="completeQuests" class="stat-number">0</div><div class="stat-label">Complete</div></div>
+              <div class="stat"><div id="failedQuests" class="stat-number">0</div><div class="stat-label">Failed</div></div>
+              <div class="stat"><div id="xpCount" class="stat-number">0</div><div class="stat-label">XP</div></div>
+              <div class="stat"><div id="levelCount" class="stat-number">1</div><div class="stat-label">Level</div></div>
+              <div class="stat"><div id="streakCount" class="stat-number">0</div><div class="stat-label">Day streak</div></div>
+              <div class="stat">
+                <div id="mealPassCount" class="stat-number">0</div>
+                <div class="stat-label">Meal Passes</div>
+                <button type="button" id="useMealPassBtn" class="action-done" style="width:100%; margin-top:10px;">Use Meal Pass</button>
+              </div>
+            </div>
+
+            <div class="streak-box">
+              <h2>Main Quest Streak</h2>
+              <div class="streak-card">
+                <div class="streak-circle">
+                  <div>
+                    <div id="mainStreakNumber" class="streak-number">0</div>
+                    <div class="streak-label">Days</div>
+                  </div>
+                </div>
+                <div id="mainStreakTimer" class="streak-timer">Timer: Not started</div>
+                <div id="mainStreakState" class="streak-state">Start the streak when you are ready.</div>
+                <div class="streak-actions">
+                  <button type="button" id="startStreakBtn">Start</button>
+                  <button type="button" id="setStreakBtn">Set Streak</button>
+                  <button type="button" id="resetStreakBtn" class="danger">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="failed-zone">
+              <h2 class="failed-heading">Failed Quests</h2>
+              <div class="helper-text">Quests you could not meet by the end. They stay here instead of cluttering Main or Side.</div>
+              <div id="failedQuestList" class="quest-list" style="margin-top:10px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="archiveView" class="view">
+        <div class="panel">
+          <h2>Previous Saves</h2>
+          <div id="saveArchive" class="save-list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="infoModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div id="modalTitle" class="modal-title">Quest</div>
+        <button id="closeModal">Close</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="defaultsModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Default Folder</div>
+        <button id="closeDefaultsModal">Close</button>
+      </div>
+      <div id="defaultsModalBody" class="default-list"></div>
+    </div>
+  </div>
+
+  <div id="streakModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Set Main Streak</div>
+        <button id="closeStreakModal">Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="streak-card">
+          <div class="streak-circle">
+            <div>
+              <div id="streakModalNumber" class="streak-number">0</div>
+              <div class="streak-label">Days</div>
+            </div>
+          </div>
+          <div class="streak-state">Use + or - to adjust your restored streak.</div>
+          <div class="streak-actions">
+            <button type="button" id="minusStreakBtn">-</button>
+            <button type="button" id="plusStreakBtn">+</button>
+            <button type="button" id="applyStreakBtn">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    
+    var STORE_QUESTS = 'quest_terminal_quests';
+    var STORE_SAVES = 'quest_terminal_saves';
+    var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
+    var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
+    var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
+    var STORE_STREAK = 'qt_main_quest_streak_v1';
+    var STORE_XP = 'qt_player_xp_v1';
+    var STORE_REWARDS = 'qt_rewards_meal_pass_v1';
+    var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
+    var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
+    var VERSION = 'merged-old-save-v4-meal-pass';
+    var editingQuestId = null;
+    var draftTasks = [];
+    var currentElementWeek = getWeekStart(new Date());
+    var streakDraftValue = 0;
+    var archiveFilter = 'all';
+
+    function byId(id) {
+      return document.getElementById(id);
+    }
+
+    function readStore(key, fallback) {
+      try {
+        var raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function writeStore(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function getQuests() {
+      return readStore(STORE_QUESTS, []);
+    }
+
+    function setQuests(value) {
+      writeStore(STORE_QUESTS, value);
+    }
+
+    function getSaves() {
+      return readStore(STORE_SAVES, []);
+    }
+
+    function setSaves(value) {
+      writeStore(STORE_SAVES, value);
+    }
+
+    function getCustomDefaults() {
+      return readStore(STORE_DEFAULTS, []);
+    }
+
+    function setCustomDefaults(value) {
+      writeStore(STORE_DEFAULTS, value);
+    }
+
+    function getStreakData() {
+      return readStore(STORE_STREAK, {
+        active: false,
+        count: 0,
+        startedAt: null,
+        updatedAt: null
+      });
+    }
+
+    function setStreakData(value) {
+      writeStore(STORE_STREAK, value);
+    }
+
+    function getXpData() {
+      return readStore(STORE_XP, {
+        totalXp: 0,
+        awardedQuestIds: []
+      });
+    }
+
+    function getRewardData() {
+      return readStore(STORE_REWARDS, {
+        mealPasses: 0,
+        usedMealPasses: 0,
+        awardedLevels: []
+      });
+    }
+    
+    function setRewardData(value) {
+      writeStore(STORE_REWARDS, value);
+    }
+
+    function setXpData(value) {
+      writeStore(STORE_XP, value);
+    }
+
+    function getQuestXp(quest) {
+      if (!quest) return 0;
+      return quest.type === 'main' ? 5 : 2;
+    }
+
+    function awardQuestXpOnce(quest) {
+    if (!quest || quest.status !== 'complete') return;
+
+    var data = getXpData();
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+    if (data.awardedQuestIds.indexOf(quest.id) !== -1) return;
+
+    var beforeLevel = calculateLevel(data.totalXp || 0).level;
+
+    data.totalXp = (data.totalXp || 0) + getQuestXp(quest);
+    data.awardedQuestIds.push(quest.id);
+    setXpData(data);
+
+    var afterLevel = calculateLevel(data.totalXp || 0).level;
+    awardMealPassesForLevelUp(beforeLevel, afterLevel);
+  }
+
+  function revokeQuestXpIfAwarded(quest) {
+    if (!quest) return;
+    var data = getXpData();
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+
+    var index = data.awardedQuestIds.indexOf(quest.id);
+    if (index === -1) return;
+
+    data.awardedQuestIds.splice(index, 1);
+    data.totalXp = Math.max(0, (data.totalXp || 0) - getQuestXp(quest));
+    setXpData(data);
+    }
+
+  function awardMealPassesForLevelUp(beforeLevel, afterLevel) {
+    if (afterLevel <= beforeLevel) return;
+
+  var rewards = getRewardData();
+  if (!Array.isArray(rewards.awardedLevels)) rewards.awardedLevels = [];
+
+  var earned = 0;
+
+  for (var level = beforeLevel + 1; level <= afterLevel; level += 1) {
+    if (rewards.awardedLevels.indexOf(level) === -1) {
+      rewards.awardedLevels.push(level);
+      earned += 1;
+    }
+  }
+
+  if (earned <= 0) return;
+
+  rewards.mealPasses = (rewards.mealPasses || 0) + earned;
+  rewards.lastEarnedAt = nowIso();
+  setRewardData(rewards);
+   byId('questStatusText').textContent = 'LEVEL UP REWARD: +' + earned + ' Meal Pass' + (earned > 1 ? 'es' : '') + ' earned.';
+  }
+
+function useMealPass() {
+  var rewards = getRewardData();
+  rewards.mealPasses = rewards.mealPasses || 0;
+  rewards.usedMealPasses = rewards.usedMealPasses || 0;
+
+  if (rewards.mealPasses <= 0) {
+    byId('saveStatusText').textContent = 'No Meal Pass available. Level up to earn one.';
+    beep('fail');
+    return;
+  }
+
+  if (!confirm('Use 1 Meal Pass?')) return;
+
+  rewards.mealPasses -= 1;
+  rewards.usedMealPasses += 1;
+  rewards.lastUsedAt = nowIso();
+  setRewardData(rewards);
+
+  byId('saveStatusText').textContent = 'Meal Pass used. Enjoy the reward.';
+  beep('complete');
+  renderAll();}
+
+
+    function makeId() {
+      if (window.crypto && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return String(Date.now()) + '-' + String(Math.random());
+    }
+
+    function nowIso() {
+      return new Date().toISOString();
+    }
+
+    function formatDateTime(value) {
+      var date = value ? new Date(value) : new Date();
+      return new Intl.DateTimeFormat(undefined, {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(date);
+    }
+
+    function dateKey(value) {
+      var date = new Date(value);
+      if (isNaN(date.getTime())) return null;
+      return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+    }
+
+    function getWeekStart(date) {
+      var d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      var day = d.getDay();
+      var diff = day === 0 ? -6 : 1 - day;
+      d.setDate(d.getDate() + diff);
+      return d;
+    }
+
+    function addDays(date, amount) {
+      var d = new Date(date);
+      d.setDate(d.getDate() + amount);
+      return d;
+    }
+
+    function shortDate(value) {
+      return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(value);
+    }
+
+    function weekKey(date) {
+      return dateKey(getWeekStart(date));
+    }
+
+    function getElementsStore() {
+      return readStore(STORE_ELEMENTS, {});
+    }
+
+    function setElementsStore(value) {
+      writeStore(STORE_ELEMENTS, value);
+    }
+
+    function getWeekElements() {
+      var all = getElementsStore();
+      var key = weekKey(currentElementWeek);
+      if (!all[key]) {
+        all[key] = {
+          fire: [false, false, false],
+          earth: [false, false, false],
+          water: [
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false],
+            [false, false, false]
+          ],
+          air: [false, false, false]
+        };
+        setElementsStore(all);
+      }
+      return all[key];
+    }
+
+    function saveWeekElements(data) {
+      var all = getElementsStore();
+      all[weekKey(currentElementWeek)] = data;
+      setElementsStore(all);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function isSoundOn() {
+      return localStorage.getItem(STORE_SOUND) !== 'false';
+    }
+
+    function setSound(value) {
+      localStorage.setItem(STORE_SOUND, String(value));
+      byId('soundBtn').textContent = value ? 'Sound: On' : 'Sound: Off';
+    }
+
+    function beep(type) {
+      if (!isSoundOn()) return;
+      try {
+        var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        var ctx = new AudioContextClass();
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        var freq = 240;
+        var duration = 0.06;
+
+        if (type === 'save') { freq = 440; duration = 0.12; }
+        if (type === 'complete') { freq = 660; duration = 0.15; }
+        if (type === 'fail') { freq = 120; duration = 0.12; }
+        if (type === 'load') { freq = 330; duration = 0.12; }
+
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.035, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (error) {}
+    }
+
+    function statusLabel(status) {
+      if (status === 'progress') return 'In Progress';
+      if (status === 'complete') return 'Complete';
+      if (status === 'failed') return 'Failed';
+      return 'New';
+    }
+
+    function showView(viewId) {
+      var views = document.querySelectorAll('.view');
+      var tabs = document.querySelectorAll('.tab');
+
+      views.forEach(function(view) {
+        view.classList.toggle('active', view.id === viewId);
+      });
+
+      tabs.forEach(function(tab) {
+        tab.classList.toggle('active', tab.getAttribute('data-view') === viewId);
+      });
+
+      beep('click');
+      renderAll();
+    }
+
+    function renderDraftTasks() {
+      var box = byId('draftList');
+      box.innerHTML = '';
+
+      if (draftTasks.length === 0) {
+        box.innerHTML = '<div class="empty">No micro tasks added yet.</div>';
+        return;
+      }
+
+      draftTasks.forEach(function(task) {
+        var item = document.createElement('div');
+        item.className = 'draft-item';
+        item.innerHTML = '<span>' + escapeHtml(task.text) + '</span><button type="button" data-draft-remove="' + task.id + '">Remove</button>';
+        box.appendChild(item);
+      });
+    }
+
+    function addDraftTask() {
+      var input = byId('microInput');
+      var text = input.value.trim();
+      if (!text) return;
+
+      draftTasks.push({
+        id: makeId(),
+        text: text,
+        done: false
+      });
+
+      input.value = '';
+      beep('click');
+      renderDraftTasks();
+    }
+
+    function resetQuestForm() {
+      editingQuestId = null;
+      draftTasks = [];
+      byId('questType').value = 'main';
+      byId('questPriority').value = 'normal';
+      byId('questTitle').value = '';
+      byId('questDesc').value = '';
+      byId('questStatus').value = 'new';
+      byId('microInput').value = '';
+      byId('submitQuestBtn').textContent = 'Add Quest';
+      byId('cancelEditBtn').style.display = 'none';
+      renderDraftTasks();
+    }
+
+    function renderDefaultSummary() {
+      var defaults = getCustomDefaults();
+      var summary = byId('defaultSummary');
+      if (!summary) return;
+
+      if (defaults.length === 0) {
+        summary.textContent = 'No saved defaults yet. Create a quest, then click Save Default.';
+        return;
+      }
+
+      summary.innerHTML = '<strong>' + defaults.length + ' saved default' + (defaults.length === 1 ? '' : 's') + '</strong><br>Click Load Defaults to choose one.';
+    }
+
+    function openDefaultsModal() {
+      renderDefaultsModal();
+      byId('defaultsModal').classList.add('open');
+      beep('click');
+    }
+
+    function closeDefaultsModal() {
+      byId('defaultsModal').classList.remove('open');
+    }
+
+    function renderDefaultsModal() {
+      var body = byId('defaultsModalBody');
+      var defaults = getCustomDefaults();
+      body.innerHTML = '';
+
+      if (defaults.length === 0) {
+        body.innerHTML = '<div class="empty">No saved defaults yet. Make a quest first, then press Save Default on its card.</div>';
+        return;
+      }
+
+      defaults.forEach(function(template) {
+        var card = document.createElement('div');
+        card.className = 'default-card';
+        card.setAttribute('data-default-id', template.id);
+        var typeLabel = template.type === 'main' ? 'Main Quest' : 'Side Quest';
+        var taskCount = template.tasks ? template.tasks.length : 0;
+
+        card.innerHTML =
+          '<div class="default-title">' + escapeHtml(template.title) + '</div>' +
+          '<div class="default-meta">' + typeLabel + ' · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>' + escapeHtml(template.desc || 'No description saved.') + '</div>' +
+          '<div class="default-actions">' +
+            '<button type="button" data-default-action="add">Add Quest</button>' +
+            '<button type="button" data-default-action="load">Load to Form</button>' +
+            '<button type="button" class="danger" data-default-action="remove">Delete Default</button>' +
+          '</div>';
+        body.appendChild(card);
+      });
+    }
+
+    function getDefaultById(id) {
+      return getCustomDefaults().find(function(template) {
+        return template.id === id;
+      });
+    }
+
+    function loadDefaultIntoFormById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      editingQuestId = null;
+      byId('questType').value = template.type || 'main';
+      byId('questTitle').value = template.title || '';
+      byId('questDesc').value = template.desc || '';
+      byId('questStatus').value = 'new';
+      byId('submitQuestBtn').textContent = 'Add Quest';
+      byId('cancelEditBtn').style.display = 'none';
+      draftTasks = (template.tasks || []).map(function(text) {
+        return { id: makeId(), text: text, done: false };
+      });
+
+      renderDraftTasks();
+      closeDefaultsModal();
+      showView('questsView');
+      byId('questStatusText').textContent = template.title + ' loaded. Edit it, then click Add Quest.';
+      setTimeout(function() {
+        byId('questTitle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        byId('questTitle').focus();
+      }, 100);
+      beep('click');
+    }
+
+    function addDefaultAsQuestById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      var time = nowIso();
+      var quests = getQuests();
+      quests.unshift({
+        id: makeId(),
+        type: template.type || 'main',
+        title: template.title || 'Saved Default',
+        desc: template.desc || '',
+        microTasks: (template.tasks || []).map(function(text) {
+          return { id: makeId(), text: text, done: false };
+        }),
+        status: 'new',
+        createdAt: time,
+        updatedAt: time,
+        completedAt: null,
+        failedAt: null
+      });
+
+      setQuests(quests);
+      closeDefaultsModal();
+      showView('questsView');
+      byId('questStatusText').textContent = template.title + ' added from saved defaults.';
+      beep('click');
+      renderAll();
+    }
+
+    function removeDefaultById(id) {
+      var template = getDefaultById(id);
+      if (!template) return;
+
+      var defaults = getCustomDefaults().filter(function(item) {
+        return item.id !== id;
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      renderDefaultsModal();
+      byId('questStatusText').textContent = template.title + ' removed from saved defaults.';
+      beep('fail');
+    }
+
+    function saveQuestAsDefault(id) {
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
+      if (!quest) return;
+
+      var defaultName = prompt('Name this default:', quest.title);
+      if (defaultName === null) return;
+      defaultName = defaultName.trim();
+
+      if (!defaultName) {
+        byId('questStatusText').textContent = 'Default name required.';
+        return;
+      }
+
+      var defaults = getCustomDefaults();
+      defaults.unshift({
+        id: makeId(),
+        type: quest.type || 'main',
+        title: defaultName,
+        desc: quest.desc || '',
+        tasks: (quest.microTasks || []).map(function(task) {
+          return task.text;
+        }),
+        createdAt: nowIso()
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      byId('questStatusText').textContent = defaultName + ' saved as a reusable default.';
+      beep('save');
+    }
+
+    function saveCurrentFormAsDefault() {
+      var title = byId('questTitle').value.trim();
+      var desc = byId('questDesc').value.trim();
+      var type = byId('questType').value;
+
+      if (!title) {
+        byId('questStatusText').textContent = 'Type a quest name first, then click Save Default.';
+        return;
+      }
+
+      var defaults = getCustomDefaults();
+      defaults.unshift({
+        id: makeId(),
+        type: type,
+        title: title,
+        desc: desc,
+        tasks: draftTasks.map(function(task) {
+          return task.text;
+        }),
+        createdAt: nowIso()
+      });
+
+      setCustomDefaults(defaults);
+      renderDefaultSummary();
+      renderDefaultsModal();
+      byId('questStatusText').textContent = title + ' saved to Default Folder.';
+      beep('save');
+      openDefaultsModal();
+    }
+
+    function saveQuestFromForm() {
+      var title = byId('questTitle').value.trim();
+      if (!title) {
+        byId('questStatusText').textContent = 'Quest name required.';
+        return;
+      }
+
+      var time = nowIso();
+      var status = byId('questStatus').value;
+      var quest = {
+        id: editingQuestId || makeId(),
+        type: byId('questType').value,
+        priority: byId('questPriority').value,
+        title: title,
+        desc: byId('questDesc').value.trim(),
+        microTasks: draftTasks.slice(),
+        status: status,
+        createdAt: time,
+        updatedAt: time,
+        completedAt: status === 'complete' ? time : null,
+        failedAt: status === 'failed' ? time : null
+      };
+
+      var quests = getQuests();
+
+      if (editingQuestId) {
+        quests = quests.map(function(oldQuest) {
+          if (oldQuest.id !== editingQuestId) return oldQuest;
+          quest.createdAt = oldQuest.createdAt || time;
+          quest.completedAt = status === 'complete' ? (oldQuest.completedAt || time) : null;
+          quest.failedAt = status === 'failed' ? (oldQuest.failedAt || time) : null;
+          return quest;
+        });
+        byId('questStatusText').textContent = 'Quest updated.';
+      } else {
+        quests.unshift(quest);
+        byId('questStatusText').textContent = 'Quest added.';
+      }
+
+      setQuests(quests);
+      if (quest.status === 'complete') awardQuestXpOnce(quest);
+      beep('click');
+      resetQuestForm();
+      renderAll();
+    }
+
+    function updateQuestStatus(id, nextStatus) {
+      var time = nowIso();
+      var completedQuest = null;
+      var questBeforeChange = getQuests().find(function(item) { return item.id === id; });
+
+      if (questBeforeChange && questBeforeChange.status === 'complete' && nextStatus !== 'complete') {
+        revokeQuestXpIfAwarded(questBeforeChange);
+      }
+
+      var quests = getQuests().map(function(quest) {
+        if (quest.id !== id) return quest;
+
+        var tasks = quest.microTasks || [];
+        if (nextStatus === 'complete') {
+          tasks = tasks.map(function(task) { return Object.assign({}, task, { done: true }); });
+        }
+
+        var updated = Object.assign({}, quest, {
+          status: nextStatus,
+          microTasks: tasks,
+          updatedAt: time,
+          completedAt: nextStatus === 'complete' ? (quest.completedAt || time) : null,
+          failedAt: nextStatus === 'failed' ? (quest.failedAt || time) : null
+        });
+
+        if (nextStatus === 'complete') completedQuest = updated;
+        return updated;
+      });
+
+      setQuests(quests);
+      if (completedQuest) awardQuestXpOnce(completedQuest);
+      if (nextStatus === 'complete') beep('complete');
+      else if (nextStatus === 'failed') beep('fail');
+      else beep('click');
+      renderAll();
+    }
+
+    function toggleMicroTask(questId, taskId) {
+      var time = nowIso();
+      var completedQuest = null;
+      var questBeforeChange = getQuests().find(function(item) { return item.id === questId; });
+
+      var quests = getQuests().map(function(quest) {
+        if (quest.id !== questId) return quest;
+
+        var tasks = (quest.microTasks || []).map(function(task) {
+          if (task.id !== taskId) return task;
+          return Object.assign({}, task, { done: !task.done });
+        });
+
+        var total = tasks.length;
+        var done = tasks.filter(function(task) { return task.done; }).length;
+        var finished = total > 0 && done === total;
+        var nextStatus = finished ? 'complete' : (quest.status === 'complete' || quest.status === 'failed' ? 'progress' : quest.status);
+
+        var updated = Object.assign({}, quest, {
+          microTasks: tasks,
+          status: nextStatus,
+          completedAt: finished ? (quest.completedAt || time) : null,
+          failedAt: null,
+          updatedAt: time
+        });
+
+        if (finished) completedQuest = updated;
+        return updated;
+      });
+
+      if (questBeforeChange && questBeforeChange.status === 'complete' && !completedQuest) {
+        revokeQuestXpIfAwarded(questBeforeChange);
+      }
+
+      setQuests(quests);
+      if (completedQuest) awardQuestXpOnce(completedQuest);
+      beep('click');
+      renderAll();
+    }
+
+    function deleteQuest(id) {
+      var questToDelete = getQuests().find(function(quest) { return quest.id === id; });
+      if (questToDelete && questToDelete.status === 'complete') {
+        revokeQuestXpIfAwarded(questToDelete);
+      }
+
+      setQuests(getQuests().filter(function(quest) { return quest.id !== id; }));
+      byId('questStatusText').textContent = 'Quest deleted.';
+      beep('fail');
+      renderAll();
+    }
+
+    function editQuest(id) {
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
+      if (!quest) return;
+
+      editingQuestId = id;
+      byId('questType').value = quest.type || 'main';
+      byId('questPriority').value = quest.priority || 'normal';
+      byId('questTitle').value = quest.title || '';
+      byId('questDesc').value = quest.desc || '';
+      byId('questStatus').value = quest.status || 'new';
+      draftTasks = (quest.microTasks || []).map(function(task) {
+        return Object.assign({}, task);
+      });
+      byId('submitQuestBtn').textContent = 'Update Quest';
+      byId('cancelEditBtn').style.display = 'inline-block';
+      byId('questStatusText').textContent = 'Editing quest. Make changes, then update.';
+      renderDraftTasks();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openQuestInfo(id) {
+      var quest = getQuests().find(function(item) {
+        return item.id === id;
+      });
+      if (!quest) return;
+
+      var lines = [];
+      lines.push(quest.desc || 'No detailed information added.');
+      lines.push('');
+      lines.push('Micro Tasks:');
+
+      if ((quest.microTasks || []).length === 0) {
+        lines.push('None added.');
+      } else {
+        (quest.microTasks || []).forEach(function(task) {
+          lines.push((task.done ? '[x] ' : '[ ] ') + task.text);
+        });
+      }
+
+      if (quest.completedAt) lines.push('\nCompleted: ' + formatDateTime(quest.completedAt));
+      if (quest.failedAt) lines.push('\nFailed: ' + formatDateTime(quest.failedAt));
+
+      byId('modalTitle').textContent = quest.title;
+      byId('modalBody').textContent = lines.join('\n');
+      byId('infoModal').classList.add('open');
+      beep('click');
+    }
+
+    function createQuestCard(quest) {
+      var card = document.createElement('article');
+      var cardType = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
+      card.className = 'quest-card ' + cardType;
+      card.setAttribute('data-quest-id', quest.id);
+
+      var tasks = quest.microTasks || [];
+      var doneCount = tasks.filter(function(task) { return task.done; }).length;
+      var percent = tasks.length > 0 ? Math.round((doneCount / tasks.length) * 100) : 0;
+
+      var dateHtml = '';
+      var priority = quest.priority || 'normal';
+      var priorityLabel = priority === 'critical' ? 'Critical' : priority === 'low' ? 'Low' : 'Normal';
+      var priorityHtml = '<div class="priority-tag priority-' + escapeHtml(priority) + '">' + priorityLabel + '</div>';
+      if (quest.completedAt) {
+        dateHtml += '<div class="date-complete">Completed: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
+      }
+      if (quest.failedAt) {
+        dateHtml += '<div class="date-failed">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
+      }
+
+      var microHtml = '';
+      if (tasks.length > 0) {
+        microHtml += '<div class="progress-wrap">';
+        microHtml += '<div class="progress-label"><span>Micro progress</span><span>' + doneCount + ' / ' + tasks.length + '</span></div>';
+        microHtml += '<div class="progress-bar"><div class="progress-fill" style="width:' + percent + '%"></div></div>';
+        microHtml += '</div>';
+        microHtml += '<button class="steps-toggle" data-action="toggleSteps">Show Steps</button>';
+        microHtml += '<div class="micro-list hidden">';
+        tasks.forEach(function(task) {
+          microHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
+          microHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
+          microHtml += '<span>' + escapeHtml(task.text) + '</span>';
+          microHtml += '</label>';
+        });
+        microHtml += '</div>';
+      }
+
+      card.innerHTML =
+        '<div class="quest-top">' +
+          '<div class="quest-main-info">' +
+            '<div class="quest-title-row"><div class="quest-title">' + escapeHtml(quest.title) + '</div>' + priorityHtml + '</div>' +
+            dateHtml +
+          '</div>' +
+          '<div class="badge ' + escapeHtml(quest.status) + '">' + statusLabel(quest.status) + '</div>' +
+        '</div>' +
+        (quest.desc ? '<div class="quest-desc">' + escapeHtml(quest.desc) + '</div>' : '') +
+        microHtml +
+        '<div class="button-grid primary-actions">' +
+          '<button class="action-progress" data-action="progress">Progress</button>' +
+          '<button class="action-done" data-action="complete">' + (quest.status === "complete" ? "Undo" : "Done") + '</button>' +
+          '<button class="action-more" data-action="more">More</button>' +
+        '</div>' +
+        '<div class="quest-more-actions">' +
+          '<div class="button-grid">' +
+            '<button class="action-new" data-action="new">New</button>' +
+            '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+            '<button class="action-info" data-action="info">Info</button>' +
+          '</div>' +
+          '<div class="button-grid">' +
+            '<button class="action-edit" data-action="edit">Edit</button>' +
+            '<button class="action-delete" data-action="delete">Delete</button>' +
+          '</div>' +
+        '</div>';
+
+      return card;
+    }
+
+    function renderQuestList(containerId, quests) {
+      var container = byId(containerId);
+      container.innerHTML = '';
+
+      if (quests.length === 0) {
+        container.innerHTML = '<div class="empty">No quests listed here yet.</div>';
+        return;
+      }
+
+      quests.forEach(function(quest) {
+        container.appendChild(createQuestCard(quest));
+      });
+    }
+
+    function xpNeededForLevel(level) {
+      var baseXp = 200;
+      return Math.ceil(baseXp * Math.pow(1.10, level - 1));
+    }
+
+    function calculateLevel(totalXp) {
+      var level = 1;
+      var used = 0;
+      var needed = xpNeededForLevel(level);
+
+      while (totalXp >= used + needed && level < 100) {
+        used += needed;
+        level += 1;
+        needed = xpNeededForLevel(level);
+      }
+
+      var current = totalXp - used;
+      if (level >= 100) {
+        current = needed;
+      }
+
+      return {
+        level: level,
+        current: Math.max(0, current),
+        needed: needed,
+        toNext: level >= 100 ? 0 : Math.max(0, needed - current),
+        percent: level >= 100 ? 100 : Math.min(100, Math.round((current / needed) * 100)),
+        rank: getRankTitle(level)
+      };
+    }
+
+    function getRankTitle(level) {
+      var ranks = [
+        'Rookie', 'Awakened Rookie', 'Survivor', 'Steady Survivor', 'Field Operator',
+        'Disciplined Operator', 'Specialist', 'Focused Specialist', 'Veteran', 'Battle Veteran',
+        'Elite Agent', 'Iron Agent', 'Night Runner', 'Relentless Runner', 'Pathfinder',
+        'Silent Pathfinder', 'Hunter', 'Prime Hunter', 'Biohazard Hunter', 'S-Class Survivor',
+        'Shadow Walker', 'Shadow Breaker', 'Dread Fighter', 'Dread Slayer', 'Mission Keeper',
+        'Mission Breaker', 'Quest Sentinel', 'Quest Warden', 'Discipline Guard', 'Discipline Knight',
+        'Iron Warden', 'Iron Vanguard', 'Apex Initiate', 'Apex Operator', 'Apex Specialist',
+        'Apex Veteran', 'Apex Agent', 'Apex Hunter', 'Apex Survivor', 'Apex Warden',
+        'Ghost Rookie', 'Ghost Survivor', 'Ghost Operator', 'Ghost Specialist', 'Ghost Veteran',
+        'Ghost Agent', 'Ghost Hunter', 'Ghost Warden', 'Ghost Vanguard', 'Ghost Legend',
+        'Crimson Rookie', 'Crimson Survivor', 'Crimson Operator', 'Crimson Specialist', 'Crimson Veteran',
+        'Crimson Agent', 'Crimson Hunter', 'Crimson Warden', 'Crimson Vanguard', 'Crimson Legend',
+        'Obsidian Rookie', 'Obsidian Survivor', 'Obsidian Operator', 'Obsidian Specialist', 'Obsidian Veteran',
+        'Obsidian Agent', 'Obsidian Hunter', 'Obsidian Warden', 'Obsidian Vanguard', 'Obsidian Legend',
+        'Mythic Rookie', 'Mythic Survivor', 'Mythic Operator', 'Mythic Specialist', 'Mythic Veteran',
+        'Mythic Agent', 'Mythic Hunter', 'Mythic Warden', 'Mythic Vanguard', 'Mythic Legend',
+        'Nightmare Rookie', 'Nightmare Survivor', 'Nightmare Operator', 'Nightmare Specialist', 'Nightmare Veteran',
+        'Nightmare Agent', 'Nightmare Hunter', 'Nightmare Warden', 'Nightmare Vanguard', 'Nightmare Legend',
+        'Final Survivor', 'Final Operator', 'Final Specialist', 'Final Veteran', 'Final Agent',
+        'Final Hunter', 'Final Warden', 'Final Vanguard', 'Final Legend', 'Sovereign Legend'
+      ];
+      var index = Math.max(1, Math.min(100, level)) - 1;
+      return ranks[index];
+    }
+
+    function calculateStreak(completedQuests) {
+      var days = new Set(completedQuests.map(function(quest) {
+        return dateKey(quest.completedAt);
+      }).filter(Boolean));
+
+      if (days.size === 0) return 0;
+
+      var cursor = new Date();
+      if (!days.has(dateKey(cursor))) {
+        cursor.setDate(cursor.getDate() - 1);
+        if (!days.has(dateKey(cursor))) return 0;
+      }
+
+      var streak = 0;
+      while (days.has(dateKey(cursor))) {
+        streak += 1;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      return streak;
+    }
+
+    function renderStats() {
+      var quests = getQuests();
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
+      var xpData = getXpData();
+      var xp = xpData.totalXp || 0;
+      var level = calculateLevel(xp);
+      var rewards = getRewardData();
+
+      byId('totalQuests').textContent = quests.length;
+      byId('newQuests').textContent = quests.filter(function(quest) { return quest.status === 'new'; }).length;
+      byId('progressQuests').textContent = quests.filter(function(quest) { return quest.status === 'progress'; }).length;
+      byId('completeQuests').textContent = completed.length;
+      byId('failedQuests').textContent = failed.length;
+      byId('xpCount').textContent = xp;
+      byId('levelCount').textContent = level.level;
+      byId('streakCount').textContent = calculateStreak(completed);
+      if (byId('mealPassCount')) byId('mealPassCount').textContent = rewards.mealPasses || 0;
+      byId('rankTitle').textContent = 'Rank: ' + level.rank;
+      byId('levelText').textContent = 'Level ' + level.level;
+      byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
+      byId('xpFill').style.width = level.percent + '%';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2';
+      renderMainStreak();
+      renderRoutineTop();
+    }
+
+    function formatDuration(ms) {
+      if (!ms || ms < 0) return '0d 00h 00m 00s';
+      var totalSeconds = Math.floor(ms / 1000);
+      var days = Math.floor(totalSeconds / 86400);
+      var hours = Math.floor((totalSeconds % 86400) / 3600);
+      var minutes = Math.floor((totalSeconds % 3600) / 60);
+      var seconds = totalSeconds % 60;
+      return days + 'd ' + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm ' + String(seconds).padStart(2, '0') + 's';
+    }
+
+    function renderMainStreak() {
+      if (!byId('mainStreakNumber')) return;
+      var data = getStreakData();
+      byId('mainStreakNumber').textContent = data.count || 0;
+
+      if (!data.active || !data.startedAt) {
+        byId('mainStreakTimer').textContent = 'Timer: Not started';
+        byId('mainStreakState').textContent = 'Start the streak when you are ready.';
+        return;
+      }
+
+      var started = new Date(data.startedAt);
+      byId('mainStreakTimer').textContent = 'Timer: ' + formatDuration(Date.now() - started.getTime());
+      byId('mainStreakState').textContent = 'Active since ' + formatDateTime(data.startedAt);
+    }
+
+    function startMainStreak() {
+      var data = getStreakData();
+      if (!data.startedAt) {
+        data.startedAt = nowIso();
+      }
+      data.active = true;
+      data.updatedAt = nowIso();
+      setStreakData(data);
+      renderMainStreak();
+      beep('save');
+    }
+
+    function resetMainStreak() {
+      setStreakData({
+        active: false,
+        count: 0,
+        startedAt: null,
+        updatedAt: nowIso()
+      });
+      if (byId('saveStatusText')) byId('saveStatusText').textContent = 'Main Quest Streak reset.';
+      renderMainStreak();
+      beep('fail');
+    }
+
+    function openStreakModal() {
+      var current = getStreakData();
+      streakDraftValue = current.count || 0;
+      renderStreakModal();
+      byId('streakModal').classList.add('open');
+      beep('click');
+    }
+
+    function closeStreakModal() {
+      byId('streakModal').classList.remove('open');
+    }
+
+    function renderStreakModal() {
+      if (!byId('streakModalNumber')) return;
+      byId('streakModalNumber').textContent = streakDraftValue;
+    }
+
+    function changeStreakDraft(amount) {
+      streakDraftValue += amount;
+      if (streakDraftValue < 0) streakDraftValue = 0;
+      renderStreakModal();
+      beep('click');
+    }
+
+    function applyStreakDraft() {
+      var current = getStreakData();
+      current.count = streakDraftValue;
+      current.active = true;
+      if (!current.startedAt) current.startedAt = nowIso();
+      current.updatedAt = nowIso();
+      setStreakData(current);
+      byId('saveStatusText').textContent = 'Main Quest Streak set to ' + streakDraftValue + ' day(s).';
+      closeStreakModal();
+      renderMainStreak();
+      beep('save');
+    }
+
+    function setMainStreakManually() {
+      openStreakModal();
+    }
+
+    function createSaveSnapshot(resetAfterSave) {
+      var quests = getQuests();
+      var saves = getSaves();
+      var now = new Date();
+      var pretty = formatDateTime(now);
+      var name = byId('saveName').value.trim() || 'Quest Log ' + (saves.length + 1);
+
+      var saveFile = {
+      id: makeId(),
+      name: name,
+      timestamp: now.toISOString(),
+      displayTime: pretty,
+
+      quests: getQuests(),
+      defaults: getCustomDefaults(),
+      elements: getElementsStore(),
+      streak: getStreakData(),
+      xp: getXpData(),
+      rewards: getRewardData(),
+      routine: getRoutineData(),
+      savedRoutine: getSavedRoutineData()
+    };
+
+      saves.unshift(saveFile);
+      setSaves(saves);
+      byId('saveName').value = '';
+
+      if (resetAfterSave) {
+        setQuests([]);
+        byId('savePrompt').textContent = name + ' saved. A new blank quest board has started.';
+        byId('saveStatusText').textContent = 'New save created. Current quest board reset.';
+      } else {
+        byId('savePrompt').textContent = name + ' saved around ' + pretty + '.';
+        byId('saveStatusText').textContent = 'Full terminal save created.';
+      }
+
+      beep('save');
+      renderAll();
+    }
+
+    function loadSave(id) {
+    var save = getSaves().find(function(item) { return item.id === id; });
+    if (!save) return;
+    
+    setQuests(save.quests || []);
+
+    if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
+    if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
+    if (save.streak && typeof save.streak === 'object') setStreakData(save.streak);
+    if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
+    if (save.rewards && typeof save.rewards === 'object') setRewardData(save.rewards);
+    if (save.routine && typeof save.routine === 'object') setRoutineData(save.routine);
+    if (save.savedRoutine && typeof save.savedRoutine === 'object') setSavedRoutineData(save.savedRoutine);
+
+    byId('savePrompt').textContent = save.name + ' loaded.';
+    byId('saveStatusText').textContent = 'Full terminal save loaded.';
+    beep('load');
+    showView('questsView');
+  }
+
+    function deleteSave(id) {
+      var saves = getSaves().filter(function(item) { return item.id !== id; });
+      setSaves(saves);
+      beep('fail');
+      renderArchive();
+    }
+
+    function renderArchive() {
+      var container = byId('saveArchive');
+      var saves = getSaves();
+      container.innerHTML = '';
+
+      if (saves.length === 0) {
+        container.innerHTML = '<div class="empty">No previous saves yet. Go to Save Folder and create one.</div>';
+        return;
+      }
+
+      saves.forEach(function(save) {
+        var quests = save.quests || [];
+        var complete = quests.filter(function(quest) { return quest.status === 'complete'; }).length;
+        var failed = quests.filter(function(quest) { return quest.status === 'failed'; }).length;
+        var progress = quests.filter(function(quest) { return quest.status === 'progress'; }).length;
+        var card = document.createElement('article');
+        card.className = 'save-card';
+        card.setAttribute('data-save-id', save.id);
+        card.innerHTML =
+          '<div class="save-top">' +
+            '<div class="save-title">' + escapeHtml(save.name) + '</div>' +
+            '<div class="badge">Save</div>' +
+          '</div>' +
+          '<div class="save-meta">Saved: ' + escapeHtml(save.displayTime || formatDateTime(save.timestamp)) + '<br>' +
+          'Quests: ' + quests.length + ' total / ' + progress + ' in progress / ' + complete + ' complete / ' + failed + ' failed</div>' +
+          '<div class="actions">' +
+            '<button data-save-action="load">View This Save</button>' +
+            '<button class="danger" data-save-action="delete">Delete Save</button>' +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
+
+    function clearSaves() {
+      localStorage.removeItem(STORE_SAVES);
+      byId('saveStatusText').textContent = 'All previous saves cleared.';
+      byId('savePrompt').textContent = 'The save archive has been cleared.';
+      beep('fail');
+      renderAll();
+    }
+
+    function clearCompleted() {
+      var quests = getQuests();
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var active = quests.filter(function(quest) { return quest.status !== 'complete'; });
+
+      if (completed.length === 0) {
+        byId('saveStatusText').textContent = 'No completed quests to clear.';
+        return;
+      }
+
+      if (!confirm('Clear completed quests from current board? XP from those quests will also be removed.')) return;
+
+      completed.forEach(function(quest) {
+        revokeQuestXpIfAwarded(quest);
+      });
+
+      setQuests(active);
+      byId('saveStatusText').textContent = 'Completed quests cleared and XP adjusted.';
+      beep('fail');
+      renderAll();
+    }
+
+    function exportData() {
+      var payload = {
+        app: 'Quest Terminal',
+        version: VERSION,
+        exportedAt: nowIso(),
+        quests: getQuests(),
+        saves: getSaves(),
+        defaults: getCustomDefaults(),
+        elements: getElementsStore(),
+        streak: getStreakData(),
+        xp: getXpData(),
+        rewards: getRewardData(),
+        routine: getRoutineData(),
+        savedRoutine: getSavedRoutineData()
+      };
+      byId('dataBox').value = JSON.stringify(payload, null, 2);
+      byId('dataBox').focus();
+      byId('dataBox').select();
+      byId('saveStatusText').textContent = 'Export created. Copy the text or download it.';
+      beep('save');
+    }
+
+    function copyExport() {
+      if (!byId('dataBox').value.trim()) exportData();
+      byId('dataBox').focus();
+      byId('dataBox').select();
+      try {
+        document.execCommand('copy');
+        byId('saveStatusText').textContent = 'Export copied.';
+      } catch (error) {
+        byId('saveStatusText').textContent = 'Copy manually if browser blocks auto-copy.';
+      }
+    }
+
+    function downloadBackup() {
+      var raw = byId('dataBox').value.trim();
+      if (!raw) {
+        exportData();
+        raw = byId('dataBox').value;
+      }
+      var blob = new Blob([raw], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'quest-terminal-backup.json';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      byId('saveStatusText').textContent = 'Backup downloaded.';
+    }
+
+    function importData() {
+      var raw = byId('dataBox').value.trim();
+      if (!raw) {
+        byId('saveStatusText').textContent = 'Paste exported backup text first.';
+        return;
+      }
+
+      var data;
+      try {
+        data = JSON.parse(raw);
+      } catch (error) {
+        byId('saveStatusText').textContent = 'Import failed: invalid backup text.';
+        return;
+      }
+
+      if (!Array.isArray(data.quests) || !Array.isArray(data.saves)) {
+        byId('saveStatusText').textContent = 'Import failed: backup must contain quests and saves.';
+        return;
+      }
+
+      if (!confirm('Import backup? Current quests and saves will be replaced.')) return;
+      setQuests(data.quests);
+      setSaves(data.saves);
+      if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
+      if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
+      if (data.streak && typeof data.streak === 'object') setStreakData(data.streak);
+      if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
+      if (data.rewards && typeof data.rewards === 'object') setRewardData(data.rewards);
+      if (data.savedRoutine && typeof data.savedRoutine === 'object') setSavedRoutineData(data.savedRoutine);
+      if (data.routine && typeof data.routine === 'object') setRoutineData(data.routine);
+      else if (data.savedRoutine && typeof data.savedRoutine === 'object') setRoutineData(data.savedRoutine);
+      byId('saveStatusText').textContent = 'Import complete.';
+      byId('savePrompt').textContent = 'Imported quest archive loaded.';
+      beep('load');
+      renderDefaultSummary();
+      renderAll();
+    }
+
+    function renderElements() {
+      var data = getWeekElements();
+      var start = getWeekStart(currentElementWeek);
+      var end = addDays(start, 6);
+      byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
+
+      var fireDone = data.fire.filter(Boolean).length;
+      var earthDone = data.earth.filter(Boolean).length;
+      var waterDone = data.water.reduce(function(sum, day) {
+        return sum + day.filter(Boolean).length;
+      }, 0);
+      if (byId('fireCount')) byId('fireCount').textContent = fireDone + ' / 3';
+      if (byId('earthCount')) byId('earthCount').textContent = earthDone + ' / 3';
+      if (byId('waterCount')) byId('waterCount').textContent = waterDone + ' / 21';
+
+      var fire = byId('fireGrid');
+      var earth = byId('earthGrid');
+      var water = byId('waterGrid');
+      var air = byId('airGrid');
+      fire.innerHTML = '';
+      earth.innerHTML = '';
+      water.innerHTML = '';
+      air.innerHTML = '';
+
+      var fireLabels = ['Kickboxing', 'Kickboxing', 'Muay Thai'];
+      data.fire.forEach(function(active, index) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block fire' + (active ? ' active' : '');
+        block.setAttribute('data-element', 'fire');
+        block.setAttribute('data-index', index);
+        block.textContent = fireLabels[index] || 'Fire';
+        fire.appendChild(block);
+      });
+
+      var earthLabels = ['Push', 'Pull', 'Legs'];
+      data.earth.forEach(function(active, index) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block earth' + (active ? ' active' : '');
+        block.setAttribute('data-element', 'earth');
+        block.setAttribute('data-index', index);
+        block.textContent = earthLabels[index] || 'Earth';
+        earth.appendChild(block);
+      });
+
+      var waterLabels = ['SQL', 'Career', 'Cert'];
+      var dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      data.water.forEach(function(day, dayIndex) {
+        var dayCard = document.createElement('div');
+        dayCard.className = 'water-day-card';
+
+        var label = document.createElement('div');
+        label.className = 'water-day-label';
+        label.textContent = dayLabels[dayIndex] || 'Day';
+        dayCard.appendChild(label);
+
+        var dayBlock = document.createElement('div');
+        dayBlock.className = 'water-day-block';
+        day.forEach(function(active, segmentIndex) {
+          var segment = document.createElement('button');
+          segment.type = 'button';
+          segment.className = 'water-segment' + (active ? ' active' : '');
+          segment.setAttribute('data-element', 'water');
+          segment.setAttribute('data-day', dayIndex);
+          segment.setAttribute('data-segment', segmentIndex);
+          segment.textContent = waterLabels[segmentIndex] || 'Water';
+          dayBlock.appendChild(segment);
+        });
+        dayCard.appendChild(dayBlock);
+        water.appendChild(dayCard);
+      });
+
+      data.air.forEach(function() {
+        var block = document.createElement('div');
+        block.className = 'element-block air';
+        air.appendChild(block);
+      });
+    }
+
+    function toggleElementBlock(element, index) {
+      var data = getWeekElements();
+      data[element][index] = !data[element][index];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function toggleWaterSegment(day, segment) {
+      var data = getWeekElements();
+      data.water[day][segment] = !data.water[day][segment];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function shiftElementWeek(amount) {
+      currentElementWeek = addDays(currentElementWeek, amount * 7);
+      renderElements();
+      beep('click');
+    }
+
+    function renderBriefing(quests) {
+      var mainActive = quests.filter(function(quest) {
+        return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
+      });
+      var sideActive = quests.filter(function(quest) {
+        return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+      });
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
+      var mainAll = quests.filter(function(quest) { return quest.type === 'main'; });
+      var mainComplete = mainAll.filter(function(quest) { return quest.status === 'complete'; });
+
+      if (byId('briefMainCount')) byId('briefMainCount').textContent = mainActive.length;
+      if (byId('briefSideCount')) byId('briefSideCount').textContent = sideActive.length;
+      if (byId('briefCompleteCount')) byId('briefCompleteCount').textContent = completed.length;
+      if (byId('briefFailedCount')) byId('briefFailedCount').textContent = failed.length;
+      if (byId('briefMainClear')) byId('briefMainClear').textContent = mainComplete.length + ' / ' + mainAll.length;
+
+      if (byId('briefingStatus')) {
+        if (mainAll.length === 0) byId('briefingStatus').textContent = 'No main quests';
+        else if (mainComplete.length === mainAll.length) byId('briefingStatus').textContent = 'Main Quests Complete';
+        else byId('briefingStatus').textContent = 'Mission active';
+      }
+    }
+
+    function getFilteredCompletedQuests(quests) {
+      var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
+      if (archiveFilter === 'main') return completed.filter(function(quest) { return quest.type === 'main'; });
+      if (archiveFilter === 'side') return completed.filter(function(quest) { return quest.type === 'side'; });
+      return completed;
+    }
+
+    function renderAll() {
+      var quests = getQuests();
+      renderBriefing(quests);
+
+      renderQuestList('mainQuestList', quests.filter(function(quest) {
+        return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
+      }));
+
+      renderQuestList('sideQuestList', quests.filter(function(quest) {
+        return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+      }));
+
+      renderQuestList('completeQuestList', getFilteredCompletedQuests(quests));
+
+      renderQuestList('failedQuestList', quests.filter(function(quest) {
+        return quest.status === 'failed';
+      }));
+
+      renderStats();
+      renderArchive();
+      renderElements();
+      renderRoutineBoard();
+      setSound(isSoundOn());
+    }
+
+    function bindEvents() {
+      document.querySelector('.tabs').addEventListener('click', function(event) {
+        var button = event.target.closest('[data-view]');
+        if (!button) return;
+        showView(button.getAttribute('data-view'));
+      });
+
+      byId('addMicroBtn').addEventListener('click', addDraftTask);
+      byId('openDefaultsBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openDefaultsModal();
+      });
+
+      byId('saveFormDefaultBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        saveCurrentFormAsDefault();
+      });
+      byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
+      byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
+
+      byId('microInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          addDraftTask();
+        }
+      });
+
+      byId('draftList').addEventListener('click', function(event) {
+        var id = event.target.getAttribute('data-draft-remove');
+        if (!id) return;
+        draftTasks = draftTasks.filter(function(task) { return task.id !== id; });
+        beep('fail');
+        renderDraftTasks();
+      });
+
+      byId('submitQuestBtn').addEventListener('click', saveQuestFromForm);
+
+      byId('cancelEditBtn').addEventListener('click', function() {
+        resetQuestForm();
+        byId('questStatusText').textContent = 'Edit cancelled.';
+      });
+
+      document.body.addEventListener('click', function(event) {
+        var clicked = event.target.closest('button');
+
+        if (clicked && clicked.id === 'startStreakBtn') {
+          startMainStreak();
+          return;
+        }
+
+        if (clicked && clicked.id === 'setStreakBtn') {
+          openStreakModal();
+          return;
+        }
+
+        if (clicked && clicked.id === 'minusStreakBtn') {
+          changeStreakDraft(-1);
+          return;
+        }
+
+        if (clicked && clicked.id === 'plusStreakBtn') {
+          changeStreakDraft(1);
+          return;
+        }
+
+        if (clicked && clicked.id === 'applyStreakBtn') {
+          applyStreakDraft();
+          return;
+        }
+
+        if (clicked && clicked.id === 'resetStreakBtn') {
+          resetMainStreak();
+          return;
+        }
+
+        if (clicked && clicked.id === 'useMealPassBtn') {
+          useMealPass();
+          return;
+        }
+
+        
+
+        var sectionToggle = event.target.closest('.section-toggle');
+        if (sectionToggle) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          var targetId = sectionToggle.getAttribute('data-collapse-target');
+          var target = targetId ? byId(targetId) : null;
+          if (!target) return;
+
+          var isCollapsed = target.classList.toggle('collapsed');
+
+          if (targetId === 'completeQuestList') {
+            var filters = byId('archiveFilters');
+            if (filters) filters.classList.toggle('collapsed', isCollapsed);
+          }
+
+          var cleanTitle = sectionToggle.textContent.replace(/^[▼▶]\s*/, '').trim();
+          sectionToggle.textContent = (isCollapsed ? '▶ ' : '▼ ') + cleanTitle;
+          beep('click');
+          return;
+        }
+
+        var archiveButton = event.target.closest('[data-archive-filter]');
+        if (archiveButton) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          archiveFilter = archiveButton.getAttribute('data-archive-filter');
+
+          document.querySelectorAll('[data-archive-filter]').forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-archive-filter') === archiveFilter);
+          });
+
+          renderAll();
+          beep('click');
+          return;
+        }
+
+        var actionButton = event.target.closest('[data-action]');
+        if (actionButton) {
+          var card = actionButton.closest('[data-quest-id]');
+          if (!card) return;
+          var questId = card.getAttribute('data-quest-id');
+          var action = actionButton.getAttribute('data-action');
+
+          if (action === 'new') updateQuestStatus(questId, 'new');
+          if (action === 'progress') updateQuestStatus(questId, 'progress');
+          if (action === 'complete') {
+            var quest = getQuests().find(function(item) { return item.id === questId; });
+            updateQuestStatus(questId, quest && quest.status === 'complete' ? 'progress' : 'complete');
+          }
+          if (action === 'failed') {
+            var failedQuest = getQuests().find(function(item) { return item.id === questId; });
+            updateQuestStatus(questId, failedQuest && failedQuest.status === 'failed' ? 'progress' : 'failed');
+          }
+          if (action === 'info') openQuestInfo(questId);
+          if (action === 'edit') editQuest(questId);
+          if (action === 'saveDefault') saveQuestAsDefault(questId);
+          if (action === 'delete') deleteQuest(questId);
+          if (action === 'more') {
+            card.classList.toggle('actions-open');
+            actionButton.textContent = card.classList.contains('actions-open') ? 'Less' : 'More';
+            beep('click');
+          }
+          if (action === 'toggleSteps') {
+            var microList = card.querySelector('.micro-list');
+            if (!microList) return;
+            microList.classList.toggle('hidden');
+            actionButton.textContent = microList.classList.contains('hidden') ? 'Show Steps' : 'Hide Steps';
+            beep('click');
+          }
+        }
+
+        var taskInput = event.target.closest('[data-action="toggleTask"]');
+        if (taskInput) {
+          var taskCard = taskInput.closest('[data-quest-id]');
+          if (!taskCard) return;
+          toggleMicroTask(taskCard.getAttribute('data-quest-id'), taskInput.getAttribute('data-task-id'));
+        }
+
+        var elementButton = event.target.closest('[data-element]');
+        if (elementButton) {
+          var element = elementButton.getAttribute('data-element');
+          if (element === 'fire' || element === 'earth') {
+            toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
+            return;
+          }
+          if (element === 'water') {
+            toggleWaterSegment(Number(elementButton.getAttribute('data-day')), Number(elementButton.getAttribute('data-segment')));
+            return;
+          }
+        }
+
+        var saveButton = event.target.closest('[data-save-action]');
+        if (saveButton) {
+          var saveCard = saveButton.closest('[data-save-id]');
+          if (!saveCard) return;
+          var saveId = saveCard.getAttribute('data-save-id');
+          var saveAction = saveButton.getAttribute('data-save-action');
+          if (saveAction === 'load') loadSave(saveId);
+          if (saveAction === 'delete') deleteSave(saveId);
+        }
+      });
+
+      byId('saveBtn').addEventListener('click', function() { createSaveSnapshot(false); });
+      byId('resetBoardBtn').addEventListener('click', function() { createSaveSnapshot(true); });
+      byId('soundBtn').addEventListener('click', function() { setSound(!isSoundOn()); beep('click'); });
+      byId('clearSavesBtn').addEventListener('click', clearSaves);
+      byId('clearCompletedBtn').addEventListener('click', clearCompleted);
+      byId('exportBtn').addEventListener('click', exportData);
+      byId('copyBtn').addEventListener('click', copyExport);
+      byId('downloadBtn').addEventListener('click', downloadBackup);
+      byId('importBtn').addEventListener('click', importData);
+
+      byId('clearBoxBtn').addEventListener('click', function() {
+        byId('dataBox').value = '';
+        byId('saveStatusText').textContent = 'Export/import box cleared.';
+      });
+
+      byId('closeModal').addEventListener('click', function() {
+        byId('infoModal').classList.remove('open');
+      });
+
+      byId('infoModal').addEventListener('click', function(event) {
+        if (event.target === byId('infoModal')) {
+          byId('infoModal').classList.remove('open');
+        }
+      });
+
+      byId('closeDefaultsModal').addEventListener('click', closeDefaultsModal);
+      byId('closeStreakModal').addEventListener('click', closeStreakModal);
+      byId('streakModal').addEventListener('click', function(event) {
+        if (event.target === byId('streakModal')) {
+          closeStreakModal();
+        }
+      });
+
+      byId('defaultsModal').addEventListener('click', function(event) {
+        if (event.target === byId('defaultsModal')) {
+          closeDefaultsModal();
+        }
+      });
+
+      byId('defaultsModalBody').addEventListener('click', function(event) {
+        var button = event.target.closest('[data-default-action]');
+        if (!button) return;
+        event.preventDefault();
+        event.stopPropagation();
+
+        var card = button.closest('[data-default-id]');
+        if (!card) return;
+
+        var id = card.getAttribute('data-default-id');
+        var action = button.getAttribute('data-default-action');
+
+        if (action === 'add') {
+          addDefaultAsQuestById(id);
+          return;
+        }
+
+        if (action === 'load') {
+          loadDefaultIntoFormById(id);
+          return;
+        }
+
+        if (action === 'remove') {
+          removeDefaultById(id);
+          return;
+        }
+      });
+    }
+
+
+
+    /* ===== Routine Hour Blocks Logic ===== */
+    var selectedRoutineDay = routineTodayKey();
+    var routineHistory = {};
+    var routineMergeHistory = {};
+
+    function routineTodayKey() {
+      return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][new Date().getDay()];
+    }
+
+    function routineTitleDay(key) {
+      return key.charAt(0).toUpperCase() + key.slice(1);
+    }
+
+    function routineFormatDateOnly() {
+      return new Intl.DateTimeFormat(undefined, {
+        weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'
+      }).format(new Date());
+    }
+
+    function routineFormatTimeOnly() {
+      return new Intl.DateTimeFormat(undefined, {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(new Date());
+    }
+
+    function routineFormatHour(hour) {
+      if (hour < 12) return hour + ' AM';
+      if (hour === 12) return '12 PM';
+      return (hour - 12) + ' PM';
+    }
+
+    function routineMakeHour(hour, state, task, span) {
+      return { hour: hour, state: state, task: task || '', span: span || 1, hidden: false };
+    }
+
+    function routineClone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function routineBlocksMatch(a, b) {
+      return JSON.stringify(a || null) === JSON.stringify(b || null);
+    }
+
+    function routineBlankDay() {
+      var hours = [];
+      for (var h = 5; h <= 23; h++) {
+        hours.push(routineMakeHour(h, 'none', ''));
+      }
+      return hours;
+    }
+
+    function routineSetRange(day, startHour, endHour, state, task) {
+      for (var h = startHour; h <= endHour; h++) {
+        var block = day.find(function(item) { return item.hour === h; });
+        if (block) {
+          block.state = state;
+          block.task = task;
+          block.span = 1;
+          block.hidden = false;
+        }
+      }
+    }
+
+    function createDefaultRoutineData() {
+      var data = {
+        monday: routineBlankDay(),
+        tuesday: routineBlankDay(),
+        wednesday: routineBlankDay(),
+        thursday: routineBlankDay(),
+        friday: routineBlankDay(),
+        saturday: routineBlankDay(),
+        sunday: routineBlankDay()
+      };
+
+      routineSetRange(data.monday, 5, 5, 'busy', 'Wake up + get ready');
+      routineSetRange(data.monday, 6, 8, 'busy', 'Gym with Ilsung / weight lifting');
+      routineSetRange(data.monday, 9, 11, 'free', 'Free Time\n- Eat\n- Shower\n- Relax\n- Gaming\n- Quest system\n- YouTube\n- Nap / Walk / Errands');
+      routineSetRange(data.monday, 12, 14, 'busy', 'Career Block\n- Azure DBA study\n- SQL practice\n- Career refinement');
+      routineSetRange(data.monday, 15, 23, 'free', 'Free Time\n- Relax\n- Gaming\n- Entertainment\n- Optional project work\n- Optional social time\n- Sleep prep');
+
+      ['tuesday','wednesday','thursday','friday','saturday','sunday'].forEach(function(dayKey) {
+        routineSetRange(data[dayKey], 5, 5, 'busy', 'Wake up + get ready');
+        routineSetRange(data[dayKey], 6, 8, 'busy', 'Career Block\n- Azure DBA\n- SQL\n- Career refinement');
+      });
+
+      routineSetRange(data.tuesday, 9, 16, 'free', 'Free Time\n- Relax\n- Gaming\n- Food\n- Errands\n- Quest system\n- Optional walk\n- Optional project work');
+      routineSetRange(data.tuesday, 17, 20, 'busy', 'Travel + Kickboxing + Return home');
+      routineSetRange(data.tuesday, 21, 23, 'free', 'Free Time\n- Shower\n- Eat\n- Relax\n- Sleep prep');
+
+      routineSetRange(data.wednesday, 9, 23, 'free', 'Mostly Free Day\n- 10k steps\n- Recovery\n- Light cleanup / errands\n- Gaming\n- Quest system\n- YouTube\n- Light coding / projects');
+
+      routineSetRange(data.thursday, 9, 16, 'free', 'Free Time\n- Relax\n- Food\n- Gaming\n- Optional project work\n- Recovery before training');
+      routineSetRange(data.thursday, 17, 20, 'busy', 'Travel + Kickboxing + Muay Thai + Return home');
+      routineSetRange(data.thursday, 21, 23, 'free', 'Free Time\n- Shower\n- Eat\n- Relax\n- Sleep prep');
+
+      routineSetRange(data.friday, 9, 23, 'free', 'Mostly Free Day\n- 10k steps\n- Recovery\n- Self-care\n- Room cleanup\n- Gaming\n- Quest system\n- YouTube\n- Walks');
+
+      routineSetRange(data.saturday, 9, 11, 'free', 'Open Block');
+      routineSetRange(data.saturday, 12, 13, 'busy', 'Qarisab');
+      routineSetRange(data.saturday, 14, 16, 'busy', 'Afternoon\nGym OR Walk');
+      routineSetRange(data.saturday, 17, 23, 'free', 'Evening Free Time\n- Gaming\n- Relaxing\n- Quest system\n- Entertainment');
+
+      routineSetRange(data.sunday, 9, 11, 'free', 'Open Block');
+      routineSetRange(data.sunday, 12, 13, 'busy', 'Qarisab');
+      routineSetRange(data.sunday, 14, 16, 'busy', 'Afternoon Gym');
+      routineSetRange(data.sunday, 17, 23, 'free', 'Evening Free Time\n- Relax\n- Reset mentally\n- Entertainment\n- Sleep prep');
+
+      return data;
+    }
+
+    function getSavedRoutineData() {
+      var saved = readStore(STORE_ROUTINE_SAVED, null);
+      if (!saved || Array.isArray(saved) || !saved.monday) {
+        saved = readStore(STORE_ROUTINE, null);
+        if (!saved || Array.isArray(saved) || !saved.monday) saved = createDefaultRoutineData();
+        setSavedRoutineData(saved);
+      }
+      return saved;
+    }
+
+    function setSavedRoutineData(data) {
+      writeStore(STORE_ROUTINE_SAVED, routineClone(data));
+    }
+
+    function getRoutineData() {
+      var parsed = readStore(STORE_ROUTINE, null);
+      if (!parsed || Array.isArray(parsed) || !parsed.monday) {
+        parsed = routineClone(getSavedRoutineData());
+        setRoutineData(parsed);
+      }
+      return parsed;
+    }
+
+    function setRoutineData(data) {
+      writeStore(STORE_ROUTINE, routineClone(data));
+    }
+
+    function renderRoutineTop() {
+      if (!byId('routineDateNow')) return;
+      var currentDay = routineTitleDay(routineTodayKey());
+      byId('routineDateNow').textContent = routineFormatDateOnly();
+      byId('routineTimeNow').textContent = routineFormatTimeOnly();
+      byId('routineDayNow').textContent = currentDay;
+      byId('routineFollowNow').textContent = currentDay + ' routine';
+    }
+
+    function populateRoutineMergeOptions() {
+      var start = byId('routineMergeStart');
+      var end = byId('routineMergeEnd');
+      if (!start || !end || start.children.length > 0) return;
+      for (var h = 5; h <= 23; h++) {
+        var optionA = document.createElement('option');
+        optionA.value = String(h);
+        optionA.textContent = routineFormatHour(h);
+        start.appendChild(optionA);
+
+        var optionB = document.createElement('option');
+        optionB.value = String(h);
+        optionB.textContent = routineFormatHour(h);
+        end.appendChild(optionB);
+      }
+      start.value = '9';
+      end.value = '11';
+    }
+
+    function routineHistoryKey(dayKey, index) {
+      return dayKey + ':' + String(index);
+    }
+
+    function routineGetHistory(dayKey, index) {
+      var key = routineHistoryKey(dayKey, index);
+      if (!routineHistory[key]) routineHistory[key] = { undo: [], redo: [] };
+      return routineHistory[key];
+    }
+
+    function routinePushUndo(dayKey, index, beforeBlock) {
+      var history = routineGetHistory(dayKey, index);
+      history.undo.push(routineClone(beforeBlock));
+      if (history.undo.length > 30) history.undo.shift();
+      history.redo = [];
+    }
+
+
+    function routineGetMergeHistory(dayKey) {
+      if (!routineMergeHistory[dayKey]) routineMergeHistory[dayKey] = [];
+      return routineMergeHistory[dayKey];
+    }
+
+    function routinePushMergeSnapshot(dayKey, beforeDay, label) {
+      var stack = routineGetMergeHistory(dayKey);
+      stack.push({ beforeDay: routineClone(beforeDay), label: label || 'merge' });
+      if (stack.length > 20) stack.shift();
+    }
+
+
+    function routineApplyBlock(dayKey, index, newBlock, keepHistory) {
+      var data = getRoutineData();
+      if (!data[dayKey]) data[dayKey] = routineBlankDay();
+      var current = data[dayKey][index];
+      if (!current) return;
+      if (keepHistory && !routineBlocksMatch(current, newBlock)) routinePushUndo(dayKey, index, current);
+      data[dayKey][index] = Object.assign({}, current, routineClone(newBlock));
+      setRoutineData(data);
+    }
+
+    function routineUpdateRowVisual(row, state) {
+      var stateBox = row.querySelector('.routine-state');
+      var select = row.querySelector('.routine-status-select');
+      var taskBox = row.querySelector('.routine-task');
+      [stateBox, select, taskBox].forEach(function(el) {
+        if (!el) return;
+        el.classList.remove('free', 'busy', 'none');
+        el.classList.add(state);
+      });
+    }
+
+    function renderRoutineBoard() {
+      populateRoutineMergeOptions();
+      renderRoutineTop();
+      var board = byId('routineBoard');
+      if (!board) return;
+
+      var data = getRoutineData();
+      var day = data[selectedRoutineDay] || routineBlankDay();
+      board.innerHTML = '';
+
+      document.querySelectorAll('[data-routine-day]').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-routine-day') === selectedRoutineDay);
+      });
+
+      day.forEach(function(block, index) {
+        if (block.hidden) return;
+        var span = block.span || 1;
+        var endHour = block.hour + span - 1;
+        var hourLabel = span > 1 ? routineFormatHour(block.hour) + ' - ' + routineFormatHour(endHour) : routineFormatHour(block.hour);
+        var row = document.createElement('div');
+        var history = routineGetHistory(selectedRoutineDay, index);
+        row.className = span > 1 ? 'routine-row merged' : 'routine-row';
+        row.style.minHeight = String(58 * span) + 'px';
+        row.dataset.rowMinHeight = String(58 * span);
+        var hourHtml = escapeHtml(hourLabel) + (span > 1 ? '<span class="routine-span-badge">Merged ' + span + ' hours</span>' : '');
+        var unmergeHtml = span > 1 ? '<button type="button" class="routine-unmerge-btn" data-routine-unmerge-index="' + index + '">Unmerge</button>' : '';
+        row.innerHTML =
+          '<div class="routine-hour">' + hourHtml + '</div>' +
+          '<div class="routine-state ' + escapeHtml(block.state) + '"><select class="routine-status-select ' + escapeHtml(block.state) + '" data-routine-state-index="' + index + '"><option value="busy">Busy</option><option value="free">Free</option><option value="none">None</option></select></div>' +
+          '<div class="routine-task ' + escapeHtml(block.state) + '"><textarea class="routine-task-editor" data-routine-task-index="' + index + '" spellcheck="false"></textarea></div>' +
+          '<div class="routine-actions"><button type="button" class="routine-undo-btn" data-routine-undo-index="' + index + '"' + (history.undo.length ? '' : ' disabled') + '>Undo</button><button type="button" class="routine-redo-btn" data-routine-redo-index="' + index + '"' + (history.redo.length ? '' : ' disabled') + '>Redo</button>' + unmergeHtml + '</div>';
+        var taskEditor = row.querySelector('.routine-task-editor');
+        taskEditor.value = block.task || '';
+        row.querySelector('.routine-status-select').value = block.state;
+        board.appendChild(row);
+        routineAutoGrowTextarea(taskEditor, true);
+      });
+    }
+
+    function routineAutoGrowTextarea(el, allowShrink) {
+      if (!el) return;
+      var row = el.closest ? el.closest('.routine-row') : null;
+      var rowMin = row && row.dataset.rowMinHeight ? Number(row.dataset.rowMinHeight) : 58;
+      var currentHeight = el.offsetHeight || 0;
+
+      if (allowShrink) {
+        el.style.height = '0px';
+        currentHeight = 0;
+      }
+
+      var targetHeight = Math.max(el.scrollHeight, currentHeight, rowMin, 58);
+      el.style.height = targetHeight + 'px';
+
+      if (row) {
+        row.style.minHeight = Math.max(rowMin, targetHeight) + 'px';
+      }
+    }
+
+    function saveRoutineVisibleWithoutRender(data) {
+      document.querySelectorAll('[data-routine-task-index]').forEach(function(taskEl) {
+        var index = Number(taskEl.getAttribute('data-routine-task-index'));
+        if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+          data[selectedRoutineDay][index].task = taskEl.value;
+        }
+      });
+      document.querySelectorAll('[data-routine-state-index]').forEach(function(selectEl) {
+        var index = Number(selectEl.getAttribute('data-routine-state-index'));
+        if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+          data[selectedRoutineDay][index].state = selectEl.value;
+        }
+      });
+    }
+
+    function saveRoutineDraftFromVisible() {
+      var data = getRoutineData();
+      if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
+      saveRoutineVisibleWithoutRender(data);
+      setRoutineData(data);
+      return data;
+    }
+
+    function saveRoutineBoard() {
+      var data = saveRoutineDraftFromVisible();
+      setSavedRoutineData(data);
+      byId('routineStatusText').textContent = routineTitleDay(selectedRoutineDay) + ' routine saved. Reset will return to this saved version.';
+      beep('save');
+      renderRoutineBoard();
+    }
+
+    function mergeRoutineHours() {
+      var data = saveRoutineDraftFromVisible();
+      if (!data[selectedRoutineDay]) data[selectedRoutineDay] = routineBlankDay();
+
+      var startHour = Number(byId('routineMergeStart').value);
+      var endHour = Number(byId('routineMergeEnd').value);
+      var state = byId('routineMergeState').value;
+      var task = byId('routineMergeTask').value;
+
+      if (endHour < startHour) {
+        byId('routineStatusText').textContent = 'End hour must be after start hour.';
+        return;
+      }
+
+      var beforeDay = routineClone(data[selectedRoutineDay]);
+      var span = endHour - startHour + 1;
+      var mergeLabel = routineFormatHour(startHour) + ' to ' + routineFormatHour(endHour);
+      routinePushMergeSnapshot(selectedRoutineDay, beforeDay, mergeLabel);
+      data[selectedRoutineDay].forEach(function(block) {
+        if (block.hour >= startHour && block.hour <= endHour) {
+          block.hidden = true;
+          block.span = 1;
+          delete block.mergeBefore;
+        }
+      });
+
+      var firstIndex = data[selectedRoutineDay].findIndex(function(block) { return block.hour === startHour; });
+      var firstBlock = data[selectedRoutineDay][firstIndex];
+      if (firstBlock) {
+        routinePushUndo(selectedRoutineDay, firstIndex, beforeDay[firstIndex]);
+        firstBlock.hidden = false;
+        firstBlock.span = span;
+        firstBlock.state = state;
+        firstBlock.task = task.trim() || (state === 'none' ? '' : routineTitleDay(selectedRoutineDay) + ' block');
+        firstBlock.mergeBefore = routineClone(beforeDay);
+      }
+
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Merged ' + mergeLabel + '. Use Undo Merge to restore the previous hour layout.';
+      beep('save');
+      renderRoutineBoard();
+    }
+
+    function undoRoutineHour(index) {
+      saveRoutineDraftFromVisible();
+      var history = routineGetHistory(selectedRoutineDay, index);
+      if (!history.undo.length) return;
+      var data = getRoutineData();
+      var current = routineClone(data[selectedRoutineDay][index]);
+      var previous = history.undo.pop();
+      history.redo.push(current);
+      data[selectedRoutineDay][index] = Object.assign({}, data[selectedRoutineDay][index], previous);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Undo applied to ' + routineFormatHour(data[selectedRoutineDay][index].hour) + '.';
+      renderRoutineBoard();
+    }
+
+    function redoRoutineHour(index) {
+      saveRoutineDraftFromVisible();
+      var history = routineGetHistory(selectedRoutineDay, index);
+      if (!history.redo.length) return;
+      var data = getRoutineData();
+      var current = routineClone(data[selectedRoutineDay][index]);
+      var next = history.redo.pop();
+      history.undo.push(current);
+      data[selectedRoutineDay][index] = Object.assign({}, data[selectedRoutineDay][index], next);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Redo applied to ' + routineFormatHour(data[selectedRoutineDay][index].hour) + '.';
+      renderRoutineBoard();
+    }
+
+
+    function undoRoutineMerge(index) {
+      saveRoutineDraftFromVisible();
+      var data = getRoutineData();
+      if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+      var block = data[selectedRoutineDay][index];
+      if (block.mergeBefore && Array.isArray(block.mergeBefore)) {
+        data[selectedRoutineDay] = routineClone(block.mergeBefore);
+        setRoutineData(data);
+        byId('routineStatusText').textContent = 'Merge undone. Previous hour layout restored.';
+        beep('click');
+        renderRoutineBoard();
+        return;
+      }
+
+      var span = block.span || 1;
+      if (span <= 1) return;
+      for (var i = index; i < index + span && data[selectedRoutineDay][i]; i++) {
+        data[selectedRoutineDay][i].hidden = false;
+        data[selectedRoutineDay][i].span = 1;
+        data[selectedRoutineDay][i].state = block.state;
+        data[selectedRoutineDay][i].task = block.task;
+        delete data[selectedRoutineDay][i].mergeBefore;
+      }
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Merged block split into separate hours.';
+      beep('click');
+      renderRoutineBoard();
+    }
+
+    function undoLastRoutineMerge() {
+      saveRoutineDraftFromVisible();
+      var stack = routineGetMergeHistory(selectedRoutineDay);
+      if (!stack.length) {
+        byId('routineStatusText').textContent = 'No merge to undo for ' + routineTitleDay(selectedRoutineDay) + '.';
+        return;
+      }
+      var snapshot = stack.pop();
+      var data = getRoutineData();
+      data[selectedRoutineDay] = routineClone(snapshot.beforeDay);
+      setRoutineData(data);
+      byId('routineStatusText').textContent = 'Last merge undone: ' + snapshot.label + '.';
+      beep('click');
+      renderRoutineBoard();
+    }
+
+    function resetRoutineBoard() {
+      if (!confirm('Reset routine back to the last saved version?')) return;
+      var saved = getSavedRoutineData();
+      setRoutineData(saved);
+      routineHistory = {};
+      routineMergeHistory = {};
+      byId('routineStatusText').textContent = 'Routine restored to the last saved version.';
+      beep('fail');
+      renderRoutineBoard();
+    }
+
+    function bindRoutineEvents() {
+      var switcher = byId('routineDaySwitcher');
+      if (switcher) {
+        switcher.addEventListener('click', function(event) {
+          var btn = event.target.closest('[data-routine-day]');
+          if (!btn) return;
+          saveRoutineDraftFromVisible();
+          selectedRoutineDay = btn.getAttribute('data-routine-day');
+          byId('routineStatusText').textContent = 'Viewing ' + routineTitleDay(selectedRoutineDay) + '.';
+          renderRoutineBoard();
+          beep('click');
+        });
+      }
+
+      var board = byId('routineBoard');
+      if (board) {
+        board.addEventListener('focusin', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          var index = Number(taskEl.getAttribute('data-routine-task-index'));
+          var data = getRoutineData();
+          if (data[selectedRoutineDay] && data[selectedRoutineDay][index]) {
+            taskEl.dataset.beforeBlock = JSON.stringify(data[selectedRoutineDay][index]);
+          }
+        });
+
+        board.addEventListener('input', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          routineAutoGrowTextarea(taskEl);
+        });
+
+        board.addEventListener('blur', function(event) {
+          var taskEl = event.target.closest('[data-routine-task-index]');
+          if (!taskEl) return;
+          var index = Number(taskEl.getAttribute('data-routine-task-index'));
+          var data = getRoutineData();
+          if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+          var before = taskEl.dataset.beforeBlock ? JSON.parse(taskEl.dataset.beforeBlock) : routineClone(data[selectedRoutineDay][index]);
+          var after = routineClone(data[selectedRoutineDay][index]);
+          after.task = taskEl.value;
+          if (!routineBlocksMatch(before, after)) routinePushUndo(selectedRoutineDay, index, before);
+          data[selectedRoutineDay][index] = after;
+          setRoutineData(data);
+          routineAutoGrowTextarea(taskEl, false);
+          byId('routineStatusText').textContent = 'Hour edited. Save routine to make this the reset point.';
+        }, true);
+
+        board.addEventListener('change', function(event) {
+          var selectEl = event.target.closest('[data-routine-state-index]');
+          if (!selectEl) return;
+          var index = Number(selectEl.getAttribute('data-routine-state-index'));
+          var data = getRoutineData();
+          if (!data[selectedRoutineDay] || !data[selectedRoutineDay][index]) return;
+          var before = routineClone(data[selectedRoutineDay][index]);
+          data[selectedRoutineDay][index].state = selectEl.value;
+          routinePushUndo(selectedRoutineDay, index, before);
+          setRoutineData(data);
+          var currentRow = selectEl.closest('.routine-row');
+          routineUpdateRowVisual(currentRow, selectEl.value);
+          var taskEditor = currentRow ? currentRow.querySelector('.routine-task-editor') : null;
+          routineAutoGrowTextarea(taskEditor, false);
+          byId('routineStatusText').textContent = 'Status changed. Save routine to make this the reset point.';
+        });
+
+        board.addEventListener('click', function(event) {
+          var undoBtn = event.target.closest('[data-routine-undo-index]');
+          var redoBtn = event.target.closest('[data-routine-redo-index]');
+          var unmergeBtn = event.target.closest('[data-routine-unmerge-index]');
+          if (undoBtn) undoRoutineHour(Number(undoBtn.getAttribute('data-routine-undo-index')));
+          if (redoBtn) redoRoutineHour(Number(redoBtn.getAttribute('data-routine-redo-index')));
+          if (unmergeBtn) undoRoutineMerge(Number(unmergeBtn.getAttribute('data-routine-unmerge-index')));
+        });
+      }
+
+      if (byId('routineSaveBtn')) byId('routineSaveBtn').addEventListener('click', saveRoutineBoard);
+      if (byId('routineResetBtn')) byId('routineResetBtn').addEventListener('click', resetRoutineBoard);
+      if (byId('routineMergeBtn')) byId('routineMergeBtn').addEventListener('click', mergeRoutineHours);
+      if (byId('routineUndoLastMergeBtn')) byId('routineUndoLastMergeBtn').addEventListener('click', undoLastRoutineMerge);
+      if (byId('routineMergeTask')) {
+        routineAutoGrowTextarea(byId('routineMergeTask'), true);
+        byId('routineMergeTask').addEventListener('input', function(event) { routineAutoGrowTextarea(event.target); });
+      }
+    }
+
+    function updateDateTimeDisplays() {
+      var current = formatDateTime();
+      byId('clock').textContent = current;
+      byId('missionDateTime').textContent = current;
+      renderMainStreak();
+    }
+
+
+    function setupMobileSectionToggles() {
+      var briefingBtn = byId('toggleBriefingBtn');
+      var briefingBody = byId('dailyBriefingBody');
+
+      if (briefingBtn && briefingBody) {
+        briefingBtn.addEventListener('click', function() {
+          briefingBody.classList.toggle('collapsed-section');
+          briefingBtn.textContent = briefingBody.classList.contains('collapsed-section') ? 'Show' : 'Hide';
+        });
+      }
+
+      var missionBtn = byId('toggleMissionBtn');
+      var missionBody = byId('missionReminderBody');
+      var missionLine = byId('missionMainLine');
+
+      if (missionBtn && missionBody && missionLine) {
+        missionBtn.addEventListener('click', function() {
+          missionBody.classList.toggle('collapsed-section');
+          missionLine.classList.toggle('collapsed-section');
+
+          var isClosed = missionBody.classList.contains('collapsed-section');
+          missionBtn.textContent = isClosed ? 'Show' : 'Hide';
+        });
+      }
+    }
+
+    bindEvents();
+    bindRoutineEvents();
+    setupMobileSectionToggles();
+    renderDefaultSummary();
+    renderDraftTasks();
+    setSound(isSoundOn());
+    updateDateTimeDisplays();
+    setInterval(updateDateTimeDisplays, 1000);
+    renderAll();
+  </script>
+</body>
+</html>
