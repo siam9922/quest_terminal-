@@ -2599,6 +2599,2937 @@
   padding-right: 8px;
 }
 
+
+/* ===== QUEST DETAILS PREVIEW FIX V2 ===== */
+.quest-desc {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.45 !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+
+/* ===== QUEST DETAILS PREVIEW FINAL OVERRIDE ===== */
+.quest-card .quest-desc {
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: none !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+}
+
+
+/* ===== MOBILE FANTASY QUEST CARD REDESIGN V1 ===== */
+/* Inspired by collectible RPG quest cards: cleaner, more gamified, phone-first. */
+
+@media (max-width: 1200px) {
+  body {
+    background:
+      radial-gradient(circle at 50% -10%, rgba(224,200,120,0.13), transparent 30%),
+      radial-gradient(circle at 90% 15%, rgba(110,182,255,0.045), transparent 26%),
+      #020202;
+  }
+
+  .screen {
+    background:
+      radial-gradient(circle at 50% -6%, rgba(224,200,120,0.09), transparent 28%),
+      linear-gradient(180deg, #090a0a 0%, #040404 50%, #020202 100%);
+    box-shadow: inset 0 0 80px rgba(224,200,120,0.025);
+  }
+
+  header {
+    border-bottom: 1px solid rgba(224,200,120,0.18);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f4df95;
+    text-shadow:
+      0 0 12px rgba(224,200,120,0.22),
+      0 0 28px rgba(224,200,120,0.08);
+  }
+
+  .player-card {
+    border-radius: 14px;
+    border-color: rgba(224,200,120,0.34);
+    background:
+      radial-gradient(circle at 5% 0%, rgba(224,200,120,0.13), transparent 30%),
+      linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
+      linear-gradient(180deg, #11100d, #050505);
+  }
+
+  .tabs {
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 12px 12px;
+    background:
+      linear-gradient(180deg, rgba(224,200,120,0.05), transparent 55%),
+      rgba(0,0,0,0.86);
+  }
+
+  .tab {
+    border-radius: 12px;
+    min-width: auto;
+    padding: 12px 14px;
+    border-color: rgba(224,200,120,0.18);
+    color: #9c9386;
+    background: rgba(255,255,255,0.025);
+  }
+
+  .tab.active {
+    color: #ffe59a;
+    border-color: rgba(224,200,120,0.72);
+    background:
+      radial-gradient(circle at 50% 100%, rgba(224,200,120,0.20), transparent 55%),
+      linear-gradient(180deg, rgba(224,200,120,0.12), rgba(0,0,0,0.2));
+    box-shadow: 0 0 18px rgba(224,200,120,0.10);
+  }
+
+  .grid-quests {
+    gap: 16px;
+  }
+
+  .quest-section-panel {
+    border-radius: 16px;
+    border-color: rgba(224,200,120,0.22);
+    background:
+      linear-gradient(180deg, rgba(224,200,120,0.035), transparent 38%),
+      rgba(0,0,0,0.32);
+  }
+
+  .section-toggle {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f4df95 !important;
+    text-shadow: 0 0 12px rgba(224,200,120,0.14);
+    letter-spacing: 1.4px;
+  }
+
+  .quest-list {
+    gap: 15px;
+  }
+
+  .quest-card {
+    --quest-accent: #e0c878;
+    --quest-accent-soft: rgba(224,200,120,0.18);
+    position: relative;
+    display: grid;
+    gap: 14px;
+    min-height: 255px;
+    padding: 18px 16px 16px 92px !important;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(224,200,120,0.34);
+    background:
+      radial-gradient(circle at 70% 12%, var(--quest-accent-soft), transparent 34%),
+      radial-gradient(circle at 100% 50%, rgba(255,255,255,0.045), transparent 35%),
+      linear-gradient(135deg, rgba(224,200,120,0.09), transparent 32%),
+      linear-gradient(180deg, #11100d, #050505);
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.035),
+      inset 0 -42px 80px rgba(0,0,0,0.36),
+      0 16px 34px rgba(0,0,0,0.50),
+      0 0 18px color-mix(in srgb, var(--quest-accent) 18%, transparent);
+  }
+
+  .quest-card.side {
+    --quest-accent: #6eb6ff;
+    --quest-accent-soft: rgba(110,182,255,0.16);
+    border-color: rgba(110,182,255,0.34);
+  }
+
+  .quest-card.complete {
+    --quest-accent: #47c06f;
+    --quest-accent-soft: rgba(71,192,111,0.17);
+    border-color: rgba(71,192,111,0.36);
+  }
+
+  .quest-card.failed {
+    --quest-accent: #b24d4d;
+    --quest-accent-soft: rgba(178,77,77,0.16);
+    border-color: rgba(178,77,77,0.36);
+  }
+
+  .quest-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 76px;
+    opacity: 1;
+    background:
+      radial-gradient(circle at 50% 88px, var(--quest-accent-soft), transparent 52px),
+      linear-gradient(180deg, rgba(224,200,120,0.10), transparent 48%),
+      rgba(0,0,0,0.34);
+    border-right: 1px solid rgba(224,200,120,0.16);
+    pointer-events: none;
+  }
+
+  .quest-card::after {
+    content: "◆";
+    position: absolute;
+    left: 21px;
+    top: 42px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    color: var(--quest-accent);
+    font-size: 32px;
+    line-height: 1;
+    text-shadow:
+      0 0 10px color-mix(in srgb, var(--quest-accent) 55%, transparent),
+      0 0 28px color-mix(in srgb, var(--quest-accent) 24%, transparent);
+    pointer-events: none;
+  }
+
+  .quest-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .quest-card-header {
+    gap: 10px;
+  }
+
+  .quest-header-top {
+    padding-right: 74px;
+    min-height: 28px;
+  }
+
+  .quest-kicker-row {
+    gap: 7px;
+  }
+
+  .quest-chip {
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 9px;
+    letter-spacing: 0.9px;
+    border-color: color-mix(in srgb, var(--quest-accent) 55%, rgba(216,208,189,0.18));
+    color: var(--quest-accent);
+    background:
+      radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--quest-accent) 18%, transparent), transparent 60%),
+      rgba(0,0,0,0.38);
+  }
+
+  .quest-chip-xp {
+    color: #ffe59a;
+    border-color: rgba(224,200,120,0.40);
+    background: rgba(0,0,0,0.48);
+  }
+
+  .quest-main-block {
+    gap: 8px;
+  }
+
+  .quest-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px !important;
+    line-height: 1.05;
+    color: #f5e7bc;
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 16px color-mix(in srgb, var(--quest-accent) 18%, transparent);
+  }
+
+  .quest-status-line {
+    width: fit-content;
+    border: 1px solid color-mix(in srgb, var(--quest-accent) 44%, rgba(216,208,189,0.16));
+    border-radius: 999px;
+    padding: 6px 10px;
+    color: var(--quest-accent);
+    background: rgba(0,0,0,0.32);
+    font-size: 10px;
+  }
+
+  .reward-badge {
+    border-radius: 8px;
+    border-color: rgba(224,200,120,0.26);
+    background:
+      linear-gradient(180deg, rgba(224,200,120,0.10), transparent 44%),
+      rgba(0,0,0,0.34);
+    color: #f3ead8;
+  }
+
+  .quest-desc {
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    color: #bdb4a4;
+    font-size: 14px;
+    line-height: 1.45 !important;
+    max-width: 100%;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .progress-wrap {
+    margin-top: 2px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  .progress-label {
+    color: #a69d8e;
+    font-size: 10px;
+    margin-bottom: 7px;
+  }
+
+  .progress-bar {
+    height: 7px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    border-radius: 999px;
+    background:
+      linear-gradient(90deg, var(--quest-accent), color-mix(in srgb, var(--quest-accent) 62%, white));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--quest-accent) 42%, transparent);
+  }
+
+  .steps-toggle {
+    border-radius: 11px;
+    min-height: 40px;
+    border-color: rgba(224,200,120,0.18);
+    color: #f3ead8;
+    background: rgba(0,0,0,0.24);
+  }
+
+  .micro-list {
+    border-top: 1px solid rgba(224,200,120,0.13);
+    padding-top: 9px;
+  }
+
+  .micro-item {
+    border-radius: 10px;
+    border-color: rgba(216,208,189,0.12);
+    background: rgba(0,0,0,0.26);
+  }
+
+  .quest-primary-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .quest-primary-btn,
+  .quest-more-btn {
+    border-radius: 12px;
+    min-height: 48px;
+    letter-spacing: 1.3px;
+  }
+
+  .quest-primary-btn {
+    border-color: color-mix(in srgb, var(--quest-accent) 72%, rgba(216,208,189,0.12));
+    color: #fff1bc;
+    background:
+      radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--quest-accent) 24%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in srgb, var(--quest-accent) 18%, transparent), rgba(0,0,0,0.34));
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.04),
+      0 0 18px color-mix(in srgb, var(--quest-accent) 14%, transparent);
+  }
+
+  .quest-more-btn {
+    min-height: 38px;
+    color: #9f9688;
+    border-color: rgba(216,208,189,0.14);
+    background: rgba(0,0,0,0.20);
+  }
+
+  .quest-more-actions {
+    border-top: 1px solid rgba(224,200,120,0.13);
+    padding-top: 12px;
+  }
+
+  .quest-secondary-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .quest-secondary-grid button {
+    border-radius: 10px;
+  }
+
+  .date-complete,
+  .date-failed {
+    font-size: 11px;
+  }
+
+  .daily-briefing,
+  .mission-reminder {
+    border-radius: 16px;
+    border-color: rgba(224,200,120,0.22);
+  }
+
+  .daily-briefing {
+    background:
+      radial-gradient(circle at 0% 0%, rgba(224,200,120,0.09), transparent 32%),
+      rgba(0,0,0,0.24);
+  }
+
+  .briefing-grid {
+    gap: 8px;
+  }
+
+  .briefing-item {
+    border-radius: 12px;
+    border-color: rgba(224,200,120,0.16);
+    background: rgba(0,0,0,0.28);
+  }
+
+  .briefing-item span {
+    color: #f4df95;
+  }
+}
+
+@media (max-width: 520px) {
+  .quest-card {
+    padding: 16px 13px 14px 78px !important;
+    min-height: 235px;
+    border-radius: 14px;
+  }
+
+  .quest-card::before {
+    width: 64px;
+  }
+
+  .quest-card::after {
+    left: 17px;
+    top: 38px;
+    font-size: 27px;
+  }
+
+  .quest-title {
+    font-size: 22px !important;
+  }
+
+  .quest-header-top {
+    padding-right: 62px;
+  }
+
+  .quest-chip {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
+
+  .reward-badge {
+    font-size: 10px;
+  }
+
+  .quest-primary-btn {
+    min-height: 46px;
+  }
+}
+
+
+/* ===== EPIC QUEST CARD FORMAT V6: PHONE + DESKTOP ===== */
+/* Rebuilds only the quest card interface toward the reference image style. */
+
+#questsView .grid-quests {
+  grid-template-columns: 330px 1fr !important;
+  align-items: start;
+}
+
+#questsView .grid-quests > .panel:first-child {
+  grid-row: span 3;
+}
+
+#questsView .quest-section-panel {
+  border-radius: 18px;
+  border-color: rgba(224,200,120,0.24) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,200,120,0.06), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 40%),
+    linear-gradient(180deg, #10100d, #050505) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.018),
+    0 18px 34px rgba(0,0,0,0.36);
+}
+
+#questsView .section-toggle {
+  font-family: Georgia, "Times New Roman", serif !important;
+  color: #f4df95 !important;
+  font-size: 24px !important;
+  text-shadow: 0 0 14px rgba(224,200,120,0.18);
+  border-bottom-color: rgba(224,200,120,0.20) !important;
+}
+
+#questsView .quest-list {
+  gap: 18px !important;
+}
+
+.quest-card.qt-card-epic {
+  --quest-accent: #d9b55d;
+  --quest-accent-rgb: 217,181,93;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 108px minmax(0, 1fr) 230px;
+  grid-template-areas:
+    "crest content art"
+    "crest content actions"
+    "more more more";
+  gap: 0 18px !important;
+  min-height: 245px;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.52) !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.80), rgba(0,0,0,0.24) 43%, rgba(var(--quest-accent-rgb),0.09) 100%),
+    radial-gradient(circle at 72% 30%, rgba(var(--quest-accent-rgb),0.16), transparent 35%),
+    linear-gradient(180deg, #12100d 0%, #050505 100%) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.035),
+    inset 0 -55px 90px rgba(0,0,0,0.45),
+    0 16px 35px rgba(0,0,0,0.48),
+    0 0 18px rgba(var(--quest-accent-rgb),0.08) !important;
+}
+
+.quest-card.qt-card-epic.main {
+  --quest-accent: #e0c878;
+  --quest-accent-rgb: 224,200,120;
+}
+
+.quest-card.qt-card-epic.side {
+  --quest-accent: #8f65ff;
+  --quest-accent-rgb: 143,101,255;
+}
+
+.quest-card.qt-card-epic.complete {
+  --quest-accent: #45d38a;
+  --quest-accent-rgb: 69,211,138;
+}
+
+.quest-card.qt-card-epic.failed {
+  --quest-accent: #c66060;
+  --quest-accent-rgb: 198,96,96;
+}
+
+.quest-card.qt-card-epic::before {
+  content: "" !important;
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  opacity: 1 !important;
+  background:
+    linear-gradient(90deg, var(--quest-accent), transparent 15%, transparent 85%, var(--quest-accent)) top / 100% 1px no-repeat,
+    linear-gradient(90deg, var(--quest-accent), transparent 15%, transparent 85%, var(--quest-accent)) bottom / 100% 1px no-repeat,
+    linear-gradient(180deg, var(--quest-accent), transparent 30%, transparent 70%, var(--quest-accent)) left / 1px 100% no-repeat,
+    linear-gradient(180deg, var(--quest-accent), transparent 30%, transparent 70%, var(--quest-accent)) right / 1px 100% no-repeat !important;
+  filter: drop-shadow(0 0 8px rgba(var(--quest-accent-rgb),0.30));
+}
+
+.quest-card.qt-card-epic::after {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(var(--quest-accent-rgb),0.16), transparent 20%),
+    linear-gradient(135deg, rgba(255,255,255,0.055), transparent 24%, transparent 70%, rgba(var(--quest-accent-rgb),0.06));
+  opacity: 0.90;
+}
+
+.quest-card.qt-card-epic > * {
+  position: relative;
+  z-index: 2;
+}
+
+.qt-card-crest {
+  grid-area: crest;
+  min-height: 100%;
+  display: grid;
+  place-items: start center;
+  padding-top: 30px;
+  background:
+    radial-gradient(circle at 50% 58px, rgba(var(--quest-accent-rgb),0.22), transparent 62px),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.10), transparent 60%),
+    rgba(0,0,0,0.34);
+  border-right: 1px solid rgba(var(--quest-accent-rgb),0.20);
+}
+
+.qt-crest-symbol {
+  width: 64px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  color: #fff2bd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 16px rgba(var(--quest-accent-rgb),0.52);
+  border: 1px solid rgba(var(--quest-accent-rgb),0.58);
+  clip-path: polygon(50% 0%, 93% 22%, 82% 78%, 50% 100%, 18% 78%, 7% 22%);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(var(--quest-accent-rgb),0.28), transparent 45%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.18), rgba(0,0,0,0.52));
+  box-shadow: 0 0 20px rgba(var(--quest-accent-rgb),0.20);
+}
+
+.qt-card-content {
+  grid-area: content;
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 11px;
+  padding: 28px 0 26px 0;
+}
+
+.qt-card-topline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.qt-type-pill,
+.qt-priority-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 24px;
+  border-radius: 6px;
+  padding: 5px 9px;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.50);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(var(--quest-accent-rgb),0.20), transparent 60%),
+    rgba(0,0,0,0.36);
+  color: var(--quest-accent);
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.qt-priority-pill {
+  opacity: 0.84;
+  color: #cfc5ac;
+  border-color: rgba(216,208,189,0.24);
+}
+
+.qt-title {
+  font-family: Georgia, "Times New Roman", serif !important;
+  color: #f7e8b9 !important;
+  font-size: clamp(25px, 2.25vw, 34px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0.4px !important;
+  text-shadow: 0 0 16px rgba(var(--quest-accent-rgb),0.18);
+  max-width: 760px;
+}
+
+.qt-desc {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  color: #c2b7a4 !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  white-space: normal !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: none !important;
+}
+
+.qt-reward-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.qt-reward-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 35px;
+  border-radius: 7px;
+  padding: 8px 11px;
+  border: 1px solid rgba(224,200,120,0.30);
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.11), transparent 52%),
+    rgba(0,0,0,0.34);
+  color: #f0eadf;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.qt-coin {
+  color: #ffe59a;
+}
+
+.qt-task-row {
+  display: grid;
+  grid-template-columns: auto auto minmax(120px, 1fr);
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  color: #b8afa2;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 850;
+}
+
+.qt-task-nodes {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.qt-task-node {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid rgba(216,208,189,0.36);
+  background: rgba(0,0,0,0.38);
+}
+
+.qt-task-node.done {
+  border-color: rgba(var(--quest-accent-rgb),0.80);
+  background: radial-gradient(circle, #fff2bd, var(--quest-accent) 58%, rgba(0,0,0,0.20));
+  box-shadow: 0 0 10px rgba(var(--quest-accent-rgb),0.42);
+}
+
+.qt-progress-wrap {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.qt-progress-bar {
+  height: 6px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.10) !important;
+}
+
+.qt-progress-fill {
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, var(--quest-accent), #fff2bd) !important;
+  box-shadow: 0 0 14px rgba(var(--quest-accent-rgb),0.42) !important;
+}
+
+.qt-card-art {
+  grid-area: art;
+  align-self: stretch;
+  min-height: 118px;
+  margin: 22px 22px 0 0;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0.76;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.16);
+  background:
+    radial-gradient(circle at 58% 28%, rgba(255,255,255,0.20), transparent 8%),
+    radial-gradient(circle at 70% 52%, rgba(var(--quest-accent-rgb),0.30), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,0.045), transparent 30%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.13), transparent 60%),
+    #050505;
+}
+
+.qt-art-orb {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.10) 36%, transparent 40%),
+    radial-gradient(circle at 52% 48%, rgba(var(--quest-accent-rgb),0.55), transparent 8%),
+    radial-gradient(circle at 50% 50%, rgba(var(--quest-accent-rgb),0.14), transparent 42%);
+}
+
+.qt-art-lines {
+  position: absolute;
+  inset: 22px 22px auto auto;
+}
+
+.qt-card-actions {
+  grid-area: actions;
+  align-self: end;
+  display: grid;
+  gap: 9px;
+  margin: 0 22px 26px 0;
+}
+
+.qt-primary-btn {
+  min-height: 54px !important;
+  border-radius: 0 !important;
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  border-color: rgba(var(--quest-accent-rgb),0.70) !important;
+  color: #fff0bd !important;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(var(--quest-accent-rgb),0.22), transparent 65%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.22), rgba(0,0,0,0.44)) !important;
+  box-shadow: 0 0 18px rgba(var(--quest-accent-rgb),0.14);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-weight: 950;
+}
+
+.qt-primary-btn span {
+  float: right;
+  font-size: 24px;
+  line-height: 0.7;
+}
+
+.qt-more-btn {
+  min-height: 36px !important;
+  border-radius: 8px !important;
+  border-color: rgba(216,208,189,0.14) !important;
+  color: #9d9484 !important;
+  background: rgba(0,0,0,0.24) !important;
+}
+
+.qt-more-actions {
+  grid-area: more;
+  display: none;
+  margin: 0 18px 18px 126px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(var(--quest-accent-rgb),0.16) !important;
+}
+
+.quest-card.actions-open .qt-more-actions {
+  display: grid !important;
+}
+
+.qt-secondary-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 8px !important;
+}
+
+.qt-secondary-grid button {
+  min-height: 38px !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+}
+
+.qt-steps-button {
+  width: fit-content !important;
+  min-height: 35px !important;
+  border-radius: 8px !important;
+  border-color: rgba(var(--quest-accent-rgb),0.24) !important;
+  color: #ddd3bd !important;
+  background: rgba(0,0,0,0.25) !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.qt-micro-list {
+  border-top: 1px solid rgba(var(--quest-accent-rgb),0.12) !important;
+  padding-top: 8px !important;
+}
+
+.qt-date-line {
+  font-size: 11px !important;
+}
+
+@media (max-width: 1200px) {
+  #questsView .grid-quests {
+    grid-template-columns: 1fr !important;
+  }
+
+  #questsView .grid-quests > .panel:first-child {
+    grid-row: auto;
+  }
+
+  .quest-card.qt-card-epic {
+    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-areas:
+      "crest content"
+      "crest art"
+      "crest actions"
+      "more more";
+    gap: 0 13px !important;
+    min-height: 0;
+  }
+
+  .qt-card-crest {
+    padding-top: 22px;
+  }
+
+  .qt-crest-symbol {
+    width: 48px;
+    height: 58px;
+    font-size: 21px;
+  }
+
+  .qt-card-content {
+    padding: 20px 14px 12px 0;
+    gap: 9px;
+  }
+
+  .qt-title {
+    font-size: 26px !important;
+  }
+
+  .qt-desc {
+    font-size: 14px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  .qt-card-art {
+    min-height: 86px;
+    margin: 0 14px 12px 0;
+  }
+
+  .qt-card-actions {
+    margin: 0 14px 16px 0;
+    grid-template-columns: 1fr 92px;
+    align-items: stretch;
+  }
+
+  .qt-primary-btn {
+    min-height: 48px !important;
+  }
+
+  .qt-more-btn {
+    min-height: 48px !important;
+  }
+
+  .qt-more-actions {
+    margin: 0 14px 16px 90px !important;
+  }
+
+  .qt-secondary-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 62px minmax(0, 1fr);
+    border-radius: 12px !important;
+  }
+
+  .qt-card-crest {
+    padding-top: 20px;
+  }
+
+  .qt-crest-symbol {
+    width: 42px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .qt-card-content {
+    padding: 18px 12px 10px 0;
+  }
+
+  .qt-title {
+    font-size: 23px !important;
+  }
+
+  .qt-desc {
+    font-size: 13px !important;
+  }
+
+  .qt-reward-chip {
+    min-height: 32px;
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .qt-task-row {
+    grid-template-columns: auto auto 1fr;
+    font-size: 11px;
+  }
+
+  .qt-task-nodes {
+    gap: 6px;
+  }
+
+  .qt-task-node {
+    width: 10px;
+    height: 10px;
+  }
+
+  .qt-card-art {
+    min-height: 72px;
+    margin-right: 12px;
+  }
+
+  .qt-card-actions {
+    margin-right: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .qt-more-actions {
+    margin-left: 74px !important;
+    margin-right: 12px !important;
+  }
+
+  .qt-secondary-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+
+/* ===== QUEST SECTION COLOR FIX V7 ===== */
+/* Main = gold, Side = purple, Completed = green. Also improves the placeholder art panels. */
+
+#questsView .quest-section-panel[data-section="main"] {
+  border-color: rgba(224,200,120,0.30) !important;
+}
+
+#questsView .quest-section-panel[data-section="side"] {
+  border-color: rgba(143,101,255,0.42) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(143,101,255,0.09), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
+    linear-gradient(180deg, #100c18, #050505) !important;
+}
+
+#questsView .quest-section-panel[data-section="complete"] {
+  border-color: rgba(69,211,138,0.42) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(69,211,138,0.08), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
+    linear-gradient(180deg, #0b1510, #050505) !important;
+}
+
+#questsView .quest-section-panel[data-section="side"] .section-toggle,
+#questsView .side-heading {
+  color: #b58cff !important;
+  text-shadow:
+    0 0 14px rgba(143,101,255,0.24),
+    0 0 28px rgba(143,101,255,0.10) !important;
+  border-bottom-color: rgba(143,101,255,0.28) !important;
+}
+
+#questsView .quest-section-panel[data-section="complete"] .section-toggle,
+#questsView .complete-heading {
+  color: #72e89d !important;
+  text-shadow:
+    0 0 14px rgba(69,211,138,0.22),
+    0 0 28px rgba(69,211,138,0.09) !important;
+  border-bottom-color: rgba(69,211,138,0.26) !important;
+}
+
+#questsView .quest-section-panel[data-section="main"] .section-toggle,
+#questsView .main-heading {
+  color: #f4df95 !important;
+  text-shadow:
+    0 0 14px rgba(224,200,120,0.24),
+    0 0 28px rgba(224,200,120,0.10) !important;
+}
+
+/* Better built-in “art” look without using real image files */
+.quest-card.qt-card-epic .qt-card-art {
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.12) 36%, transparent 41%),
+    radial-gradient(circle at 66% 38%, rgba(255,255,255,0.18), transparent 7%),
+    radial-gradient(circle at 76% 52%, rgba(var(--quest-accent-rgb),0.24), transparent 10%),
+    radial-gradient(circle at 58% 57%, rgba(var(--quest-accent-rgb),0.42), transparent 30%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.12), transparent 62%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic.main .qt-card-art {
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.12) 36%, transparent 41%),
+    radial-gradient(circle at 52% 22%, rgba(110,182,255,0.22), transparent 6%),
+    radial-gradient(circle at 64% 52%, rgba(224,200,120,0.35), transparent 30%),
+    linear-gradient(180deg, rgba(224,200,120,0.14), transparent 64%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic.side .qt-card-art {
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.10) 36%, transparent 41%),
+    radial-gradient(circle at 68% 40%, rgba(180,120,255,0.28), transparent 7%),
+    radial-gradient(circle at 78% 57%, rgba(143,101,255,0.32), transparent 13%),
+    radial-gradient(circle at 58% 58%, rgba(143,101,255,0.42), transparent 32%),
+    linear-gradient(180deg, rgba(143,101,255,0.14), transparent 62%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic.complete .qt-card-art {
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.10) 36%, transparent 41%),
+    radial-gradient(circle at 68% 40%, rgba(69,211,138,0.26), transparent 7%),
+    radial-gradient(circle at 78% 57%, rgba(64,220,190,0.28), transparent 12%),
+    radial-gradient(circle at 58% 58%, rgba(69,211,138,0.38), transparent 32%),
+    linear-gradient(180deg, rgba(69,211,138,0.13), transparent 62%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-art {
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.10) 36%, transparent 41%),
+    radial-gradient(circle at 68% 40%, rgba(198,96,96,0.25), transparent 7%),
+    radial-gradient(circle at 78% 57%, rgba(198,96,96,0.25), transparent 12%),
+    radial-gradient(circle at 58% 58%, rgba(198,96,96,0.36), transparent 32%),
+    linear-gradient(180deg, rgba(198,96,96,0.13), transparent 62%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb {
+  position: relative;
+  overflow: hidden;
+}
+
+.quest-card.qt-card-epic .qt-art-orb::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 13%;
+  width: 46%;
+  height: 58%;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.18), transparent 38%),
+    linear-gradient(135deg, rgba(var(--quest-accent-rgb),0.32), rgba(0,0,0,0.05));
+  opacity: 0.55;
+  filter: drop-shadow(0 0 14px rgba(var(--quest-accent-rgb),0.30));
+}
+
+.quest-card.qt-card-epic .qt-art-orb::after {
+  content: "";
+  position: absolute;
+  left: 48%;
+  top: 10%;
+  width: 2px;
+  height: 72%;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.82), var(--quest-accent), transparent);
+  box-shadow: 0 0 13px rgba(var(--quest-accent-rgb),0.58);
+  opacity: 0.68;
+}
+
+
+/* ===== QUEST ART + CREST CLEANUP V8 ===== */
+/* Removes confusing Roman numerals/pyramid look. Uses clear quest emblems instead. */
+
+.qt-crest-symbol {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 29px !important;
+}
+
+.quest-card.qt-card-epic.side .qt-crest-symbol {
+  color: #d7bdff !important;
+}
+
+.quest-card.qt-card-epic.complete .qt-crest-symbol {
+  color: #c9ffd8 !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-crest-symbol {
+  color: #ffd0d0 !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art {
+  display: grid !important;
+  place-items: center !important;
+  min-height: 118px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(var(--quest-accent-rgb),0.24), transparent 34%),
+    radial-gradient(circle at 50% 45%, rgba(var(--quest-accent-rgb),0.10), transparent 62%),
+    linear-gradient(135deg, rgba(255,255,255,0.045), transparent 38%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.10), transparent 65%),
+    #050505 !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb {
+  width: 78px !important;
+  height: 78px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255,255,255,0.18), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(var(--quest-accent-rgb),0.26), transparent 52%),
+    rgba(0,0,0,0.32) !important;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.54);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.035),
+    0 0 22px rgba(var(--quest-accent-rgb),0.18);
+  overflow: visible !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb::before {
+  content: "⚔" !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  clip-path: none !important;
+  background: transparent !important;
+  color: var(--quest-accent);
+  font-size: 34px;
+  font-weight: 900;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 13px rgba(var(--quest-accent-rgb),0.50));
+}
+
+.quest-card.qt-card-epic.side .qt-art-orb::before {
+  content: "◆" !important;
+}
+
+.quest-card.qt-card-epic.complete .qt-art-orb::before {
+  content: "✓" !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-art-orb::before {
+  content: "!" !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -10px !important;
+  width: auto !important;
+  height: auto !important;
+  left: auto !important;
+  top: auto !important;
+  background:
+    linear-gradient(90deg, transparent, rgba(var(--quest-accent-rgb),0.42), transparent) center / 100% 1px no-repeat,
+    linear-gradient(180deg, transparent, rgba(var(--quest-accent-rgb),0.30), transparent) center / 1px 100% no-repeat !important;
+  box-shadow: none !important;
+  opacity: 0.45 !important;
+}
+
+.qt-card-art::before {
+  content: "MISSION EMBLEM";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  color: rgba(216,208,189,0.36);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 82px;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 27px;
+  }
+
+  .qt-card-art::before {
+    display: none;
+  }
+}
+
+
+/* ===== QUEST SECTION GAP FIX V9 ===== */
+/* Minimizes the large vertical gaps between Main, Side, and Completed quest sections. */
+
+#questsView .grid-quests {
+  gap: 12px !important;
+  row-gap: 12px !important;
+}
+
+#questsView .quest-section-panel {
+  min-height: 0 !important;
+  padding: 12px !important;
+  margin: 0 !important;
+}
+
+#questsView .quest-section-panel .section-toggle {
+  margin: 0 0 10px !important;
+  padding: 0 0 8px !important;
+}
+
+#questsView .quest-list {
+  gap: 10px !important;
+}
+
+#questsView .quest-list .empty {
+  min-height: 0 !important;
+  padding: 12px !important;
+  margin: 0 !important;
+}
+
+#questsView .collapsible-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#questsView .archive-filters {
+  margin: 0 0 10px !important;
+}
+
+@media (max-width: 1200px) {
+  #questsView .grid-quests {
+    gap: 10px !important;
+    row-gap: 10px !important;
+  }
+
+  #questsView .quest-section-panel {
+    padding: 10px !important;
+  }
+
+  #questsView .quest-section-panel .section-toggle {
+    margin-bottom: 8px !important;
+  }
+}
+
+
+/* ===== QUEST TWO-COLUMN STACK LAYOUT V13 ===== */
+/* Keeps the cinematic image/art panels, but fixes the huge gap permanently by stacking quest sections inside a right column. */
+
+@media (min-width: 1201px) {
+  #questsView .grid-quests {
+    display: grid !important;
+    grid-template-columns: 330px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    align-items: start !important;
+    align-content: start !important;
+  }
+
+  #questsView .grid-quests > .panel:first-child {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  #questsView .quest-sections-stack {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    align-items: start !important;
+    align-content: start !important;
+    min-height: 0 !important;
+  }
+
+  #questsView .quest-section-panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    align-self: start !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  #questsView .grid-quests {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  #questsView .quest-sections-stack {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+  }
+
+  #questsView .quest-section-panel {
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+}
+
+/* Restore/lock the cinematic quest-card image areas. */
+.quest-card.qt-card-epic .qt-card-crest {
+  display: grid !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art {
+  display: grid !important;
+}
+
+/* Keep spacing tight inside each section. */
+#questsView .quest-section-panel {
+  padding: 10px 12px 12px !important;
+}
+
+#questsView .quest-section-panel .section-toggle {
+  margin: 0 0 8px !important;
+  padding: 0 0 7px !important;
+}
+
+#questsView .quest-list {
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+#questsView .quest-list .empty {
+  min-height: 0 !important;
+  padding: 12px !important;
+}
+
+
+/* ===== FAILED QUEST OVERLAP FIX V14 ===== */
+/* Fixes failed quest card overlap when the expanded action menu is open. */
+
+.quest-card.qt-card-epic.failed {
+  overflow: visible !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-content {
+  align-content: start !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-date-line {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(198,96,96,0.24) !important;
+  color: #ffc4c4 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  clear: both !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-actions {
+  align-self: start !important;
+  margin-top: 12px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-more-actions {
+  margin-top: 16px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid rgba(198,96,96,0.26) !important;
+  clear: both !important;
+}
+
+.quest-card.qt-card-epic.failed.actions-open {
+  padding-bottom: 20px !important;
+}
+
+.quest-card.qt-card-epic.failed.actions-open .qt-secondary-grid {
+  align-items: stretch !important;
+}
+
+.quest-card.qt-card-epic.failed.actions-open .qt-secondary-grid button {
+  min-height: 42px !important;
+}
+
+/* Desktop/tablet: give failed cards more height when expanded so controls do not collide. */
+@media (min-width: 901px) {
+  .quest-card.qt-card-epic.failed.actions-open {
+    grid-template-areas:
+      "crest content art"
+      "crest content actions"
+      "more more more" !important;
+    row-gap: 14px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open .qt-more-actions {
+    margin-left: 126px !important;
+    margin-right: 18px !important;
+  }
+}
+
+/* Phone/smaller screens: stack failed-card controls cleanly. */
+@media (max-width: 900px) {
+  .quest-card.qt-card-epic.failed.actions-open {
+    grid-template-areas:
+      "crest content"
+      "crest art"
+      "crest actions"
+      "more more" !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open .qt-more-actions {
+    margin: 14px 14px 16px 90px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open .qt-secondary-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic.failed.actions-open .qt-more-actions {
+    margin-left: 74px !important;
+    margin-right: 12px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open .qt-secondary-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+
+/* ===== FAILED QUEST CARD BREATHING ROOM V15 ===== */
+/* Gives failed quest cards more vertical room so the date, progress line, and buttons do not feel squeezed. */
+
+.quest-card.qt-card-epic.failed {
+  min-height: 285px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-content {
+  gap: 12px !important;
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-actions {
+  align-self: center !important;
+  margin-top: 0 !important;
+  gap: 10px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-art {
+  min-height: 132px !important;
+  margin-top: 24px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-progress-wrap {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-date-line {
+  margin-top: 10px !important;
+  padding-top: 10px !important;
+  font-size: 11px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-primary-btn,
+.quest-card.qt-card-epic.failed .qt-more-btn {
+  min-height: 48px !important;
+}
+
+/* When the failed card is opened, give the action area proper space. */
+.quest-card.qt-card-epic.failed.actions-open {
+  min-height: 345px !important;
+}
+
+.quest-card.qt-card-epic.failed.actions-open .qt-more-actions {
+  margin-top: 18px !important;
+}
+
+/* Tablet / phone: keep it compact but not crushed. */
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic.failed {
+    min-height: 310px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-content {
+    padding-top: 20px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-art {
+    min-height: 94px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open {
+    min-height: 390px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic.failed {
+    min-height: 0 !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-content {
+    gap: 10px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open {
+    min-height: 0 !important;
+  }
+}
+
+
+/* ===== FAILED QUEST RIGHT PANEL FIX V16 ===== */
+/* Fixes the right-side image/action panel cutting into the lower content area on failed cards. */
+
+@media (min-width: 901px) {
+  .quest-card.qt-card-epic.failed {
+    grid-template-columns: 108px minmax(0, 1fr) 205px !important;
+    grid-template-areas:
+      "crest content art"
+      "crest content actions"
+      "more more more" !important;
+    column-gap: 16px !important;
+    min-height: 300px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-content {
+    padding: 24px 0 28px 0 !important;
+    gap: 11px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-art {
+    min-height: 105px !important;
+    height: 105px !important;
+    margin: 22px 18px 8px 0 !important;
+    align-self: start !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-card-actions {
+    margin: 0 18px 24px 0 !important;
+    align-self: start !important;
+    gap: 9px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-primary-btn {
+    min-height: 46px !important;
+    clip-path: none !important;
+    border-radius: 9px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-more-btn {
+    min-height: 40px !important;
+    border-radius: 9px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-progress-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 2px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-date-line {
+    position: relative !important;
+    z-index: 4 !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    background: rgba(0,0,0,0.18) !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open {
+    min-height: 365px !important;
+  }
+
+  .quest-card.qt-card-epic.failed.actions-open .qt-more-actions {
+    margin: 16px 18px 18px 126px !important;
+  }
+}
+
+/* On smaller screens, keep failed card panels stacked cleanly. */
+@media (max-width: 900px) {
+  .quest-card.qt-card-epic.failed .qt-card-art {
+    height: auto !important;
+    min-height: 82px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .quest-card.qt-card-epic.failed .qt-primary-btn {
+    clip-path: none !important;
+    border-radius: 9px !important;
+  }
+}
+
+
+/* ===== NUMBERED QUEST RAIL / NO IMAGE PANEL V17 ===== */
+/* Removes the right picture area and replaces the side emblem with numbered quest rails. */
+
+.quest-card.qt-card-epic .qt-card-art {
+  display: none !important;
+}
+
+.quest-card.qt-card-epic {
+  grid-template-columns: 92px minmax(0, 1fr) 190px !important;
+  grid-template-areas:
+    "crest content actions"
+    "crest more more" !important;
+  min-height: 230px !important;
+  padding: 0 !important;
+  column-gap: 16px !important;
+  overflow: hidden !important;
+}
+
+/* Left numbered rail */
+.quest-card.qt-card-epic .qt-card-crest {
+  grid-area: crest !important;
+  display: grid !important;
+  place-items: start center !important;
+  min-height: 100% !important;
+  padding-top: 24px !important;
+  background:
+    radial-gradient(circle at 50% 52px, rgba(var(--quest-accent-rgb),0.22), transparent 52px),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.10), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.035), transparent 22%),
+    rgba(0,0,0,0.44) !important;
+  border-right: 1px solid rgba(var(--quest-accent-rgb),0.22) !important;
+}
+
+.quest-card.qt-card-epic .qt-card-crest::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 94px;
+  bottom: 16px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.42), transparent);
+  opacity: 0.55;
+}
+
+.quest-card.qt-card-epic .qt-crest-symbol {
+  width: 52px !important;
+  height: 64px !important;
+  display: grid !important;
+  place-items: center !important;
+  clip-path: polygon(50% 0%, 88% 22%, 80% 76%, 50% 100%, 20% 76%, 12% 22%) !important;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.42) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(var(--quest-accent-rgb),0.26), transparent 45%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.14), rgba(0,0,0,0.58)) !important;
+  color: #fff1bd !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.8px !important;
+  text-shadow: 0 0 12px rgba(var(--quest-accent-rgb),0.48) !important;
+  box-shadow: 0 0 20px rgba(var(--quest-accent-rgb),0.13) !important;
+}
+
+.quest-card.qt-card-epic .qt-crest-symbol::before {
+  content: "QUEST";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(216,208,189,0.45);
+  font-size: 7px;
+  font-weight: 950;
+  letter-spacing: 0.8px;
+}
+
+/* Main content expands into the old image space */
+.quest-card.qt-card-epic .qt-card-content {
+  grid-area: content !important;
+  min-width: 0 !important;
+  padding: 24px 0 24px 0 !important;
+  align-content: center !important;
+  gap: 11px !important;
+}
+
+.quest-card.qt-card-epic .qt-card-actions {
+  grid-area: actions !important;
+  align-self: center !important;
+  display: grid !important;
+  gap: 9px !important;
+  margin: 0 18px 0 0 !important;
+}
+
+.quest-card.qt-card-epic .qt-more-actions {
+  grid-area: more !important;
+  margin: 0 18px 18px 0 !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(var(--quest-accent-rgb),0.16) !important;
+}
+
+/* Less “image”, more UI panel */
+.quest-card.qt-card-epic .qt-primary-btn {
+  clip-path: none !important;
+  border-radius: 10px !important;
+  min-height: 50px !important;
+}
+
+.quest-card.qt-card-epic .qt-more-btn {
+  border-radius: 10px !important;
+  min-height: 40px !important;
+}
+
+/* Stronger numbered-card feeling */
+.quest-card.qt-card-epic .qt-title {
+  font-size: clamp(25px, 2vw, 32px) !important;
+}
+
+.quest-card.qt-card-epic .qt-task-row {
+  max-width: 680px !important;
+}
+
+.quest-card.qt-card-epic .qt-progress-wrap {
+  max-width: 680px !important;
+}
+
+/* Failed cards stay clean with the no-image layout */
+.quest-card.qt-card-epic.failed {
+  min-height: 245px !important;
+}
+
+.quest-card.qt-card-epic.failed.actions-open {
+  min-height: 315px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-card-actions {
+  align-self: center !important;
+  margin-top: 0 !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-date-line {
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(198,96,96,0.24) !important;
+}
+
+/* Phone: number badge becomes a compact top-left rail */
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "crest content"
+      "crest actions"
+      "more more" !important;
+    min-height: 0 !important;
+    column-gap: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest {
+    padding-top: 20px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest::after {
+    top: 78px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 44px !important;
+    height: 54px !important;
+    font-size: 14px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-content {
+    padding: 18px 12px 12px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    grid-template-columns: 1fr 86px !important;
+    margin: 0 12px 16px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-more-actions {
+    margin: 0 12px 16px 80px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 58px minmax(0, 1fr) !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quest-card.qt-card-epic .qt-more-actions {
+    margin-left: 70px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-title {
+    font-size: 22px !important;
+  }
+}
+
+
+/* ===== NUMBER COLOR + RIGHT SYMBOL PANEL V18 ===== */
+/* Makes the quest numbers color-coded and brings back a compact right-side symbol panel. */
+
+.quest-card.qt-card-epic {
+  grid-template-columns: 92px minmax(0, 1fr) 178px !important;
+  grid-template-areas:
+    "crest content art"
+    "crest content actions"
+    "crest more more" !important;
+  min-height: 245px !important;
+  column-gap: 16px !important;
+}
+
+/* Color the quest numbers based on the card accent */
+.quest-card.qt-card-epic .qt-crest-symbol {
+  color: var(--quest-accent) !important;
+  border-color: rgba(var(--quest-accent-rgb),0.54) !important;
+  text-shadow: 0 0 14px rgba(var(--quest-accent-rgb),0.58) !important;
+  box-shadow:
+    0 0 18px rgba(var(--quest-accent-rgb),0.18),
+    inset 0 0 18px rgba(var(--quest-accent-rgb),0.08) !important;
+}
+
+.quest-card.qt-card-epic.main .qt-crest-symbol {
+  color: #f5dc82 !important;
+}
+
+.quest-card.qt-card-epic.side .qt-crest-symbol {
+  color: #cbb0ff !important;
+}
+
+.quest-card.qt-card-epic.complete .qt-crest-symbol {
+  color: #a9f0c1 !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-crest-symbol {
+  color: #ffb0b0 !important;
+}
+
+/* Bring back a small right-side symbol panel, not a full image */
+.quest-card.qt-card-epic .qt-card-art {
+  grid-area: art !important;
+  display: grid !important;
+  place-items: center !important;
+  min-height: 92px !important;
+  margin: 22px 18px 8px 0 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.20) !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.05), transparent 28%),
+    radial-gradient(circle at 70% 38%, rgba(var(--quest-accent-rgb),0.26), transparent 24%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.10), transparent 62%),
+    rgba(0,0,0,0.34) !important;
+  opacity: 1 !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art::before {
+  content: "MISSION SYMBOL";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  color: rgba(216,208,189,0.34);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.9px;
+}
+
+.quest-card.qt-card-epic .qt-art-orb {
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.44) !important;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255,255,255,0.14), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(var(--quest-accent-rgb),0.18), transparent 52%),
+    rgba(0,0,0,0.30) !important;
+  box-shadow:
+    0 0 18px rgba(var(--quest-accent-rgb),0.16),
+    inset 0 0 12px rgba(var(--quest-accent-rgb),0.08) !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb::before {
+  content: "✦";
+  color: var(--quest-accent) !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 14px rgba(var(--quest-accent-rgb),0.45) !important;
+}
+
+.quest-card.qt-card-epic.main .qt-art-orb::before {
+  content: "⚔";
+}
+
+.quest-card.qt-card-epic.side .qt-art-orb::before {
+  content: "◆";
+}
+
+.quest-card.qt-card-epic.complete .qt-art-orb::before {
+  content: "✓";
+}
+
+.quest-card.qt-card-epic.failed .qt-art-orb::before {
+  content: "!";
+}
+
+.quest-card.qt-card-epic .qt-art-orb::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--quest-accent-rgb),0.14);
+}
+
+/* Keep the buttons below the symbol panel */
+.quest-card.qt-card-epic .qt-card-actions {
+  grid-area: actions !important;
+  align-self: start !important;
+  margin: 0 18px 0 0 !important;
+  gap: 8px !important;
+}
+
+/* Keep content wide */
+.quest-card.qt-card-epic .qt-card-content {
+  padding: 24px 0 18px 0 !important;
+}
+
+.quest-card.qt-card-epic .qt-more-actions {
+  margin: 0 18px 18px 0 !important;
+}
+
+/* Mobile / tablet */
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 68px minmax(0, 1fr) 96px !important;
+    grid-template-areas:
+      "crest content art"
+      "crest content actions"
+      "more more more" !important;
+    min-height: 0 !important;
+    column-gap: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 74px !important;
+    margin: 18px 12px 6px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art::before {
+    font-size: 7px !important;
+    left: 8px !important;
+    top: 6px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 18px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    margin: 0 12px 12px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-more-actions {
+    margin: 0 12px 14px 12px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 58px minmax(0, 1fr) 84px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 64px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 15px !important;
+  }
+}
+
+
+/* ===== NUMBER COLOR + SYMBOL LABEL CLEANUP V19 ===== */
+/* Removes the "MISSION SYMBOL" text and gives quest numbers stronger type-based colors. */
+
+.quest-card.qt-card-epic .qt-card-art::before {
+  content: "" !important;
+  display: none !important;
+}
+
+/* Number badge base: less gold by default, more readable */
+.quest-card.qt-card-epic .qt-crest-symbol {
+  color: #f6f0df !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(var(--quest-accent-rgb),0.22), transparent 46%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.10), rgba(0,0,0,0.62)) !important;
+  border-color: rgba(var(--quest-accent-rgb),0.52) !important;
+  text-shadow:
+    0 0 8px rgba(var(--quest-accent-rgb),0.70),
+    0 0 18px rgba(var(--quest-accent-rgb),0.30) !important;
+}
+
+/* Main quests: amber-white number, not full yellow */
+.quest-card.qt-card-epic.main .qt-crest-symbol {
+  color: #fff2c2 !important;
+  border-color: rgba(224,200,120,0.46) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(224,200,120,0.23), transparent 46%),
+    linear-gradient(180deg, rgba(224,200,120,0.10), rgba(0,0,0,0.64)) !important;
+}
+
+/* Side quests: clearly purple */
+.quest-card.qt-card-epic.side .qt-crest-symbol {
+  color: #c59bff !important;
+  border-color: rgba(143,101,255,0.58) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(143,101,255,0.30), transparent 48%),
+    linear-gradient(180deg, rgba(143,101,255,0.15), rgba(0,0,0,0.66)) !important;
+  text-shadow:
+    0 0 9px rgba(143,101,255,0.82),
+    0 0 22px rgba(143,101,255,0.38) !important;
+}
+
+/* Completed quests: clearly green */
+.quest-card.qt-card-epic.complete .qt-crest-symbol {
+  color: #8fffc0 !important;
+  border-color: rgba(69,211,138,0.58) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(69,211,138,0.28), transparent 48%),
+    linear-gradient(180deg, rgba(69,211,138,0.14), rgba(0,0,0,0.66)) !important;
+  text-shadow:
+    0 0 9px rgba(69,211,138,0.78),
+    0 0 22px rgba(69,211,138,0.34) !important;
+}
+
+/* Failed quests: clearly red */
+.quest-card.qt-card-epic.failed .qt-crest-symbol {
+  color: #ff9c9c !important;
+  border-color: rgba(198,96,96,0.62) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(198,96,96,0.30), transparent 48%),
+    linear-gradient(180deg, rgba(198,96,96,0.15), rgba(0,0,0,0.66)) !important;
+  text-shadow:
+    0 0 9px rgba(198,96,96,0.82),
+    0 0 22px rgba(198,96,96,0.36) !important;
+}
+
+/* Make the tiny QUEST label softer so the number owns the badge */
+.quest-card.qt-card-epic .qt-crest-symbol::before {
+  color: rgba(216,208,189,0.28) !important;
+}
+
+
+/* ===== RIGHT PANEL SIZE BOOST V20 ===== */
+/* Makes the right symbol panel larger so it fills more space. Also keeps the label hidden. */
+
+.quest-card.qt-card-epic {
+  grid-template-columns: 92px minmax(0, 1fr) 220px !important;
+  min-height: 255px !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art {
+  min-height: 118px !important;
+  height: 118px !important;
+  margin: 18px 18px 10px 0 !important;
+  border-radius: 12px !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art::before {
+  content: "" !important;
+  display: none !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb {
+  width: 72px !important;
+  height: 72px !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb::before {
+  font-size: 28px !important;
+}
+
+.quest-card.qt-card-epic .qt-card-actions {
+  margin: 0 18px 0 0 !important;
+}
+
+.quest-card.qt-card-epic .qt-primary-btn {
+  min-height: 52px !important;
+}
+
+.quest-card.qt-card-epic .qt-more-btn {
+  min-height: 42px !important;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 68px minmax(0, 1fr) 118px !important;
+    min-height: 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 92px !important;
+    height: 92px !important;
+    margin: 16px 12px 8px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 22px !important;
+  }
+}
+
+/* Phone */
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 58px minmax(0, 1fr) 100px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 82px !important;
+    height: 82px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 18px !important;
+  }
+}
+
+
+/* ===== ASSASSIN-STYLE HEADER RECREATE V21 ===== */
+/* Recreates the uploaded header concept using CSS only: black tactical panel, red accents, left insignia area, and right player file card. */
+
+header {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 410px !important;
+  gap: 24px !important;
+  align-items: center !important;
+  min-height: 245px !important;
+  padding: 28px 26px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(220,220,220,0.13) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(10,10,10,0.90) 48%, rgba(0,0,0,0.92) 100%),
+    radial-gradient(circle at 12% 48%, rgba(255,255,255,0.055), transparent 24%),
+    radial-gradient(circle at 88% 38%, rgba(214,37,37,0.10), transparent 22%),
+    #050505 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.035),
+    inset 0 -32px 65px rgba(0,0,0,0.65),
+    0 20px 50px rgba(0,0,0,0.55) !important;
+}
+
+header::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(90deg, transparent 0 6%, rgba(255,255,255,0.10) 6.1%, transparent 6.2%),
+    linear-gradient(90deg, transparent 0 38%, rgba(255,255,255,0.06) 38.1%, transparent 38.2%),
+    linear-gradient(135deg, transparent 0 66%, rgba(255,255,255,0.045) 66.2%, transparent 66.8%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 42px) !important;
+  opacity: 0.48 !important;
+}
+
+header::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 44px !important;
+  right: 50% !important;
+  bottom: 43px !important;
+  height: 2px !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(90deg, transparent, rgba(190,190,190,0.32) 14%, rgba(215,34,34,0.95) 42%, transparent 100%) !important;
+  box-shadow: 0 0 10px rgba(215,34,34,0.34) !important;
+}
+
+/* Left title block */
+header .brand,
+header > div:first-child {
+  position: relative !important;
+  z-index: 2 !important;
+  padding-left: 220px !important;
+  min-height: 168px !important;
+  display: grid !important;
+  align-content: center !important;
+}
+
+header .brand::before,
+header > div:first-child::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 34px !important;
+  top: 50% !important;
+  width: 132px !important;
+  height: 132px !important;
+  transform: translateY(-50%) !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(135deg, transparent 0 38%, rgba(230,230,230,0.90) 39% 44%, transparent 45%),
+    linear-gradient(45deg, transparent 0 38%, rgba(230,230,230,0.76) 39% 44%, transparent 45%),
+    radial-gradient(circle at 50% 48%, rgba(215,34,34,0.95) 0 3px, transparent 4px),
+    conic-gradient(from 45deg, transparent 0 18%, rgba(255,255,255,0.58) 18% 21%, transparent 21% 50%, rgba(255,255,255,0.36) 50% 53%, transparent 53% 100%) !important;
+  clip-path: polygon(50% 0%, 74% 38%, 100% 44%, 64% 56%, 50% 100%, 36% 56%, 0% 44%, 26% 38%) !important;
+  filter:
+    drop-shadow(0 0 14px rgba(255,255,255,0.14))
+    drop-shadow(0 0 22px rgba(215,34,34,0.10)) !important;
+  opacity: 0.88 !important;
+}
+
+header .brand::after,
+header > div:first-child::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 46px !important;
+  top: 18px !important;
+  width: 166px !important;
+  height: 166px !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  background:
+    linear-gradient(90deg, rgba(215,34,34,0.88), transparent 65%) left bottom / 140px 2px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,0.14), transparent 70%) center / 1px 100% no-repeat,
+    linear-gradient(90deg, rgba(255,255,255,0.08), transparent 78%) center / 100% 1px no-repeat !important;
+  opacity: 0.70 !important;
+}
+
+header h1 {
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(42px, 5vw, 76px) !important;
+  font-weight: 500 !important;
+  letter-spacing: 11px !important;
+  color: #e9e9e9 !important;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.12),
+    0 3px 0 rgba(0,0,0,0.60) !important;
+}
+
+header .subtitle,
+header p,
+header .brand small {
+  position: relative !important;
+  z-index: 2 !important;
+  margin-top: 16px !important;
+  color: rgba(230,230,230,0.72) !important;
+  font-size: 17px !important;
+  letter-spacing: 8px !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 0 8px rgba(0,0,0,0.75) !important;
+}
+
+/* Right player file panel */
+header .player-card {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: 185px !important;
+  width: 100% !important;
+  padding: 28px 30px 24px 32px !important;
+  border: 1px solid rgba(210,210,210,0.20) !important;
+  border-right: 3px solid rgba(195,37,37,0.78) !important;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 96% 0, 100% 9%, 100% 91%, 96% 100%, 0 100%, 5% 90%, 5% 10%) !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.76), rgba(0,0,0,0.36)),
+    radial-gradient(circle at 80% 25%, rgba(255,255,255,0.055), transparent 22%),
+    linear-gradient(180deg, rgba(255,255,255,0.045), transparent 45%),
+    #080808 !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.035),
+    0 15px 32px rgba(0,0,0,0.50) !important;
+}
+
+header .player-card::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 54px !important;
+  height: 42px !important;
+  background: linear-gradient(135deg, #d63b3b 0 42%, transparent 43%) !important;
+  opacity: 0.95 !important;
+}
+
+header .player-card::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 30px !important;
+  top: 26px !important;
+  width: 98px !important;
+  height: 128px !important;
+  pointer-events: none !important;
+  opacity: 0.34 !important;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255,255,255,0.08), transparent 26%),
+    linear-gradient(160deg, transparent 0 32%, rgba(255,255,255,0.12) 33% 48%, transparent 49%),
+    radial-gradient(ellipse at 55% 38%, rgba(0,0,0,0.75), transparent 62%) !important;
+  clip-path: polygon(54% 0, 88% 14%, 84% 100%, 32% 100%, 22% 36%) !important;
+}
+
+header .player-card .label,
+header .player-card .mini,
+header .player-card .player-label {
+  color: rgba(230,230,230,0.55) !important;
+  letter-spacing: 2.8px !important;
+}
+
+header .player-card .player-name,
+header .player-card h2,
+header .player-card strong {
+  color: #f1f1f1 !important;
+  text-shadow: none !important;
+}
+
+header .player-card .status,
+header .player-card .active,
+header .player-card [class*="active"] {
+  color: #df4b4b !important;
+}
+
+header .player-card .rank,
+header .player-card [class*="rank"] {
+  color: #d9d9d9 !important;
+}
+
+header .player-card .xp-bar,
+header .player-card .level-bar,
+header .player-card .bar {
+  border-color: rgba(220,220,220,0.18) !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+
+header .player-card .xp-fill,
+header .player-card .level-fill,
+header .player-card .fill {
+  background: linear-gradient(90deg, #d63b3b, #7e1717) !important;
+  box-shadow: 0 0 12px rgba(214,59,59,0.42) !important;
+}
+
+/* If the actual progress bar uses global class names */
+header .progress-bar {
+  border-color: rgba(220,220,220,0.18) !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+
+header .progress-fill {
+  background: linear-gradient(90deg, #d63b3b, #7e1717) !important;
+  box-shadow: 0 0 12px rgba(214,59,59,0.42) !important;
+}
+
+/* Mobile: stack cleanly instead of crushing */
+@media (max-width: 900px) {
+  header {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 22px 18px !important;
+    gap: 18px !important;
+  }
+
+  header .brand,
+  header > div:first-child {
+    padding-left: 0 !important;
+    min-height: 120px !important;
+    text-align: left !important;
+  }
+
+  header .brand::before,
+  header > div:first-child::before {
+    left: auto !important;
+    right: 12px !important;
+    width: 86px !important;
+    height: 86px !important;
+    opacity: 0.40 !important;
+  }
+
+  header .brand::after,
+  header > div:first-child::after {
+    display: none !important;
+  }
+
+  header h1 {
+    font-size: clamp(34px, 10vw, 54px) !important;
+    letter-spacing: 5px !important;
+  }
+
+  header .subtitle,
+  header p,
+  header .brand small {
+    font-size: 12px !important;
+    letter-spacing: 4px !important;
+  }
+
+  header .player-card {
+    clip-path: none !important;
+    border-radius: 10px !important;
+    min-height: 0 !important;
+  }
+}
+
+
+/* ===== ASSASSIN HEADER TITLE SIZE FIX V22 ===== */
+/* Makes the Quest Terminal title smaller and more balanced inside the header. */
+
+header {
+  min-height: 205px !important;
+  padding: 22px 24px !important;
+}
+
+header .brand,
+header > div:first-child {
+  min-height: 135px !important;
+  padding-left: 170px !important;
+  align-content: center !important;
+}
+
+header h1 {
+  font-size: clamp(34px, 3.6vw, 52px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 8px !important;
+  max-width: 620px !important;
+}
+
+header .subtitle,
+header p,
+header .brand small {
+  margin-top: 12px !important;
+  font-size: 13px !important;
+  letter-spacing: 6px !important;
+  line-height: 1.35 !important;
+  max-width: 620px !important;
+}
+
+header .brand::before,
+header > div:first-child::before {
+  left: 28px !important;
+  width: 104px !important;
+  height: 104px !important;
+}
+
+header .brand::after,
+header > div:first-child::after {
+  left: 34px !important;
+  top: 14px !important;
+  width: 132px !important;
+  height: 132px !important;
+}
+
+header .player-card {
+  min-height: 155px !important;
+  padding: 22px 26px 20px 30px !important;
+}
+
+header::after {
+  bottom: 34px !important;
+}
+
+/* Mobile header title size */
+@media (max-width: 900px) {
+  header {
+    min-height: 0 !important;
+    padding: 18px 16px !important;
+  }
+
+  header .brand,
+  header > div:first-child {
+    min-height: 100px !important;
+    padding-left: 0 !important;
+  }
+
+  header h1 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+    letter-spacing: 4px !important;
+    line-height: 1.05 !important;
+  }
+
+  header .subtitle,
+  header p,
+  header .brand small {
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+  }
+}
+
+
+/* ===== ASSASSIN HEADER FORMAT FIX V23 ===== */
+/* Formats the title block so it looks cleaner: better spacing, less cramped, centered vertically, and no awkward collision with the subtitle. */
+
+header {
+  grid-template-columns: minmax(0, 1fr) 370px !important;
+  min-height: 190px !important;
+  padding: 20px 24px !important;
+  gap: 22px !important;
+}
+
+header .brand,
+header > div:first-child {
+  min-height: 130px !important;
+  padding-left: 155px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+
+header h1 {
+  display: block !important;
+  max-width: 560px !important;
+  margin: 0 !important;
+  font-size: clamp(32px, 3.15vw, 46px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 7px !important;
+  word-spacing: 10px !important;
+  white-space: normal !important;
+  color: #f2f2f2 !important;
+}
+
+header .subtitle,
+header p,
+header .brand small {
+  display: block !important;
+  max-width: 720px !important;
+  margin-top: 14px !important;
+  padding-top: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  letter-spacing: 5px !important;
+  word-spacing: 4px !important;
+  white-space: normal !important;
+  color: rgba(238,238,238,0.78) !important;
+}
+
+header .brand::before,
+header > div:first-child::before {
+  left: 30px !important;
+  width: 88px !important;
+  height: 88px !important;
+  opacity: 0.88 !important;
+}
+
+header .brand::after,
+header > div:first-child::after {
+  left: 22px !important;
+  top: 12px !important;
+  width: 132px !important;
+  height: 132px !important;
+  opacity: 0.55 !important;
+}
+
+header::after {
+  left: 42px !important;
+  right: 47% !important;
+  bottom: 26px !important;
+}
+
+/* Make the player card match the shorter formatted header */
+header .player-card {
+  min-height: 142px !important;
+  padding: 20px 24px 18px 28px !important;
+}
+
+/* Desktop narrow: keep title from becoming giant or wrapping badly */
+@media (max-width: 1100px) {
+  header {
+    grid-template-columns: 1fr 330px !important;
+  }
+
+  header .brand,
+  header > div:first-child {
+    padding-left: 130px !important;
+  }
+
+  header h1 {
+    font-size: clamp(30px, 3vw, 40px) !important;
+    letter-spacing: 6px !important;
+    word-spacing: 8px !important;
+  }
+
+  header .subtitle,
+  header p,
+  header .brand small {
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+  }
+
+  header .brand::before,
+  header > div:first-child::before {
+    left: 24px !important;
+    width: 76px !important;
+    height: 76px !important;
+  }
+}
+
+/* Phone: stack title naturally */
+@media (max-width: 900px) {
+  header {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 18px 16px !important;
+  }
+
+  header .brand,
+  header > div:first-child {
+    min-height: 108px !important;
+    padding-left: 0 !important;
+    padding-right: 88px !important;
+  }
+
+  header h1 {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: 4px !important;
+    word-spacing: 5px !important;
+  }
+
+  header .subtitle,
+  header p,
+  header .brand small {
+    margin-top: 10px !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 2.8px !important;
+    word-spacing: 3px !important;
+  }
+
+  header .brand::before,
+  header > div:first-child::before {
+    left: auto !important;
+    right: 12px !important;
+    width: 72px !important;
+    height: 72px !important;
+    opacity: 0.40 !important;
+  }
+
+  header::after {
+    right: 25% !important;
+    bottom: 20px !important;
+  }
+}
+
+
+/* ===== BIGGER RIGHT PANEL + UNIQUE QUEST SYMBOLS V24 ===== */
+/* Makes the right side take more space, enlarges the quest number, and gives cards different symbol styles so they do not feel duplicated. */
+
+/* Give the right-side action/symbol column more presence */
+.quest-card.qt-card-epic {
+  grid-template-columns: 112px minmax(0, 1fr) 270px !important;
+  grid-template-areas:
+    "crest content art"
+    "crest content actions"
+    "crest more more" !important;
+  min-height: 265px !important;
+  column-gap: 18px !important;
+}
+
+/* Bigger numbered rail */
+.quest-card.qt-card-epic .qt-card-crest {
+  padding-top: 24px !important;
+}
+
+.quest-card.qt-card-epic .qt-crest-symbol {
+  width: 68px !important;
+  height: 82px !important;
+  font-size: 23px !important;
+  letter-spacing: 1px !important;
+}
+
+.quest-card.qt-card-epic .qt-crest-symbol::before {
+  top: -16px !important;
+  font-size: 8px !important;
+  letter-spacing: 1px !important;
+}
+
+/* Bigger right-side panel */
+.quest-card.qt-card-epic .qt-card-art {
+  min-height: 138px !important;
+  height: 138px !important;
+  margin: 20px 18px 10px 0 !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.06), transparent 28%),
+    radial-gradient(circle at 70% 38%, rgba(var(--quest-accent-rgb),0.30), transparent 25%),
+    radial-gradient(circle at 44% 64%, rgba(var(--quest-accent-rgb),0.12), transparent 34%),
+    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.12), transparent 62%),
+    rgba(0,0,0,0.38) !important;
+}
+
+.quest-card.qt-card-epic .qt-card-art::before {
+  content: "" !important;
+  display: none !important;
+}
+
+.quest-card.qt-card-epic .qt-art-orb {
+  width: 84px !important;
+  height: 84px !important;
+  border-radius: 22px !important;
+  clip-path: polygon(50% 0%, 92% 24%, 92% 76%, 50% 100%, 8% 76%, 8% 24%) !important;
+}
+
+/* New unique symbol language: not the same crossed-sword symbol every time */
+.quest-card.qt-card-epic .qt-art-orb::before {
+  content: "✦" !important;
+  font-family: "Segoe UI Symbol", "Segoe UI", Arial, sans-serif !important;
+  font-size: 35px !important;
+  line-height: 1 !important;
+}
+
+/* Main quests cycle through different mission marks */
+.quest-card.qt-card-epic.main:nth-child(3n+1) .qt-art-orb::before {
+  content: "⚔" !important;
+}
+
+.quest-card.qt-card-epic.main:nth-child(3n+2) .qt-art-orb::before {
+  content: "⬡" !important;
+}
+
+.quest-card.qt-card-epic.main:nth-child(3n+3) .qt-art-orb::before {
+  content: "✦" !important;
+}
+
+/* Side quests use purple side-mission symbols */
+.quest-card.qt-card-epic.side:nth-child(3n+1) .qt-art-orb::before {
+  content: "◆" !important;
+}
+
+.quest-card.qt-card-epic.side:nth-child(3n+2) .qt-art-orb::before {
+  content: "◇" !important;
+}
+
+.quest-card.qt-card-epic.side:nth-child(3n+3) .qt-art-orb::before {
+  content: "✧" !important;
+}
+
+/* Completed / failed still stay obvious */
+.quest-card.qt-card-epic.complete .qt-art-orb::before {
+  content: "✓" !important;
+  font-size: 38px !important;
+}
+
+.quest-card.qt-card-epic.failed .qt-art-orb::before {
+  content: "!" !important;
+  font-size: 40px !important;
+}
+
+/* Add subtle unique corner bars so the right panel does not feel like a duplicate image */
+.quest-card.qt-card-epic .qt-card-art::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 12px !important;
+  bottom: 10px !important;
+  width: 58px !important;
+  height: 8px !important;
+  background:
+    linear-gradient(90deg,
+      rgba(var(--quest-accent-rgb),0.95) 0 18%,
+      transparent 18% 26%,
+      rgba(var(--quest-accent-rgb),0.70) 26% 44%,
+      transparent 44% 52%,
+      rgba(var(--quest-accent-rgb),0.45) 52% 70%,
+      transparent 70% 100%) !important;
+  opacity: 0.80 !important;
+}
+
+/* Make buttons match the larger right column */
+.quest-card.qt-card-epic .qt-card-actions {
+  margin: 0 18px 0 0 !important;
+  gap: 10px !important;
+}
+
+.quest-card.qt-card-epic .qt-primary-btn {
+  min-height: 56px !important;
+  font-size: 13px !important;
+}
+
+.quest-card.qt-card-epic .qt-more-btn {
+  min-height: 44px !important;
+}
+
+/* Content gets slightly less stretched because right panel is bigger */
+.quest-card.qt-card-epic .qt-card-content {
+  padding: 24px 0 20px 0 !important;
+}
+
+/* Tablet layout: still bigger, but not cramped */
+@media (max-width: 1200px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 78px minmax(0, 1fr) 140px !important;
+    column-gap: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 52px !important;
+    height: 64px !important;
+    font-size: 17px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 104px !important;
+    height: 104px !important;
+    margin: 16px 12px 8px 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 58px !important;
+    height: 58px !important;
+    border-radius: 16px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 25px !important;
+  }
+
+  .quest-card.qt-card-epic.complete .qt-art-orb::before,
+  .quest-card.qt-card-epic.failed .qt-art-orb::before {
+    font-size: 28px !important;
+  }
+}
+
+/* Phone: keep right symbol but make it fit */
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 62px minmax(0, 1fr) 104px !important;
+    column-gap: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 44px !important;
+    height: 54px !important;
+    font-size: 15px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    min-height: 82px !important;
+    height: 82px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 19px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -2740,6 +5671,7 @@
             <label for="questRewardType">Quest reward category</label>
             <div class="reward-picker-grid">
               <select id="questRewardType">
+                <option value="none">❌ None</option>
                 <option value="gaming">🎮 Gaming</option>
                 <option value="movie">🎬 Movie</option>
                 <option value="phone">📱 Phone</option>
@@ -2785,6 +5717,7 @@
             <div id="questStatusText" class="status-message"></div>
           </div>
 
+          <div class="quest-sections-stack">
           <div class="panel quest-section-panel" data-section="main">
             <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">▼ Main Quests</button>
             <div id="mainQuestList" class="quest-list collapsible-content"></div>
@@ -2803,6 +5736,7 @@
               <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
+          </div>
           </div>
         </div>
       </section>
@@ -3226,6 +6160,7 @@
     }
 
     var REWARD_CATEGORIES = {
+      none: { type: 'none', emoji: '❌', label: 'None' },
       gaming: { type: 'gaming', emoji: '🎮', label: 'Gaming' },
       movie: { type: 'movie', emoji: '🎬', label: 'Movie' },
       phone: { type: 'phone', emoji: '📱', label: 'Phone' },
@@ -3248,6 +6183,14 @@
       var type = byId('questRewardType').value || 'gaming';
       var base = REWARD_CATEGORIES[type] || REWARD_CATEGORIES.gaming;
       var defaultLabel = type === 'custom' ? 'Custom Reward' : base.label;
+
+      if (type === 'none') {
+        return normalizeReward({
+          type: 'none',
+          emoji: '❌',
+          label: 'None'
+        });
+      }
 
       return normalizeReward({
         type: type,
@@ -3275,6 +6218,15 @@
       var emojiInput = byId('questRewardCustomEmoji');
       var labelInput = byId('questRewardCustomLabel');
 
+      if (type === 'none') {
+        emojiInput.value = '❌';
+        labelInput.value = 'None';
+        emojiInput.placeholder = '❌';
+        labelInput.placeholder = 'None';
+        byId('questRewardEmoji').value = '❌';
+        return;
+      }
+
       if (resetFields || !emojiInput.value.trim()) emojiInput.value = base.emoji;
       if (resetFields || !labelInput.value.trim()) labelInput.value = defaultLabel;
 
@@ -3290,10 +6242,15 @@
 
     function awardQuestRewardOnce(quest) {
       if (!quest || quest.status !== 'complete') return;
+
+      var reward = normalizeReward(quest.reward);
+      if (reward.type === 'none') return;
+
       var rewards = getQuestRewardData();
       if (rewards.awardedQuestRewardIds.indexOf(quest.id) !== -1) return;
-      var reward = normalizeReward(quest.reward);
+
       rewards.awardedQuestRewardIds.push(quest.id);
+
       if (reward.type === 'custom') {
         rewards.questVault.custom.push({
           id: makeId(),
@@ -3305,6 +6262,7 @@
       } else {
         rewards.questVault[reward.type] = (rewards.questVault[reward.type] || 0) + 1;
       }
+
       rewards.lastQuestRewardEarnedAt = nowIso();
       setQuestRewardData(rewards);
       byId('questStatusText').textContent = 'QUEST REWARD UNLOCKED: ' + reward.emoji + ' ' + reward.label + ' added to Reward Vault.';
@@ -4025,45 +6983,53 @@ function useMealPass() {
       beep('click');
     }
 
-    function createQuestCard(quest) {
+    function createQuestCard(quest, index) {
       var card = document.createElement('article');
       var cardType = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
-      card.className = 'quest-card ' + cardType;
+      card.className = 'quest-card qt-card-epic ' + cardType;
       card.setAttribute('data-quest-id', quest.id);
+      card.setAttribute('data-quest-number', String(typeof index === 'number' ? index + 1 : 1));
 
       var tasks = quest.microTasks || [];
       var doneCount = tasks.filter(function(task) { return task.done; }).length;
-      var percent = tasks.length > 0 ? Math.round((doneCount / tasks.length) * 100) : 0;
+      var totalCount = tasks.length;
+      var percent = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
 
       var priority = quest.priority || 'normal';
       var priorityLabel = priority === 'critical' ? 'Critical' : priority === 'low' ? 'Low' : 'Normal';
-      var typeLabel = quest.type === 'main' ? 'Main Quest' : 'Side Quest';
+      var typeLabel = quest.type === 'main' ? 'Main' : 'Side';
       var statusText = statusLabel(quest.status);
-      var xpLabel = '+' + getQuestXp(quest) + ' XP';
+      var xpValue = getQuestXp(quest);
       var reward = normalizeReward(quest.reward);
-      var rewardHtml = '<div class="quest-reward-strip"><span class="reward-badge"><span class="reward-emoji">' + escapeHtml(reward.emoji) + '</span>' + escapeHtml(reward.label) + '</span></div>';
 
-      var durationMatch = (quest.title || '').match(/\(([^)]*(?:min|mins|hour|hours)[^)]*)\)/i);
-      var durationHtml = durationMatch ? '<span class="quest-chip">' + escapeHtml(durationMatch[1]) + '</span>' : '';
+      var title = quest.title || 'Untitled Quest';
+      var desc = quest.desc || 'No mission briefing added yet.';
+      var cardTitle = escapeHtml(title);
+      var cardDesc = escapeHtml(desc);
 
-      var stateChipClass = quest.status === 'complete' ? 'quest-chip-complete' : quest.status === 'failed' ? 'quest-chip-failed' : quest.type === 'main' ? 'quest-chip-main' : 'quest-chip-side';
+      var categoryLabel = quest.status === 'complete' ? 'Cleared' :
+        quest.status === 'failed' ? 'Failed' :
+        quest.type === 'main' ? 'Main' : 'Side';
 
-      var dateHtml = '';
-      if (quest.completedAt) {
-        dateHtml += '<div class="date-complete">Cleared: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
+      var questNumber = typeof index === 'number' ? index + 1 : 1;
+      var rank = String(questNumber).padStart(2, '0');
+
+      var taskNodeHtml = '';
+      var nodeTotal = Math.max(totalCount, 3);
+      for (var nodeIndex = 0; nodeIndex < nodeTotal; nodeIndex += 1) {
+        taskNodeHtml += '<span class="qt-task-node ' + (nodeIndex < doneCount ? 'done' : '') + '"></span>';
       }
-      if (quest.failedAt) {
-        dateHtml += '<div class="date-failed">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
-      }
+
+      var rewardHtml =
+        '<div class="qt-reward-row">' +
+          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
+          '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
+        '</div>';
 
       var microHtml = '';
       if (tasks.length > 0) {
-        microHtml += '<div class="progress-wrap">';
-        microHtml += '<div class="progress-label"><span>Micro progress</span><span>' + doneCount + ' / ' + tasks.length + '</span></div>';
-        microHtml += '<div class="progress-bar"><div class="progress-fill" style="width:' + percent + '%"></div></div>';
-        microHtml += '</div>';
-        microHtml += '<button class="steps-toggle" data-action="toggleSteps">Show Steps</button>';
-        microHtml += '<div class="micro-list hidden">';
+        microHtml += '<button class="steps-toggle qt-steps-button" data-action="toggleSteps">View Tasks</button>';
+        microHtml += '<div class="micro-list hidden qt-micro-list">';
         tasks.forEach(function(task) {
           microHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
           microHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
@@ -4074,55 +7040,80 @@ function useMealPass() {
       }
 
       var primaryAction = 'complete';
-      var primaryLabel = 'Complete Quest';
+      var primaryLabel = 'Complete';
       var primaryClass = 'action-done';
 
       if (quest.status === 'new') {
         primaryAction = 'progress';
-        primaryLabel = 'Start Quest';
+        primaryLabel = 'Start';
         primaryClass = 'action-progress';
       } else if (quest.status === 'progress') {
         primaryAction = 'complete';
-        primaryLabel = 'Complete Quest';
+        primaryLabel = 'Continue';
         primaryClass = 'action-done';
       } else if (quest.status === 'complete') {
         primaryAction = 'complete';
-        primaryLabel = 'Undo Complete';
+        primaryLabel = 'Undo';
         primaryClass = 'action-done';
       } else if (quest.status === 'failed') {
         primaryAction = 'progress';
-        primaryLabel = 'Reopen Quest';
+        primaryLabel = 'Reopen';
         primaryClass = 'action-progress';
       }
 
+      var dateHtml = '';
+      if (quest.completedAt) {
+        dateHtml += '<div class="date-complete qt-date-line">Cleared: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
+      }
+      if (quest.failedAt) {
+        dateHtml += '<div class="date-failed qt-date-line">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
+      }
+
       card.innerHTML =
-        '<div class="quest-card-header">' +
-          '<div class="quest-header-top">' +
-            '<div class="quest-kicker-row">' +
-              '<span class="quest-chip ' + stateChipClass + '">' + escapeHtml(typeLabel) + '</span>' +
-              '<span class="quest-chip priority-' + escapeHtml(priority) + '">' + escapeHtml(priorityLabel) + '</span>' +
-              durationHtml +
-            '</div>' +
-            '<span class="quest-chip quest-chip-xp quest-xp-top">' + escapeHtml(xpLabel) + '</span>' +
-          '</div>' +
-          '<div class="quest-main-block">' +
-            '<div class="quest-title">' + escapeHtml(quest.title) + '</div>' +
-            '<div class="quest-status-line">Status: ' + escapeHtml(statusText) + '</div>' +
-            rewardHtml +
-            dateHtml +
-          '</div>' +
+        '<div class="qt-card-crest">' +
+          '<div class="qt-crest-symbol">' + escapeHtml(rank) + '</div>' +
         '</div>' +
-        (quest.desc ? '<div class="quest-desc">' + escapeHtml(quest.desc) + '</div>' : '') +
-        microHtml +
-        '<div class="quest-primary-row">' +
-          '<button class="' + primaryClass + ' quest-primary-btn" data-action="' + primaryAction + '">' + primaryLabel + '</button>' +
-          '<button class="action-more quest-more-btn" data-action="more">More</button>' +
+
+        '<div class="qt-card-art" aria-hidden="true">' +
+          '<div class="qt-art-orb"></div>' +
+          '<div class="qt-art-lines"></div>' +
         '</div>' +
-        '<div class="quest-more-actions">' +
-          '<div class="quest-secondary-grid">' +
-            '<button class="action-new" data-action="new">Mark New</button>' +
-            '<button class="action-progress" data-action="progress">Mark Progress</button>' +
-            '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail Quest") + '</button>' +
+
+        '<div class="qt-card-content">' +
+          '<div class="qt-card-topline">' +
+            '<span class="qt-type-pill">' + escapeHtml(categoryLabel) + '</span>' +
+            '<span class="qt-priority-pill priority-' + escapeHtml(priority) + '">' + escapeHtml(priorityLabel) + '</span>' +
+          '</div>' +
+
+          '<div class="quest-title qt-title">' + cardTitle + '</div>' +
+          '<div class="quest-desc qt-desc">' + cardDesc + '</div>' +
+
+          rewardHtml +
+
+          '<div class="qt-task-row">' +
+            '<span class="qt-task-label">Tasks</span>' +
+            '<span class="qt-task-count">(' + doneCount + '/' + totalCount + ')</span>' +
+            '<div class="qt-task-nodes">' + taskNodeHtml + '</div>' +
+          '</div>' +
+
+          '<div class="progress-wrap qt-progress-wrap">' +
+            '<div class="progress-bar qt-progress-bar"><div class="progress-fill qt-progress-fill" style="width:' + percent + '%"></div></div>' +
+          '</div>' +
+
+          dateHtml +
+          microHtml +
+        '</div>' +
+
+        '<div class="qt-card-actions">' +
+          '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '">' + primaryLabel + ' <span>›</span></button>' +
+          '<button class="action-more quest-more-btn qt-more-btn" data-action="more">More</button>' +
+        '</div>' +
+
+        '<div class="quest-more-actions qt-more-actions">' +
+          '<div class="quest-secondary-grid qt-secondary-grid">' +
+            '<button class="action-new" data-action="new">New</button>' +
+            '<button class="action-progress" data-action="progress">Progress</button>' +
+            '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
             '<button class="action-info" data-action="info">Details</button>' +
             '<button class="action-edit" data-action="edit">Edit</button>' +
             '<button class="action-delete" data-action="delete">Delete</button>' +
@@ -4141,8 +7132,8 @@ function useMealPass() {
         return;
       }
 
-      quests.forEach(function(quest) {
-        container.appendChild(createQuestCard(quest));
+      quests.forEach(function(quest, index) {
+        container.appendChild(createQuestCard(quest, index));
       });
     }
 
