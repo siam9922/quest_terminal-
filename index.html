@@ -6030,6 +6030,52 @@ header .player-card {
   }
 }
 
+
+/* ===== PHONE NUMBER RAIL LINE CLEANUP V28 ===== */
+/* Removes the annoying tall rectangle/bracket line around the quest number rail on phone. */
+
+@media (max-width: 900px) {
+  .quest-card.qt-card-epic .qt-card-crest {
+    background:
+      radial-gradient(circle at 50% 42px, rgba(var(--quest-accent-rgb),0.18), transparent 44px),
+      linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.08), transparent 38%),
+      rgba(0,0,0,0.34) !important;
+    border-right: 1px solid rgba(var(--quest-accent-rgb),0.18) !important;
+  }
+
+  /* Hide the long vertical center line */
+  .quest-card.qt-card-epic .qt-card-crest::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Remove decorative bracket/box lines that make the rail look like a huge rectangle */
+  .quest-card.qt-card-epic::before {
+    background:
+      linear-gradient(90deg, var(--quest-accent), transparent 18%, transparent 82%, var(--quest-accent)) top / 100% 1px no-repeat,
+      linear-gradient(90deg, var(--quest-accent), transparent 18%, transparent 82%, var(--quest-accent)) bottom / 100% 1px no-repeat !important;
+    opacity: 0.55 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    margin-top: 2px !important;
+    box-shadow:
+      0 0 16px rgba(var(--quest-accent-rgb),0.16),
+      inset 0 0 14px rgba(var(--quest-accent-rgb),0.08) !important;
+  }
+}
+
+/* Extra cleanup on small phones */
+@media (max-width: 560px) {
+  .quest-card.qt-card-epic .qt-card-crest {
+    border-right-color: rgba(var(--quest-accent-rgb),0.12) !important;
+  }
+
+  .quest-card.qt-card-epic::before {
+    inset: 6px !important;
+  }
+}
+
 </style>
 </head>
 
