@@ -5725,6 +5725,311 @@ header .player-card {
   }
 }
 
+
+/* ===== PHONE MORE CLOSE COLLAPSE FIX V26 ===== */
+/* Fixes the mobile bug where closing More leaves the quest card stretched until refresh. */
+
+/* Closed state must always collapse the More area completely. */
+.quest-card.qt-card-epic:not(.actions-open) .qt-more-actions,
+.quest-card.qt-card-epic:not(.actions-open) .quest-more-actions {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+}
+
+/* Open state restores it. */
+.quest-card.qt-card-epic.actions-open .qt-more-actions,
+.quest-card.qt-card-epic.actions-open .quest-more-actions {
+  display: grid !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+
+/* On phone, do not allow a previously opened card to keep a huge min-height after closing. */
+@media (max-width: 700px) {
+  .quest-card.qt-card-epic:not(.actions-open) {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  .quest-card.qt-card-epic:not(.actions-open) .qt-card-content {
+    padding-bottom: 0 !important;
+  }
+
+  .quest-card.qt-card-epic:not(.actions-open) .qt-card-actions {
+    margin-bottom: 16px !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    margin: 0 14px 16px 74px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(var(--quest-accent-rgb),0.18) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    margin-left: 64px !important;
+    margin-right: 12px !important;
+  }
+}
+
+
+/* ===== PHONE CARD DE-CRUSH FIX V27 ===== */
+/* Makes quest cards use the phone width better on mobile/tablet.
+   Wider content area, slimmer number rail, symbol row below content,
+   and cleaner button stacking. */
+
+@media (max-width: 900px) {
+  /* Section shell tighter on phone */
+  #questsView .quest-section-panel {
+    padding: 8px 10px 10px !important;
+  }
+
+  #questsView .quest-section-panel .section-toggle {
+    margin: 0 0 8px !important;
+    padding: 0 0 8px !important;
+    font-size: clamp(28px, 5.5vw, 42px) !important;
+  }
+
+  /* Main card layout: stop using a wide right column on phone */
+  .quest-card.qt-card-epic {
+    grid-template-columns: 56px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "crest content"
+      "crest art"
+      "crest actions"
+      "more more" !important;
+    column-gap: 10px !important;
+    row-gap: 10px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Slimmer numbered rail */
+  .quest-card.qt-card-epic .qt-card-crest {
+    padding-top: 16px !important;
+    border-right-width: 1px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest::after {
+    top: 70px !important;
+    bottom: 14px !important;
+    opacity: 0.45 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 36px !important;
+    height: 44px !important;
+    font-size: 13px !important;
+    border-radius: 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol::before {
+    display: none !important;
+  }
+
+  /* Content gets most of the width */
+  .quest-card.qt-card-epic .qt-card-content {
+    grid-area: content !important;
+    padding: 16px 12px 0 0 !important;
+    align-content: start !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-topline {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .quest-card.qt-card-epic .qt-type-pill,
+  .quest-card.qt-card-epic .qt-priority-pill,
+  .quest-card.qt-card-epic .quest-chip {
+    min-height: 20px !important;
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-title {
+    font-size: clamp(22px, 6vw, 34px) !important;
+    line-height: 1.02 !important;
+    max-width: 100% !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .quest-card.qt-card-epic .qt-desc {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    -webkit-line-clamp: 2 !important;
+    max-width: 100% !important;
+  }
+
+  .quest-card.qt-card-epic .qt-reward-row {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .quest-card.qt-card-epic .qt-reward-chip {
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-task-row {
+    grid-template-columns: auto auto 1fr !important;
+    gap: 6px !important;
+    font-size: 11px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-task-nodes {
+    gap: 6px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-task-node {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-progress-wrap,
+  .quest-card.qt-card-epic .progress-wrap {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Symbol panel becomes a full-width banner under content, not a side crusher */
+  .quest-card.qt-card-epic .qt-card-art {
+    grid-area: art !important;
+    display: grid !important;
+    place-items: center !important;
+    height: 84px !important;
+    min-height: 84px !important;
+    margin: 0 12px 0 0 !important;
+    border-radius: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 14px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 20px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art::after {
+    width: 40px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+
+  /* Buttons become a clean stacked area under the banner */
+  .quest-card.qt-card-epic .qt-card-actions {
+    grid-area: actions !important;
+    display: grid !important;
+    grid-template-columns: 1fr 96px !important;
+    gap: 8px !important;
+    margin: 0 12px 14px 0 !important;
+    align-self: stretch !important;
+  }
+
+  .quest-card.qt-card-epic .qt-primary-btn,
+  .quest-card.qt-card-epic .qt-more-btn {
+    min-height: 46px !important;
+    border-radius: 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* More panel only uses the content width */
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    grid-area: more !important;
+    margin: 0 12px 14px 66px !important;
+    padding-top: 12px !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-secondary-grid,
+  .quest-card.qt-card-epic.actions-open .quest-secondary-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-secondary-grid button,
+  .quest-card.qt-card-epic.actions-open .quest-secondary-grid button {
+    min-height: 40px !important;
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #questsView .quest-section-panel .section-toggle {
+    font-size: clamp(24px, 6.5vw, 34px) !important;
+  }
+
+  .quest-card.qt-card-epic {
+    grid-template-columns: 50px minmax(0, 1fr) !important;
+    column-gap: 8px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 32px !important;
+    height: 40px !important;
+    font-size: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-content {
+    padding: 14px 10px 0 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-title {
+    font-size: clamp(20px, 7vw, 28px) !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    height: 74px !important;
+    min-height: 74px !important;
+    margin-right: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-art-orb::before {
+    font-size: 18px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    grid-template-columns: 1fr !important;
+    margin-right: 10px !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    margin-left: 58px !important;
+    margin-right: 10px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -8773,5 +9078,46 @@ function useMealPass() {
     setInterval(updateDateTimeDisplays, 1000);
     renderAll();
   </script>
+
+<script>
+/* ===== MORE BUTTON PHONE RESET FIX V26 JS ===== */
+document.addEventListener('click', function(event) {
+  var btn = event.target.closest && event.target.closest('[data-action="more"]');
+  if (!btn) return;
+
+  setTimeout(function() {
+    var card = btn.closest('.quest-card');
+    if (!card) return;
+
+    var moreArea = card.querySelector('.qt-more-actions, .quest-more-actions');
+    var isOpen = card.classList.contains('actions-open');
+
+    if (!moreArea) return;
+
+    if (isOpen) {
+      moreArea.style.display = 'grid';
+      moreArea.style.height = 'auto';
+      moreArea.style.maxHeight = 'none';
+      moreArea.style.margin = '';
+      moreArea.style.padding = '';
+      moreArea.style.overflow = 'visible';
+      btn.textContent = 'Less';
+    } else {
+      moreArea.style.display = 'none';
+      moreArea.style.height = '0px';
+      moreArea.style.maxHeight = '0px';
+      moreArea.style.margin = '0';
+      moreArea.style.padding = '0';
+      moreArea.style.border = '0';
+      moreArea.style.overflow = 'hidden';
+      btn.textContent = 'More';
+      card.style.minHeight = '';
+      card.style.height = '';
+      card.offsetHeight; /* force mobile browser reflow */
+    }
+  }, 0);
+}, true);
+</script>
+
 </body>
 </html>
