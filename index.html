@@ -6076,6 +6076,118 @@ header .player-card {
   }
 }
 
+
+/* ===== PHONE RAIL HARD CLEANUP V29 ===== */
+/* Removes the actual vertical/bracket lines causing the phone quest cards to look boxed/crushed. */
+
+@media (max-width: 900px) {
+  /* Remove the large decorative border/bracket overlay completely on phone */
+  .quest-card.qt-card-epic::before,
+  .quest-card.qt-card-epic::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Remove the tall inner rectangle effect in the left rail */
+  .quest-card.qt-card-epic .qt-card-crest {
+    width: 50px !important;
+    min-width: 50px !important;
+    padding-top: 18px !important;
+    background:
+      radial-gradient(circle at 50% 42px, rgba(var(--quest-accent-rgb),0.18), transparent 38px),
+      linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.07), transparent 30%),
+      rgba(0,0,0,0.28) !important;
+    border-right: 1px solid rgba(var(--quest-accent-rgb),0.10) !important;
+    box-shadow: none !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest::before,
+  .quest-card.qt-card-epic .qt-card-crest::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Make the number badge smaller and clean, not inside a long decorative frame */
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 34px !important;
+    height: 42px !important;
+    font-size: 13px !important;
+    clip-path: polygon(50% 0%, 88% 22%, 80% 76%, 50% 100%, 20% 76%, 12% 22%) !important;
+    border: 1px solid rgba(var(--quest-accent-rgb),0.35) !important;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(var(--quest-accent-rgb),0.24), transparent 45%),
+      rgba(0,0,0,0.42) !important;
+    box-shadow: 0 0 12px rgba(var(--quest-accent-rgb),0.14) !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol::before,
+  .quest-card.qt-card-epic .qt-crest-symbol::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Rebuild phone card grid after rail shrink */
+  .quest-card.qt-card-epic {
+    grid-template-columns: 50px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "crest content"
+      "crest art"
+      "crest actions"
+      "more more" !important;
+    column-gap: 8px !important;
+    row-gap: 10px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-content {
+    padding: 16px 12px 0 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-art {
+    margin: 0 12px 0 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    margin: 0 12px 14px 0 !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    margin-left: 58px !important;
+    margin-right: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .quest-card.qt-card-epic {
+    grid-template-columns: 46px minmax(0, 1fr) !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest {
+    width: 46px !important;
+    min-width: 46px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-crest-symbol {
+    width: 30px !important;
+    height: 38px !important;
+    font-size: 12px !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .quest-more-actions {
+    margin-left: 54px !important;
+  }
+}
+
 </style>
 </head>
 
