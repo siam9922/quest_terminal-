@@ -8137,6 +8137,126 @@ header .player-card {
   }
 }
 
+
+/* ===== Quest Card Mobile Stretch Fix V3 ===== */
+@media (max-width: 760px) {
+  .quest-card.qt-card-epic,
+  .quest-card {
+    min-height: 0 !important;
+    height: auto !important;
+    align-items: stretch !important;
+  }
+
+  .quest-card.qt-card-epic {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: auto !important;
+    gap: 12px !important;
+    padding: 14px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-crest {
+    position: static !important;
+    width: auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-content,
+  .quest-card.qt-card-epic .qt-card-side,
+  .quest-card.qt-card-epic .qt-card-drawer {
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-side {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    align-self: start !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-side .qt-card-art {
+    height: 58px !important;
+    min-height: 58px !important;
+    max-height: 58px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-side .qt-art-orb {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .quest-card.qt-card-epic .qt-primary-action,
+  .quest-card.qt-card-epic .qt-more-btn {
+    width: 100% !important;
+    min-height: 52px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer {
+    grid-column: 1 / -1 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .quest-card.qt-card-epic .qt-micro-drawer,
+  .quest-card.qt-card-epic .qt-more-actions {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .quest-card.qt-card-epic .micro-list,
+  .quest-card.qt-card-epic .qt-micro-list {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .quest-card.qt-card-epic.steps-open,
+  .quest-card.qt-card-epic.more-open,
+  .quest-card.qt-card-epic:has(.qt-card-drawer:not(:empty)) {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+}
+
+/* Extra narrow phones */
+@media (max-width: 430px) {
+  .quest-card.qt-card-epic {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-side .qt-card-art {
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-side .qt-art-orb {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-primary-action,
+  .quest-card.qt-card-epic .qt-more-btn {
+    min-height: 48px !important;
+  }
+}
+
 </style>
 </head>
 
