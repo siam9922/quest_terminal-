@@ -7716,6 +7716,427 @@ header .player-card {
   background: rgba(0,0,0,0.82);
 }
 
+
+/* ===== Streak Edit Rules Modal Cleanup ===== */
+#streakSetupModal .modal-card {
+  width: min(760px, 96vw) !important;
+}
+
+#streakSetupModal .setup-grid {
+  gap: 10px !important;
+}
+
+#streakSetupModal #streakTaskEditorList {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+#streakSetupModal .task-editor {
+  border: 1px solid rgba(216,208,189,0.16) !important;
+  background: rgba(0,0,0,0.26) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+}
+
+#streakSetupModal .task-top {
+  display: grid !important;
+  grid-template-columns: 14px 1fr 38px !important;
+  gap: 10px !important;
+  align-items: center !important;
+  margin-bottom: 10px;
+}
+
+#streakSetupModal .task-top input {
+  min-height: 42px;
+  font-weight: 800;
+  color: #f4e0a3;
+}
+
+#streakSetupModal .task-top button {
+  min-height: 38px;
+  padding: 0 !important;
+  display: grid;
+  place-items: center;
+}
+
+#streakSetupModal .task-details {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+#streakSetupModal .task-details select {
+  min-height: 42px;
+  padding: 8px 10px;
+}
+
+#streakSetupModal .days-picker {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin-top: 10px !important;
+}
+
+#streakSetupModal .day-chip {
+  width: auto !important;
+  min-width: 48px !important;
+  min-height: 34px !important;
+  padding: 7px 9px !important;
+  font-size: 11px !important;
+  border-radius: 8px !important;
+}
+
+#streakSetupModal .task-editor::before {
+  content: "Task rule";
+  display: block;
+  color: #8f8678;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: 8px;
+}
+
+#streakSetupModal .task-details::before {
+  content: "Schedule / Required / Weekly Target";
+  grid-column: 1 / -1;
+  color: #8f8678;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: -2px;
+}
+
+#streakSetupModal .days-picker::before {
+  content: "Active days";
+  color: #8f8678;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+#streakSetupModal .actions {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(5,5,5,0), #050505 28%);
+  padding-top: 12px;
+}
+
+@media (max-width: 720px) {
+  #streakSetupModal .modal-card {
+    width: 100% !important;
+    max-height: 96vh !important;
+  }
+
+  #streakSetupModal .task-details {
+    grid-template-columns: 1fr !important;
+  }
+
+  #streakSetupModal .day-chip {
+    flex: 1 1 70px;
+  }
+
+  #streakSetupModal .task-top {
+    grid-template-columns: 12px 1fr 36px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #streakSetupModal .days-picker {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  #streakSetupModal .day-chip {
+    min-width: 0 !important;
+  }
+}
+
+
+/* ===== Streak UI Quality Pass V2 ===== */
+
+/* Medal Case */
+#streakView .streak-medal-box {
+  border: 1px solid rgba(216,208,189,0.16) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 48%),
+    #080706 !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  margin-top: 12px !important;
+}
+
+#streakView .streak-medal-title {
+  color: #f4df95 !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid rgba(216,208,189,0.12);
+  padding-bottom: 7px;
+}
+
+#streakView .streak-medal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+#streakView .streak-medal {
+  display: grid !important;
+  place-items: center !important;
+  gap: 5px !important;
+  min-height: 72px !important;
+  border: 1px solid rgba(216,208,189,0.12) !important;
+  background: rgba(0,0,0,0.28) !important;
+  border-radius: 10px !important;
+  padding: 9px 6px !important;
+  text-align: center !important;
+  opacity: .36 !important;
+}
+
+#streakView .streak-medal.unlocked {
+  opacity: 1 !important;
+  border-color: rgba(224,200,120,0.40) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,200,120,0.12), transparent 42%),
+    rgba(224,200,120,0.055) !important;
+}
+
+#streakView .streak-medal-icon {
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+#streakView .streak-medal-name {
+  display: block !important;
+  color: #c9beaa !important;
+  font-size: 9px !important;
+  text-transform: uppercase !important;
+  font-weight: 950 !important;
+  letter-spacing: .45px !important;
+  line-height: 1.15 !important;
+}
+
+/* Proof log */
+#streakView .log {
+  gap: 10px !important;
+  margin-top: 14px !important;
+}
+
+#streakView .log-item {
+  border: 1px solid rgba(216,208,189,0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.016), transparent 45%),
+    #070706 !important;
+  border-radius: 12px !important;
+  padding: 11px 12px !important;
+}
+
+#streakView .log-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  color: #f4df95 !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  line-height: 1.25 !important;
+}
+
+#streakView .log-meta {
+  color: #cfc3ae !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  margin-top: 5px !important;
+}
+
+#streakView .log-result-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(216,208,189,0.15);
+  background: rgba(0,0,0,0.22);
+  border-radius: 999px;
+  padding: 3px 7px;
+  margin-right: 5px;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+  color: #f4df95;
+}
+
+#streakView .log-result-badge.perfect { border-color: rgba(224,200,120,0.40); color: #f4df95; }
+#streakView .log-result-badge.win { border-color: rgba(79,194,122,0.40); color: #c9ffd8; }
+#streakView .log-result-badge.partial { border-color: rgba(217,154,69,0.40); color: #ffdba8; }
+#streakView .log-result-badge.failed { border-color: rgba(201,107,107,0.45); color: #ffd2d2; }
+#streakView .log-result-badge.protected { border-color: rgba(167,139,232,0.45); color: #e4dcff; }
+
+/* Day modal */
+#streakDayModal .modal-card {
+  width: min(760px, 96vw) !important;
+  padding: 16px !important;
+}
+
+#streakDayModal .modal-header {
+  align-items: center !important;
+}
+
+#streakDayModal .result-box {
+  border: 1px solid rgba(224,200,120,0.20) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.08), transparent 35%),
+    rgba(0,0,0,0.26) !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  margin-bottom: 12px !important;
+  color: #e8dcc4 !important;
+}
+
+#streakDayModal .streak-result-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+#streakDayModal .streak-result-label {
+  color: #f4df95;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+#streakDayModal .streak-count-line {
+  color: #cfc3ae;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#streakDayModal .checklist {
+  display: grid !important;
+  gap: 10px !important;
+  margin: 12px 0 !important;
+}
+
+#streakDayModal .check-row {
+  display: grid !important;
+  grid-template-columns: 14px 1fr auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  border: 1px solid rgba(216,208,189,0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.014), transparent 45%),
+    #070706 !important;
+  border-radius: 12px !important;
+  padding: 10px !important;
+}
+
+#streakDayModal .check-row.inactive {
+  opacity: .42 !important;
+}
+
+#streakDayModal .check-name {
+  color: #f4e0a3 !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+}
+
+#streakDayModal .check-rule {
+  color: #9d9588 !important;
+  font-size: 11px !important;
+  margin-top: 3px !important;
+}
+
+#streakDayModal .check-buttons {
+  display: flex !important;
+  gap: 6px !important;
+  grid-column: auto !important;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#streakDayModal .check-buttons button {
+  min-width: 58px !important;
+  width: auto !important;
+  padding: 7px 9px !important;
+  border-radius: 8px !important;
+  font-size: 10px !important;
+}
+
+#streakDayModal textarea {
+  min-height: 105px !important;
+  line-height: 1.45 !important;
+}
+
+#streakDayModal .actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+#streakDayModal .actions button {
+  min-height: 42px !important;
+  border-radius: 8px !important;
+}
+
+/* General Streak card polish */
+#streakView .rule-box {
+  border-radius: 12px !important;
+}
+
+#streakView .quest-pill {
+  border-radius: 12px !important;
+  padding: 10px !important;
+}
+
+#streakView .quest-name {
+  font-size: 13px !important;
+}
+
+#streakView .quest-rule {
+  color: #a99e8d !important;
+}
+
+@media (max-width: 900px) {
+  #streakView .streak-medal-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  #streakDayModal .check-row {
+    grid-template-columns: 14px 1fr !important;
+  }
+
+  #streakDayModal .check-buttons {
+    grid-column: 1 / -1 !important;
+    justify-content: stretch !important;
+  }
+
+  #streakDayModal .check-buttons button {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #streakView .streak-medal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #streakDayModal .actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 </style>
 </head>
 
@@ -8027,6 +8448,11 @@ header .player-card {
     <aside class="panel">
       <h2>Active Tasks</h2>
       <div id="streakTaskList" class="quest-list"></div>
+
+      <div class="streak-medal-box">
+        <div class="streak-medal-title">Medal Case</div>
+        <div id="streakMedalCase" class="streak-medal-grid"></div>
+      </div>
 
       <div class="rule-box">
         <div class="rule-title">Consequence</div>
@@ -11763,12 +12189,75 @@ function renderLog() {
     const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
     return `
       <div class="log-item">
-        <div class="log-title">${icon} ${dayName(date)}</div>
-        <div class="log-meta">${r.toUpperCase()} · ${escapeHtml(e.note || "No note.")}${consequence}</div>
+        <div class="log-title"><span>${icon}</span><span>${dayName(date)}</span></div>
+        <div class="log-meta"><span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
       </div>
     `;
   }).join("");
 }
+
+
+function renderMedals() {
+  const data = read();
+
+  let best = 0;
+  let run = 0;
+  let prev = null;
+  let wins = 0;
+  let perfects = 0;
+  let failed = 0;
+  let protectedDays = 0;
+
+  Object.keys(data.days).sort().forEach(k => {
+    const date = fromKey(k);
+    const r = result(data.days[k], data.setup, date, data);
+
+    if (r === "perfect") perfects++;
+    if (r === "failed") failed++;
+    if (r === "protected") protectedDays++;
+    if (valid(r)) wins++;
+
+    if (!valid(r)) {
+      run = 0;
+      prev = date;
+      return;
+    }
+
+    if (prev) {
+      const diff = Math.round((date - prev) / 86400000);
+      run = diff === 1 ? run + 1 : 1;
+    } else {
+      run = 1;
+    }
+
+    best = Math.max(best, run);
+    prev = date;
+  });
+
+  const medals = [
+    { icon: "🥉", name: "3 Day Spark", unlock: best >= 3 },
+    { icon: "🥈", name: "7 Day Chain", unlock: best >= 7 },
+    { icon: "🥇", name: "14 Day Medal", unlock: best >= 14 },
+    { icon: "🛡️", name: "Honest Shield", unlock: protectedDays >= 1 },
+    { icon: "🔨", name: "Repairer", unlock: failed >= 1 },
+    { icon: "💎", name: "30 Wins", unlock: wins >= 30 },
+    { icon: "★", name: "Perfect Day", unlock: perfects >= 1 },
+    { icon: "👑", name: "10 Wins", unlock: wins >= 10 },
+    { icon: "⚔", name: "Comeback", unlock: failed >= 1 && wins >= 3 }
+  ];
+
+  const box = s$("streakMedalCase");
+  if (!box) return;
+
+  box.innerHTML = medals.map(medal => `
+    <div class="streak-medal ${medal.unlock ? "unlocked" : ""}">
+      <div class="streak-medal-icon">${medal.icon}</div>
+      <span class="streak-medal-name">${medal.name}</span>
+    </div>
+  `).join("");
+}
+
+
 
 function openSetup() {
   renderSetupModal();
@@ -11790,7 +12279,7 @@ function renderSetupModal() {
       <div class="task-top">
         <i class="quest-color" style="background:${color(i)}"></i>
         <input data-streak-task-name value="${escapeHtml(task.name)}">
-        <button class="danger" data-streak-delete-task="${i}">×</button>
+        <button class="danger" title="Delete task" data-streak-delete-task="${i}">×</button>
       </div>
       <div class="task-details">
         <select data-streak-task-schedule>
@@ -11914,6 +12403,7 @@ function render() {
   renderCalendar();
   stats();
   renderLog();
+  renderMedals();
 }
 
 document.addEventListener("click", event => {
