@@ -7414,7 +7414,7 @@ header .player-card {
   z-index:30;
 }
 #streakSetupModal.modal.open, #streakDayModal.modal.open { display:flex; }
-#streakSetupModal.modal-card, #streakDayModal.modal-card {
+#streakSetupModal .modal-card, #streakDayModal .modal-card {
   width:min(680px,100%);
   max-height:90vh;
   overflow:auto;
@@ -7423,7 +7423,7 @@ header .player-card {
   padding:14px;
   border-radius:14px;
 }
-#streakSetupModal.modal-header, #streakDayModal.modal-header {
+#streakSetupModal .modal-header, #streakDayModal .modal-header {
   display:flex;
   justify-content:space-between;
   gap:12px;
@@ -7431,13 +7431,13 @@ header .player-card {
   padding-bottom:10px;
   margin-bottom:12px;
 }
-#streakSetupModal.modal-title, #streakDayModal.modal-title {
+#streakSetupModal .modal-title, #streakDayModal .modal-title {
   color:#f4df95;
   font-size:19px;
   font-weight:950;
   text-transform:uppercase;
 }
-#streakSetupModal.modal-header button, #streakDayModal.modal-header button {
+#streakSetupModal .modal-header button, #streakDayModal .modal-header button {
   width:auto;
   min-width:86px;
 }
@@ -7611,12 +7611,12 @@ header .player-card {
     align-items:flex-start;
     padding:8px;
   }
-#streakSetupModal.modal-card, #streakDayModal.modal-card {
+#streakSetupModal .modal-card, #streakDayModal .modal-card {
     max-height:96vh;
     padding:12px;
   }}
-#streakView /* ===== Balanced Quest Terminal Streak Theme ===== */
-:root {
+/* ===== Balanced Quest Terminal Streak Theme ===== */
+#streakView {
   --bg:#090806;
   --panel:#0f0d0a;
   --panel2:#17130f;
@@ -7637,7 +7637,7 @@ header .player-card {
   border-color: rgba(224,210,184,0.20);
   box-shadow: 0 20px 55px rgba(0,0,0,0.68);
 }
-#streakView .topbar, #streakView .panel, #streakSetupModal.modal-card, #streakDayModal.modal-card {
+#streakView .topbar, #streakView .panel, #streakSetupModal .modal-card, #streakDayModal .modal-card {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.018), transparent 45%),
     #0c0b09;
@@ -7709,7 +7709,7 @@ header .player-card {
 #streakView .rule-text, #streakView .log-meta, #streakView .small-note, #streakView .quest-rule, #streakView .subtitle {
   color: #bfb3a0;
 }
-#streakView .panel h2, #streakView h1, #streakSetupModal.modal-title, #streakDayModal.modal-title, #streakView .rule-title {
+#streakView .panel h2, #streakView h1, #streakSetupModal .modal-title, #streakDayModal .modal-title, #streakView .rule-title {
   color: #f4df95;
 }
 #streakSetupModal.modal, #streakDayModal.modal {
@@ -8138,113 +8138,295 @@ header .player-card {
 }
 
 
+/* ===== Manual Calendar Editing Patch ===== */
+#streakDayModal #streakManualStatus {
+  min-height: 44px !important;
+  border-color: rgba(224,200,120,0.32) !important;
+  color: #f4df95 !important;
+  font-weight: 900 !important;
+}
 
-/* Extra narrow phones */
-@media (max-width: 430px) {
+#streakDayModal .manual-status-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(224,200,120,0.28);
+  background: rgba(224,200,120,0.08);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: #f4df95;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+}
+
+
+/* ===== Obvious Calendar Square Editor Fix ===== */
+#streakDayModal .streak-manual-editor {
+  border: 1px solid rgba(224,200,120,0.26) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.08), transparent 34%),
+    rgba(0,0,0,0.28) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  margin: 12px 0 !important;
+}
+
+#streakDayModal .streak-manual-title {
+  color: #f4df95 !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .8px !important;
+  margin-bottom: 10px !important;
+}
+
+#streakDayModal .streak-status-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+}
+
+#streakDayModal .streak-status-grid button,
+#streakDayModal .streak-auto-btn {
+  min-height: 44px !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .6px !important;
+}
+
+#streakDayModal .streak-status-grid button.active {
+  border-color: rgba(224,200,120,0.85) !important;
+  color: #fff2bd !important;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(224,200,120,0.22), transparent 65%),
+    linear-gradient(180deg, rgba(224,200,120,0.18), rgba(0,0,0,0.32)) !important;
+  box-shadow: 0 0 14px rgba(224,200,120,0.14) !important;
+}
+
+#streakDayModal [data-streak-manual-pick="perfect"].active { border-color: rgba(224,200,120,0.90) !important; }
+#streakDayModal [data-streak-manual-pick="win"].active { border-color: rgba(79,194,122,0.80) !important; color:#c9ffd8 !important; }
+#streakDayModal [data-streak-manual-pick="partial"].active { border-color: rgba(217,154,69,0.80) !important; color:#ffdba8 !important; }
+#streakDayModal [data-streak-manual-pick="protected"].active { border-color: rgba(167,139,232,0.80) !important; color:#e4dcff !important; }
+#streakDayModal [data-streak-manual-pick="failed"].active { border-color: rgba(201,107,107,0.85) !important; color:#ffd2d2 !important; }
+
+#streakDayModal .streak-auto-btn {
+  width: 100% !important;
+  margin-top: 8px !important;
+  color: #cfc3ae !important;
+  border-color: rgba(216,208,189,0.22) !important;
+  background: rgba(0,0,0,0.24) !important;
+}
+
+#streakDayModal .streak-auto-btn.active {
+  color: #d8eaff !important;
+  border-color: rgba(103,174,232,0.62) !important;
+  background: rgba(103,174,232,0.10) !important;
+}
+
+#streakDayModal .checklist-label {
+  color: #8f8678 !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .7px !important;
+  margin-top: 14px !important;
+}
+
+@media (max-width: 520px) {
+  #streakDayModal .streak-status-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+
+/* ===== Streak Calendar Click Reliability Fix ===== */
+#streakView .calendar-grid [data-streak-date] {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#streakView .calendar-grid [data-streak-date]:hover {
+  border-color: rgba(224,200,120,0.72) !important;
+  box-shadow: 0 0 14px rgba(224,200,120,0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+#streakView .calendar-grid [data-streak-date]::after {
+  content: "EDIT";
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  color: rgba(244,223,149,0.55);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+#streakDayModal {
+  z-index: 9999 !important;
+}
+
+#streakDayModal.open {
+  display: flex !important;
+}
+
+
+
+/* ===== IPHONE QUEST DRAWER HORIZONTAL SCROLL FIX ===== */
+/* Fixes iPhone narrow-screen stretching when View Tasks or More is opened.
+   Drawers now stay inside the card and scroll sideways by touch instead of widening the whole layout. */
+@media (max-width: 700px) {
+  html,
+  body,
+  .screen,
+  .content,
+  #questsView,
+  #questsView .grid-quests,
+  #questsView .quest-sections-stack,
+  #questsView .quest-section-panel,
+  #questsView .quest-list,
   .quest-card.qt-card-epic {
-    padding: 12px !important;
-    gap: 10px !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
   }
 
-  .quest-card.qt-card-epic .qt-card-side .qt-card-art {
-    height: 48px !important;
-    min-height: 48px !important;
-    max-height: 48px !important;
+  .quest-card.qt-card-epic {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    contain: layout paint !important;
   }
 
-  .quest-card.qt-card-epic .qt-card-side .qt-art-orb {
-    width: 36px !important;
-    height: 36px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-primary-action,
-  .quest-card.qt-card-epic .qt-more-btn {
-    min-height: 48px !important;
-  }
-}
-
-
-
-
-/* Very small phone tuning */
-@media (max-width: 430px) {
-  .quest-list .quest-card.qt-card-epic,
-  .quest-list .quest-card {
-    padding: 12px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-primary-action,
-  .quest-card.qt-card-epic .qt-more-btn {
-    min-height: 46px !important;
-  }
-}
-
-
-
-/* ===== View Tasks Mobile Stretch Fix V7 - Narrow Scope ===== */
-@media (max-width: 900px) {
-  /*
-    Only fix the card when View Tasks is open.
-    Do not redesign the whole mobile quest card.
-  */
-  .quest-card.qt-card-epic.steps-open {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: none !important;
+  .quest-card.qt-card-epic .qt-card-content,
+  .quest-card.qt-card-epic .qt-card-side,
+  .quest-card.qt-card-epic .qt-card-drawer,
+  .quest-card.qt-card-epic .qt-card-actions {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .quest-card.qt-card-epic.steps-open .qt-card-drawer,
-  .quest-card.qt-card-epic.steps-open .qt-micro-drawer,
-  .quest-card.qt-card-epic.steps-open .qt-micro-list,
-  .quest-card.qt-card-epic.steps-open .micro-list {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
+  .quest-card.qt-card-epic.actions-open .qt-card-drawer {
+    display: block !important;
+    width: auto !important;
+    max-width: calc(100vw - 86px) !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    margin: 0 10px 14px 0 !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(var(--quest-accent-rgb),0.16) !important;
   }
 
-  /*
-    The decorative side art is what fights the drawer height on phone.
-    Hide only when View Tasks is open.
-  */
-  .quest-card.qt-card-epic.steps-open .qt-card-art,
-  .quest-card.qt-card-epic.steps-open .qt-art-orb,
-  .quest-card.qt-card-epic.steps-open .qt-art-lines,
-  .quest-card.qt-card-epic.steps-open .qt-card-art::before,
-  .quest-card.qt-card-epic.steps-open .qt-card-art::after,
-  .quest-card.qt-card-epic.steps-open .qt-art-lines::before,
-  .quest-card.qt-card-epic.steps-open .qt-art-lines::after {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
+  .quest-card.qt-card-epic .qt-card-drawer .qt-micro-list,
+  .quest-card.qt-card-epic .qt-card-drawer .micro-list,
+  .quest-card.qt-card-epic .qt-card-drawer .qt-more-actions,
+  .quest-card.qt-card-epic .qt-card-drawer .quest-more-actions {
+    width: 100% !important;
+    max-width: 100% !important;
     min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-inline: contain !important;
+    scrollbar-width: thin !important;
+    box-sizing: border-box !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .qt-micro-list:not(.hidden),
+  .quest-card.qt-card-epic .qt-card-drawer .micro-list:not(.hidden) {
+    display: grid !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .micro-item {
+    width: max-content !important;
+    min-width: 430px !important;
+    max-width: none !important;
+    grid-template-columns: 28px 230px 42px 42px !important;
+    white-space: nowrap !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .micro-task-text {
+    width: 230px !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .quest-card.qt-card-epic.actions-open .qt-card-drawer .qt-more-actions,
+  .quest-card.qt-card-epic.actions-open .qt-card-drawer .quest-more-actions {
+    display: block !important;
+    margin: 12px 0 0 0 !important;
+    padding-top: 12px !important;
+    padding-bottom: 6px !important;
+    border-top: 1px solid rgba(var(--quest-accent-rgb),0.12) !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .qt-secondary-grid,
+  .quest-card.qt-card-epic .qt-card-drawer .quest-secondary-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    max-width: none !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .qt-secondary-grid button,
+  .quest-card.qt-card-epic .qt-card-drawer .quest-secondary-grid button {
+    flex: 0 0 118px !important;
+    width: 118px !important;
+    min-width: 118px !important;
+    min-height: 42px !important;
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 8px 7px !important;
+  }
+
+  .quest-card.qt-card-epic:not(.steps-open):not(.actions-open) .qt-card-drawer {
+    display: none !important;
+    height: 0 !important;
     min-height: 0 !important;
-    max-width: 0 !important;
     max-height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
-    background: none !important;
-    box-shadow: none !important;
-    content: none !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .quest-card.qt-card-epic.steps-open .qt-card-drawer,
+  .quest-card.qt-card-epic.actions-open .qt-card-drawer {
+    max-width: calc(100vw - 76px) !important;
+    margin-right: 8px !important;
   }
 
-  .quest-card.qt-card-epic.steps-open .qt-card-side {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: none !important;
-    align-self: start !important;
+  .quest-card.qt-card-epic .qt-card-drawer .micro-item {
+    min-width: 390px !important;
+    grid-template-columns: 26px 205px 38px 38px !important;
   }
 
-  /*
-    Keep action buttons normal, but stop the side/action area from reserving
-    vertical space while tasks are open.
-  */
-  .quest-card.qt-card-epic.steps-open .qt-card-actions {
-    min-height: unset !important;
-    height: auto !important;
-    max-height: none !important;
+  .quest-card.qt-card-epic .qt-card-drawer .micro-task-text {
+    width: 205px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-card-drawer .qt-secondary-grid button,
+  .quest-card.qt-card-epic .qt-card-drawer .quest-secondary-grid button {
+    flex-basis: 108px !important;
+    width: 108px !important;
+    min-width: 108px !important;
   }
 }
 
@@ -8517,7 +8699,7 @@ header .player-card {
 <div class="topbar">
     <div>
       <h1>Smart Streak</h1>
-      <div class="subtitle">Simple view first. Advanced rules stay hidden until Edit.</div>
+      <div class="subtitle">Click any calendar square. Big buttons let you set Perfect, Win, Partial, Protected, Failed, or Blank.</div>
     </div>
     <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
   </div>
@@ -8546,6 +8728,7 @@ header .player-card {
         </div>
 
         <div id="streakCalendarGrid" class="calendar-grid"></div>
+        <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
       </div>
 
       <div class="rule-box">
@@ -8716,6 +8899,22 @@ header .player-card {
     </div>
 
     <div id="streakDayResultBox" class="result-box"></div>
+
+    <div class="streak-manual-editor">
+      <div class="streak-manual-title">Edit this calendar square</div>
+      <div class="streak-status-grid">
+        <button type="button" data-streak-manual-pick="perfect">★ Perfect</button>
+        <button type="button" data-streak-manual-pick="win">✓ Win</button>
+        <button type="button" data-streak-manual-pick="partial">◐ Partial</button>
+        <button type="button" data-streak-manual-pick="protected">◆ Protected</button>
+        <button type="button" data-streak-manual-pick="failed">× Failed</button>
+        <button type="button" data-streak-manual-pick="empty">Blank</button>
+      </div>
+      <button type="button" id="streakUseAutoBtn" class="streak-auto-btn">Use task checks instead</button>
+      <input id="streakManualStatus" type="hidden" value="auto" />
+      <div class="small-note">Pick one status. This directly controls the calendar square until you change it.</div>
+    </div>
+
     <div id="streakDayChecklist" class="checklist"></div>
 
     <label for="streakDayNote">Proof note</label>
@@ -9635,50 +9834,6 @@ function useMealPass() {
     }
 
     function normalizeQuestCardLayout(card) {
-      /* VIEW_TASKS_ONLY_MOBILE_FIX: prevent View Tasks drawer from inheriting desktop height on phone */
-      if (
-        card &&
-        card.classList &&
-        card.classList.contains('steps-open') &&
-        window.matchMedia &&
-        window.matchMedia('(max-width: 900px)').matches
-      ) {
-        try {
-          card.style.minHeight = '';
-          card.style.height = '';
-          card.style.maxHeight = '';
-
-          var drawer = card.querySelector('.qt-card-drawer');
-          var micro = card.querySelector('.qt-micro-drawer');
-          var side = card.querySelector('.qt-card-side');
-          var art = card.querySelector('.qt-card-art');
-
-          if (drawer) {
-            drawer.style.minHeight = '';
-            drawer.style.height = '';
-            drawer.style.maxHeight = '';
-          }
-
-          if (micro) {
-            micro.style.minHeight = '';
-            micro.style.height = '';
-            micro.style.maxHeight = '';
-          }
-
-          if (side) {
-            side.style.minHeight = '';
-            side.style.height = '';
-            side.style.maxHeight = '';
-          }
-
-          if (art) {
-            art.style.display = 'none';
-            art.style.minHeight = '0px';
-            art.style.height = '0px';
-          }
-        } catch (error) {}
-        return;
-      }
       if (!card) return;
       var microList = card.querySelector('.micro-list');
       var stepsButton = card.querySelector('[data-action="toggleSteps"]');
@@ -12075,7 +12230,8 @@ function normalizeEntry(entry, count) {
   let states = Array.isArray(entry.states) ? entry.states.slice(0, count) : [];
   while (states.length < count) states.push("skip");
   states = states.map(s => ["done","fail","protected","skip"].includes(s) ? s : "skip");
-  return { states, note: String(entry.note || "") };
+  const manualStatus = ["auto","perfect","win","partial","protected","failed","empty"].includes(entry.manualStatus) ? entry.manualStatus : "auto";
+  return { states, note: String(entry.note || ""), manualStatus };
 }
 
 function key(date) {
@@ -12153,6 +12309,10 @@ function taskRule(task) {
 
 function result(entry, setup, date, data) {
   if (!entry) return "empty";
+
+  if (entry.manualStatus && entry.manualStatus !== "auto") {
+    return entry.manualStatus === "empty" ? "empty" : entry.manualStatus;
+  }
 
   const req = [];
   setup.tasks.forEach((task, i) => {
@@ -12266,8 +12426,10 @@ function renderCalendar() {
     const k = key(date);
     const entry = data.days[k];
     const r = result(entry, data.setup, date, data);
-    const cell = document.createElement("button");
+    const cell = document.createElement("div");
     cell.className = "day-cell " + r + (k === today ? " today" : "");
+    cell.setAttribute("role", "button");
+    cell.setAttribute("tabindex", "0");
     cell.dataset.streakDate = k;
 
     const label = r === "perfect" ? "Perfect" : r === "win" ? "Win" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
@@ -12289,6 +12451,30 @@ function renderCalendar() {
 
     grid.appendChild(cell);
   }
+}
+
+
+function bindStreakCalendarDirectClick() {
+  const grid = s$("streakCalendarGrid");
+  if (!grid || grid.dataset.directClickBound === "true") return;
+  grid.dataset.directClickBound = "true";
+
+  grid.addEventListener("click", function(event) {
+    const cell = event.target.closest("[data-streak-date]");
+    if (!cell || !grid.contains(cell)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    openDay(cell.dataset.streakDate);
+  });
+
+  grid.addEventListener("keydown", function(event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const cell = event.target.closest("[data-streak-date]");
+    if (!cell || !grid.contains(cell)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    openDay(cell.dataset.streakDate);
+  });
 }
 
 function stats() {
@@ -12342,10 +12528,11 @@ function renderLog() {
     const r = result(e, data.setup, date, data);
     const icon = r === "perfect" ? "★" : r === "win" ? "✓" : r === "partial" ? "◐" : r === "protected" ? "◆" : r === "failed" ? "×" : "·";
     const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
+    const manual = e.manualStatus && e.manualStatus !== "auto" ? '<span class="manual-status-banner">Manual</span> ' : "";
     return `
       <div class="log-item">
         <div class="log-title"><span>${icon}</span><span>${dayName(date)}</span></div>
-        <div class="log-meta"><span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
+        <div class="log-meta">${manual}<span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
       </div>
     `;
   }).join("");
@@ -12468,6 +12655,7 @@ function openDay(k) {
   const date = fromKey(k);
   modalEntry = normalizeEntry(data.days[k], data.setup.tasks.length);
   s$("streakDayModalTitle").textContent = dayName(date);
+  if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus || "auto";
   s$("streakDayNote").value = modalEntry.note || "";
   renderDayModal();
   s$("streakDayModal").classList.add("open");
@@ -12485,9 +12673,19 @@ function renderDayModal() {
   const r = result(modalEntry, data.setup, date, data);
   const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
   const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
-  s$("streakDayResultBox").innerHTML = `<b>Result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}.`;
+  const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
+    ? `<br><span class="manual-status-banner">Manual edit active</span>`
+    : `<br><span class="manual-status-banner">Auto mode</span>`;
+  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
 
-  s$("streakDayChecklist").innerHTML = data.setup.tasks.map((task, i) => {
+  document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
+  });
+  if (s$("streakUseAutoBtn")) {
+    s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
+  }
+
+  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
     const state = modalEntry.states[i] || "skip";
     const isActive = active(task,date,i,data);
     const isRequired = requiredToday(task,date,i,data);
@@ -12521,7 +12719,14 @@ function setState(i, state) {
 function saveDay() {
   const data = read();
   modalEntry.note = s$("streakDayNote").value.trim();
-  data.days[selectedDateKey] = normalizeEntry(modalEntry, data.setup.tasks.length);
+  modalEntry.manualStatus = s$("streakManualStatus") ? s$("streakManualStatus").value : "auto";
+
+  if (modalEntry.manualStatus === "empty" && !modalEntry.note && modalEntry.states.every(s => s === "skip")) {
+    delete data.days[selectedDateKey];
+  } else {
+    data.days[selectedDateKey] = normalizeEntry(modalEntry, data.setup.tasks.length);
+  }
+
   write(data);
   closeDay();
   render();
@@ -12556,15 +12761,13 @@ function escapeHtml(v) {
 function render() {
   renderMain();
   renderCalendar();
+  bindStreakCalendarDirectClick();
   stats();
   renderLog();
   renderMedals();
 }
 
 document.addEventListener("click", event => {
-  const day = event.target.closest("[data-streak-date]");
-  if (day) return openDay(day.dataset.streakDate);
-
   const delTask = event.target.closest("[data-streak-delete-task]");
   if (delTask) return deleteTask(Number(delTask.dataset.streakDeleteTask));
 
@@ -12594,14 +12797,127 @@ s$("streakNextMonthBtn").addEventListener("click", () => {
 s$("streakCloseDayBtn").addEventListener("click", closeDay);
 s$("streakSaveDayBtn").addEventListener("click", saveDay);
 s$("streakClearDayBtn").addEventListener("click", clearDay);
+document.addEventListener("click", function(event) {
+  const manualButton = event.target.closest("[data-streak-manual-pick]");
+  if (manualButton) {
+    if (!modalEntry) return;
+    modalEntry.manualStatus = manualButton.dataset.streakManualPick;
+    if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus;
+    renderDayModal();
+    return;
+  }
 
-s$("streakSetupModal").addEventListener("click", e => { if (e.target.id === "setupModal") closeSetup(); });
-s$("streakDayModal").addEventListener("click", e => { if (e.target.id === "dayModal") closeDay(); });
+  if (event.target.closest("#streakUseAutoBtn")) {
+    if (!modalEntry) return;
+    modalEntry.manualStatus = "auto";
+    if (s$("streakManualStatus")) s$("streakManualStatus").value = "auto";
+    renderDayModal();
+    return;
+  }
+});
+
+s$("streakSetupModal").addEventListener("click", e => { if (e.target.id === "streakSetupModal") closeSetup(); });
+s$("streakDayModal").addEventListener("click", e => { if (e.target.id === "streakDayModal") closeDay(); });
 
 render();
 
 })();
 
+</script>
+
+
+<script>
+/* ===== IPHONE QUEST DRAWER CLOSE / REFLOW FIX ===== */
+(function() {
+  function fixQuestDrawer(card) {
+    if (!card || !card.classList || !card.classList.contains('qt-card-epic')) return;
+    var drawer = card.querySelector('.qt-card-drawer');
+    var moreArea = card.querySelector('.qt-more-actions, .quest-more-actions');
+    var microList = card.querySelector('.micro-list');
+    var stepsButton = card.querySelector('[data-action="toggleSteps"]');
+    var moreButton = card.querySelector('[data-action="more"]');
+    var isStepsOpen = card.classList.contains('steps-open');
+    var isMoreOpen = card.classList.contains('actions-open');
+
+    card.style.width = '';
+    card.style.maxWidth = '';
+    card.style.minHeight = '';
+    card.style.height = '';
+
+    if (!isStepsOpen && microList) {
+      microList.classList.add('hidden');
+      microList.style.display = 'none';
+      microList.style.height = '0px';
+      microList.style.maxHeight = '0px';
+      microList.style.margin = '0';
+      microList.style.padding = '0';
+      microList.style.border = '0';
+      microList.style.overflow = 'hidden';
+    }
+
+    if (isStepsOpen && microList) {
+      microList.style.display = '';
+      microList.style.height = '';
+      microList.style.maxHeight = '';
+      microList.style.margin = '';
+      microList.style.padding = '';
+      microList.style.border = '';
+      microList.style.overflow = '';
+    }
+
+    if (!isMoreOpen && moreArea) {
+      moreArea.style.display = 'none';
+      moreArea.style.height = '0px';
+      moreArea.style.maxHeight = '0px';
+      moreArea.style.margin = '0';
+      moreArea.style.padding = '0';
+      moreArea.style.border = '0';
+      moreArea.style.overflow = 'hidden';
+    }
+
+    if (isMoreOpen && moreArea) {
+      moreArea.style.display = '';
+      moreArea.style.height = '';
+      moreArea.style.maxHeight = '';
+      moreArea.style.margin = '';
+      moreArea.style.padding = '';
+      moreArea.style.border = '';
+      moreArea.style.overflow = '';
+    }
+
+    if (!isStepsOpen && !isMoreOpen && drawer) {
+      drawer.style.display = 'none';
+      drawer.style.height = '0px';
+      drawer.style.maxHeight = '0px';
+      drawer.style.margin = '0';
+      drawer.style.padding = '0';
+      drawer.style.border = '0';
+      drawer.style.overflow = 'hidden';
+    } else if (drawer) {
+      drawer.style.display = '';
+      drawer.style.height = '';
+      drawer.style.maxHeight = '';
+      drawer.style.margin = '';
+      drawer.style.padding = '';
+      drawer.style.border = '';
+      drawer.style.overflow = '';
+    }
+
+    if (stepsButton) stepsButton.textContent = isStepsOpen ? 'Hide Tasks' : 'View Tasks';
+    if (moreButton) moreButton.textContent = isMoreOpen ? 'Less' : 'More';
+
+    void card.offsetHeight;
+  }
+
+  document.addEventListener('click', function(event) {
+    var btn = event.target && event.target.closest ? event.target.closest('[data-action="toggleSteps"], [data-action="more"]') : null;
+    if (!btn) return;
+    var card = btn.closest('.quest-card.qt-card-epic');
+    if (!card) return;
+    setTimeout(function() { fixQuestDrawer(card); }, 0);
+    setTimeout(function() { fixQuestDrawer(card); }, 80);
+  }, true);
+})();
 </script>
 
 </body>
