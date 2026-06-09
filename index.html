@@ -8138,100 +8138,6 @@ header .player-card {
 }
 
 
-/* ===== Quest Card Mobile Stretch Fix V3 ===== */
-@media (max-width: 760px) {
-  .quest-card.qt-card-epic,
-  .quest-card {
-    min-height: 0 !important;
-    height: auto !important;
-    align-items: stretch !important;
-  }
-
-  .quest-card.qt-card-epic {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    grid-auto-rows: auto !important;
-    gap: 12px !important;
-    padding: 14px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-crest {
-    position: static !important;
-    width: auto !important;
-    min-height: 0 !important;
-    height: auto !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-content,
-  .quest-card.qt-card-epic .qt-card-side,
-  .quest-card.qt-card-epic .qt-card-drawer {
-    min-height: 0 !important;
-    height: auto !important;
-    width: 100% !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-side {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    align-self: start !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-side .qt-card-art {
-    height: 58px !important;
-    min-height: 58px !important;
-    max-height: 58px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-side .qt-art-orb {
-    width: 42px !important;
-    height: 42px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-
-  .quest-card.qt-card-epic .qt-primary-action,
-  .quest-card.qt-card-epic .qt-more-btn {
-    width: 100% !important;
-    min-height: 52px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-card-drawer {
-    grid-column: 1 / -1 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  .quest-card.qt-card-epic .qt-micro-drawer,
-  .quest-card.qt-card-epic .qt-more-actions {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .quest-card.qt-card-epic .micro-list,
-  .quest-card.qt-card-epic .qt-micro-list {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .quest-card.qt-card-epic.steps-open,
-  .quest-card.qt-card-epic.more-open,
-  .quest-card.qt-card-epic:has(.qt-card-drawer:not(:empty)) {
-    min-height: 0 !important;
-    height: auto !important;
-  }
-}
 
 /* Extra narrow phones */
 @media (max-width: 430px) {
@@ -8254,6 +8160,91 @@ header .player-card {
   .quest-card.qt-card-epic .qt-primary-action,
   .quest-card.qt-card-epic .qt-more-btn {
     min-height: 48px !important;
+  }
+}
+
+
+
+
+/* Very small phone tuning */
+@media (max-width: 430px) {
+  .quest-list .quest-card.qt-card-epic,
+  .quest-list .quest-card {
+    padding: 12px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-primary-action,
+  .quest-card.qt-card-epic .qt-more-btn {
+    min-height: 46px !important;
+  }
+}
+
+
+
+/* ===== View Tasks Mobile Stretch Fix V7 - Narrow Scope ===== */
+@media (max-width: 900px) {
+  /*
+    Only fix the card when View Tasks is open.
+    Do not redesign the whole mobile quest card.
+  */
+  .quest-card.qt-card-epic.steps-open {
+    min-height: unset !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .quest-card.qt-card-epic.steps-open .qt-card-drawer,
+  .quest-card.qt-card-epic.steps-open .qt-micro-drawer,
+  .quest-card.qt-card-epic.steps-open .qt-micro-list,
+  .quest-card.qt-card-epic.steps-open .micro-list {
+    min-height: unset !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /*
+    The decorative side art is what fights the drawer height on phone.
+    Hide only when View Tasks is open.
+  */
+  .quest-card.qt-card-epic.steps-open .qt-card-art,
+  .quest-card.qt-card-epic.steps-open .qt-art-orb,
+  .quest-card.qt-card-epic.steps-open .qt-art-lines,
+  .quest-card.qt-card-epic.steps-open .qt-card-art::before,
+  .quest-card.qt-card-epic.steps-open .qt-card-art::after,
+  .quest-card.qt-card-epic.steps-open .qt-art-lines::before,
+  .quest-card.qt-card-epic.steps-open .qt-art-lines::after {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    content: none !important;
+  }
+
+  .quest-card.qt-card-epic.steps-open .qt-card-side {
+    min-height: unset !important;
+    height: auto !important;
+    max-height: none !important;
+    align-self: start !important;
+  }
+
+  /*
+    Keep action buttons normal, but stop the side/action area from reserving
+    vertical space while tasks are open.
+  */
+  .quest-card.qt-card-epic.steps-open .qt-card-actions {
+    min-height: unset !important;
+    height: auto !important;
+    max-height: none !important;
   }
 }
 
@@ -9644,6 +9635,50 @@ function useMealPass() {
     }
 
     function normalizeQuestCardLayout(card) {
+      /* VIEW_TASKS_ONLY_MOBILE_FIX: prevent View Tasks drawer from inheriting desktop height on phone */
+      if (
+        card &&
+        card.classList &&
+        card.classList.contains('steps-open') &&
+        window.matchMedia &&
+        window.matchMedia('(max-width: 900px)').matches
+      ) {
+        try {
+          card.style.minHeight = '';
+          card.style.height = '';
+          card.style.maxHeight = '';
+
+          var drawer = card.querySelector('.qt-card-drawer');
+          var micro = card.querySelector('.qt-micro-drawer');
+          var side = card.querySelector('.qt-card-side');
+          var art = card.querySelector('.qt-card-art');
+
+          if (drawer) {
+            drawer.style.minHeight = '';
+            drawer.style.height = '';
+            drawer.style.maxHeight = '';
+          }
+
+          if (micro) {
+            micro.style.minHeight = '';
+            micro.style.height = '';
+            micro.style.maxHeight = '';
+          }
+
+          if (side) {
+            side.style.minHeight = '';
+            side.style.height = '';
+            side.style.maxHeight = '';
+          }
+
+          if (art) {
+            art.style.display = 'none';
+            art.style.minHeight = '0px';
+            art.style.height = '0px';
+          }
+        } catch (error) {}
+        return;
+      }
       if (!card) return;
       var microList = card.querySelector('.micro-list');
       var stepsButton = card.querySelector('[data-action="toggleSteps"]');
