@@ -10458,6 +10458,113 @@ header .player-card {
 }
 
 
+
+/* ===== PHONE SAVE FOLDER / PREVIOUS SAVES OVERLAP FIX ===== */
+/* Prevents the fixed bottom phone tab bar from covering Save Folder and Previous Saves text/buttons. */
+@media (max-width: 900px) {
+  body {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .screen {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  #saveView {
+    padding-bottom: calc(130px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  #saveView .panel:last-child,
+  #saveView .save-list,
+  #saveView #saveList,
+  #saveView #previousSaves,
+  #saveView .save-card:last-child {
+    margin-bottom: calc(86px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  #saveView .save-card {
+    display: grid !important;
+    gap: 12px !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  #saveView .save-top {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+
+  #saveView .save-title,
+  #saveView .save-meta,
+  #saveView .default-title,
+  #saveView .default-meta {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.45 !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  #saveView .save-actions,
+  #saveView .actions,
+  #saveView .quest-secondary-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  #saveView button,
+  #saveView input,
+  #saveView textarea {
+    max-width: 100% !important;
+  }
+
+  #saveView button {
+    min-height: 44px !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+  }
+
+  #saveView textarea,
+  #saveView #dataBox {
+    min-height: 180px !important;
+    max-height: 42vh !important;
+    overflow: auto !important;
+    line-height: 1.45 !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #saveView {
+    padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  #saveView .panel {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  #saveView .save-card {
+    padding: 12px !important;
+  }
+
+  #saveView .save-title {
+    font-size: 15px !important;
+  }
+
+  #saveView .save-meta {
+    font-size: 12px !important;
+  }
+}
+
 </style>
 </head>
 
