@@ -1754,17 +1754,12 @@
 
 .element-editor-row {
   display: grid;
-  gap: 8px;
-  border: 1px solid rgba(216,208,189,0.14);
-  background: rgba(0,0,0,0.25);
-  padding: 9px;
-}
-
-.element-editor-top {
-  display: grid;
   grid-template-columns: 1fr 42px 42px 42px;
   gap: 7px;
   align-items: center;
+  border: 1px solid rgba(216,208,189,0.14);
+  background: rgba(0,0,0,0.25);
+  padding: 8px;
 }
 
 .element-editor-row input {
@@ -1777,124 +1772,6 @@
   font-size: 13px;
   line-height: 1;
   border-radius: 6px;
-}
-
-.element-day-editor {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.element-day-btn,
-.element-schedule-chip {
-  min-height: 32px;
-  padding: 6px 9px;
-  border-radius: 999px;
-  border: 1px solid rgba(216,208,189,0.18);
-  background: rgba(255,255,255,0.03);
-  color: #d8d0bd;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.element-day-btn.active,
-.element-schedule-chip.active {
-  border-color: rgba(216,208,189,0.42);
-  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03));
-  color: #fff3d2;
-  box-shadow: 0 0 14px rgba(216,208,189,0.12);
-}
-
-.element-day-btn.fire.active,
-.element-schedule-chip.fire.active {
-  border-color: rgba(255,124,91,0.45);
-  background: linear-gradient(180deg, rgba(255,138,104,0.26), rgba(95,22,17,0.28));
-  color: #ffe2d8;
-}
-
-.element-day-btn.earth.active,
-.element-schedule-chip.earth.active {
-  border-color: rgba(116,211,138,0.45);
-  background: linear-gradient(180deg, rgba(116,211,138,0.26), rgba(14,53,27,0.28));
-  color: #e8ffef;
-}
-
-.element-day-btn.water.active,
-.element-schedule-chip.water.active {
-  border-color: rgba(113,200,255,0.45);
-  background: linear-gradient(180deg, rgba(113,200,255,0.26), rgba(10,43,73,0.3));
-  color: #e5f7ff;
-}
-
-.element-day-btn.air.active,
-.element-schedule-chip.air.active {
-  border-color: rgba(214,214,214,0.42);
-  background: linear-gradient(180deg, rgba(220,220,220,0.22), rgba(75,75,75,0.24));
-  color: #fff;
-}
-
-.element-day-note {
-  font-size: 11px;
-  color: #a79f8e;
-}
-
-.element-day-presets {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.element-day-preset-btn {
-  min-height: 28px;
-  padding: 5px 9px;
-  border-radius: 999px;
-  border: 1px solid rgba(216,208,189,0.16);
-  background: rgba(255,255,255,0.03);
-  color: #bfb7a5;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.45px;
-  text-transform: uppercase;
-}
-
-.element-day-preset-btn:hover,
-.element-day-preset-btn:focus {
-  border-color: rgba(216,208,189,0.3);
-  color: #f2e6c5;
-}
-
-.element-schedule-row {
-  grid-column: 1 / -1;
-  border: 1px solid rgba(216,208,189,0.16);
-  background: rgba(0,0,0,0.22);
-  border-radius: 12px;
-  padding: 9px;
-  display: grid;
-  gap: 8px;
-}
-
-.element-schedule-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.element-schedule-name {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  color: #f2e6c5;
-}
-
-.element-schedule-days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
 }
 
 .element-delete-btn {
@@ -1922,7 +1799,7 @@
     grid-template-columns: 1fr;
   }
 
-  .element-editor-top {
+  .element-editor-row {
     grid-template-columns: 1fr 38px 38px 38px;
   }
 
@@ -8554,2106 +8431,66 @@ header .player-card {
 }
 
 
-/* ===== FINAL FANTASY RPG QUEST SYSTEM — MOBILE + DESKTOP ===== */
-/* Applied to the latest uploaded code. */
+/* ===== REQUESTED PATCH ONLY: ELEMENTS + STREAK + PHONE NAV ===== */
+/* Quest cards are intentionally untouched in this patch. */
 
-.tabs .tab[data-view="questsView"]::before { content: "⚜"; }
-.tabs .tab[data-view="elementsView"]::before { content: "♢"; }
-.tabs .tab[data-view="streakView"]::before { content: "⟳"; }
-.tabs .tab[data-view="saveView"]::before { content: "▣"; }
-.tabs .tab[data-view="archiveView"]::before { content: "•••"; }
+.element-editor-top { display: grid; grid-template-columns: minmax(0, 1fr) 42px 42px 42px; gap: 7px; align-items: center; }
+.element-schedule-row { grid-column: 1 / -1; border: 1px solid rgba(216,208,189,0.16); background: rgba(0,0,0,0.22); border-radius: 12px; padding: 9px; display: grid; gap: 8px; }
+.element-schedule-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.element-schedule-name { font-size: 12px; font-weight: 900; letter-spacing: 0.7px; text-transform: uppercase; color: #f2e6c5; }
+.element-day-note { font-size: 11px; color: #a79f8e; }
+.element-day-presets, .element-day-editor, .element-schedule-days { display: flex; flex-wrap: wrap; gap: 6px; }
+.element-day-btn, .element-schedule-chip { min-height: 32px; padding: 6px 9px; border-radius: 999px; border: 1px solid rgba(216,208,189,0.18); background: rgba(255,255,255,0.03); color: #d8d0bd; font-size: 10px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; }
+.element-day-btn.active, .element-schedule-chip.active { border-color: rgba(216,208,189,0.42); background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03)); color: #fff3cf; }
+.element-day-preset-btn { min-height: 28px; padding: 5px 9px; border-radius: 999px; border: 1px solid rgba(216,208,189,0.16); background: rgba(255,255,255,0.03); color: #bfb7a5; font-size: 10px; font-weight: 800; letter-spacing: 0.45px; text-transform: uppercase; }
 
-.tabs .tab::before {
-  display: inline-block;
-  margin-right: 7px;
-  opacity: 0.9;
-}
+.element-assigned-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px !important; width: 100% !important; }
+.element-assigned-card { display: grid !important; grid-template-rows: auto 1fr !important; gap: 6px !important; min-width: 0 !important; }
+.element-assigned-card-day { height: 22px !important; display: flex !important; align-items: center !important; justify-content: center !important; color: var(--muted) !important; text-align: center !important; font-size: 10px !important; font-weight: 900 !important; letter-spacing: 0.8px !important; text-transform: uppercase !important; border: 1px solid rgba(216,208,189,0.14) !important; background: rgba(0,0,0,0.18) !important; }
+.element-assigned-card-skill { min-height: 60px !important; width: 100% !important; border: 1px solid rgba(216,208,189,0.18) !important; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 42%), linear-gradient(180deg, #101010, #060606) !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; color: #f0e8d8 !important; font-size: 15px !important; font-weight: 900 !important; text-transform: uppercase !important; letter-spacing: 0.45px !important; text-align: center !important; padding: 16px 10px !important; position: relative !important; border-radius: 0 !important; }
+.element-assigned-card-skill.active::after { content: "✓" !important; position: absolute !important; right: 8px !important; top: 6px !important; font-size: 12px !important; }
+.element-assigned-card-skill.fire.active { background: linear-gradient(180deg, #ff7958, #9b1f1f) !important; color: #fff6ef !important; }
+.element-assigned-card-skill.earth.active { background: linear-gradient(180deg, #79df93, #1f6f3d) !important; color: #f2fff6 !important; }
+.element-assigned-card-skill.air.active { background: linear-gradient(180deg, #dbdbdb, #7d7d7d) !important; color: #fff !important; }
+.element-plain-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px !important; }
 
-@media (min-width: 901px) {
-  #questsView .grid-quests {
-    grid-template-columns: 340px minmax(0, 1fr) !important;
-    gap: 18px !important;
-    align-items: start !important;
-  }
-
-  #questsView .grid-quests > .panel:first-child {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-  }
-
-  #questsView .quest-sections-stack {
-    grid-column: 2 !important;
-    display: grid !important;
-    gap: 18px !important;
-  }
-
-  .tabs .tab::before {
-    font-size: 14px;
-  }
-}
+#streakView { --streak-done: #4ade80; --streak-safe: #60a5fa; --streak-fail: #ef4444; --streak-partial: #f59e0b; }
+#streakView .day-cell.perfect, #streakView .day-cell.win { border-color: rgba(74,222,128,0.60) !important; background: rgba(74,222,128,0.075) !important; }
+#streakView .day-cell.partial { border-color: rgba(245,158,11,0.62) !important; background: rgba(245,158,11,0.065) !important; }
+#streakView .day-cell.failed { border-color: rgba(239,68,68,0.70) !important; background: rgba(239,68,68,0.070) !important; }
+#streakView .day-cell.protected { border-color: rgba(96,165,250,0.70) !important; background: rgba(96,165,250,0.075) !important; }
+#streakView .dot.done { background: var(--streak-done) !important; }
+#streakView .dot.failed { background: var(--streak-fail) !important; }
+#streakView .dot.protected { background: var(--streak-safe) !important; }
 
 @media (max-width: 900px) {
-  body {
-    padding: 0 !important;
-    padding-bottom: 88px !important;
-    background:
-      radial-gradient(circle at 50% -6%, rgba(224,200,120,0.13), transparent 26%),
-      linear-gradient(180deg, #050607 0%, #020202 100%) !important;
-  }
-
-  .screen {
-    padding: 18px 14px 20px !important;
-    border: 0 !important;
-    min-height: 100vh !important;
-    background:
-      radial-gradient(circle at 50% -6%, rgba(224,200,120,0.08), transparent 24%),
-      linear-gradient(180deg, #070809, #020202 60%) !important;
-  }
-
-  header {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    min-height: auto !important;
-    padding: 0 !important;
-    margin: 0 0 18px !important;
-    border: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  header::before,
-  header::after,
-  header .player-card,
-  header .brand::before,
-  header .brand::after,
-  header > div:first-child::before,
-  header > div:first-child::after {
-    display: none !important;
-  }
-
-  header .brand,
-  header > div:first-child {
-    padding: 0 !important;
-    min-height: 0 !important;
-    display: block !important;
-  }
-
-  header h1 {
-    font-family: "Segoe UI", Arial, sans-serif !important;
-    font-size: 40px !important;
-    line-height: 0.95 !important;
-    letter-spacing: 1px !important;
-    color: #e8eaed !important;
-    margin: 0 !important;
-    text-shadow: none !important;
-  }
-
-  header .subtitle {
-    margin-top: 7px !important;
-    color: #9ca3af !important;
-    font-size: 12px !important;
-    letter-spacing: 1.2px !important;
-  }
-
-  .tabs {
-    position: fixed !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    top: auto !important;
-    z-index: 100 !important;
-    height: 82px !important;
-    margin: 0 !important;
-    padding: 8px 10px 14px !important;
-    border: 1px solid rgba(255,255,255,0.09) !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-    border-radius: 22px 22px 0 0 !important;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.055), transparent 36%),
-      rgba(7,9,12,0.96) !important;
-    backdrop-filter: blur(14px) !important;
-    box-shadow: 0 -18px 40px rgba(0,0,0,0.56) !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 2px !important;
-    overflow: visible !important;
-  }
-
-  .tabs::before {
-    display: none !important;
-  }
-
-  .tabs .tab {
-    min-width: 0 !important;
-    width: 100% !important;
-    height: 60px !important;
-    padding: 5px 2px 2px !important;
-    border: 0 !important;
-    border-radius: 14px !important;
-    background: transparent !important;
-    color: #8b9098 !important;
-    font-size: 10px !important;
-    letter-spacing: 0.5px !important;
-    display: grid !important;
-    place-items: center !important;
-    align-content: center !important;
-    gap: 3px !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  .tabs .tab::before {
-    display: block !important;
-    margin: 0 !important;
-    font-size: 22px !important;
-    line-height: 1 !important;
-  }
-
-  .tabs .tab.active {
-    color: #f4c430 !important;
-    text-shadow: 0 0 14px rgba(244,196,48,0.30) !important;
-  }
-
-  .tabs .tab.active::after {
-    display: none !important;
-  }
-
-  #questsView .grid-quests,
-  #questsView .quest-sections-stack {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-}
-
-#questsView .quest-section-panel {
-  border-radius: 18px !important;
-  border: 1px solid rgba(224,200,120,0.20) !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-#questsView .quest-section-panel .section-toggle {
-  border: 0 !important;
-  color: #d7d9dd !important;
-  font-family: "Segoe UI", Arial, sans-serif !important;
-  font-size: clamp(18px, 3vw, 32px) !important;
-  letter-spacing: 1px !important;
-  margin: 0 0 12px !important;
-  padding: 0 !important;
-  text-shadow: none !important;
-}
-
-#questsView .quest-list {
-  gap: 16px !important;
-}
-
-/* Final quest card */
-.quest-card.qt-card-final {
-  --quest-accent: #f4c430;
-  --quest-accent-rgb: 244,196,48;
-  --quest-panel: #11100b;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  position: relative !important;
-  display: block !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  border-radius: 18px !important;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.62) !important;
-  background:
-    radial-gradient(circle at 91% 18%, rgba(var(--quest-accent-rgb),0.20), transparent 16%),
-    radial-gradient(circle at 50% 0%, rgba(var(--quest-accent-rgb),0.12), transparent 24%),
-    linear-gradient(135deg, rgba(var(--quest-accent-rgb),0.075), transparent 35%),
-    linear-gradient(180deg, rgba(255,255,255,0.035), transparent 42%),
-    linear-gradient(180deg, var(--quest-panel), #050505) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.030),
-    inset 0 -40px 70px rgba(0,0,0,0.40),
-    0 14px 30px rgba(0,0,0,0.46),
-    0 0 18px rgba(var(--quest-accent-rgb),0.10) !important;
-}
-
-.quest-card.qt-card-final.side {
-  --quest-accent: #b86cff;
-  --quest-accent-rgb: 184,108,255;
-  --quest-panel: #100a18;
-}
-
-.quest-card.qt-card-final.complete {
-  --quest-accent: #4ade80;
-  --quest-accent-rgb: 74,222,128;
-  --quest-panel: #0b1610;
-}
-
-.quest-card.qt-card-final.failed {
-  --quest-accent: #ef6f6f;
-  --quest-accent-rgb: 239,111,111;
-  --quest-panel: #170a0a;
-}
-
-.quest-card.qt-card-final::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 7px !important;
-  border-radius: 13px !important;
-  pointer-events: none !important;
-  background:
-    linear-gradient(90deg, rgba(var(--quest-accent-rgb),0.82), transparent 18%, transparent 82%, rgba(var(--quest-accent-rgb),0.72)) top / 100% 1px no-repeat,
-    linear-gradient(90deg, rgba(var(--quest-accent-rgb),0.55), transparent 28%, transparent 72%, rgba(var(--quest-accent-rgb),0.55)) bottom / 100% 1px no-repeat,
-    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.78), transparent 30%, transparent 70%, rgba(var(--quest-accent-rgb),0.55)) left / 1px 100% no-repeat,
-    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.65), transparent 30%, transparent 70%, rgba(var(--quest-accent-rgb),0.55)) right / 1px 100% no-repeat !important;
-  filter: drop-shadow(0 0 7px rgba(var(--quest-accent-rgb),0.24));
-  opacity: 0.92 !important;
-}
-
-.quest-card.qt-card-final > * {
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-.qt-final-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 170px;
-  grid-template-areas:
-    "top top"
-    "main emblem"
-    "stats stats"
-    "progress progress"
-    "date date"
-    "tasks tasks"
-    "actions actions";
-  gap: 14px 18px;
-  padding: 22px 22px 18px;
-  min-width: 0;
-}
-
-.qt-final-topline {
-  grid-area: top;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 12px;
-}
-
-.qt-final-number {
-  min-width: 74px;
-  min-height: 62px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.50);
-  color: #ffe9a3;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 28px;
-  font-weight: 950;
-  border-radius: 13px;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(var(--quest-accent-rgb),0.28), transparent 52%),
-    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.16), rgba(0,0,0,0.44));
-  box-shadow: 0 0 18px rgba(var(--quest-accent-rgb),0.16), inset 0 0 0 1px rgba(255,255,255,0.024);
-}
-
-.qt-final-type {
-  color: var(--quest-accent);
-  font-size: 15px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.qt-final-priority {
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 9px 14px;
-  color: #fb923c;
-  border: 1px solid rgba(249,115,22,0.58);
-  background: rgba(249,115,22,0.12);
-  font-size: 14px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-.qt-final-priority.priority-critical {
-  color: #ff9b9b;
-  border-color: rgba(239,68,68,0.72);
-  background: rgba(239,68,68,0.14);
-}
-
-.qt-final-priority.priority-low {
-  color: #93c5fd;
-  border-color: rgba(96,165,250,0.55);
-  background: rgba(96,165,250,0.11);
-}
-
-.qt-final-main {
-  grid-area: main;
-  display: grid;
-  gap: 10px;
-  align-self: center;
-  min-width: 0;
-}
-
-.qt-final-title {
-  color: #f3f4f6;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(30px, 3.2vw, 48px);
-  font-weight: 950;
-  line-height: 1.02;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  text-shadow: 0 0 16px rgba(255,255,255,0.08);
-  overflow-wrap: anywhere;
-}
-
-.qt-final-desc {
-  color: #c8c1b7;
-  font-size: 18px;
-  line-height: 1.42;
-  max-width: 720px;
-  overflow-wrap: anywhere;
-}
-
-.qt-final-emblem {
-  grid-area: emblem;
-  align-self: stretch;
-  min-height: 128px;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.28);
-  background:
-    radial-gradient(circle at 72% 24%, rgba(255,255,255,0.12), transparent 18%),
-    radial-gradient(circle at 50% 50%, rgba(var(--quest-accent-rgb),0.20), transparent 52%),
-    rgba(0,0,0,0.28);
-}
-
-.qt-final-emblem span::before {
-  content: "⚔";
-  color: var(--quest-accent);
-  font-size: 50px;
-  text-shadow: 0 0 22px rgba(var(--quest-accent-rgb),0.45);
-  opacity: 0.78;
-}
-
-.quest-card.qt-card-final.side .qt-final-emblem span::before { content: "◆"; }
-.quest-card.qt-card-final.complete .qt-final-emblem span::before { content: "✓"; }
-.quest-card.qt-card-final.failed .qt-final-emblem span::before { content: "!"; }
-
-.qt-final-stats {
-  grid-area: stats;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(var(--quest-accent-rgb),0.24);
-  border-bottom: 1px solid rgba(var(--quest-accent-rgb),0.20);
-  min-width: 0;
-}
-
-.qt-final-stat {
-  display: grid;
-  gap: 6px;
-  padding: 14px 16px;
-  border-right: 1px solid rgba(var(--quest-accent-rgb),0.18);
-  min-width: 0;
-}
-
-.qt-final-stat:last-child {
-  border-right: 0;
-}
-
-.qt-final-stat span {
-  color: #a9a29a;
-  font-size: 14px;
-  font-weight: 850;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.qt-final-stat strong {
-  color: var(--quest-accent);
-  font-size: 26px;
-  font-weight: 950;
-  line-height: 1.1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.qt-final-progress-row {
-  grid-area: progress;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 16px;
-}
-
-.qt-final-progress-track {
-  height: 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.22);
-  background: rgba(255,255,255,0.08);
-  overflow: hidden;
-}
-
-.qt-final-progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--quest-accent), color-mix(in srgb, var(--quest-accent) 62%, white));
-  box-shadow: 0 0 16px rgba(var(--quest-accent-rgb),0.40);
-}
-
-.qt-final-progress-row span {
-  color: var(--quest-accent);
-  font-size: 22px;
-  font-weight: 950;
-}
-
-.qt-final-date-line {
-  grid-area: date;
-  color: var(--quest-accent) !important;
-  font-size: 12px !important;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.20);
-  background: rgba(var(--quest-accent-rgb),0.07);
-  border-radius: 8px;
-  padding: 8px 10px;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.qt-final-actions {
-  grid-area: actions;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-}
-
-.qt-final-action {
-  min-height: 54px !important;
-  border-radius: 12px !important;
-  padding: 10px 14px !important;
-  font-size: 14px !important;
-  font-weight: 950 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1.4px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  transform: none !important;
-}
-
-.qt-final-view-btn {
-  color: var(--quest-accent) !important;
-  border-color: rgba(var(--quest-accent-rgb),0.42) !important;
-  background: rgba(0,0,0,0.22) !important;
-}
-
-.qt-final-primary-btn {
-  color: #fff4c2 !important;
-  border-color: rgba(var(--quest-accent-rgb),0.58) !important;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(var(--quest-accent-rgb),0.18), transparent 62%),
-    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.13), rgba(0,0,0,0.30)) !important;
-}
-
-.qt-final-more-btn {
-  color: #d8d0bd !important;
-  border-color: rgba(216,208,189,0.22) !important;
-  background: rgba(0,0,0,0.18) !important;
-}
-
-.qt-final-drawers {
-  grid-area: tasks;
-  display: grid;
-  gap: 12px;
-  min-width: 0;
-}
-
-.qt-final-task-drawer,
-.qt-final-more-drawer {
-  display: grid;
-  gap: 12px;
-  max-height: min(410px, 58vh);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  border-radius: 14px;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.24);
-  background:
-    linear-gradient(180deg, rgba(var(--quest-accent-rgb),0.045), transparent 48%),
-    rgba(0,0,0,0.28);
-  padding: 16px;
-}
-
-.quest-card.qt-card-final:not(.steps-open) .qt-final-task-drawer,
-.quest-card.qt-card-final .qt-final-task-drawer.hidden {
-  display: none !important;
-}
-
-.quest-card.qt-card-final:not(.actions-open) .qt-final-more-drawer {
-  display: none !important;
-}
-
-.qt-final-drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--quest-accent);
-  font-size: 16px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.qt-final-drawer-close {
-  width: 38px !important;
-  min-height: 34px !important;
-  border-radius: 8px !important;
-  padding: 0 !important;
-  color: var(--quest-accent) !important;
-  border-color: rgba(var(--quest-accent-rgb),0.35) !important;
-  background: rgba(0,0,0,0.18) !important;
-}
-
-.qt-final-task-item {
-  display: grid !important;
-  grid-template-columns: auto minmax(0, 1fr) auto auto !important;
-  align-items: center !important;
-  gap: 12px !important;
-  min-height: 68px !important;
-  margin: 0 !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(var(--quest-accent-rgb),0.18) !important;
-  background: rgba(0,0,0,0.26) !important;
-  padding: 12px 14px !important;
-  color: #f4efe5 !important;
-  font-size: 16px !important;
-  line-height: 1.3 !important;
-}
-
-.qt-final-task-item input {
-  width: 26px !important;
-  height: 26px !important;
-  margin: 0 !important;
-  accent-color: var(--quest-accent);
-}
-
-.qt-final-task-item.done .micro-task-text {
-  color: var(--quest-accent);
-}
-
-.qt-final-task-count {
-  color: #a9a29a;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.qt-final-task-move-wrap {
-  display: inline-grid;
-  grid-template-columns: 34px 34px;
-  gap: 6px;
-}
-
-.qt-final-move-btn {
-  width: 34px !important;
-  min-height: 34px !important;
-  padding: 0 !important;
-  border-radius: 8px !important;
-}
-
-.qt-final-empty-drawer {
-  color: #aaa29a;
-  border: 1px dashed rgba(var(--quest-accent-rgb),0.20);
-  border-radius: 10px;
-  padding: 14px;
-}
-
-.qt-final-more-grid {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  gap: 10px !important;
-}
-
-.qt-final-more-grid button {
-  min-height: 54px !important;
-  border-radius: 12px !important;
-  font-size: 13px !important;
-  padding: 10px !important;
-}
-
-@media (max-width: 900px) {
-  #questsView .quest-section-panel {
-    padding: 0 !important;
-    border: 0 !important;
-  }
-
-  #questsView .section-toggle {
-    font-size: 13px !important;
-    color: #9ca3af !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.2px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .quest-card.qt-card-final {
-    border-radius: 16px !important;
-  }
-
-  .quest-card.qt-card-final::before {
-    inset: 5px !important;
-    border-radius: 12px !important;
-  }
-
-  .qt-final-inner {
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-areas:
-      "top"
-      "main"
-      "stats"
-      "progress"
-      "date"
-      "tasks"
-      "actions" !important;
-    gap: 12px !important;
-    padding: 18px 16px 14px !important;
-  }
-
-  .qt-final-topline {
-    grid-template-columns: auto minmax(0, 1fr) auto !important;
-    gap: 9px !important;
-  }
-
-  .qt-final-number {
-    min-width: 54px !important;
-    min-height: 48px !important;
-    border-radius: 10px !important;
-    font-size: 24px !important;
-  }
-
-  .qt-final-type {
-    font-size: 13px !important;
-    letter-spacing: 1.4px !important;
-  }
-
-  .qt-final-priority {
-    min-height: 36px !important;
-    padding: 8px 10px !important;
-    font-size: 13px !important;
-  }
-
-  .qt-final-title {
-    font-size: 30px !important;
-    line-height: 1.04 !important;
-  }
-
-  .qt-final-desc {
-    font-size: 20px !important;
-    line-height: 1.35 !important;
-  }
-
-  .qt-final-emblem {
-    position: absolute !important;
-    right: 34px !important;
-    top: 122px !important;
-    width: 88px !important;
-    height: 88px !important;
-    min-height: 88px !important;
-    opacity: 0.40 !important;
-    border: 0 !important;
-    background: transparent !important;
-    pointer-events: none !important;
-  }
-
-  .qt-final-emblem span::before {
-    font-size: 54px !important;
-  }
-
-  .qt-final-stats {
-    margin-top: 8px !important;
-  }
-
-  .qt-final-stat {
-    padding: 12px 10px !important;
-  }
-
-  .qt-final-stat span {
-    font-size: 13px !important;
-  }
-
-  .qt-final-stat strong {
-    font-size: 24px !important;
-  }
-
-  .qt-final-progress-row {
-    gap: 12px !important;
-  }
-
-  .qt-final-progress-track {
-    height: 11px !important;
-  }
-
-  .qt-final-progress-row span {
-    font-size: 22px !important;
-  }
-
-  .qt-final-actions {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  .qt-final-action {
-    min-height: 52px !important;
-    font-size: 14px !important;
-  }
-
-  .qt-final-task-drawer,
-  .qt-final-more-drawer {
-    max-height: min(450px, 54vh) !important;
-    padding: 14px !important;
-  }
-
-  .qt-final-more-grid {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  .qt-final-more-grid button {
-    min-height: 50px !important;
-    font-size: 12px !important;
-  }
-
-  .qt-final-task-item {
-    grid-template-columns: auto minmax(0, 1fr) auto !important;
-    min-height: 66px !important;
-  }
-
-  .qt-final-task-count {
-    grid-column: 3 !important;
-  }
-
-  .qt-final-task-move-wrap {
-    grid-column: 2 / -1 !important;
-    justify-self: start !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .qt-final-inner {
-    padding: 16px 13px 13px !important;
-  }
-
-  .qt-final-title {
-    font-size: 26px !important;
-  }
-
-  .qt-final-desc {
-    font-size: 16px !important;
-  }
-
-  .qt-final-number {
-    min-width: 48px !important;
-    min-height: 42px !important;
-    font-size: 21px !important;
-  }
-
-  .qt-final-type {
-    font-size: 11px !important;
-  }
-
-  .qt-final-priority {
-    font-size: 11px !important;
-  }
-
-  .qt-final-emblem {
-    display: none !important;
-  }
-
-  .qt-final-stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
-
-  .qt-final-stat {
-    padding: 10px 6px !important;
-  }
-
-  .qt-final-stat span {
-    font-size: 10px !important;
-  }
-
-  .qt-final-stat strong {
-    font-size: 18px !important;
-  }
-
-  .qt-final-more-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-
-
-/* ===== SMALL HEADER + EMBLEM TUNE ===== */
-#questsView .quest-section-panel[data-section="main"] .section-toggle,
-#questsView .main-heading {
-  color: #e8cf7a !important;
-  text-shadow:
-    0 0 10px rgba(224,200,120,0.16),
-    0 0 20px rgba(224,200,120,0.06) !important;
-}
-
-#questsView .quest-section-panel .section-toggle {
-  padding-left: 12px !important;
-}
-
-@media (max-width: 900px) {
-  #questsView .quest-section-panel .section-toggle {
-    padding-left: 14px !important;
-  }
-}
-
-.qt-final-emblem span::before,
-.quest-card.qt-card-final.side .qt-final-emblem span::before,
-.quest-card.qt-card-final.complete .qt-final-emblem span::before,
-.quest-card.qt-card-final.failed .qt-final-emblem span::before {
-  content: none !important;
-}
-
-.qt-final-emblem-symbol {
-  display: inline-block;
-  color: var(--quest-accent);
-  font-size: 50px;
-  line-height: 1;
-  text-shadow: 0 0 22px rgba(var(--quest-accent-rgb),0.45);
-  opacity: 0.78;
-}
-
-@media (max-width: 900px) {
-  .qt-final-emblem-symbol {
-    font-size: 54px !important;
-  }
-}
-
-
-/* ===== SMART STREAK FINAL STATUS COLORS ===== */
-/* Fixed status language:
-   Done/Win/Perfect = green
-   Safe/Protected = blue
-   Fail = red
-   Partial = orange
-   Skill dots no longer use random per-skill colors. */
-
-#streakView {
-  --streak-done: #4ade80;
-  --streak-safe: #60a5fa;
-  --streak-fail: #ef4444;
-  --streak-partial: #f59e0b;
-  --streak-empty: rgba(216,208,189,0.18);
-}
-
-/* Remove confusing multi-skill colors from small markers. */
-#streakView .quest-color,
-#streakDayModal .quest-color {
-  background: #80776b !important;
-  border: 1px solid rgba(216,208,189,0.26) !important;
-}
-
-#streakDayModal .check-row.done .quest-color,
-#streakView .dot.done {
-  background: var(--streak-done) !important;
-  border-color: var(--streak-done) !important;
-  box-shadow: 0 0 9px rgba(74,222,128,0.38) !important;
-}
-
-#streakDayModal .check-row.protected .quest-color,
-#streakView .dot.protected {
-  background: var(--streak-safe) !important;
-  border-color: var(--streak-safe) !important;
-  box-shadow: 0 0 9px rgba(96,165,250,0.38) !important;
-}
-
-#streakDayModal .check-row.failed .quest-color,
-#streakView .dot.failed {
-  background: var(--streak-fail) !important;
-  border-color: var(--streak-fail) !important;
-  box-shadow: 0 0 9px rgba(239,68,68,0.36) !important;
-}
-
-#streakView .day-cell.perfect,
-#streakView .day-cell.win {
-  border-color: rgba(74,222,128,0.60) !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(74,222,128,0.16), transparent 46%),
-    rgba(74,222,128,0.075) !important;
-}
-
-#streakView .day-cell.partial {
-  border-color: rgba(245,158,11,0.62) !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245,158,11,0.14), transparent 46%),
-    rgba(245,158,11,0.065) !important;
-}
-
-#streakView .day-cell.failed {
-  border-color: rgba(239,68,68,0.70) !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(239,68,68,0.16), transparent 46%),
-    rgba(239,68,68,0.070) !important;
-}
-
-#streakView .day-cell.protected {
-  border-color: rgba(96,165,250,0.70) !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(96,165,250,0.16), transparent 46%),
-    rgba(96,165,250,0.075) !important;
-}
-
-#streakView .day-cell.perfect .day-label,
-#streakView .day-cell.win .day-label {
-  color: #bbf7d0 !important;
-}
-
-#streakView .day-cell.partial .day-label {
-  color: #fed7aa !important;
-}
-
-#streakView .day-cell.failed .day-label {
-  color: #fecaca !important;
-}
-
-#streakView .day-cell.protected .day-label {
-  color: #bfdbfe !important;
-}
-
-/* Status badges and modal buttons. */
-#streakView .log-result-badge.perfect,
-#streakView .log-result-badge.win,
-#streakDayModal .log-result-badge.perfect,
-#streakDayModal .log-result-badge.win {
-  border-color: rgba(74,222,128,0.55) !important;
-  color: #bbf7d0 !important;
-  background: rgba(74,222,128,0.09) !important;
-}
-
-#streakView .log-result-badge.protected,
-#streakDayModal .log-result-badge.protected,
-#streakDayModal [data-streak-manual-pick="protected"].active {
-  border-color: rgba(96,165,250,0.70) !important;
-  color: #bfdbfe !important;
-  background: rgba(96,165,250,0.11) !important;
-}
-
-#streakView .log-result-badge.failed,
-#streakDayModal .log-result-badge.failed,
-#streakDayModal [data-streak-manual-pick="failed"].active {
-  border-color: rgba(239,68,68,0.75) !important;
-  color: #fecaca !important;
-  background: rgba(239,68,68,0.11) !important;
-}
-
-#streakView .log-result-badge.partial,
-#streakDayModal .log-result-badge.partial,
-#streakDayModal [data-streak-manual-pick="partial"].active {
-  border-color: rgba(245,158,11,0.70) !important;
-  color: #fed7aa !important;
-  background: rgba(245,158,11,0.10) !important;
-}
-
-#streakDayModal .check-row.done {
-  border-color: rgba(74,222,128,0.34) !important;
-  background: rgba(74,222,128,0.055) !important;
-}
-
-#streakDayModal .check-row.protected {
-  border-color: rgba(96,165,250,0.38) !important;
-  background: rgba(96,165,250,0.060) !important;
-}
-
-#streakDayModal .check-row.failed {
-  border-color: rgba(239,68,68,0.40) !important;
-  background: rgba(239,68,68,0.060) !important;
-}
-
-#streakDayModal .check-buttons .good.active {
-  border-color: rgba(74,222,128,0.70) !important;
-  color: #bbf7d0 !important;
-  background: rgba(74,222,128,0.12) !important;
-}
-
-#streakDayModal .check-buttons .warn.active {
-  border-color: rgba(96,165,250,0.70) !important;
-  color: #bfdbfe !important;
-  background: rgba(96,165,250,0.12) !important;
-}
-
-#streakDayModal .check-buttons .danger.active {
-  border-color: rgba(239,68,68,0.78) !important;
-  color: #fecaca !important;
-  background: rgba(239,68,68,0.14) !important;
-}
-
-/* Phone: keep many skills usable without stretching. */
-@media (max-width: 520px) {
-  #streakView .day-dots {
-    max-height: 28px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #streakDayModal .checklist {
-    max-height: 46vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-right: 2px;
-  }
-}
-
-
-/* ===== QUEST SECTION QUALITY OF LIFE POLISH ===== */
-/* Makes Main / Side / Completed use the same dark background language.
-   Color stays as identity only: text, border, glow, and tiny accent line. */
-
-#questsView .quest-sections-stack {
-  gap: 14px !important;
-}
-
-#questsView .quest-section-panel {
-  position: relative !important;
-  overflow: hidden !important;
-  border-radius: 15px !important;
-  padding: 10px !important;
-  border: 1px solid rgba(224,200,120,0.22) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.055), transparent 32%),
-    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 42%),
-    linear-gradient(180deg, #080807 0%, #030303 100%) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.018),
-    0 8px 20px rgba(0,0,0,0.26) !important;
-}
-
-#questsView .quest-section-panel::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 auto 0 0 !important;
-  width: 3px !important;
-  background: rgba(224,200,120,0.68) !important;
-  opacity: 0.82 !important;
-  pointer-events: none !important;
-}
-
-#questsView .quest-section-panel[data-section="main"] {
-  border-color: rgba(224,200,120,0.34) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.075), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 42%),
-    linear-gradient(180deg, #090807 0%, #030303 100%) !important;
-}
-
-#questsView .quest-section-panel[data-section="side"] {
-  border-color: rgba(184,108,255,0.34) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(184,108,255,0.075), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 42%),
-    linear-gradient(180deg, #09070d 0%, #030303 100%) !important;
-}
-
-#questsView .quest-section-panel[data-section="complete"] {
-  border-color: rgba(74,222,128,0.34) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(74,222,128,0.070), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 42%),
-    linear-gradient(180deg, #070b08 0%, #030303 100%) !important;
-}
-
-#questsView .quest-section-panel[data-section="failed"] {
-  border-color: rgba(239,111,111,0.34) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(239,111,111,0.070), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 42%),
-    linear-gradient(180deg, #0d0707 0%, #030303 100%) !important;
-}
-
-#questsView .quest-section-panel[data-section="side"]::before {
-  background: rgba(184,108,255,0.70) !important;
-}
-
-#questsView .quest-section-panel[data-section="complete"]::before {
-  background: rgba(74,222,128,0.70) !important;
-}
-
-#questsView .quest-section-panel[data-section="failed"]::before {
-  background: rgba(239,111,111,0.70) !important;
-}
-
-/* Cleaner section buttons: arrow has breathing room, text sits right. */
-#questsView .quest-section-panel .section-toggle {
-  width: 100% !important;
-  min-height: 48px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 14px !important;
-  text-align: left !important;
-  border: 0 !important;
-  border-radius: 12px !important;
-  margin: 0 !important;
-  padding: 8px 14px 8px 18px !important;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.030), transparent 55%),
-    rgba(0,0,0,0.20) !important;
-  font-family: "Segoe UI", Arial, sans-serif !important;
-  font-size: clamp(21px, 3vw, 31px) !important;
-  font-weight: 950 !important;
-  letter-spacing: 1px !important;
-  line-height: 1.1 !important;
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018) !important;
-  transform: none !important;
-}
-
-#questsView .quest-section-panel .section-toggle:hover {
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.050), transparent 58%),
-    rgba(0,0,0,0.26) !important;
-  transform: none !important;
-}
-
-/* Tone down main gold: less neon, more premium. */
-#questsView .quest-section-panel[data-section="main"] .section-toggle,
-#questsView .main-heading {
-  color: #ead27c !important;
-  text-shadow:
-    0 0 8px rgba(224,200,120,0.16),
-    0 0 18px rgba(224,200,120,0.06) !important;
-}
-
-#questsView .quest-section-panel[data-section="side"] .section-toggle,
-#questsView .side-heading {
-  color: #b889ff !important;
-  text-shadow:
-    0 0 8px rgba(184,108,255,0.18),
-    0 0 18px rgba(184,108,255,0.07) !important;
-}
-
-#questsView .quest-section-panel[data-section="complete"] .section-toggle,
-#questsView .complete-heading {
-  color: #79efa5 !important;
-  text-shadow:
-    0 0 8px rgba(74,222,128,0.16),
-    0 0 18px rgba(74,222,128,0.06) !important;
-}
-
-#questsView .quest-section-panel[data-section="failed"] .section-toggle,
-#questsView .failed-heading {
-  color: #ff9b9b !important;
-  text-shadow:
-    0 0 8px rgba(239,111,111,0.16),
-    0 0 18px rgba(239,111,111,0.06) !important;
-}
-
-/* Collapsed state: make it obvious without taking too much space. */
-#questsView .collapsible-content.collapsed,
-#questsView #archiveFilters.collapsed {
-  display: none !important;
-}
-
-#questsView .quest-section-panel .section-toggle:has(+ .collapsible-content.collapsed) {
-  opacity: 0.78 !important;
-}
-
-/* Quest list spacing and empty states. */
-#questsView .quest-list {
-  margin-top: 10px !important;
-  gap: 12px !important;
-}
-
-#questsView .quest-list .empty {
-  min-height: 54px !important;
-  border-radius: 12px !important;
-  border: 1px dashed rgba(216,208,189,0.18) !important;
-  background: rgba(0,0,0,0.20) !important;
-  color: #9f9688 !important;
-  display: grid !important;
-  place-items: center !important;
-  text-align: center !important;
-}
-
-/* Archive filter buttons become smaller and easier to scan. */
-#questsView .archive-filters {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  margin: 10px 0 0 !important;
-}
-
-#questsView .archive-filter {
-  width: auto !important;
-  min-height: 34px !important;
-  border-radius: 999px !important;
-  padding: 7px 12px !important;
-  font-size: 11px !important;
-  font-weight: 950 !important;
-  letter-spacing: .55px !important;
-}
-
-#questsView .archive-filter.active {
-  border-color: rgba(74,222,128,0.56) !important;
-  color: #bbf7d0 !important;
-  background: rgba(74,222,128,0.10) !important;
-}
-
-/* Phone refinements. */
-@media (max-width: 900px) {
-  #questsView .quest-sections-stack {
-    gap: 12px !important;
-  }
-
-  #questsView .quest-section-panel {
-    border-radius: 14px !important;
-    padding: 8px !important;
-  }
-
-  #questsView .quest-section-panel .section-toggle {
-    min-height: 48px !important;
-    gap: 12px !important;
-    padding: 8px 12px 8px 16px !important;
-    font-size: clamp(22px, 7.2vw, 31px) !important;
-    letter-spacing: .8px !important;
-  }
-
-  #questsView .quest-list {
-    margin-top: 8px !important;
-    gap: 10px !important;
-  }
-}
-
-@media (max-width: 430px) {
-  #questsView .quest-section-panel .section-toggle {
-    min-height: 44px !important;
-    font-size: 25px !important;
-    gap: 10px !important;
-  }
-}
-
-
-/* Completed section keeps a permanent check mark in the heading */
-#questsView .quest-section-panel[data-section="complete"] .section-toggle {
-  letter-spacing: 0.9px !important;
-}
-
-
-
-/* ===== QUEST CARD FONT POLISH + COMPLETED CHECK FIX ===== */
-.quest-card.qt-card-final .qt-final-type {
-  font-size: 14px !important;
-  letter-spacing: 1.35px !important;
-}
-
-.quest-card.qt-card-final .qt-final-priority {
-  font-size: 13px !important;
-  letter-spacing: 1.15px !important;
-}
-
-.quest-card.qt-card-final .qt-final-title {
-  font-size: clamp(28px, 2.8vw, 42px) !important;
-  line-height: 1.05 !important;
-  letter-spacing: 0.35px !important;
-}
-
-.quest-card.qt-card-final .qt-final-desc {
-  font-size: 16px !important;
-  line-height: 1.45 !important;
-}
-
-.quest-card.qt-card-final .qt-final-stat span {
-  font-size: 12px !important;
-  letter-spacing: 0.8px !important;
-}
-
-.quest-card.qt-card-final .qt-final-stat strong {
-  font-size: 23px !important;
-}
-
-.quest-card.qt-card-final .qt-final-progress-row span {
-  font-size: 20px !important;
-}
-
-.quest-card.qt-card-final .qt-final-action {
-  font-size: 13px !important;
-  letter-spacing: 1.1px !important;
-}
-
-@media (max-width: 900px) {
-  .quest-card.qt-card-final .qt-final-title {
-    font-size: 26px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-desc {
-    font-size: 15px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-type {
-    font-size: 12px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-priority {
-    font-size: 12px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-stat span {
-    font-size: 11px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-stat strong {
-    font-size: 20px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-progress-row span {
-    font-size: 18px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-action {
-    font-size: 12px !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .quest-card.qt-card-final .qt-final-title {
-    font-size: 23px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-desc {
-    font-size: 14px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-type {
-    font-size: 10px !important;
-    letter-spacing: 1px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-priority {
-    font-size: 10px !important;
-    letter-spacing: 0.9px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-stat strong {
-    font-size: 17px !important;
-  }
-
-  .quest-card.qt-card-final .qt-final-action {
-    font-size: 11px !important;
-  }
-}
-
-
-/* ===== ELEMENT SPECIFIC-DAY TRACKING POLISH ===== */
-/* Water stays as day grid. Fire/Earth/Air can now show permanent day chips per skill.
-   Example: Kickboxing with Tue/Thu selected shows Tue and Thu until edited. */
-
-.element-specific-card {
-  min-height: 72px;
-  border: 1px solid rgba(216,208,189,0.20);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
-    linear-gradient(180deg, #111, #070707);
-  display: grid;
-  gap: 8px;
-  align-content: center;
-  color: #d8d0bd;
-  text-align: center;
-  padding: 9px;
-  position: relative;
-  overflow: hidden;
-}
-
-.element-specific-card.fire {
-  border-color: rgba(255,124,91,0.24);
-}
-
-.element-specific-card.earth {
-  border-color: rgba(116,211,138,0.24);
-}
-
-.element-specific-card.air {
-  border-color: rgba(214,214,214,0.20);
-}
-
-.element-specific-name {
-  color: #f0eadf;
-  font-size: 12px;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
-}
-
-.element-specific-days {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
-  gap: 6px;
-}
-
-.element-specific-day {
-  min-height: 34px;
-  border-radius: 6px;
-  border: 1px solid rgba(216,208,189,0.20);
-  background: rgba(0,0,0,0.32);
-  color: #bdb4a4;
-  font-size: 10px;
-  font-weight: 950;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  padding: 6px 5px;
-}
-
-.element-specific-day.fire.active {
-  border-color: rgba(255,138,104,0.70);
-  background:
-    linear-gradient(180deg, rgba(255,138,104,0.34), rgba(95,22,17,0.42));
-  color: #ffe2d8;
-  box-shadow: 0 0 14px rgba(255,95,60,0.18);
-}
-
-.element-specific-day.earth.active {
-  border-color: rgba(116,211,138,0.70);
-  background:
-    linear-gradient(180deg, rgba(116,211,138,0.34), rgba(14,53,27,0.42));
-  color: #e8ffef;
-  box-shadow: 0 0 14px rgba(74,222,128,0.18);
-}
-
-.element-specific-day.air.active {
-  border-color: rgba(214,214,214,0.62);
-  background:
-    linear-gradient(180deg, rgba(220,220,220,0.26), rgba(75,75,75,0.34));
-  color: #fff;
-  box-shadow: 0 0 14px rgba(220,220,220,0.12);
-}
-
-/* Keep normal squares and specific-day cards lined up cleanly. */
-.element-block-row {
-  align-items: stretch;
-}
-
-@media (max-width: 900px) {
-  .element-specific-card {
-    min-height: 64px;
-  }
-
-  .element-specific-days {
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-  }
-}
-
-
-
-/* ===== ELEMENTS: WATER-STYLE SPECIFIC DAYS ===== */
-.element-block-row {
-  display: grid;
-  gap: 12px;
-}
-
-.element-week-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.element-day-card {
-  display: grid;
-  gap: 6px;
-}
-
-.element-day-label {
-  color: var(--muted);
-  text-align: center;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  border: 1px solid rgba(216,208,189,0.12);
-  background: rgba(0,0,0,0.20);
-  padding: 5px 4px;
-}
-
-.element-day-body {
-  min-height: 78px;
-  border: 1px solid rgba(216,208,189,0.20);
-  background: #070707;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.012), 0 8px 18px rgba(0,0,0,0.18);
-  padding: 6px;
-  display: grid;
-  gap: 6px;
-  align-content: start;
-}
-
-.element-day-skill,
-.element-day-empty {
-  min-height: 30px;
-  border-radius: 0;
-  border: 1px solid rgba(216,208,189,0.12);
-  background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%), linear-gradient(180deg, #111, #070707);
-  display: grid;
-  place-items: center;
-  color: #d8d0bd;
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: center;
-  padding: 4px;
-  position: relative;
-}
-
-.element-day-skill {
-  cursor: pointer;
-  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
-}
-
-.element-day-skill:hover {
-  transform: translateY(-1px);
-  border-color: rgba(216,208,189,0.36);
-}
-
-.element-day-skill.active::after {
-  content: "✓";
-  position: absolute;
-  right: 6px;
-  top: 4px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.85);
-}
-
-.element-day-skill.fire.active {
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%), linear-gradient(180deg, #ff6a4a, #8d1e1e);
-  box-shadow: 0 0 18px rgba(255,80,60,0.18);
-  color: #fff5f0;
-}
-
-.element-day-skill.earth.active {
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%), linear-gradient(180deg, #6ed88c, #1f6f3d);
-  box-shadow: 0 0 18px rgba(80,220,120,0.16);
-  color: #f2fff6;
-}
-
-.element-day-skill.air.active {
-  background: linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%), linear-gradient(180deg, #d9d9d9, #7b7b7b);
-  box-shadow: 0 0 18px rgba(220,220,220,0.12);
-  color: #fff;
-}
-
-.element-day-empty {
-  color: rgba(216,208,189,0.30);
-}
-
-.element-plain-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 900px) {
-  .element-week-grid {
-    grid-template-columns: repeat(7, minmax(84px, 1fr));
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-
-  .element-day-body {
-    min-height: 68px;
-  }
-
-  .element-plain-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-
-/* ===== ELEMENTS: ASSIGNED DAYS ONLY ===== */
-/* Correct behavior:
-   - Water keeps its normal full week grid.
-   - Fire/Earth/Air scheduled skills show ONLY assigned days.
-   - Example: Tue -> Kickboxing, Thu -> Kickboxing + Muay Thai.
-   - Assigned days stay until edited/removed.
-*/
-
-.element-assigned-week-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-  gap: 10px;
-}
-
-.element-assigned-day-card {
-  display: grid;
-  gap: 6px;
-}
-
-.element-assigned-day-label {
-  color: var(--muted);
-  text-align: center;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  border: 1px solid rgba(216,208,189,0.12);
-  background: rgba(0,0,0,0.20);
-  padding: 5px 4px;
-}
-
-.element-assigned-day-body {
-  min-height: 78px;
-  display: grid;
-  gap: 0;
-  border: 1px solid rgba(216,208,189,0.20);
-  background: #070707;
-  overflow: hidden;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.012),
-    0 8px 18px rgba(0,0,0,0.18);
-}
-
-.element-assigned-skill {
-  min-height: 58px;
-  border: 0;
-  border-bottom: 1px solid rgba(216,208,189,0.12);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
-    linear-gradient(180deg, #111, #070707);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  color: #d8d0bd;
-  font-size: 10px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: center;
-  padding: 6px;
-  position: relative;
-  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
-}
-
-.element-assigned-skill:last-child {
-  border-bottom: 0;
-}
-
-.element-assigned-skill:hover {
-  border-color: rgba(216,208,189,0.36);
-  transform: translateY(-1px);
-}
-
-.element-assigned-skill.active::after {
-  content: "✓";
-  position: absolute;
-  right: 7px;
-  top: 6px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.90);
-}
-
-/* Fire completion = red/orange like you asked. */
-.element-assigned-skill.fire.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
-    linear-gradient(180deg, #ff6a4a, #8d1e1e);
-  box-shadow: inset 0 0 14px rgba(255,255,255,0.08);
-  color: #fff5f0;
-}
-
-/* Earth completion = green. */
-.element-assigned-skill.earth.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
-    linear-gradient(180deg, #6ed88c, #1f6f3d);
-  box-shadow: inset 0 0 14px rgba(255,255,255,0.08);
-  color: #f2fff6;
-}
-
-/* Air completion = silver/white. */
-.element-assigned-skill.air.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%),
-    linear-gradient(180deg, #d9d9d9, #7b7b7b);
-  box-shadow: inset 0 0 14px rgba(255,255,255,0.08);
-  color: #ffffff;
-}
-
-.element-plain-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 900px) {
-  .element-assigned-week-grid {
-    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
-    gap: 8px;
-  }
-
-  .element-assigned-skill {
-    min-height: 52px;
-  }
-
-  .element-plain-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 430px) {
-  .element-assigned-week-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .element-plain-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-
-/* ===== ELEMENTS FINAL: ASSIGNED DAYS AS COMPACT CARDS ===== */
-/* Final layout:
-   - Same compact feel as the user's preferred second screenshot.
-   - Each assigned activity is its own card.
-   - Day label stays on top.
-   - Activity button sits below and can be color-filled when completed.
-   - If two activities share the same day, they stay separate cards.
-*/
-
-.element-block-row {
-  display: grid !important;
-  gap: 12px !important;
-}
-
-.element-assigned-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  width: 100% !important;
-  align-items: stretch !important;
-}
-
-.element-assigned-card {
-  display: grid !important;
-  grid-template-rows: auto 1fr !important;
-  gap: 6px !important;
-  min-width: 0 !important;
-}
-
-.element-assigned-card-day {
-  height: 22px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: var(--muted) !important;
-  text-align: center !important;
-  font-size: 10px !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.8px !important;
-  text-transform: uppercase !important;
-  border: 1px solid rgba(216,208,189,0.14) !important;
-  background: rgba(0,0,0,0.18) !important;
-  padding: 0 4px !important;
-}
-
-.element-assigned-card-skill {
-  min-height: 60px !important;
-  width: 100% !important;
-  border: 1px solid rgba(216,208,189,0.18) !important;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 42%),
-    linear-gradient(180deg, #101010, #060606) !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: #f0e8d8 !important;
-  font-size: 15px !important;
-  font-weight: 900 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.45px !important;
-  text-align: center !important;
-  padding: 16px 10px !important;
-  position: relative !important;
-  border-radius: 0 !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015) !important;
-}
-
-.element-assigned-card-skill.active::after {
-  content: "✓" !important;
-  position: absolute !important;
-  right: 8px !important;
-  top: 6px !important;
-  font-size: 12px !important;
-  color: rgba(255,255,255,0.92) !important;
-}
-
-.element-assigned-card-skill.fire.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.18), transparent 34%),
-    linear-gradient(180deg, #ff7958, #9b1f1f) !important;
-  color: #fff6ef !important;
-  border-color: rgba(255,145,110,0.55) !important;
-  box-shadow: inset 0 0 16px rgba(255,255,255,0.06), 0 0 16px rgba(180,35,35,0.16) !important;
-}
-
-.element-assigned-card-skill.earth.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.18), transparent 34%),
-    linear-gradient(180deg, #79df93, #1f6f3d) !important;
-  color: #f2fff6 !important;
-  border-color: rgba(121,223,147,0.46) !important;
-  box-shadow: inset 0 0 16px rgba(255,255,255,0.06), 0 0 16px rgba(40,150,85,0.14) !important;
-}
-
-.element-assigned-card-skill.air.active {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.18), transparent 34%),
-    linear-gradient(180deg, #dbdbdb, #7d7d7d) !important;
-  color: #ffffff !important;
-  border-color: rgba(230,230,230,0.42) !important;
-  box-shadow: inset 0 0 16px rgba(255,255,255,0.06), 0 0 14px rgba(180,180,180,0.14) !important;
-}
-
-.element-plain-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-}
-
-@media (max-width: 900px) {
-  .element-assigned-grid,
-  .element-plain-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  .element-assigned-card-skill {
-    min-height: 58px !important;
-    font-size: 14px !important;
-    padding: 14px 8px !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .element-assigned-grid,
-  .element-plain-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .element-assigned-card-skill {
-    min-height: 56px !important;
-    font-size: 13px !important;
-  }
-}
-
-
-
-/* ===== PHONE SAVE FOLDER / PREVIOUS SAVES OVERLAP FIX ===== */
-/* Prevents the fixed bottom phone tab bar from covering Save Folder and Previous Saves text/buttons. */
-@media (max-width: 900px) {
-  body {
-    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  .screen {
-    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  #saveView {
-    padding-bottom: calc(130px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  #saveView .panel:last-child,
-  #saveView .save-list,
-  #saveView #saveList,
-  #saveView #previousSaves,
-  #saveView .save-card:last-child {
-    margin-bottom: calc(86px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  #saveView .save-card {
-    display: grid !important;
-    gap: 12px !important;
-    min-width: 0 !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  #saveView .save-top {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 10px !important;
-    align-items: start !important;
-  }
-
-  #saveView .save-title,
-  #saveView .save-meta,
-  #saveView .default-title,
-  #saveView .default-meta {
-    min-width: 0 !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-    line-height: 1.45 !important;
-    word-break: normal !important;
-    overflow-wrap: anywhere !important;
-  }
-
-  #saveView .save-actions,
-  #saveView .actions,
-  #saveView .quest-secondary-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    width: 100% !important;
-  }
-
-  #saveView button,
-  #saveView input,
-  #saveView textarea {
-    max-width: 100% !important;
-  }
-
-  #saveView button {
-    min-height: 44px !important;
-    white-space: normal !important;
-    line-height: 1.2 !important;
-  }
-
-  #saveView textarea,
-  #saveView #dataBox {
-    min-height: 180px !important;
-    max-height: 42vh !important;
-    overflow: auto !important;
-    line-height: 1.45 !important;
-    white-space: pre-wrap !important;
-    word-break: break-word !important;
-  }
-}
-
-@media (max-width: 430px) {
-  #saveView {
-    padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  #saveView .panel {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-
-  #saveView .save-card {
-    padding: 12px !important;
-  }
-
-  #saveView .save-title {
-    font-size: 15px !important;
-  }
-
-  #saveView .save-meta {
-    font-size: 12px !important;
-  }
-}
-
-
-/* ===== PHONE TAB BAR LABEL OVERLAP FIX ===== */
-/* Fixes Save Folder / Previous Saves text colliding on iPhone widths. */
-@media (max-width: 900px) {
-  .tabs {
-    left: max(8px, env(safe-area-inset-left, 0px)) !important;
-    right: max(8px, env(safe-area-inset-right, 0px)) !important;
-    bottom: max(8px, env(safe-area-inset-bottom, 0px)) !important;
-    width: auto !important;
-    max-width: none !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 0 !important;
-    padding: 8px 6px !important;
-    overflow: hidden !important;
-    border-radius: 22px !important;
-  }
-
-  .tabs .tab {
-    min-width: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 7px 2px !important;
-    gap: 4px !important;
-    display: grid !important;
-    justify-items: center !important;
-    align-content: center !important;
-    text-align: center !important;
-    font-size: 0 !important;
-    line-height: 1 !important;
-    letter-spacing: 0 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: clip !important;
-  }
-
-  .tabs .tab::before {
-    font-size: clamp(20px, 6vw, 27px) !important;
-    line-height: 1 !important;
-    margin: 0 !important;
-  }
-
-  .tabs .tab::after {
-    display: block !important;
-    content: "" !important;
-    color: inherit !important;
-    font-size: clamp(8px, 2.45vw, 11px) !important;
-    line-height: 1.05 !important;
-    font-weight: 950 !important;
-    letter-spacing: 0.75px !important;
-    text-transform: uppercase !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: clip !important;
-    white-space: nowrap !important;
-  }
-
+  body { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)) !important; }
+  .screen { padding-bottom: calc(126px + env(safe-area-inset-bottom, 0px)) !important; }
+  .tabs { position: fixed !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; width: 100vw !important; max-width: 100vw !important; min-height: calc(88px + env(safe-area-inset-bottom, 0px)) !important; margin: 0 !important; padding: 10px 5px calc(14px + env(safe-area-inset-bottom, 0px)) !important; display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 0 !important; overflow: visible !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; border-bottom: 0 !important; box-sizing: border-box !important; background: linear-gradient(180deg, rgba(18,20,25,0.98), rgba(5,6,9,0.99)) !important; box-shadow: 0 -12px 28px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08) !important; z-index: 100 !important; }
+  .tabs::before { display: none !important; content: none !important; }
+  .tabs .tab, .tabs button.tab { min-width: 0 !important; width: 100% !important; max-width: 100% !important; min-height: 66px !important; height: 66px !important; border-radius: 0 !important; box-sizing: border-box !important; padding: 7px 1px !important; display: grid !important; grid-template-rows: 30px 20px !important; justify-items: center !important; align-content: center !important; text-align: center !important; overflow: visible !important; white-space: nowrap !important; font-size: 0 !important; line-height: 1 !important; letter-spacing: 0 !important; background: transparent !important; border-color: transparent !important; }
+  .tabs .tab::before, .tabs button.tab::before { display: block !important; height: 30px !important; line-height: 30px !important; font-size: 23px !important; margin: 0 !important; color: inherit !important; }
+  .tabs .tab::after, .tabs button.tab::after { position: static !important; display: block !important; width: auto !important; height: 20px !important; line-height: 20px !important; background: none !important; color: inherit !important; font-size: 9px !important; font-weight: 950 !important; letter-spacing: 0.35px !important; text-transform: uppercase !important; opacity: 1 !important; white-space: nowrap !important; overflow: visible !important; }
+  .tabs .tab[data-view="questsView"]::before { content: "⚜" !important; }
+  .tabs .tab[data-view="elementsView"]::before { content: "♢" !important; }
+  .tabs .tab[data-view="streakView"]::before { content: "⟳" !important; }
+  .tabs .tab[data-view="saveView"]::before { content: "▣" !important; }
+  .tabs .tab[data-view="archiveView"]::before { content: "•••" !important; }
   .tabs .tab[data-view="questsView"]::after { content: "Quests" !important; }
   .tabs .tab[data-view="elementsView"]::after { content: "Elements" !important; }
   .tabs .tab[data-view="streakView"]::after { content: "Streak" !important; }
   .tabs .tab[data-view="saveView"]::after { content: "Save" !important; }
   .tabs .tab[data-view="archiveView"]::after { content: "Saves" !important; }
-
-  .tabs .tab.active {
-    text-shadow: 0 0 14px rgba(244,196,48,0.32) !important;
-  }
+  .tabs .tab.active, .tabs button.tab.active { color: #f4df95 !important; text-shadow: 0 0 14px rgba(244,196,48,0.28) !important; box-shadow: none !important; }
+  .element-assigned-grid, .element-plain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
 
 @media (max-width: 430px) {
-  .tabs {
-    left: 6px !important;
-    right: 6px !important;
-    padding: 7px 4px !important;
-    border-radius: 20px !important;
-  }
-
-  .tabs .tab {
-    padding-left: 1px !important;
-    padding-right: 1px !important;
-  }
-
-  .tabs .tab::after {
-    font-size: 8px !important;
-    letter-spacing: 0.45px !important;
-  }
-
-  .tabs .tab::before {
-    font-size: 22px !important;
-  }
+  .element-assigned-grid, .element-plain-grid { grid-template-columns: 1fr !important; }
+  .tabs { padding-left: 4px !important; padding-right: 4px !important; min-height: calc(90px + env(safe-area-inset-bottom, 0px)) !important; }
+  .tabs .tab, .tabs button.tab { min-height: 68px !important; height: 68px !important; }
+  .tabs .tab::before, .tabs button.tab::before { font-size: 22px !important; }
+  .tabs .tab::after, .tabs button.tab::after { font-size: 8px !important; letter-spacing: 0.25px !important; }
 }
 
 </style>
@@ -10856,7 +8693,7 @@ header .player-card {
           </div>
 
           <div class="panel quest-section-panel" data-section="complete">
-            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ ✓ Completed Quests</button>
+            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ Completed Quests</button>
             <div class="archive-filters" id="archiveFilters">
               <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
               <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
@@ -11169,7 +9006,7 @@ header .player-card {
 
       <div id="elementSkillEditorList" class="element-editor-list"></div>
 
-      <div class="helper-text">Use one skill row per habit. Leave days blank if you want one normal square. Pick specific days if the skill only happens on certain days, like kickboxing on Tue/Thu.</div>
+      <div class="helper-text">Use one square per skill. You can rename, move, delete, and add more. Your skill names stay saved until you change them.</div>
 
       <div class="actions element-edit-actions">
         <button type="button" id="saveElementEditBtn" class="action-done">Save Changes</button>
@@ -11865,34 +9702,10 @@ function useMealPass() {
 
     function getDefaultElementConfig() {
       return {
-        fire: {
-          title: 'Fire',
-          subtitle: 'Combat',
-          mode: 'blocks',
-          labels: ['Kickboxing', 'Kickboxing', 'Muay Thai'],
-          days: [[], [], []]
-        },
-        earth: {
-          title: 'Earth',
-          subtitle: 'Strength',
-          mode: 'blocks',
-          labels: ['Push', 'Pull', 'Legs'],
-          days: [[], [], []]
-        },
-        water: {
-          title: 'Water',
-          subtitle: 'Career',
-          mode: 'weekly',
-          labels: ['SQL', 'Career', 'Cert'],
-          days: [[], [], []]
-        },
-        air: {
-          title: 'Air',
-          subtitle: 'Unlocked Skills',
-          mode: 'blocks',
-          labels: ['Python', 'Azure', 'Typing', 'Reading'],
-          days: [[], [], [], []]
-        }
+        fire: { title: 'Fire', subtitle: 'Combat', mode: 'blocks', labels: ['Kickboxing', 'Kickboxing', 'Muay Thai'], days: [[], [], []] },
+        earth: { title: 'Earth', subtitle: 'Strength', mode: 'blocks', labels: ['Push', 'Pull', 'Legs'], days: [[], [], []] },
+        water: { title: 'Water', subtitle: 'Career', mode: 'weekly', labels: ['SQL', 'Career', 'Cert'], days: [[], [], []] },
+        air: { title: 'Air', subtitle: 'Unlocked Skills', mode: 'blocks', labels: ['Python', 'Azure', 'Typing', 'Reading'], days: [[], [], [], []] }
       };
     }
 
@@ -11909,25 +9722,68 @@ function useMealPass() {
 
     function sanitizeElementDays(days) {
       if (!Array.isArray(days)) return [];
-      var seen = {};
-      return days.map(function(day) { return Number(day); }).filter(function(day) {
-        if (day < 0 || day > 6 || Number.isNaN(day) || seen[day]) return false;
-        seen[day] = true;
-        return true;
-      }).sort(function(a, b) { return a - b; });
+      return Array.from(new Set(days.map(Number).filter(function(day) {
+        return day >= 0 && day <= 6;
+      }))).sort(function(a, b) { return a - b; });
     }
 
     function cloneElementDayConfig(days, labelCount) {
-      var output = [];
+      var result = [];
       for (var i = 0; i < labelCount; i += 1) {
-        output.push(sanitizeElementDays(days && days[i]));
+        result.push(sanitizeElementDays(days && days[i]));
       }
-      return output;
+      return result;
     }
 
     function getElementSchedule(item, index) {
-      return sanitizeElementDays(item && item.days && item.days[index]);
+      if (!item || !Array.isArray(item.days)) return [];
+      return sanitizeElementDays(item.days[index]);
     }
+
+    function countElementTotal(key, config) {
+      var item = config[key];
+      if (!item) return 0;
+      if (item.mode === 'weekly') return item.labels.length * 7;
+      return item.labels.reduce(function(sum, label, index) {
+        var schedule = getElementSchedule(item, index);
+        return sum + (schedule.length || 1);
+      }, 0);
+    }
+
+    function toggleElementEditorDay(index, day) {
+      syncElementEditorInputs();
+      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
+      var list = editingElementDays[index] || [];
+      if (list.indexOf(day) === -1) list.push(day);
+      else list = list.filter(function(item) { return item !== day; });
+      editingElementDays[index] = sanitizeElementDays(list);
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function applyElementEditorPreset(index, preset) {
+      syncElementEditorInputs();
+      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
+
+      if (preset === 'daily') editingElementDays[index] = [0, 1, 2, 3, 4, 5, 6];
+      if (preset === 'weekdays') editingElementDays[index] = [0, 1, 2, 3, 4];
+      if (preset === 'weekend') editingElementDays[index] = [5, 6];
+      if (preset === 'tueThu') editingElementDays[index] = [1, 3];
+      if (preset === 'clear') editingElementDays[index] = [];
+
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function toggleScheduledElementDay(element, index, day) {
+      var data = getWeekElements();
+      if (!data[element] || !Array.isArray(data[element][index])) return;
+      data[element][index][day] = !data[element][index][day];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
 
     function getElementConfig() {
       var defaults = getDefaultElementConfig();
@@ -11940,11 +9796,8 @@ function useMealPass() {
           if (labels.length) config[key].labels = labels;
         }
 
-        if (stored[key] && Array.isArray(stored[key].days)) {
-          config[key].days = cloneElementDayConfig(stored[key].days, config[key].labels.length);
-        } else {
-          config[key].days = cloneElementDayConfig(config[key].days, config[key].labels.length);
-        }
+        var sourceDays = stored[key] && Array.isArray(stored[key].days) ? stored[key].days : config[key].days;
+        config[key].days = cloneElementDayConfig(sourceDays, config[key].labels.length);
       });
 
       return config;
@@ -11977,24 +9830,20 @@ function useMealPass() {
             if (data[key][dayIndex].length > labels.length) data[key][dayIndex] = data[key][dayIndex].slice(0, labels.length);
           }
         } else {
-          var normalized = [];
-          for (var labelIndex = 0; labelIndex < labels.length; labelIndex += 1) {
-            var schedule = getElementSchedule(item, labelIndex);
-            var existing = Array.isArray(data[key]) ? data[key][labelIndex] : false;
+          if (!Array.isArray(data[key])) data[key] = [];
+          while (data[key].length < labels.length) data[key].push(false);
+          if (data[key].length > labels.length) data[key] = data[key].slice(0, labels.length);
 
+          labels.forEach(function(label, index) {
+            var schedule = getElementSchedule(item, index);
             if (schedule.length) {
-              var weeklyState = Array.isArray(existing) ? existing : [];
-              var dayState = [];
-              for (var slot = 0; slot < 7; slot += 1) {
-                dayState.push(!!weeklyState[slot]);
-              }
-              normalized.push(dayState);
-            } else {
-              if (Array.isArray(existing)) normalized.push(existing.some(Boolean));
-              else normalized.push(!!existing);
+              if (!Array.isArray(data[key][index])) data[key][index] = [false, false, false, false, false, false, false];
+              while (data[key][index].length < 7) data[key][index].push(false);
+              if (data[key][index].length > 7) data[key][index] = data[key][index].slice(0, 7);
+            } else if (Array.isArray(data[key][index])) {
+              data[key][index] = data[key][index].some(Boolean);
             }
-          }
-          data[key] = normalized;
+          });
         }
       });
 
@@ -12002,7 +9851,6 @@ function useMealPass() {
     }
 
     function getWeekElements() {
-
       var config = getElementConfig();
       var all = getElementsStore();
       var key = weekKey(currentElementWeek);
@@ -12614,7 +10462,7 @@ function useMealPass() {
     function createQuestCard(quest, index) {
       var card = document.createElement('article');
       var cardType = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
-      card.className = 'quest-card qt-card-final ' + cardType;
+      card.className = 'quest-card qt-card-epic ' + cardType;
       card.setAttribute('data-quest-id', quest.id);
       card.setAttribute('data-quest-number', String(typeof index === 'number' ? index + 1 : 1));
 
@@ -12625,6 +10473,8 @@ function useMealPass() {
 
       var priority = quest.priority || 'normal';
       var priorityLabel = priority === 'critical' ? 'Critical' : priority === 'low' ? 'Low' : 'Normal';
+      var typeLabel = quest.type === 'main' ? 'Main' : 'Side';
+      var statusText = statusLabel(quest.status);
       var xpValue = getQuestXp(quest);
       var reward = normalizeReward(quest.reward);
 
@@ -12633,127 +10483,123 @@ function useMealPass() {
       var cardTitle = escapeHtml(title);
       var cardDesc = escapeHtml(desc);
 
-      var categoryLabel = quest.status === 'complete' ? 'Completed' :
+      var categoryLabel = quest.status === 'complete' ? 'Cleared' :
         quest.status === 'failed' ? 'Failed' :
-        quest.type === 'main' ? 'Main Quest' : 'Side Quest';
-
-      var typePillSymbol = quest.status === 'complete' ? '✓' :
-        quest.status === 'failed' ? '✕' :
-        quest.type === 'main' ? '◆' : '◇';
+        quest.type === 'main' ? 'Main' : 'Side';
 
       var questNumber = typeof index === 'number' ? index + 1 : 1;
       var rank = String(questNumber).padStart(2, '0');
 
-      var emblemSets = {
-        main: ['⚔', '✦', '✶', '✷', '✹'],
-        side: ['◆', '◇', '✦', '✧', '✪'],
-        complete: ['✓'],
-        failed: ['!', '✕', '⚠', '☠', '✦']
-      };
-
-      var emblemKey = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
-      var emblemPool = emblemSets[emblemKey] || emblemSets.main;
-      var emblemSeedSource = String(quest.id || '') + '|' + String(quest.title || '') + '|' + String(quest.type || '') + '|' + String(quest.status || '') + '|' + String(questNumber);
-      var emblemSeed = 0;
-      for (var emblemIndex = 0; emblemIndex < emblemSeedSource.length; emblemIndex++) {
-        emblemSeed += emblemSeedSource.charCodeAt(emblemIndex);
+      var taskNodeHtml = '';
+      var nodeTotal = Math.max(totalCount, 3);
+      for (var nodeIndex = 0; nodeIndex < nodeTotal; nodeIndex += 1) {
+        taskNodeHtml += '<span class="qt-task-node ' + (nodeIndex < doneCount ? 'done' : '') + '"></span>';
       }
-      var emblemSymbol = emblemPool[emblemSeed % emblemPool.length];
 
-      var taskDrawerHtml = '';
+      var rewardHtml =
+        '<div class="qt-reward-row">' +
+          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
+          '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
+        '</div>';
+
+      var microToggleHtml = '';
+      var microDrawerHtml = '';
       if (tasks.length > 0) {
-        taskDrawerHtml += '<div class="micro-list hidden qt-final-task-drawer">';
-        taskDrawerHtml += '<div class="qt-final-drawer-header"><span>Tasks (' + doneCount + '/' + totalCount + ')</span><button type="button" class="qt-final-drawer-close" data-action="toggleSteps">⌃</button></div>';
+        microToggleHtml += '<button class="steps-toggle qt-steps-button" data-action="toggleSteps">View Tasks</button>';
+        microDrawerHtml += '<div class="micro-list hidden qt-micro-list">';
         tasks.forEach(function(task, taskIndex) {
-          taskDrawerHtml += '<label class="micro-item qt-final-task-item ' + (task.done ? "done" : "") + '">';
-          taskDrawerHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
-          taskDrawerHtml += '<span class="micro-task-text">' + (taskIndex + 1) + '. ' + escapeHtml(task.text) + '</span>';
-          taskDrawerHtml += '<span class="qt-final-task-count">' + (task.done ? "1/1" : "0/1") + '</span>';
-          taskDrawerHtml += '<span class="qt-final-task-move-wrap">';
-          taskDrawerHtml += '<button type="button" class="micro-move-btn qt-final-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>↑</button>';
-          taskDrawerHtml += '<button type="button" class="micro-move-btn qt-final-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>↓</button>';
-          taskDrawerHtml += '</span>';
-          taskDrawerHtml += '</label>';
+          microDrawerHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
+          microDrawerHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
+          microDrawerHtml += '<span class="micro-task-text">' + (taskIndex + 1) + '. ' + escapeHtml(task.text) + '</span>';
+          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>↑</button>';
+          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>↓</button>';
+          microDrawerHtml += '</label>';
         });
-        taskDrawerHtml += '</div>';
-      } else {
-        taskDrawerHtml += '<div class="micro-list hidden qt-final-task-drawer">';
-        taskDrawerHtml += '<div class="qt-final-drawer-header"><span>Tasks (0/0)</span><button type="button" class="qt-final-drawer-close" data-action="toggleSteps">⌃</button></div>';
-        taskDrawerHtml += '<div class="qt-final-empty-drawer">No microtasks added yet.</div>';
-        taskDrawerHtml += '</div>';
+        microDrawerHtml += '</div>';
       }
 
       var primaryAction = 'complete';
       var primaryLabel = 'Complete';
+      var primaryClass = 'action-done';
 
       if (quest.status === 'new') {
         primaryAction = 'progress';
         primaryLabel = 'Start';
+        primaryClass = 'action-progress';
       } else if (quest.status === 'progress') {
         primaryAction = 'complete';
-        primaryLabel = 'Complete';
+        primaryLabel = 'Continue';
+        primaryClass = 'action-done';
       } else if (quest.status === 'complete') {
-        primaryAction = 'progress';
-        primaryLabel = 'Reopen';
+        primaryAction = 'complete';
+        primaryLabel = 'Undo';
+        primaryClass = 'action-done';
       } else if (quest.status === 'failed') {
         primaryAction = 'progress';
         primaryLabel = 'Reopen';
+        primaryClass = 'action-progress';
       }
 
       var dateHtml = '';
       if (quest.completedAt) {
-        dateHtml += '<div class="date-complete qt-final-date-line">Completed: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
+        dateHtml += '<div class="date-complete qt-date-line">Cleared: ' + escapeHtml(formatDateTime(quest.completedAt)) + '</div>';
       }
       if (quest.failedAt) {
-        dateHtml += '<div class="date-failed qt-final-date-line">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
+        dateHtml += '<div class="date-failed qt-date-line">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
       }
 
       card.innerHTML =
-        '<div class="qt-final-inner">' +
-          '<div class="qt-final-topline">' +
-            '<span class="qt-final-number">' + escapeHtml(rank) + '</span>' +
-            '<span class="qt-final-type">' + escapeHtml(typePillSymbol) + ' ' + escapeHtml(categoryLabel) + '</span>' +
-            '<span class="qt-final-priority priority-' + escapeHtml(priority) + '">' + escapeHtml(priorityLabel) + '</span>' +
+        '<div class="qt-card-crest">' +
+          '<div class="qt-crest-symbol">' + escapeHtml(rank) + '</div>' +
+        '</div>' +
+
+        '<div class="qt-card-content">' +
+          '<div class="qt-card-topline">' +
+            '<span class="qt-type-pill">' + escapeHtml(categoryLabel) + '</span>' +
+            '<span class="qt-priority-pill priority-' + escapeHtml(priority) + '">' + escapeHtml(priorityLabel) + '</span>' +
           '</div>' +
 
-          '<div class="qt-final-main">' +
-            '<div class="qt-final-title">' + cardTitle + '</div>' +
-            '<div class="qt-final-desc">' + cardDesc + '</div>' +
+          '<div class="quest-title qt-title">' + cardTitle + '</div>' +
+          '<div class="quest-desc qt-desc">' + cardDesc + '</div>' +
+
+          rewardHtml +
+
+          '<div class="qt-task-row">' +
+            '<span class="qt-task-label">Tasks</span>' +
+            '<span class="qt-task-count">(' + doneCount + '/' + totalCount + ')</span>' +
+            '<div class="qt-task-nodes">' + taskNodeHtml + '</div>' +
           '</div>' +
 
-          '<div class="qt-final-emblem" aria-hidden="true"><span class="qt-final-emblem-symbol">' + escapeHtml(emblemSymbol) + '</span></div>' +
-
-          '<div class="qt-final-stats">' +
-            '<div class="qt-final-stat"><span>XP</span><strong>' + escapeHtml(String(xpValue)) + '</strong></div>' +
-            '<div class="qt-final-stat"><span>Reward</span><strong><span class="reward-emoji">' + escapeHtml(reward.emoji) + '</span> ' + escapeHtml(reward.label) + '</strong></div>' +
-            '<div class="qt-final-stat"><span>Progress</span><strong>' + doneCount + '/' + totalCount + '</strong></div>' +
-          '</div>' +
-
-          '<div class="qt-final-progress-row">' +
-            '<div class="qt-final-progress-track"><div class="qt-final-progress-fill" style="width:' + percent + '%"></div></div>' +
-            '<span>' + percent + '%</span>' +
+          '<div class="progress-wrap qt-progress-wrap">' +
+            '<div class="progress-bar qt-progress-bar"><div class="progress-fill qt-progress-fill" style="width:' + percent + '%"></div></div>' +
           '</div>' +
 
           dateHtml +
+          microToggleHtml +
+        '</div>' +
 
-          '<div class="qt-final-actions">' +
-            '<button class="qt-final-action qt-final-view-btn" data-action="toggleSteps">' + (tasks.length > 0 ? "View Tasks" : "No Tasks") + ' <span>›</span></button>' +
-            '<button class="qt-final-action qt-final-primary-btn action-progress" data-action="' + primaryAction + '">' + primaryLabel + ' <span>›</span></button>' +
-            '<button class="qt-final-action qt-final-more-btn action-more" data-action="more">More <span>›</span></button>' +
+        '<div class="qt-card-side">' +
+          '<div class="qt-card-art" aria-hidden="true">' +
+            '<div class="qt-art-orb"></div>' +
+            '<div class="qt-art-lines"></div>' +
           '</div>' +
 
-          '<div class="qt-final-drawers">' +
-            taskDrawerHtml +
-            '<div class="quest-more-actions qt-final-more-drawer">' +
-              '<div class="qt-final-drawer-header"><span>More Actions</span><button type="button" class="qt-final-drawer-close" data-action="more">⌃</button></div>' +
-              '<div class="quest-secondary-grid qt-final-more-grid">' +
-                '<button class="action-info" data-action="info">▤ Details</button>' +
-                '<button class="action-progress" data-action="progress">↗ Progress</button>' +
-                '<button class="action-edit" data-action="edit">✎ Edit</button>' +
-                '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "↺ Undo Fail" : "⚑ Fail") + '</button>' +
-                '<button class="action-new" data-action="new">＋ New</button>' +
-                '<button class="action-delete" data-action="delete">⌫ Delete</button>' +
-              '</div>' +
+          '<div class="qt-card-actions">' +
+            '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '">' + primaryLabel + ' <span>›</span></button>' +
+            '<button class="action-more quest-more-btn qt-more-btn" data-action="more">More</button>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="qt-card-drawer">' +
+          microDrawerHtml +
+          '<div class="quest-more-actions qt-more-actions">' +
+            '<div class="quest-secondary-grid qt-secondary-grid">' +
+              '<button class="action-new" data-action="new">New</button>' +
+              '<button class="action-progress" data-action="progress">Progress</button>' +
+              '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+              '<button class="action-info" data-action="info">Details</button>' +
+              '<button class="action-edit" data-action="edit">Edit</button>' +
+              '<button class="action-delete" data-action="delete">Delete</button>' +
             '</div>' +
           '</div>' +
         '</div>';
@@ -13116,14 +10962,12 @@ function useMealPass() {
         activeSaveId: getActiveSaveId(),
         defaults: getCustomDefaults(),
         elements: getElementsStore(),
-        elementConfig: getElementConfig(),
         xp: getXpData(),
         rewards: getRewardData(),
         levelRewards: getLevelRewardData(),
         questRewards: getQuestRewardData(),
         routine: getRoutineData(),
-        savedRoutine: getSavedRoutineData(),
-        missionText: getMissionText()
+        savedRoutine: getSavedRoutineData()
       };
       byId('dataBox').value = JSON.stringify(payload, null, 2);
       byId('dataBox').focus();
@@ -13207,6 +11051,7 @@ function useMealPass() {
 
     function countElementDone(key, data, config) {
       var item = config[key];
+      if (!item || !data[key]) return 0;
 
       if (item.mode === 'weekly') {
         return data[key].reduce(function(sum, day) {
@@ -13214,23 +11059,16 @@ function useMealPass() {
         }, 0);
       }
 
-      return (data[key] || []).reduce(function(sum, value, index) {
-        var schedule = getElementSchedule(item, index);
-        if (schedule.length) {
-          return sum + schedule.reduce(function(daySum, dayIndex) {
-            return daySum + ((Array.isArray(value) && value[dayIndex]) ? 1 : 0);
-          }, 0);
-        }
-        return sum + (value ? 1 : 0);
-      }, 0);
-    }
-
-    function countElementTotal(key, config) {
-      var item = config[key];
-      if (item.mode === 'weekly') return item.labels.length * 7;
       return item.labels.reduce(function(sum, label, index) {
         var schedule = getElementSchedule(item, index);
-        return sum + (schedule.length ? schedule.length : 1);
+        if (schedule.length) {
+          if (!Array.isArray(data[key][index])) return sum;
+          return sum + schedule.filter(function(dayIndex) {
+            return Boolean(data[key][index][dayIndex]);
+          }).length;
+        }
+
+        return sum + (data[key][index] ? 1 : 0);
       }, 0);
     }
 
@@ -13274,18 +11112,10 @@ function useMealPass() {
 
         if (schedule.length) {
           schedule.forEach(function(dayIndex) {
-            scheduledEntries.push({
-              label: label,
-              index: index,
-              day: dayIndex,
-              dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY'
-            });
+            scheduledEntries.push({ label: label, index: index, day: dayIndex, dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY' });
           });
         } else {
-          unscheduled.push({
-            label: label,
-            index: index
-          });
+          unscheduled.push({ label: label, index: index });
         }
       });
 
@@ -13371,36 +11201,11 @@ function useMealPass() {
     }
 
     function toggleElementBlock(element, index) {
-      var config = getElementConfig();
       var data = getWeekElements();
       if (!data[element] || typeof data[element][index] === 'undefined') return;
-      var schedule = getElementSchedule(config[element], index);
-
-      if (schedule.length) {
-        if (!Array.isArray(data[element][index])) data[element][index] = [false, false, false, false, false, false, false];
-        var allDone = schedule.every(function(dayIndex) { return !!data[element][index][dayIndex]; });
-        schedule.forEach(function(dayIndex) {
-          data[element][index][dayIndex] = !allDone;
-        });
-      } else {
-        data[element][index] = !data[element][index];
-      }
-
-      saveWeekElements(normalizeElementWeekData(data, config));
-      renderElements();
-      beep('click');
-    }
-
-    function toggleScheduledElementDay(element, index, day) {
-      var config = getElementConfig();
-      var data = getWeekElements();
-      if (!data[element] || typeof data[element][index] === 'undefined') return;
-      var schedule = getElementSchedule(config[element], index);
-      if (!schedule.length || schedule.indexOf(day) === -1) return;
-
-      if (!Array.isArray(data[element][index])) data[element][index] = [false, false, false, false, false, false, false];
-      data[element][index][day] = !data[element][index][day];
-      saveWeekElements(normalizeElementWeekData(data, config));
+      if (Array.isArray(data[element][index])) return;
+      data[element][index] = !data[element][index];
+      saveWeekElements(data);
       renderElements();
       beep('click');
     }
@@ -13415,7 +11220,6 @@ function useMealPass() {
     }
 
     function shiftElementWeek(amount) {
-
       currentElementWeek = addDays(currentElementWeek, amount * 7);
       renderElements();
       beep('click');
@@ -13435,11 +11239,8 @@ function useMealPass() {
       byId('elementEditModal').classList.add('open');
 
       setTimeout(function() {
-        try {
-          byId('elementSkillInput').focus({ preventScroll: true });
-        } catch (error) {
-          byId('elementSkillInput').focus();
-        }
+        try { byId('elementSkillInput').focus({ preventScroll: true }); }
+        catch (error) { byId('elementSkillInput').focus(); }
       }, 80);
 
       beep('click');
@@ -13453,22 +11254,22 @@ function useMealPass() {
     }
 
     function syncElementEditorInputs() {
+      var rawDays = editingElementDays.slice();
       var inputs = document.querySelectorAll('[data-element-label-index]');
-      var rawLabels = [];
+      var labels = [];
+      var days = [];
+
       inputs.forEach(function(input) {
-        rawLabels[Number(input.getAttribute('data-element-label-index'))] = input.value.trim();
+        var oldIndex = Number(input.getAttribute('data-element-label-index'));
+        var value = input.value.trim();
+        if (value) {
+          labels.push(value);
+          days.push(sanitizeElementDays(rawDays[oldIndex]));
+        }
       });
 
-      var nextLabels = [];
-      var nextDays = [];
-      rawLabels.forEach(function(label, index) {
-        if (!label) return;
-        nextLabels.push(label);
-        nextDays.push(sanitizeElementDays(editingElementDays[index]));
-      });
-
-      editingElementLabels = nextLabels;
-      editingElementDays = cloneElementDayConfig(nextDays, editingElementLabels.length);
+      editingElementLabels = labels;
+      editingElementDays = cloneElementDayConfig(days, editingElementLabels.length);
     }
 
     function renderElementEditorList() {
@@ -13496,15 +11297,20 @@ function useMealPass() {
             '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>↓</button>' +
             '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">×</button>' +
           '</div>' +
-          '<div class="element-day-editor">' + dayButtons + '</div>' +
-          '<div class="element-day-presets">' +
-            '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="everyday">Everyday</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekdays">Weekdays</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekend">Weekend</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="tue-thu">Tue/Thu</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="clear">Clear</button>' +
-          '</div>' +
-          '<div class="element-day-note">Leave all days off for one normal square. Turn days on if this skill only happens on specific days.</div>';
+          '<div class="element-schedule-row">' +
+            '<div class="element-schedule-top">' +
+              '<span class="element-schedule-name">Assigned days</span>' +
+              '<span class="element-day-note">Leave blank for normal weekly square</span>' +
+            '</div>' +
+            '<div class="element-day-presets">' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="daily">Everyday</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekdays">Weekdays</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekend">Weekend</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="tueThu">Tue/Thu</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="clear">Clear</button>' +
+            '</div>' +
+            '<div class="element-day-editor">' + dayButtons + '</div>' +
+          '</div>';
 
         box.appendChild(row);
       });
@@ -13539,32 +11345,6 @@ function useMealPass() {
       beep('click');
     }
 
-    function toggleElementEditorDay(index, day) {
-      syncElementEditorInputs();
-      if (!Array.isArray(editingElementDays[index])) editingElementDays[index] = [];
-      var days = sanitizeElementDays(editingElementDays[index]);
-      var existingIndex = days.indexOf(day);
-      if (existingIndex === -1) days.push(day);
-      else days.splice(existingIndex, 1);
-      editingElementDays[index] = sanitizeElementDays(days);
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function applyElementEditorPreset(index, preset) {
-      syncElementEditorInputs();
-      var map = {
-        'everyday': [0, 1, 2, 3, 4, 5, 6],
-        'weekdays': [0, 1, 2, 3, 4],
-        'weekend': [5, 6],
-        'tue-thu': [1, 3],
-        'clear': []
-      };
-      editingElementDays[index] = sanitizeElementDays(map[preset] || []);
-      renderElementEditorList();
-      beep('click');
-    }
-
     function saveElementEdit() {
       syncElementEditorInputs();
 
@@ -13594,7 +11374,7 @@ function useMealPass() {
       var defaults = getDefaultElementConfig();
       var config = getElementConfig();
       config[editingElementKey].labels = defaults[editingElementKey].labels.slice();
-      config[editingElementKey].days = cloneElementDayConfig(defaults[editingElementKey].days, defaults[editingElementKey].labels.length);
+      config[editingElementKey].days = cloneElementDayConfig(defaults[editingElementKey].days, config[editingElementKey].labels.length);
       setElementConfig(config);
 
       var data = getWeekElements();
@@ -13606,7 +11386,6 @@ function useMealPass() {
     }
 
     function renderBriefing(quests) {
-
       var mainActive = quests.filter(function(quest) {
         return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
       });
@@ -13876,15 +11655,21 @@ function useMealPass() {
           return;
         }
 
-        var elementDayPickButton = event.target.closest('[data-element-daypick]');
-        if (elementDayPickButton) {
-          toggleElementEditorDay(Number(elementDayPickButton.getAttribute('data-element-daypick-index')), Number(elementDayPickButton.getAttribute('data-element-daypick')));
+        var elementDayButton = event.target.closest('[data-element-daypick]');
+        if (elementDayButton) {
+          toggleElementEditorDay(
+            Number(elementDayButton.getAttribute('data-element-daypick-index')),
+            Number(elementDayButton.getAttribute('data-element-daypick'))
+          );
           return;
         }
 
         var elementPresetButton = event.target.closest('[data-element-preset]');
         if (elementPresetButton) {
-          applyElementEditorPreset(Number(elementPresetButton.getAttribute('data-element-preset-index')), elementPresetButton.getAttribute('data-element-preset'));
+          applyElementEditorPreset(
+            Number(elementPresetButton.getAttribute('data-element-preset-index')),
+            elementPresetButton.getAttribute('data-element-preset')
+          );
           return;
         }
 
@@ -13896,12 +11681,12 @@ function useMealPass() {
             return;
           }
           if (element === 'fire' || element === 'earth' || element === 'air') {
-            var specificDay = elementButton.getAttribute('data-day-slot');
-            if (specificDay !== null && specificDay !== '') {
-              toggleScheduledElementDay(element, Number(elementButton.getAttribute('data-index')), Number(specificDay));
-              return;
+            var daySlot = elementButton.getAttribute('data-day-slot');
+            if (daySlot !== null) {
+              toggleScheduledElementDay(element, Number(elementButton.getAttribute('data-index')), Number(daySlot));
+            } else {
+              toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
             }
-            toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
             return;
           }
         }
@@ -14788,8 +12573,6 @@ function result(entry, setup, date, data) {
   const safe = req.filter(i => entry.states[i] === "protected").length;
   const fail = req.filter(i => entry.states[i] === "fail").length;
 
-  /* Final rule: any failed required task makes the day red.
-     Safe/protected is blue. Done/win is green. Partial stays orange. */
   if (fail > 0) return "failed";
   if (safe === req.length) return "protected";
 
@@ -14895,9 +12678,8 @@ function renderCalendar() {
     cell.setAttribute("role", "button");
     cell.setAttribute("tabindex", "0");
     cell.dataset.streakDate = k;
-    cell.dataset.streakResult = r;
 
-    const label = r === "perfect" ? "Done" : r === "win" ? "Done" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
+    const label = r === "perfect" ? "Perfect" : r === "win" ? "Win" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
     const states = entry ? entry.states : [];
 
     cell.innerHTML = `
@@ -14907,7 +12689,8 @@ function renderCalendar() {
           const state = states[i] || "skip";
           const isActive = active(task, date, i, data);
           const isOptional = !requiredToday(task, date, i, data);
-          return `<i class="dot ${isActive ? "" : "inactive"} ${isOptional ? "optional" : ""} ${state === "done" ? "done" : state === "fail" ? "failed" : state === "protected" ? "protected" : ""}"></i>`;
+          const bg = state === "done" ? `background:${color(i)};border-color:${color(i)};` : "";
+          return `<i class="dot ${isActive ? "" : "inactive"} ${isOptional ? "optional" : ""} ${state === "done" ? "done" : state === "fail" ? "failed" : state === "protected" ? "protected" : ""}" style="${bg}"></i>`;
         }).join("")}
       </div>
       <div class="day-label">${label}</div>
@@ -15005,40 +12788,51 @@ function renderLog() {
 
 function renderMedals() {
   const data = read();
-  const today = new Date();
-  today.setHours(0,0,0,0);
 
   let current = 0;
-  let cursor = new Date(today);
-  while (true) {
-    const r = result(data.days[key(cursor)], data.setup, cursor, data);
-    if (valid(r)) {
-      current++;
-      cursor = add(cursor, -1);
-    } else break;
-  }
-
+  let best = 0;
+  let run = 0;
+  let prev = null;
   let wins = 0;
   let perfects = 0;
   let failed = 0;
   let protectedDays = 0;
-  let latestFailed = false;
-  let seenLatest = false;
+  let latestKey = null;
+  let latestResult = "empty";
 
-  Object.keys(data.days).sort().reverse().forEach(k => {
+  Object.keys(data.days).sort().forEach(k => {
     const date = fromKey(k);
     const r = result(data.days[k], data.setup, date, data);
 
-    if (!seenLatest && r !== "empty") {
-      latestFailed = r === "failed";
-      seenLatest = true;
+    if (r !== "empty") {
+      latestKey = k;
+      latestResult = r;
     }
 
     if (r === "perfect") perfects++;
     if (r === "failed") failed++;
     if (r === "protected") protectedDays++;
     if (valid(r)) wins++;
+
+    if (!valid(r)) {
+      run = 0;
+      prev = date;
+      return;
+    }
+
+    if (prev) {
+      const diff = Math.round((date - prev) / 86400000);
+      run = diff === 1 ? run + 1 : 1;
+    } else {
+      run = 1;
+    }
+
+    best = Math.max(best, run);
+    prev = date;
   });
+
+  current = run;
+  const latestFailed = latestKey && latestResult === "failed";
 
   const medals = [
     { icon: "🥉", name: "3 Day Spark", unlock: current >= 3 },
@@ -15062,8 +12856,6 @@ function renderMedals() {
     </div>
   `).join("");
 }
-
-
 
 
 function openSetup() {
@@ -15138,27 +12930,10 @@ function renderDayModal() {
   const r = result(modalEntry, data.setup, date, data);
   const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
   const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
-  const failedNames = data.setup.tasks
-    .map((task, i) => requiredToday(task,date,i,data) && modalEntry.states[i] === "fail" ? task.name : "")
-    .filter(Boolean);
-  const safeNames = data.setup.tasks
-    .map((task, i) => requiredToday(task,date,i,data) && modalEntry.states[i] === "protected" ? task.name : "")
-    .filter(Boolean);
-  const doneNames = data.setup.tasks
-    .map((task, i) => requiredToday(task,date,i,data) && modalEntry.states[i] === "done" ? task.name : "")
-    .filter(Boolean);
-
   const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
     ? `<br><span class="manual-status-banner">Manual edit active</span>`
     : `<br><span class="manual-status-banner">Auto mode</span>`;
-
-  const failLine = failedNames.length ? `<br><b>Failed:</b> ${escapeHtml(failedNames.join(", "))}` : "";
-  const safeLine = safeNames.length ? `<br><b>Safe:</b> ${escapeHtml(safeNames.join(", "))}` : "";
-  const doneLine = doneNames.length ? `<br><b>Done:</b> ${escapeHtml(doneNames.join(", "))}` : "";
-
-  s$("streakDayResultBox").innerHTML =
-    `<div class="streak-result-line"><span class="log-result-badge ${r}">${r}</span><span class="streak-result-label">${r === "protected" ? "Safe day" : r === "failed" ? "Failed day" : r === "win" || r === "perfect" ? "Completed day" : r === "partial" ? "Partial day" : "Open day"}</span></div>` +
-    `<div class="streak-count-line">Active required: ${requiredActive}. Completed required: ${completedRequired}.${doneLine}${safeLine}${failLine}${manualLine}</div>`;
+  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
 
   document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
@@ -15167,14 +12942,14 @@ function renderDayModal() {
     s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
   }
 
-  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Task status — Done = green, Safe = blue, Fail = red</div>' + data.setup.tasks.map((task, i) => {
+  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
     const state = modalEntry.states[i] || "skip";
     const isActive = active(task,date,i,data);
     const isRequired = requiredToday(task,date,i,data);
     const meta = isActive ? (isRequired ? "Active today · required" : "Optional/bonus") : "Not active today";
     return `
-      <div class="check-row ${isActive ? "" : "inactive"} ${state === "done" ? "done" : state === "protected" ? "protected" : state === "fail" ? "failed" : ""}">
-        <i class="quest-color"></i>
+      <div class="check-row ${isActive ? "" : "inactive"}">
+        <i class="quest-color" style="background:${color(i)}"></i>
         <div>
           <div class="check-head">
             <div>
@@ -15398,65 +13173,6 @@ render();
     if (!card) return;
     setTimeout(function() { fixQuestDrawer(card); }, 0);
     setTimeout(function() { fixQuestDrawer(card); }, 80);
-  }, true);
-})();
-</script>
-
-
-<script>
-/* ===== FINAL RPG CARD DRAWER LABEL SYNC ===== */
-(function() {
-  function setButtonHtml(button, html) {
-    if (button) button.innerHTML = html;
-  }
-
-  document.addEventListener('click', function(event) {
-    var button = event.target && event.target.closest
-      ? event.target.closest('.quest-card.qt-card-final [data-action="toggleSteps"], .quest-card.qt-card-final [data-action="more"]')
-      : null;
-
-    if (!button) return;
-
-    setTimeout(function() {
-      var card = button.closest('.quest-card.qt-card-final');
-      if (!card) return;
-
-      var stepsButton = card.querySelector('.qt-final-view-btn[data-action="toggleSteps"]');
-      var moreButton = card.querySelector('.qt-final-more-btn[data-action="more"]');
-      var taskDrawer = card.querySelector('.qt-final-task-drawer');
-      var moreDrawer = card.querySelector('.qt-final-more-drawer');
-
-      if (taskDrawer) {
-        if (card.classList.contains('steps-open')) {
-          taskDrawer.classList.remove('hidden');
-          taskDrawer.style.display = 'grid';
-          taskDrawer.style.height = 'auto';
-          taskDrawer.style.maxHeight = '';
-          taskDrawer.style.overflowY = 'auto';
-          setButtonHtml(stepsButton, 'Hide Tasks <span>⌃</span>');
-        } else {
-          taskDrawer.classList.add('hidden');
-          taskDrawer.style.display = 'none';
-          setButtonHtml(stepsButton, stepsButton && stepsButton.textContent.indexOf('No Tasks') !== -1 ? 'No Tasks <span>›</span>' : 'View Tasks <span>›</span>');
-        }
-      }
-
-      if (moreDrawer) {
-        if (card.classList.contains('actions-open')) {
-          moreDrawer.style.display = 'grid';
-          moreDrawer.style.height = 'auto';
-          moreDrawer.style.maxHeight = '';
-          moreDrawer.style.overflowY = 'auto';
-          setButtonHtml(moreButton, 'Less <span>⌃</span>');
-        } else {
-          moreDrawer.style.display = 'none';
-          setButtonHtml(moreButton, 'More <span>›</span>');
-        }
-      }
-
-      card.style.minHeight = '';
-      card.style.height = '';
-    }, 0);
   }, true);
 })();
 </script>
