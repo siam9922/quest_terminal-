@@ -10565,6 +10565,97 @@ header .player-card {
   }
 }
 
+
+/* ===== PHONE TAB BAR LABEL OVERLAP FIX ===== */
+/* Fixes Save Folder / Previous Saves text colliding on iPhone widths. */
+@media (max-width: 900px) {
+  .tabs {
+    left: max(8px, env(safe-area-inset-left, 0px)) !important;
+    right: max(8px, env(safe-area-inset-right, 0px)) !important;
+    bottom: max(8px, env(safe-area-inset-bottom, 0px)) !important;
+    width: auto !important;
+    max-width: none !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 0 !important;
+    padding: 8px 6px !important;
+    overflow: hidden !important;
+    border-radius: 22px !important;
+  }
+
+  .tabs .tab {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 7px 2px !important;
+    gap: 4px !important;
+    display: grid !important;
+    justify-items: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  }
+
+  .tabs .tab::before {
+    font-size: clamp(20px, 6vw, 27px) !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+  }
+
+  .tabs .tab::after {
+    display: block !important;
+    content: "" !important;
+    color: inherit !important;
+    font-size: clamp(8px, 2.45vw, 11px) !important;
+    line-height: 1.05 !important;
+    font-weight: 950 !important;
+    letter-spacing: 0.75px !important;
+    text-transform: uppercase !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+  }
+
+  .tabs .tab[data-view="questsView"]::after { content: "Quests" !important; }
+  .tabs .tab[data-view="elementsView"]::after { content: "Elements" !important; }
+  .tabs .tab[data-view="streakView"]::after { content: "Streak" !important; }
+  .tabs .tab[data-view="saveView"]::after { content: "Save" !important; }
+  .tabs .tab[data-view="archiveView"]::after { content: "Saves" !important; }
+
+  .tabs .tab.active {
+    text-shadow: 0 0 14px rgba(244,196,48,0.32) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .tabs {
+    left: 6px !important;
+    right: 6px !important;
+    padding: 7px 4px !important;
+    border-radius: 20px !important;
+  }
+
+  .tabs .tab {
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+  }
+
+  .tabs .tab::after {
+    font-size: 8px !important;
+    letter-spacing: 0.45px !important;
+  }
+
+  .tabs .tab::before {
+    font-size: 22px !important;
+  }
+}
+
 </style>
 </head>
 
