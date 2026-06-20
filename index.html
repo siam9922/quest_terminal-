@@ -9186,6 +9186,1450 @@ header .player-card {
   }
 }
 
+
+/* ===== 24-HOUR QUEST TIME LOCK V30 ===== */
+.time-lock-box {
+  margin-top: 12px;
+  border: 1px solid rgba(224,200,120,0.20);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+    rgba(0,0,0,0.24);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.time-lock-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  margin: 0 !important;
+  color: #f1dd92 !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.time-lock-toggle input {
+  width: auto !important;
+  margin: 0;
+  accent-color: var(--main-gold-soft);
+}
+
+.time-lock-fields {
+  display: none;
+  gap: 8px;
+}
+
+.time-lock-fields.open {
+  display: grid;
+}
+
+.time-lock-fields label {
+  margin: 0 0 6px !important;
+}
+
+.time-lock-preview {
+  border: 1px solid rgba(216,208,189,0.14);
+  background: rgba(0,0,0,0.26);
+  color: #d8d0bd;
+  padding: 9px 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 850;
+}
+
+#questsView .quest-section-panel[data-section="scheduled"] {
+  border-color: rgba(67,178,212,0.34) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(67,178,212,0.08), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
+    linear-gradient(180deg, #071318, #050505) !important;
+}
+
+#questsView .quest-section-panel[data-section="scheduled"] .section-toggle,
+#questsView .scheduled-heading {
+  color: #8eeaff !important;
+  text-shadow:
+    0 0 14px rgba(67,178,212,0.22),
+    0 0 28px rgba(67,178,212,0.09) !important;
+  border-bottom-color: rgba(67,178,212,0.28) !important;
+}
+
+.quest-card.qt-card-epic.time-locked {
+  filter: saturate(0.86);
+}
+
+.quest-card.qt-card-epic.time-locked .qt-title {
+  color: #dbeff2 !important;
+}
+
+.qt-time-lock-line {
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid rgba(67,178,212,0.34);
+  background:
+    linear-gradient(180deg, rgba(67,178,212,0.12), transparent 52%),
+    rgba(0,0,0,0.30);
+  color: #bff5ff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+}
+
+.qt-time-lock-line.ready {
+  border-color: rgba(69,211,138,0.38);
+  color: #c9ffd8;
+  background:
+    linear-gradient(180deg, rgba(69,211,138,0.12), transparent 52%),
+    rgba(0,0,0,0.30);
+}
+
+.action-locked,
+.action-locked:disabled {
+  border-color: rgba(67,178,212,0.42) !important;
+  color: #bff5ff !important;
+  background:
+    linear-gradient(180deg, rgba(67,178,212,0.14), rgba(0,0,0,0.34)) !important;
+  cursor: not-allowed !important;
+  opacity: 0.82 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+  .time-lock-box {
+    padding: 11px;
+  }
+
+  .qt-time-lock-line {
+    width: 100%;
+    font-size: 11px;
+  }
+}
+
+
+/* ===== 24-HOUR TIME LOCK REFINEMENT V31 ===== */
+.time-lock-toggle {
+  color: #e8e2d4 !important;
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.35px !important;
+  text-transform: none !important;
+  line-height: 1.35 !important;
+}
+
+.time-lock-preview {
+  color: #c9c1b2 !important;
+  font-size: 12px !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.2px !important;
+  text-transform: none !important;
+}
+
+.time-lock-fields label {
+  color: #aeefff !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.55px !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini {
+  --quest-accent: #8eeaff;
+  --quest-accent-rgb: 142,234,255;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-template-areas: none !important;
+  gap: 10px !important;
+  min-height: 0 !important;
+  padding: 14px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(142,234,255,0.38) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(142,234,255,0.11), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.028), transparent 42%),
+    linear-gradient(180deg, #081418, #040606) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.025),
+    0 12px 26px rgba(0,0,0,0.34),
+    0 0 16px rgba(67,178,212,0.08) !important;
+  overflow: hidden !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini::before,
+.quest-card.qt-card-epic.scheduled-mini::after {
+  display: none !important;
+  content: none !important;
+}
+
+.scheduled-mini-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.scheduled-mini-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid rgba(142,234,255,0.40);
+  color: #8eeaff;
+  background: rgba(0,0,0,0.30);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+.scheduled-mini-type {
+  color: #a7a094;
+  border: 1px solid rgba(216,208,189,0.16);
+  background: rgba(0,0,0,0.22);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.55px;
+}
+
+.scheduled-mini-title {
+  color: #e9fbff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 4.8vw, 28px);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 12px rgba(142,234,255,0.12);
+}
+
+.scheduled-mini-time {
+  color: #c9c1b2;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.scheduled-mini-countdown {
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid rgba(142,234,255,0.28);
+  background:
+    linear-gradient(180deg, rgba(142,234,255,0.10), transparent 52%),
+    rgba(0,0,0,0.26);
+  color: #bff5ff;
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.35px;
+}
+
+.scheduled-mini-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.scheduled-mini-actions button {
+  min-height: 36px !important;
+  border-radius: 9px !important;
+  font-size: 11px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.55px !important;
+  text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .quest-card.qt-card-epic.scheduled-mini {
+    padding: 13px !important;
+    gap: 9px !important;
+  }
+
+  .scheduled-mini-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduled-mini-countdown {
+    width: 100%;
+  }
+}
+
+
+/* ===== PREMIUM SCHEDULED QUEST DESIGN V32 ===== */
+#questUnlockTime {
+  width: min(210px, 100%) !important;
+  min-height: 42px !important;
+  color-scheme: dark !important;
+  border-color: rgba(142,234,255,0.38) !important;
+  background:
+    linear-gradient(180deg, rgba(142,234,255,0.055), transparent 48%),
+    #050b0d !important;
+  color: #e9fbff !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.8px !important;
+}
+
+#questUnlockTime::-webkit-calendar-picker-indicator {
+  width: 16px !important;
+  height: 16px !important;
+  padding: 2px !important;
+  margin-right: 2px !important;
+  cursor: pointer !important;
+  opacity: 0.72 !important;
+  filter: invert(89%) sepia(20%) saturate(747%) hue-rotate(148deg) brightness(106%) contrast(101%) !important;
+  background: transparent !important;
+}
+
+#questUnlockTime::-webkit-calendar-picker-indicator:hover {
+  opacity: 1 !important;
+}
+
+.time-lock-box {
+  border-color: rgba(142,234,255,0.22) !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(142,234,255,0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 46%),
+    rgba(0,0,0,0.24) !important;
+}
+
+/* Make the ready/unlocked line interesting but less loud. */
+.qt-time-lock-line.ready {
+  border-color: rgba(111,218,150,0.30) !important;
+  color: #ccefd8 !important;
+  background:
+    linear-gradient(180deg, rgba(111,218,150,0.09), transparent 54%),
+    rgba(0,0,0,0.24) !important;
+  box-shadow: 0 0 12px rgba(111,218,150,0.05) !important;
+}
+
+/* Premium scheduled card: compact, phone-friendly, and more majestic. */
+.quest-card.qt-card-epic.scheduled-mini {
+  --quest-accent: #8eeaff;
+  --quest-accent-rgb: 142,234,255;
+  position: relative !important;
+  isolation: isolate !important;
+  padding: 16px 16px 15px 18px !important;
+  gap: 12px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(142,234,255,0.42) !important;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(142,234,255,0.16), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(224,200,120,0.08), transparent 24%),
+    linear-gradient(135deg, rgba(142,234,255,0.10), transparent 36%),
+    linear-gradient(180deg, #071418 0%, #020606 100%) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.030),
+    inset 0 -32px 60px rgba(0,0,0,0.42),
+    0 16px 32px rgba(0,0,0,0.42),
+    0 0 24px rgba(67,178,212,0.10) !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 8px !important;
+  pointer-events: none !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(90deg, rgba(142,234,255,0.78), transparent 22%, transparent 78%, rgba(142,234,255,0.46)) top / 100% 1px no-repeat,
+    linear-gradient(90deg, rgba(142,234,255,0.42), transparent 22%, transparent 78%, rgba(142,234,255,0.24)) bottom / 100% 1px no-repeat,
+    linear-gradient(180deg, rgba(142,234,255,0.55), transparent 34%, transparent 72%, rgba(142,234,255,0.28)) left / 1px 100% no-repeat !important;
+  opacity: 0.72 !important;
+  filter: drop-shadow(0 0 8px rgba(142,234,255,0.22));
+  z-index: -1 !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini::after {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  right: 14px !important;
+  top: 14px !important;
+  width: 72px !important;
+  height: 72px !important;
+  pointer-events: none !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle, rgba(142,234,255,0.16), transparent 60%),
+    linear-gradient(90deg, transparent, rgba(224,200,120,0.18), transparent) center / 100% 1px no-repeat,
+    linear-gradient(180deg, transparent, rgba(142,234,255,0.14), transparent) center / 1px 100% no-repeat !important;
+  opacity: 0.55 !important;
+  z-index: -1 !important;
+}
+
+.scheduled-mini-top {
+  position: relative;
+  z-index: 2;
+}
+
+.scheduled-mini-pill {
+  border-color: rgba(142,234,255,0.48) !important;
+  color: #bff5ff !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(142,234,255,0.20), transparent 60%),
+    rgba(0,0,0,0.34) !important;
+  box-shadow: 0 0 12px rgba(142,234,255,0.08);
+}
+
+.scheduled-mini-type {
+  border-color: rgba(224,200,120,0.24) !important;
+  color: #d9c990 !important;
+  background: rgba(0,0,0,0.24) !important;
+}
+
+.scheduled-mini-title {
+  position: relative;
+  z-index: 2;
+  color: #f0fdff !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(24px, 6.2vw, 34px) !important;
+  line-height: 1.02 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.4px !important;
+  text-shadow:
+    0 0 16px rgba(142,234,255,0.18),
+    0 2px 0 rgba(0,0,0,0.55) !important;
+}
+
+.scheduled-mini-time {
+  position: relative;
+  z-index: 2;
+  color: #d6cec0 !important;
+  font-size: 13px !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.25px !important;
+}
+
+.scheduled-mini-countdown {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  border-color: rgba(142,234,255,0.38) !important;
+  color: #d8fbff !important;
+  background:
+    linear-gradient(180deg, rgba(142,234,255,0.12), transparent 55%),
+    rgba(0,0,0,0.30) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.025),
+    0 0 14px rgba(142,234,255,0.08) !important;
+}
+
+.scheduled-mini-actions {
+  position: relative;
+  z-index: 2;
+  margin-top: 3px !important;
+}
+
+.scheduled-mini-actions .action-info {
+  border-color: rgba(142,234,255,0.42) !important;
+  color: #dffbff !important;
+  background: linear-gradient(180deg, rgba(142,234,255,0.12), rgba(0,0,0,0.28)) !important;
+}
+
+.scheduled-mini-actions .action-edit {
+  border-color: rgba(180,130,255,0.40) !important;
+  color: #eadbff !important;
+  background: linear-gradient(180deg, rgba(180,130,255,0.12), rgba(0,0,0,0.28)) !important;
+}
+
+.scheduled-mini-actions .action-delete {
+  border-color: rgba(230,55,55,0.58) !important;
+  color: #ffd1d1 !important;
+  background: linear-gradient(180deg, rgba(155,15,15,0.26), rgba(0,0,0,0.30)) !important;
+}
+
+@media (max-width: 520px) {
+  .quest-card.qt-card-epic.scheduled-mini {
+    padding: 15px 14px !important;
+    border-radius: 15px !important;
+  }
+
+  .quest-card.qt-card-epic.scheduled-mini::after {
+    width: 58px !important;
+    height: 58px !important;
+    right: 10px !important;
+    top: 12px !important;
+    opacity: 0.42 !important;
+  }
+
+  .scheduled-mini-title {
+    font-size: clamp(23px, 7vw, 31px) !important;
+  }
+
+  .scheduled-mini-time {
+    font-size: 12px !important;
+  }
+
+  .scheduled-mini-countdown {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
+
+/* ===== SCHEDULED QUEST TEMPLATE 3 FINAL V33 ===== */
+/* Only the locked Scheduled Quest mini card is changed here. Normal Main/Side/Completed cards stay untouched. */
+.quest-card.qt-card-epic.scheduled-mini {
+  --quest-accent: #65dcff;
+  --quest-accent-rgb: 101,220,255;
+  padding: 17px 16px 16px !important;
+  gap: 12px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(101,220,255,0.48) !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(101,220,255,0.12), transparent 31%),
+    linear-gradient(180deg, rgba(255,255,255,0.026), transparent 43%),
+    linear-gradient(180deg, #071014 0%, #020405 100%) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.022),
+    0 12px 26px rgba(0,0,0,0.38),
+    0 0 18px rgba(101,220,255,0.075) !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 8px !important;
+  pointer-events: none !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(90deg, rgba(101,220,255,0.70), transparent 20%, transparent 80%, rgba(101,220,255,0.44)) top / 100% 1px no-repeat,
+    linear-gradient(90deg, rgba(101,220,255,0.38), transparent 24%, transparent 76%, rgba(101,220,255,0.30)) bottom / 100% 1px no-repeat,
+    linear-gradient(180deg, rgba(101,220,255,0.45), transparent 36%, transparent 72%, rgba(101,220,255,0.24)) left / 1px 100% no-repeat,
+    linear-gradient(180deg, rgba(101,220,255,0.22), transparent 36%, transparent 72%, rgba(101,220,255,0.14)) right / 1px 100% no-repeat !important;
+  opacity: 0.72 !important;
+  filter: none !important;
+  z-index: -1 !important;
+}
+
+.quest-card.qt-card-epic.scheduled-mini::after {
+  display: none !important;
+  content: none !important;
+}
+
+.scheduled-mini-top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+
+.scheduled-mini-pill {
+  border-color: rgba(101,220,255,0.46) !important;
+  color: #9decff !important;
+  background: rgba(0,0,0,0.30) !important;
+  border-radius: 999px !important;
+  padding: 5px 10px !important;
+  font-size: 10px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.8px !important;
+}
+
+.scheduled-mini-type {
+  border-color: rgba(224,200,120,0.28) !important;
+  color: #d9ca9c !important;
+  background: rgba(0,0,0,0.24) !important;
+  border-radius: 999px !important;
+  padding: 5px 10px !important;
+  font-size: 10px !important;
+}
+
+.scheduled-mini-title {
+  color: #eefbff !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(25px, 7vw, 35px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.35px !important;
+  margin-top: 4px !important;
+  text-shadow: 0 0 14px rgba(101,220,255,0.13) !important;
+}
+
+.scheduled-mini-time {
+  color: #d6cec0 !important;
+  font-size: 13px !important;
+  font-weight: 720 !important;
+  line-height: 1.4 !important;
+}
+
+.scheduled-mini-countdown {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  border: 1px solid rgba(101,220,255,0.32) !important;
+  border-radius: 10px !important;
+  padding: 11px 12px !important;
+  background:
+    linear-gradient(180deg, rgba(101,220,255,0.08), transparent 55%),
+    rgba(0,0,0,0.24) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018) !important;
+}
+
+.scheduled-mini-countdown span {
+  color: #78ddf4 !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.4px !important;
+}
+
+.scheduled-mini-countdown strong {
+  color: #d8fbff !important;
+  font-size: clamp(22px, 6vw, 30px) !important;
+  line-height: 1 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.8px !important;
+  text-align: right !important;
+  text-shadow: 0 0 12px rgba(101,220,255,0.16) !important;
+}
+
+/* B layout: Details + Edit Time on row one, Delete alone on row two. */
+.scheduled-mini-actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  margin-top: 2px !important;
+}
+
+.scheduled-mini-actions button {
+  min-height: 35px !important;
+  border-radius: 8px !important;
+  padding: 7px 9px !important;
+  font-size: 10.5px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.6px !important;
+  text-transform: uppercase !important;
+}
+
+.scheduled-mini-actions .action-delete {
+  grid-column: 1 / -1 !important;
+  justify-self: center !important;
+  width: min(180px, 100%) !important;
+}
+
+/* Restore the normal/default button color language inside the scheduled card. */
+.scheduled-mini-actions .action-info {
+  border-color: rgba(120,160,255,0.65) !important;
+  color: #dce7ff !important;
+  background: linear-gradient(180deg, rgba(120,160,255,0.16), #0d0d0c) !important;
+}
+
+.scheduled-mini-actions .action-edit {
+  border-color: rgba(142,92,204,0.65) !important;
+  color: #eadbff !important;
+  background: linear-gradient(180deg, rgba(142,92,204,0.16), #0d0d0c) !important;
+}
+
+.scheduled-mini-actions .action-delete {
+  border-color: rgba(230,55,55,0.95) !important;
+  color: #ffd1d1 !important;
+  background: linear-gradient(180deg, rgba(155,15,15,0.45), #120404) !important;
+}
+
+@media (max-width: 430px) {
+  .quest-card.qt-card-epic.scheduled-mini {
+    padding: 15px 13px !important;
+  }
+
+  .scheduled-mini-countdown {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .scheduled-mini-countdown strong {
+    text-align: left !important;
+  }
+
+  .scheduled-mini-actions {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .scheduled-mini-actions .action-delete {
+    width: min(160px, 100%) !important;
+  }
+}
+
+
+/* ===== DAY TEMPLATE FEATURE V1 ===== */
+.day-template-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216,208,189,0.18), transparent);
+  margin: 12px 0 2px;
+}
+
+.day-template-card {
+  border-color: rgba(224,200,120,0.20) !important;
+}
+
+.day-template-meta {
+  color: #b8afa2;
+  line-height: 1.55;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.day-template-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.day-template-actions button {
+  min-height: 38px;
+  font-size: 11px;
+  font-weight: 850;
+  padding: 8px;
+}
+
+.day-template-actions .danger {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 520px) {
+  .day-template-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== QUEST QUALITY IMPROVEMENTS V2 ===== */
+/* Priority colors: Normal = orange, Low = blue, Critical = red. */
+.priority-normal,
+.quest-card.qt-card-epic .qt-priority-pill.priority-normal {
+  color: #ffd08a !important;
+  border-color: rgba(255,150,48,0.78) !important;
+  background:
+    linear-gradient(180deg, rgba(255,150,48,0.22), transparent 55%),
+    rgba(165,82,18,0.16) !important;
+  box-shadow: 0 0 11px rgba(255,150,48,0.10) !important;
+}
+
+.priority-low,
+.quest-card.qt-card-epic .qt-priority-pill.priority-low {
+  color: #9fd8ff !important;
+  border-color: rgba(110,182,255,0.72) !important;
+  background:
+    linear-gradient(180deg, rgba(110,182,255,0.18), transparent 55%),
+    rgba(110,182,255,0.08) !important;
+  box-shadow: 0 0 10px rgba(110,182,255,0.08) !important;
+}
+
+.priority-critical,
+.quest-card.qt-card-epic .qt-priority-pill.priority-critical {
+  color: #ff9a9a !important;
+  border-color: rgba(255,90,90,0.82) !important;
+  background:
+    linear-gradient(180deg, rgba(255,80,80,0.22), transparent 55%),
+    rgba(150,30,30,0.14) !important;
+  box-shadow: 0 0 12px rgba(255,80,80,0.10) !important;
+}
+
+/* Draft microtasks now have Up / Down / Edit / Delete. */
+.micro-draft-item {
+  grid-template-columns: minmax(0, 1fr) 34px 34px 44px 34px !important;
+}
+
+/* Existing quest microtasks now have checkbox / text / Up / Down / Edit. */
+.micro-item {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) 34px 34px 44px !important;
+  gap: 7px !important;
+  align-items: center !important;
+}
+
+.micro-edit-btn {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+  color: #eadbff !important;
+  border-color: rgba(142,92,204,0.58) !important;
+  background: linear-gradient(180deg, rgba(142,92,204,0.14), #0d0d0c) !important;
+}
+
+.micro-edit-btn:hover {
+  color: #ffffff !important;
+  background: linear-gradient(180deg, #6d43a5, #2c193f) !important;
+}
+
+@media (max-width: 430px) {
+  .micro-draft-item {
+    grid-template-columns: minmax(0, 1fr) 30px 30px 40px 30px !important;
+    gap: 5px !important;
+  }
+
+  .micro-item {
+    grid-template-columns: auto minmax(0, 1fr) 30px 30px 40px !important;
+    gap: 5px !important;
+  }
+}
+
+/* Scheduled quest countdown number: smaller and calmer. */
+.scheduled-mini-countdown strong {
+  font-size: clamp(18px, 4.8vw, 24px) !important;
+  letter-spacing: 0.35px !important;
+  line-height: 1.05 !important;
+}
+
+
+/* ===== MICROTASK EDIT DESIGN FIX V3 ===== */
+/* Edit only belongs in the create/edit quest draft list. Active quest View Tasks stays clean. */
+.micro-draft-item {
+  grid-template-columns: minmax(0, 1fr) 52px 34px 34px 34px !important;
+  gap: 6px !important;
+}
+
+.micro-item {
+  grid-template-columns: auto minmax(0, 1fr) 34px 34px !important;
+  gap: 7px !important;
+}
+
+.micro-draft-item .micro-edit-btn {
+  min-width: 52px !important;
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+  font-size: 9.5px !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 430px) {
+  .micro-draft-item {
+    grid-template-columns: minmax(0, 1fr) 48px 30px 30px 30px !important;
+    gap: 5px !important;
+  }
+
+  .micro-item {
+    grid-template-columns: auto minmax(0, 1fr) 30px 30px !important;
+    gap: 5px !important;
+  }
+
+  .micro-draft-item .micro-edit-btn {
+    min-width: 48px !important;
+    font-size: 9px !important;
+  }
+}
+
+
+/* ===== MICROTASK DRAFT ROW HARD FIX V4 ===== */
+/* Fixes old mobile overrides that made Edit overlap and pushed Delete onto a second row. */
+.draft-item.micro-draft-item {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 56px 34px 34px 34px !important;
+  gap: 6px !important;
+  align-items: center !important;
+}
+
+.draft-item.micro-draft-item .micro-edit-btn {
+  min-width: 56px !important;
+  width: 56px !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+
+.draft-item.micro-draft-item .micro-remove-btn {
+  grid-column: auto !important;
+  width: auto !important;
+}
+
+@media (max-width: 430px) {
+  .draft-item.micro-draft-item {
+    grid-template-columns: minmax(0, 1fr) 50px 30px 30px 30px !important;
+    gap: 5px !important;
+  }
+
+  .draft-item.micro-draft-item .micro-edit-btn {
+    min-width: 50px !important;
+    width: 50px !important;
+    font-size: 8.5px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .draft-item.micro-draft-item .micro-remove-btn {
+    grid-column: auto !important;
+    width: auto !important;
+  }
+}
+
+
+/* ===== STREAK QUICK UPDATE + PHONE ORGANIZATION V1 ===== */
+#streakView .streak-quick-panel {
+  margin: 0 0 12px;
+  border-color: rgba(224,200,120,0.22) !important;
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.035), transparent 52%),
+    #0b0a08 !important;
+}
+
+#streakView .streak-quick-panel h2 {
+  margin-bottom: 7px;
+}
+
+#streakView .streak-today-summary {
+  display: grid;
+  gap: 7px;
+  color: #d8d0bd;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+#streakView .streak-today-title {
+  color: #f3ead8;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+#streakView .streak-today-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+#streakView .streak-today-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border: 1px solid rgba(216,208,189,0.16);
+  background: rgba(0,0,0,0.24);
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: #cfc5b4;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.55px;
+}
+
+#streakView .streak-today-chip.good {
+  border-color: rgba(79,194,122,0.46);
+  color: #cef7d9;
+}
+
+#streakView .streak-today-chip.warn {
+  border-color: rgba(217,154,69,0.46);
+  color: #ffe0ac;
+}
+
+#streakView .streak-today-chip.danger {
+  border-color: rgba(201,107,107,0.46);
+  color: #ffd2d2;
+}
+
+#streakView .streak-today-chip.purple {
+  border-color: rgba(167,139,232,0.46);
+  color: #e3dcff;
+}
+
+#streakView .streak-quick-actions {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 0.75fr;
+  gap: 8px;
+  margin-top: 11px;
+}
+
+#streakView .streak-quick-actions button {
+  min-height: 42px;
+  padding: 9px 8px;
+  font-size: 11px;
+}
+
+#streakView aside.panel {
+  display: grid;
+  gap: 12px;
+}
+
+#streakView aside.panel > h2 {
+  margin-bottom: 0;
+}
+
+#streakView aside.panel .quest-list {
+  gap: 7px;
+}
+
+#streakView aside.panel .rule-box,
+#streakView aside.panel .streak-medal-box {
+  margin-top: 0 !important;
+}
+
+#streakView .quest-pill {
+  padding: 8px !important;
+}
+
+#streakView .quest-name {
+  font-size: 12px !important;
+}
+
+#streakView .quest-rule {
+  font-size: 10px !important;
+}
+
+@media (max-width: 900px) {
+  #streakView .streak-quick-panel {
+    padding: 11px !important;
+  }
+
+  #streakView .streak-quick-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #streakView .streak-quick-actions #streakQuickAllDoneBtn {
+    grid-column: 1 / -1;
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 520px) {
+  #streakView .streak-today-chips {
+    gap: 6px;
+  }
+
+  #streakView .streak-today-chip {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  #streakView .streak-quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  #streakView .streak-quick-actions #streakQuickAllDoneBtn {
+    grid-column: auto;
+  }
+}
+
+
+/* ===== ELEMENT ROW ORGANIZATION + UNLOCK MEDALS V1 ===== */
+#elementsView .element-block-row {
+  display: block !important;
+  width: 100% !important;
+}
+
+#elementsView .element-unified-grid,
+#elementsView .water-week-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+#elementsView .element-assigned-card,
+#elementsView .water-day-card {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+#elementsView .element-assigned-card-skill,
+#elementsView .element-block,
+#elementsView .water-segment {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  align-content: center !important;
+}
+
+#elementsView .element-medal-cell {
+  min-height: 70px !important;
+  border: 1px solid rgba(216,208,189,0.14) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(216,208,189,0.07), transparent 48%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 45%),
+    rgba(0,0,0,0.20) !important;
+  display: grid !important;
+  place-items: center !important;
+  gap: 4px !important;
+  text-align: center !important;
+  padding: 9px !important;
+  opacity: 0.23 !important;
+  filter: grayscale(1) !important;
+  transition: 0.16s ease !important;
+}
+
+#elementsView .element-medal-cell.unlocked {
+  opacity: 1 !important;
+  filter: none !important;
+  border-color: rgba(224,200,120,0.42) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(224,200,120,0.16), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 48%),
+    rgba(0,0,0,0.28) !important;
+  box-shadow: 0 0 18px rgba(224,200,120,0.08) !important;
+}
+
+#elementsView .element-medal-icon {
+  font-size: 38px !important;
+  line-height: 1 !important;
+}
+
+#elementsView .element-medal-text {
+  color: #cfc5b4 !important;
+  font-size: 9px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.7px !important;
+}
+
+#elementsView .element-medal-cell.unlocked .element-medal-text {
+  color: #f4df95 !important;
+}
+
+#elementsView .element-card.fire-card .element-medal-cell.unlocked { border-color: rgba(255,121,88,0.50) !important; box-shadow: 0 0 18px rgba(255,121,88,0.10) !important; }
+#elementsView .element-card.earth-card .element-medal-cell.unlocked { border-color: rgba(143,111,72,0.58) !important; box-shadow: 0 0 18px rgba(143,111,72,0.12) !important; }
+#elementsView .element-card.water-card .element-medal-cell.unlocked { border-color: rgba(103,174,232,0.52) !important; box-shadow: 0 0 18px rgba(103,174,232,0.10) !important; }
+#elementsView .element-card.air-card .element-medal-cell.unlocked { border-color: rgba(216,216,216,0.48) !important; box-shadow: 0 0 18px rgba(216,216,216,0.10) !important; }
+
+@media (min-width: 901px) {
+  #elementsView .element-unified-grid,
+  #elementsView .water-week-grid {
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)) !important;
+  }
+
+  #elementsView .element-medal-cell {
+    min-height: 78px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #elementsView .element-unified-grid,
+  #elementsView .water-week-grid {
+    grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  #elementsView .element-medal-cell {
+    min-height: 58px !important;
+    padding: 7px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 30px !important;
+  }
+
+  #elementsView .element-medal-text {
+    font-size: 8px !important;
+  }
+}
+
+
+/* ===== ELEMENT MEDAL CUBE SIZE FIX V2 ===== */
+#elementsView .element-medal-cell {
+  width: 64px !important;
+  height: 64px !important;
+  min-height: 64px !important;
+  max-width: 64px !important;
+  justify-self: end !important;
+  align-self: stretch !important;
+  padding: 6px !important;
+}
+
+#elementsView .element-medal-icon {
+  font-size: 31px !important;
+}
+
+#elementsView .element-medal-text {
+  font-size: 7px !important;
+  letter-spacing: 0.45px !important;
+}
+
+@media (min-width: 901px) {
+  #elementsView .element-medal-cell {
+    width: 72px !important;
+    height: 72px !important;
+    min-height: 72px !important;
+    max-width: 72px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 36px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #elementsView .element-medal-cell {
+    width: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-width: 52px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 26px !important;
+  }
+
+  #elementsView .element-medal-text {
+    display: none !important;
+  }
+}
+
+
+/* ===== ELEMENT MEDAL CUBE POLISH + WATER ONE ROW V3 ===== */
+#elementsView .element-medal-cell {
+  width: 62px !important;
+  height: 62px !important;
+  min-height: 62px !important;
+  max-width: 62px !important;
+  aspect-ratio: 1 / 1 !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  justify-self: end !important;
+  align-self: stretch !important;
+  place-items: center !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.08), transparent 32%),
+    radial-gradient(circle at 50% 45%, rgba(224,200,120,0.11), transparent 50%),
+    linear-gradient(180deg, #15130f, #050505) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.035),
+    inset 0 -14px 22px rgba(0,0,0,0.42),
+    0 8px 18px rgba(0,0,0,0.26) !important;
+}
+
+#elementsView .element-medal-cell::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(216,208,189,0.11);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+#elementsView .element-medal-cell.unlocked {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.05),
+    inset 0 -14px 22px rgba(0,0,0,0.38),
+    0 0 16px rgba(224,200,120,0.12) !important;
+}
+
+#elementsView .element-medal-icon {
+  font-size: 32px !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 0 8px rgba(224,200,120,0.20)) !important;
+}
+
+#elementsView .element-medal-text {
+  display: none !important;
+}
+
+/* Water: keep 7 days + medal in one horizontal row. Scrolls only if the screen is too narrow. */
+#elementsView .water-week-grid {
+  grid-template-columns: repeat(var(--element-water-days, 7), minmax(74px, 1fr)) 62px !important;
+  grid-auto-flow: column !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  align-items: stretch !important;
+  padding-bottom: 4px !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+#elementsView .water-week-grid .element-medal-cell {
+  grid-column: auto !important;
+}
+
+@media (min-width: 901px) {
+  #elementsView .element-medal-cell {
+    width: 70px !important;
+    height: 70px !important;
+    min-height: 70px !important;
+    max-width: 70px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 37px !important;
+  }
+
+  #elementsView .water-week-grid {
+    grid-template-columns: repeat(var(--element-water-days, 7), minmax(96px, 1fr)) 70px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #elementsView .element-medal-cell {
+    width: 50px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-width: 50px !important;
+    border-radius: 7px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 27px !important;
+  }
+
+  #elementsView .water-week-grid {
+    grid-template-columns: repeat(var(--element-water-days, 7), minmax(72px, 1fr)) 50px !important;
+  }
+}
+
+
+/* ===== ELEMENT RESPONSIVE MEDAL WRAP FIX V4 ===== */
+/* Desktop keeps Water in one row. Smaller screens let days + medal wrap together cleanly. */
+@media (max-width: 760px) {
+  #elementsView .water-week-grid {
+    grid-auto-flow: row !important;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)) !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    padding-bottom: 0 !important;
+    align-items: stretch !important;
+  }
+
+  #elementsView .element-unified-grid {
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)) !important;
+    align-items: stretch !important;
+  }
+
+  #elementsView .water-week-grid .element-medal-cell,
+  #elementsView .element-unified-grid .element-medal-cell {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 58px !important;
+    aspect-ratio: auto !important;
+    justify-self: stretch !important;
+    align-self: stretch !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 29px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #elementsView .water-week-grid,
+  #elementsView .element-unified-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  #elementsView .water-week-grid .element-medal-cell,
+  #elementsView .element-unified-grid .element-medal-cell {
+    min-height: 52px !important;
+  }
+
+  #elementsView .element-medal-icon {
+    font-size: 26px !important;
+  }
+}
+
+
+/* ===== PHONE QUEST DRAWER HARD COLLAPSE SAFETY V33 ===== */
+@media (max-width: 900px) {
+  .quest-card.qt-card-epic:not(.steps-open) .micro-list,
+  .quest-card.qt-card-epic .micro-list.hidden {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+
+  .quest-card.qt-card-epic:not(.actions-open) .qt-more-actions,
+  .quest-card.qt-card-epic:not(.actions-open) .quest-more-actions {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+  }
+
+  .quest-card.qt-card-epic:not(.steps-open):not(.actions-open) {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
+
+
+/* ===== FILLER QUESTS FEATURE V34 ===== */
+#questsView .quest-section-panel[data-section="filler"] {
+  border-color: rgba(225,225,225,0.26) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(235,235,235,0.07), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
+    linear-gradient(180deg, #121212, #050505) !important;
+}
+
+#questsView .quest-section-panel[data-section="filler"] .section-toggle,
+#questsView .filler-heading {
+  color: #e8e8e8 !important;
+  text-shadow:
+    0 0 14px rgba(235,235,235,0.20),
+    0 0 28px rgba(235,235,235,0.08) !important;
+  border-bottom-color: rgba(225,225,225,0.22) !important;
+}
+
+.quest-card.filler {
+  border-color: rgba(225,225,225,0.42) !important;
+  box-shadow: inset 5px 0 0 #cfcfcf, 0 12px 28px rgba(0,0,0,0.34) !important;
+}
+
+.quest-card.qt-card-epic.filler {
+  --quest-accent: #dcdcdc;
+  --quest-accent-rgb: 220,220,220;
+  border-color: rgba(220,220,220,0.44) !important;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.28) 44%, rgba(220,220,220,0.07) 100%),
+    radial-gradient(circle at 72% 30%, rgba(235,235,235,0.12), transparent 35%),
+    linear-gradient(180deg, #121212 0%, #050505 100%) !important;
+}
+
+.quest-card.qt-card-epic.filler .qt-type-pill {
+  border-color: rgba(235,235,235,0.44) !important;
+  color: #f1f1f1 !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.16), transparent 60%),
+    rgba(0,0,0,0.36) !important;
+}
+
+.quest-card.qt-card-epic.filler .qt-crest-symbol {
+  color: #f2f2f2 !important;
+  border-color: rgba(230,230,230,0.48) !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 48%),
+    linear-gradient(180deg, rgba(235,235,235,0.10), rgba(0,0,0,0.66)) !important;
+  text-shadow:
+    0 0 9px rgba(255,255,255,0.62),
+    0 0 20px rgba(220,220,220,0.24) !important;
+}
+
+.quest-card.qt-card-epic.filler .qt-art-orb::before {
+  content: "○" !important;
+  color: #f1f1f1 !important;
+}
+
+.quest-card.qt-card-epic.filler .qt-progress-fill {
+  background: linear-gradient(90deg, #9f9f9f, #f1f1f1) !important;
+  box-shadow: 0 0 12px rgba(235,235,235,0.28) !important;
+}
+
 </style>
 </head>
 
@@ -9307,12 +10751,21 @@ header .player-card {
                 <button type="button" id="openDefaultsBtn">Load Defaults</button>
                 <button type="button" id="saveFormDefaultBtn">Save Default</button>
               </div>
+
+              <div class="day-template-divider"></div>
+              <div class="template-label">Day Templates</div>
+              <div id="dayTemplateSummary" class="template-preview">No day templates yet. Fill your day with quests, then save it as a template.</div>
+              <div class="actions">
+                <button type="button" id="openDayTemplatesBtn">Load Day Templates</button>
+                <button type="button" id="saveDayTemplateBtn">Save Day Template</button>
+              </div>
             </div>
 
             <label for="questType">Quest type</label>
             <select id="questType">
               <option value="main">Main Quest</option>
               <option value="side">Side Quest</option>
+              <option value="filler">Filler Quest</option>
             </select>
 
             <label for="questTitle">Quest name</label>
@@ -9324,6 +10777,18 @@ header .player-card {
               <option value="critical">Critical</option>
               <option value="low">Low</option>
             </select>
+
+            <div class="time-lock-box">
+              <label class="time-lock-toggle" for="questTimeLockEnabled">
+                <input id="questTimeLockEnabled" type="checkbox" />
+                Lock quest for later today
+              </label>
+              <div id="questTimeLockFields" class="time-lock-fields">
+                <label for="questUnlockTime">Unlock time / next 24 hours</label>
+                <input id="questUnlockTime" type="time" />
+                <div id="questUnlockPreview" class="time-lock-preview">Time lock off. This quest will be available immediately.</div>
+              </div>
+            </div>
 
             <label for="questRewardType">Quest reward category</label>
             <div class="reward-picker-grid">
@@ -9385,12 +10850,23 @@ header .player-card {
             <div id="sideQuestList" class="quest-list collapsible-content"></div>
           </div>
 
+          <div class="panel quest-section-panel" data-section="filler">
+            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Filler Quests</button>
+            <div id="fillerQuestList" class="quest-list collapsible-content"></div>
+          </div>
+
+          <div class="panel quest-section-panel" data-section="scheduled">
+            <button type="button" class="section-toggle scheduled-heading" data-collapse-target="scheduledQuestList">▼ Scheduled Quests</button>
+            <div id="scheduledQuestList" class="quest-list collapsible-content"></div>
+          </div>
+
           <div class="panel quest-section-panel" data-section="complete">
             <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ Completed Quests</button>
             <div class="archive-filters" id="archiveFilters">
               <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
               <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
               <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
+              <button type="button" class="archive-filter" data-archive-filter="filler">Filler</button>
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
@@ -9404,7 +10880,7 @@ header .player-card {
             <div>
               <h2>Elements</h2>
               <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
-              <div class="elements-subtitle">Weekly discipline board</div>
+              <div class="elements-subtitle">Weekly discipline board · Edit to add skills and choose days</div>
             </div>
             <button type="button" id="nextWeekBtn">▶</button>
           </div>
@@ -9459,6 +10935,20 @@ header .player-card {
     </div>
     <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
   </div>
+
+  <section class="panel streak-quick-panel">
+    <div class="streak-quick-head">
+      <div>
+        <h2>Today Quick Update</h2>
+        <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
+      </div>
+    </div>
+    <div class="streak-quick-actions">
+      <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
+      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
+      <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
+    </div>
+  </section>
 
   <section class="layout">
     <section class="panel">
@@ -9627,6 +11117,16 @@ header .player-card {
       <div id="defaultsModalBody" class="default-list"></div>
     </div>
   </div>
+
+  <div id="dayTemplatesModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Day Templates</div>
+        <button id="closeDayTemplatesModal">Close</button>
+      </div>
+      <div id="dayTemplatesModalBody" class="default-list"></div>
+    </div>
+  </div>
   <div id="streakSetupModal" class="modal">
   <div class="modal-card">
     <div class="modal-header">
@@ -9771,6 +11271,7 @@ header .player-card {
     var STORE_ACTIVE_SAVE = 'quest_terminal_active_save_id_v1';
     var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
     var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
+    var STORE_DAY_TEMPLATES = 'qt_day_templates_v1';
     var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
     var STORE_ELEMENTS_CONFIG = 'qt_editable_elements_config_v1';
     var STORE_XP = 'qt_player_xp_v1';
@@ -9780,7 +11281,7 @@ header .player-card {
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
     var STORE_MISSION_TEXT = 'qt_everyday_mission_text_v1';
-    var VERSION = 'merged-old-save-v8-reward-detail-fields-all-categories';
+    var VERSION = 'merged-old-save-v13-microtask-draft-row-fix';
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
@@ -9789,6 +11290,8 @@ header .player-card {
     var editingElementDays = [];
     var ELEMENT_DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     var archiveFilter = 'all';
+    var lastTimeLockRenderMinute = null;
+    var lastTimeLockSignature = '';
 
     function byId(id) {
       return document.getElementById(id);
@@ -9989,6 +11492,14 @@ header .player-card {
 
     function setCustomDefaults(value) {
       writeStore(STORE_DEFAULTS, value);
+    }
+
+    function getDayTemplates() {
+      return readStore(STORE_DAY_TEMPLATES, []);
+    }
+
+    function setDayTemplates(value) {
+      writeStore(STORE_DAY_TEMPLATES, value);
     }
 
 
@@ -10275,9 +11786,31 @@ header .player-card {
       writeStore(STORE_XP, value);
     }
 
+    function getQuestTypeLabel(type, longLabel) {
+      if (type === 'main') return longLabel ? 'Main Quest' : 'Main';
+      if (type === 'side') return longLabel ? 'Side Quest' : 'Side';
+      if (type === 'filler') return longLabel ? 'Filler Quest' : 'Filler';
+      return longLabel ? 'Side Quest' : 'Side';
+    }
+
+    function getActiveQuestTypes() {
+      return ['main', 'side', 'filler'];
+    }
+
+    function getQuestCardType(quest) {
+      if (!quest) return 'side';
+      if (quest.status === 'complete') return 'complete';
+      if (quest.status === 'failed') return 'failed';
+      if (quest.type === 'main') return 'main';
+      if (quest.type === 'filler') return 'filler';
+      return 'side';
+    }
+
     function getQuestXp(quest) {
       if (!quest) return 0;
-      return quest.type === 'main' ? 5 : 2;
+      if (quest.type === 'main') return 5;
+      if (quest.type === 'filler') return 1;
+      return 2;
     }
 
     function awardQuestXpOnce(quest) {
@@ -10379,6 +11912,145 @@ function useMealPass() {
         minute: '2-digit',
         second: '2-digit'
       }).format(date);
+    }
+
+
+    function formatQuestUnlockTime(value) {
+      var date = new Date(value);
+      if (isNaN(date.getTime())) return 'Unknown time';
+      var sameDay = dateKey(date) === dateKey(new Date());
+      var timeText = new Intl.DateTimeFormat(undefined, {
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+      return (sameDay ? 'Today' : 'Tomorrow') + ' at ' + timeText;
+    }
+
+    function formatTimeRemaining(ms) {
+      if (!ms || ms <= 0) return 'Ready now';
+      var totalMinutes = Math.ceil(ms / 60000);
+      var hours = Math.floor(totalMinutes / 60);
+      var minutes = totalMinutes % 60;
+      if (hours <= 0) return minutes + 'm left';
+      if (minutes <= 0) return hours + 'h left';
+      return hours + 'h ' + minutes + 'm left';
+    }
+
+    function getNext24HourUnlockDate(timeValue) {
+      if (!timeValue || !/^\d{2}:\d{2}$/.test(timeValue)) return null;
+      var parts = timeValue.split(':');
+      var hours = Number(parts[0]);
+      var minutes = Number(parts[1]);
+      if (isNaN(hours) || isNaN(minutes)) return null;
+      var now = new Date();
+      var unlockDate = new Date(now);
+      unlockDate.setHours(hours, minutes, 0, 0);
+      if (unlockDate.getTime() <= now.getTime()) {
+        unlockDate.setDate(unlockDate.getDate() + 1);
+      }
+      if (unlockDate.getTime() - now.getTime() > 24 * 60 * 60 * 1000) return null;
+      return unlockDate;
+    }
+
+    function isQuestScheduled(quest) {
+      return !!(quest && quest.unlockAt && quest.status !== 'complete' && quest.status !== 'failed');
+    }
+
+    function isQuestLocked(quest) {
+      if (!isQuestScheduled(quest)) return false;
+      var unlockDate = new Date(quest.unlockAt);
+      if (isNaN(unlockDate.getTime())) return false;
+      return unlockDate.getTime() > Date.now();
+    }
+
+    function getQuestTimeLockHtml(quest) {
+      if (!isQuestScheduled(quest)) return '';
+      var unlockDate = new Date(quest.unlockAt);
+      if (isNaN(unlockDate.getTime())) return '';
+      var locked = isQuestLocked(quest);
+      var lineClass = locked ? 'qt-time-lock-line' : 'qt-time-lock-line ready';
+      var text = locked
+        ? '🔒 Opens ' + formatQuestUnlockTime(quest.unlockAt) + ' · ' + formatTimeRemaining(unlockDate.getTime() - Date.now())
+        : '✅ Ready now · Opened ' + formatQuestUnlockTime(quest.unlockAt);
+      return '<div class="' + lineClass + '">' + escapeHtml(text) + '</div>';
+    }
+
+    function getQuestUnlockAtFromForm() {
+      var enabled = byId('questTimeLockEnabled');
+      var timeInput = byId('questUnlockTime');
+      if (!enabled || !timeInput || !enabled.checked) return null;
+
+      var unlockDate = getNext24HourUnlockDate(timeInput.value);
+      if (!unlockDate) {
+        byId('questStatusText').textContent = 'Choose an unlock time within the next 24 hours.';
+        return false;
+      }
+
+      return unlockDate.toISOString();
+    }
+
+    function updateTimeLockPreview() {
+      var enabled = byId('questTimeLockEnabled');
+      var fields = byId('questTimeLockFields');
+      var timeInput = byId('questUnlockTime');
+      var preview = byId('questUnlockPreview');
+      if (!enabled || !fields || !timeInput || !preview) return;
+
+      fields.classList.toggle('open', enabled.checked);
+
+      if (!enabled.checked) {
+        preview.textContent = 'Time lock off. This quest will be available immediately.';
+        return;
+      }
+
+      var unlockDate = getNext24HourUnlockDate(timeInput.value);
+      if (!unlockDate) {
+        preview.textContent = 'Pick a time. This quest will wait until that time, within the next 24 hours.';
+        return;
+      }
+
+      preview.textContent = 'This quest opens ' + formatQuestUnlockTime(unlockDate.toISOString()) + ' · ' + formatTimeRemaining(unlockDate.getTime() - Date.now());
+    }
+
+    function setTimeLockFormValue(unlockAt) {
+      var enabled = byId('questTimeLockEnabled');
+      var timeInput = byId('questUnlockTime');
+      if (!enabled || !timeInput) return;
+
+      if (unlockAt) {
+        var unlockDate = new Date(unlockAt);
+        if (!isNaN(unlockDate.getTime())) {
+          enabled.checked = true;
+          timeInput.value = String(unlockDate.getHours()).padStart(2, '0') + ':' + String(unlockDate.getMinutes()).padStart(2, '0');
+          updateTimeLockPreview();
+          return;
+        }
+      }
+
+      enabled.checked = false;
+      timeInput.value = '';
+      updateTimeLockPreview();
+    }
+
+    function refreshTimeLockedQuests() {
+      var quests = getQuests();
+      var scheduled = quests.filter(isQuestScheduled);
+      if (scheduled.length === 0) {
+        lastTimeLockSignature = '';
+        lastTimeLockRenderMinute = null;
+        return;
+      }
+
+      var minuteKey = Math.floor(Date.now() / 60000);
+      var signature = scheduled.map(function(quest) {
+        return quest.id + ':' + (isQuestLocked(quest) ? 'locked' : 'ready');
+      }).join('|');
+
+      if (signature !== lastTimeLockSignature || minuteKey !== lastTimeLockRenderMinute) {
+        lastTimeLockSignature = signature;
+        lastTimeLockRenderMinute = minuteKey;
+        renderAll();
+      }
     }
 
     function dateKey(value) {
@@ -10718,11 +12390,22 @@ function useMealPass() {
 
       card.classList.remove('steps-open');
       card.classList.remove('layout-refresh');
-      if (microList) microList.classList.add('hidden');
+      if (microList) {
+        microList.classList.add('hidden');
+        microList.style.display = 'none';
+        microList.style.height = '0px';
+        microList.style.minHeight = '0px';
+        microList.style.maxHeight = '0px';
+        microList.style.margin = '0';
+        microList.style.padding = '0';
+        microList.style.border = '0';
+        microList.style.overflow = 'hidden';
+        microList.style.visibility = 'hidden';
+      }
       if (stepsButton) stepsButton.textContent = 'View Tasks';
 
-      card.style.minHeight = '';
-      card.style.height = '';
+      card.style.minHeight = '0px';
+      card.style.height = 'auto';
       void card.offsetHeight;
 
       requestAnimationFrame(function() {
@@ -10731,6 +12414,23 @@ function useMealPass() {
           card.classList.remove('layout-refresh');
         });
       });
+    }
+
+    function hardRefreshQuestCardOnPhone(card) {
+      if (!card) return;
+      var isPhone = false;
+      try { isPhone = window.matchMedia && window.matchMedia('(max-width: 900px)').matches; }
+      catch (error) { isPhone = window.innerWidth <= 900; }
+      if (!isPhone) return;
+
+      card.style.height = 'auto';
+      card.style.minHeight = '0px';
+      card.style.maxHeight = '';
+      void card.offsetHeight;
+
+      setTimeout(function() {
+        try { renderAll(); } catch (error) {}
+      }, 90);
     }
 
     function moveMicroTask(questId, taskId, direction) {
@@ -10756,6 +12456,64 @@ function useMealPass() {
       });
     }
 
+    function editMicroTask(questId, taskId) {
+      var changed = false;
+      var oldText = '';
+      var quests = getQuests();
+      var quest = quests.find(function(item) { return item.id === questId; });
+      if (!quest) return;
+
+      var task = (quest.microTasks || []).find(function(item) { return item.id === taskId; });
+      if (!task) return;
+      oldText = task.text || '';
+
+      var newText = prompt('Edit microtask:', oldText);
+      if (newText === null) return;
+      newText = newText.trim();
+      if (!newText) {
+        byId('questStatusText').textContent = 'Microtask edit cancelled. Text cannot be empty.';
+        return;
+      }
+
+      quests = quests.map(function(item) {
+        if (item.id !== questId) return item;
+        return Object.assign({}, item, {
+          microTasks: (item.microTasks || []).map(function(micro) {
+            if (micro.id !== taskId) return micro;
+            changed = true;
+            return Object.assign({}, micro, { text: newText });
+          }),
+          updatedAt: nowIso()
+        });
+      });
+
+      if (!changed) return;
+      setQuests(quests);
+      byId('questStatusText').textContent = 'Microtask updated.';
+      beep('save');
+      renderAll();
+      requestAnimationFrame(function() {
+        openQuestStepsCard(getQuestCardById(questId));
+      });
+    }
+
+    function editDraftTask(index) {
+      if (index < 0 || index >= draftTasks.length) return;
+      var current = draftTasks[index];
+      var newText = prompt('Edit microtask:', current.text || '');
+      if (newText === null) return;
+      newText = newText.trim();
+      if (!newText) {
+        byId('questStatusText').textContent = 'Microtask edit cancelled. Text cannot be empty.';
+        return;
+      }
+
+      draftTasks[index] = Object.assign({}, current, { text: newText });
+      byId('questStatusText').textContent = 'Draft microtask updated.';
+      beep('save');
+      renderDraftTasks();
+    }
+
     function renderDraftTasks() {
       var box = byId('draftList');
       box.innerHTML = '';
@@ -10770,6 +12528,7 @@ function useMealPass() {
         item.className = 'draft-item micro-draft-item';
         item.innerHTML =
           '<span class="micro-draft-text">' + (index + 1) + '. ' + escapeHtml(task.text) + '</span>' +
+          '<button type="button" class="micro-mini-btn micro-edit-btn" data-draft-action="edit" data-draft-index="' + index + '">Edit</button>' +
           '<button type="button" class="micro-mini-btn" data-draft-action="up" data-draft-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
           '<button type="button" class="micro-mini-btn" data-draft-action="down" data-draft-index="' + index + '" ' + (index === draftTasks.length - 1 ? 'disabled' : '') + '>↓</button>' +
           '<button type="button" class="micro-mini-btn micro-remove-btn" data-draft-action="remove" data-draft-id="' + task.id + '">×</button>';
@@ -10802,6 +12561,7 @@ function useMealPass() {
       byId('questDesc').value = '';
       byId('questStatus').value = 'new';
       setRewardFormValue(REWARD_CATEGORIES.none);
+      setTimeLockFormValue(null);
       byId('microInput').value = '';
       byId('submitQuestBtn').textContent = 'Add Quest';
       byId('cancelEditBtn').style.display = 'none';
@@ -10845,7 +12605,7 @@ function useMealPass() {
         var card = document.createElement('div');
         card.className = 'default-card';
         card.setAttribute('data-default-id', template.id);
-        var typeLabel = template.type === 'main' ? 'Main Quest' : 'Side Quest';
+        var typeLabel = getQuestTypeLabel(template.type, true);
         var taskCount = template.tasks ? template.tasks.length : 0;
         var templateReward = normalizeReward(template.reward);
 
@@ -11001,12 +12761,203 @@ function useMealPass() {
       openDefaultsModal();
     }
 
+    function renderDayTemplateSummary() {
+      var templates = getDayTemplates();
+      var summary = byId('dayTemplateSummary');
+      if (!summary) return;
+
+      if (templates.length === 0) {
+        summary.textContent = 'No day templates yet. Fill your day with quests, then save it as a template.';
+        return;
+      }
+
+      summary.innerHTML = '<strong>' + templates.length + ' day template' + (templates.length === 1 ? '' : 's') + '</strong><br>Load a full saved quest setup whenever you need it.';
+    }
+
+    function openDayTemplatesModal() {
+      renderDayTemplatesModal();
+      byId('dayTemplatesModal').classList.add('open');
+      beep('click');
+    }
+
+    function closeDayTemplatesModal() {
+      byId('dayTemplatesModal').classList.remove('open');
+    }
+
+    function serializeQuestForDayTemplate(quest) {
+      var unlockTime = null;
+      if (quest.unlockAt) {
+        var unlockDate = new Date(quest.unlockAt);
+        if (!isNaN(unlockDate.getTime())) {
+          unlockTime = String(unlockDate.getHours()).padStart(2, '0') + ':' + String(unlockDate.getMinutes()).padStart(2, '0');
+        }
+      }
+
+      return {
+        type: quest.type || 'main',
+        priority: quest.priority || 'normal',
+        title: quest.title || 'Untitled Quest',
+        desc: quest.desc || '',
+        reward: normalizeReward(quest.reward || REWARD_CATEGORIES.none),
+        tasks: (quest.microTasks || []).map(function(task) { return task.text; }),
+        unlockTime: unlockTime
+      };
+    }
+
+    function createQuestFromDayTemplateQuest(templateQuest) {
+      var time = nowIso();
+      var unlockAt = null;
+
+      if (templateQuest.unlockTime && typeof getNext24HourUnlockDate === 'function') {
+        var unlockDate = getNext24HourUnlockDate(templateQuest.unlockTime);
+        if (unlockDate) unlockAt = unlockDate.toISOString();
+      }
+
+      return {
+        id: makeId(),
+        type: templateQuest.type || 'main',
+        priority: templateQuest.priority || 'normal',
+        title: templateQuest.title || 'Untitled Quest',
+        desc: templateQuest.desc || '',
+        reward: normalizeReward(templateQuest.reward || REWARD_CATEGORIES.none),
+        microTasks: (templateQuest.tasks || []).map(function(text) {
+          return { id: makeId(), text: text, done: false };
+        }),
+        unlockAt: unlockAt,
+        status: 'new',
+        createdAt: time,
+        updatedAt: time,
+        completedAt: null,
+        failedAt: null
+      };
+    }
+
+    function saveCurrentDayAsTemplate() {
+      var sourceQuests = getQuests().filter(function(quest) {
+        return getActiveQuestTypes().indexOf(quest.type) !== -1 && quest.status !== 'complete' && quest.status !== 'failed';
+      });
+
+      if (sourceQuests.length === 0) {
+        byId('questStatusText').textContent = 'No active Main, Side, or Filler quests to save as a day template.';
+        beep('fail');
+        return;
+      }
+
+      var suggestedName = 'Day Template ' + (getDayTemplates().length + 1);
+      var templateName = prompt('Name this day template:', suggestedName);
+      if (templateName === null) return;
+      templateName = templateName.trim();
+
+      if (!templateName) {
+        byId('questStatusText').textContent = 'Day template name required.';
+        return;
+      }
+
+      var templates = getDayTemplates();
+      templates.unshift({
+        id: makeId(),
+        name: templateName,
+        quests: sourceQuests.map(serializeQuestForDayTemplate),
+        createdAt: nowIso()
+      });
+
+      setDayTemplates(templates);
+      renderDayTemplateSummary();
+      renderDayTemplatesModal();
+      byId('questStatusText').textContent = templateName + ' saved as a reusable day template.';
+      beep('save');
+      openDayTemplatesModal();
+    }
+
+    function getDayTemplateById(id) {
+      return getDayTemplates().find(function(template) {
+        return template.id === id;
+      });
+    }
+
+    function loadDayTemplateById(id, mode) {
+      var template = getDayTemplateById(id);
+      if (!template) return;
+
+      var newQuests = (template.quests || []).map(createQuestFromDayTemplateQuest);
+      if (newQuests.length === 0) {
+        byId('questStatusText').textContent = 'This day template has no quests saved.';
+        return;
+      }
+
+      if (mode === 'replace') {
+        if (!confirm('Replace current active quests with this day template? Completed quests will stay archived only if they are already in a save.')) return;
+        setQuests(newQuests);
+        byId('questStatusText').textContent = template.name + ' loaded. Current board replaced.';
+      } else {
+        setQuests(newQuests.concat(getQuests()));
+        byId('questStatusText').textContent = template.name + ' added to current board.';
+      }
+
+      closeDayTemplatesModal();
+      showView('questsView');
+      beep('load');
+      renderAll();
+    }
+
+    function removeDayTemplateById(id) {
+      var template = getDayTemplateById(id);
+      if (!template) return;
+      if (!confirm('Delete day template: ' + template.name + '?')) return;
+
+      var templates = getDayTemplates().filter(function(item) {
+        return item.id !== id;
+      });
+
+      setDayTemplates(templates);
+      renderDayTemplateSummary();
+      renderDayTemplatesModal();
+      byId('questStatusText').textContent = template.name + ' deleted from Day Templates.';
+      beep('fail');
+    }
+
+    function renderDayTemplatesModal() {
+      var body = byId('dayTemplatesModalBody');
+      if (!body) return;
+      var templates = getDayTemplates();
+      body.innerHTML = '';
+
+      if (templates.length === 0) {
+        body.innerHTML = '<div class="empty">No day templates yet. Create the quests you want for a day, then click Save Day Template.</div>';
+        return;
+      }
+
+      templates.forEach(function(template) {
+        var card = document.createElement('div');
+        card.className = 'default-card day-template-card';
+        card.setAttribute('data-day-template-id', template.id);
+        var quests = template.quests || [];
+        var mainCount = quests.filter(function(quest) { return quest.type === 'main'; }).length;
+        var sideCount = quests.filter(function(quest) { return quest.type === 'side'; }).length;
+        var fillerCount = quests.filter(function(quest) { return quest.type === 'filler'; }).length;
+        var taskCount = quests.reduce(function(sum, quest) { return sum + ((quest.tasks || []).length); }, 0);
+
+        card.innerHTML =
+          '<div class="default-title">' + escapeHtml(template.name || 'Day Template') + '</div>' +
+          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' filler · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
+          '<div class="day-template-actions">' +
+            '<button type="button" class="action-add-quest" data-day-template-action="add">Add To Board</button>' +
+            '<button type="button" class="action-progress" data-day-template-action="replace">Replace Board</button>' +
+            '<button type="button" class="danger" data-day-template-action="remove">Delete Template</button>' +
+          '</div>';
+        body.appendChild(card);
+      });
+    }
+
     function saveQuestFromForm() {
       var title = byId('questTitle').value.trim();
       if (!title) {
         byId('questStatusText').textContent = 'Quest name required.';
         return;
       }
+
+      var unlockAt = getQuestUnlockAtFromForm();
+      if (unlockAt === false) return;
 
       var time = nowIso();
       var status = byId('questStatus').value;
@@ -11018,6 +12969,7 @@ function useMealPass() {
         desc: byId('questDesc').value.trim(),
         reward: getQuestRewardFromForm(),
         microTasks: draftTasks.slice(),
+        unlockAt: unlockAt,
         status: status,
         createdAt: time,
         updatedAt: time,
@@ -11172,6 +13124,7 @@ function useMealPass() {
       byId('questDesc').value = quest.desc || '';
       byId('questStatus').value = quest.status || 'new';
       setRewardFormValue(quest.reward || REWARD_CATEGORIES.none);
+      setTimeLockFormValue(quest.unlockAt || null);
       draftTasks = (quest.microTasks || []).map(function(task) {
         return Object.assign({}, task);
       });
@@ -11193,6 +13146,10 @@ function useMealPass() {
       lines.push(quest.desc || 'No detailed information added.');
       lines.push('');
       lines.push('Reward: ' + rewardInfo.emoji + ' ' + rewardInfo.label);
+      if (quest.unlockAt) {
+        lines.push('');
+        lines.push(isQuestLocked(quest) ? 'Scheduled: Opens ' + formatQuestUnlockTime(quest.unlockAt) + ' (' + formatTimeRemaining(new Date(quest.unlockAt).getTime() - Date.now()) + ')' : 'Scheduled: Ready now');
+      }
       lines.push('');
       lines.push('Micro Tasks:');
 
@@ -11215,8 +13172,10 @@ function useMealPass() {
 
     function createQuestCard(quest, index) {
       var card = document.createElement('article');
-      var cardType = quest.status === 'complete' ? 'complete' : quest.status === 'failed' ? 'failed' : quest.type === 'main' ? 'main' : 'side';
-      card.className = 'quest-card qt-card-epic ' + cardType;
+      var cardType = getQuestCardType(quest);
+      var questIsLocked = isQuestLocked(quest);
+      var questIsScheduled = isQuestScheduled(quest);
+      card.className = 'quest-card qt-card-epic ' + cardType + (questIsLocked ? ' time-locked' : '') + (questIsScheduled && !questIsLocked ? ' time-ready' : '');
       card.setAttribute('data-quest-id', quest.id);
       card.setAttribute('data-quest-number', String(typeof index === 'number' ? index + 1 : 1));
 
@@ -11227,7 +13186,7 @@ function useMealPass() {
 
       var priority = quest.priority || 'normal';
       var priorityLabel = priority === 'critical' ? 'Critical' : priority === 'low' ? 'Low' : 'Normal';
-      var typeLabel = quest.type === 'main' ? 'Main' : 'Side';
+      var typeLabel = getQuestTypeLabel(quest.type, false);
       var statusText = statusLabel(quest.status);
       var xpValue = getQuestXp(quest);
       var reward = normalizeReward(quest.reward);
@@ -11237,9 +13196,10 @@ function useMealPass() {
       var cardTitle = escapeHtml(title);
       var cardDesc = escapeHtml(desc);
 
-      var categoryLabel = quest.status === 'complete' ? 'Cleared' :
+      var categoryLabel = questIsLocked ? 'Locked' :
+        quest.status === 'complete' ? 'Cleared' :
         quest.status === 'failed' ? 'Failed' :
-        quest.type === 'main' ? 'Main' : 'Side';
+        getQuestTypeLabel(quest.type, false);
 
       var questNumber = typeof index === 'number' ? index + 1 : 1;
       var rank = String(questNumber).padStart(2, '0');
@@ -11255,6 +13215,8 @@ function useMealPass() {
           '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
           '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
         '</div>';
+
+      var timeLockHtml = getQuestTimeLockHtml(quest);
 
       var microToggleHtml = '';
       var microDrawerHtml = '';
@@ -11276,7 +13238,11 @@ function useMealPass() {
       var primaryLabel = 'Complete';
       var primaryClass = 'action-done';
 
-      if (quest.status === 'new') {
+      if (questIsLocked) {
+        primaryAction = 'locked';
+        primaryLabel = 'Locked';
+        primaryClass = 'action-locked';
+      } else if (quest.status === 'new') {
         primaryAction = 'progress';
         primaryLabel = 'Start';
         primaryClass = 'action-progress';
@@ -11302,6 +13268,28 @@ function useMealPass() {
         dateHtml += '<div class="date-failed qt-date-line">Failed: ' + escapeHtml(formatDateTime(quest.failedAt)) + '</div>';
       }
 
+      if (questIsLocked) {
+        var unlockDate = new Date(quest.unlockAt);
+        var unlockText = formatQuestUnlockTime(quest.unlockAt);
+        var countdownText = formatTimeRemaining(unlockDate.getTime() - Date.now());
+        var miniTypeLabel = getQuestTypeLabel(quest.type, true);
+        card.className = 'quest-card qt-card-epic scheduled-mini time-locked';
+        card.innerHTML =
+          '<div class="scheduled-mini-top">' +
+            '<span class="scheduled-mini-pill">Scheduled</span>' +
+            '<span class="scheduled-mini-type">' + escapeHtml(miniTypeLabel) + '</span>' +
+          '</div>' +
+          '<div class="scheduled-mini-title">' + cardTitle + '</div>' +
+          '<div class="scheduled-mini-time">Opens ' + escapeHtml(unlockText) + '</div>' +
+          '<div class="scheduled-mini-countdown"><span>Opens in</span><strong>' + escapeHtml(countdownText.replace(' left', '')) + '</strong></div>' +
+          '<div class="scheduled-mini-actions">' +
+            '<button class="action-info" data-action="info">Details</button>' +
+            '<button class="action-edit" data-action="edit">Edit Time</button>' +
+            '<button class="action-delete" data-action="delete">Delete</button>' +
+          '</div>';
+        return card;
+      }
+
       card.innerHTML =
         '<div class="qt-card-crest">' +
           '<div class="qt-crest-symbol">' + escapeHtml(rank) + '</div>' +
@@ -11317,6 +13305,7 @@ function useMealPass() {
           '<div class="quest-desc qt-desc">' + cardDesc + '</div>' +
 
           rewardHtml +
+          timeLockHtml +
 
           '<div class="qt-task-row">' +
             '<span class="qt-task-label">Tasks</span>' +
@@ -11339,7 +13328,7 @@ function useMealPass() {
           '</div>' +
 
           '<div class="qt-card-actions">' +
-            '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '">' + primaryLabel + ' <span>›</span></button>' +
+            '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '" ' + (questIsLocked ? 'disabled' : '') + '>' + primaryLabel + ' <span>›</span></button>' +
             '<button class="action-more quest-more-btn qt-more-btn" data-action="more">More</button>' +
           '</div>' +
         '</div>' +
@@ -11348,12 +13337,18 @@ function useMealPass() {
           microDrawerHtml +
           '<div class="quest-more-actions qt-more-actions">' +
             '<div class="quest-secondary-grid qt-secondary-grid">' +
-              '<button class="action-new" data-action="new">New</button>' +
-              '<button class="action-progress" data-action="progress">Progress</button>' +
-              '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
-              '<button class="action-info" data-action="info">Details</button>' +
-              '<button class="action-edit" data-action="edit">Edit</button>' +
-              '<button class="action-delete" data-action="delete">Delete</button>' +
+              (questIsLocked ?
+                '<button class="action-info" data-action="info">Details</button>' +
+                '<button class="action-edit" data-action="edit">Edit Time</button>' +
+                '<button class="action-delete" data-action="delete">Delete</button>'
+              :
+                '<button class="action-new" data-action="new">New</button>' +
+                '<button class="action-progress" data-action="progress">Progress</button>' +
+                '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+                '<button class="action-info" data-action="info">Details</button>' +
+                '<button class="action-edit" data-action="edit">Edit Time</button>' +
+                '<button class="action-delete" data-action="delete">Delete</button>'
+              ) +
             '</div>' +
           '</div>' +
         '</div>';
@@ -11530,7 +13525,7 @@ function useMealPass() {
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Filler +1';
       syncManualXpInputs();
       renderRoutineTop();
     }
@@ -11555,6 +13550,7 @@ function useMealPass() {
 
         quests: getQuests(),
         defaults: getCustomDefaults(),
+        dayTemplates: getDayTemplates(),
         elements: getElementsStore(),
         elementConfig: getElementConfig(),
         xp: getXpData(),
@@ -11654,6 +13650,7 @@ function useMealPass() {
     setQuests(save.quests || []);
 
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
+    if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
     if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
     if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
     if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
@@ -11765,6 +13762,7 @@ function useMealPass() {
         saves: getSaves(),
         activeSaveId: getActiveSaveId(),
         defaults: getCustomDefaults(),
+        dayTemplates: getDayTemplates(),
         elements: getElementsStore(),
         xp: getXpData(),
         rewards: getRewardData(),
@@ -11834,6 +13832,7 @@ function useMealPass() {
       setQuests(data.quests);
       setSaves(data.saves);
       if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
+      if (Array.isArray(data.dayTemplates)) setDayTemplates(data.dayTemplates);
       if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
       if (data.elementConfig && typeof data.elementConfig === 'object') setElementConfig(data.elementConfig);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
@@ -11849,6 +13848,7 @@ function useMealPass() {
       byId('savePrompt').textContent = 'Imported quest archive loaded.';
       beep('load');
       renderDefaultSummary();
+      renderDayTemplateSummary();
       renderMissionText();
       renderAll();
     }
@@ -11904,11 +13904,44 @@ function useMealPass() {
       renderElementBlocks('air', config, data);
     }
 
+    function elementMedalEmoji(key) {
+      if (key === 'fire') return '🔥';
+      if (key === 'earth') return '⛰️';
+      if (key === 'water') return '🌊';
+      if (key === 'air') return '💨';
+      return '🏆';
+    }
+
+    function elementMedalName(key) {
+      if (key === 'fire') return 'Fire medal';
+      if (key === 'earth') return 'Earth medal';
+      if (key === 'water') return 'Water medal';
+      if (key === 'air') return 'Air medal';
+      return 'Element medal';
+    }
+
+    function isElementMedalUnlocked(key, data, config) {
+      var total = countElementTotal(key, config);
+      if (!total) return false;
+      return countElementDone(key, data, config) >= total;
+    }
+
+    function createElementMedalCard(key, unlocked) {
+      var medal = document.createElement('div');
+      medal.className = 'element-medal-cell ' + key + (unlocked ? ' unlocked' : '');
+      medal.innerHTML = '<div class="element-medal-icon">' + elementMedalEmoji(key) + '</div><div class="element-medal-text">' + (unlocked ? 'Unlocked' : 'Locked') + '</div>';
+      medal.setAttribute('title', elementMedalName(key));
+      return medal;
+    }
+
     function renderElementBlocks(key, config, data) {
       var grid = byId(key + 'Grid');
       if (!grid) return;
 
       grid.innerHTML = '';
+
+      var rowGrid = document.createElement('div');
+      rowGrid.className = 'element-unified-grid ' + key;
 
       var scheduledEntries = [];
       var unscheduled = [];
@@ -11925,50 +13958,39 @@ function useMealPass() {
         }
       });
 
-      if (scheduledEntries.length) {
-        var assignedGrid = document.createElement('div');
-        assignedGrid.className = 'element-assigned-grid ' + key;
+      scheduledEntries.forEach(function(entry) {
+        var card = document.createElement('div');
+        card.className = 'element-assigned-card ' + key;
 
-        scheduledEntries.forEach(function(entry) {
-          var card = document.createElement('div');
-          card.className = 'element-assigned-card ' + key;
+        var dayLabel = document.createElement('div');
+        dayLabel.className = 'element-assigned-card-day';
+        dayLabel.textContent = entry.dayLabel;
+        card.appendChild(dayLabel);
 
-          var dayLabel = document.createElement('div');
-          dayLabel.className = 'element-assigned-card-day';
-          dayLabel.textContent = entry.dayLabel;
-          card.appendChild(dayLabel);
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'element-assigned-card-skill ' + key + ((Array.isArray(data[key][entry.index]) && data[key][entry.index][entry.day]) ? ' active' : '');
+        btn.setAttribute('data-element', key);
+        btn.setAttribute('data-index', entry.index);
+        btn.setAttribute('data-day-slot', entry.day);
+        btn.textContent = entry.label;
+        card.appendChild(btn);
 
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'element-assigned-card-skill ' + key + ((Array.isArray(data[key][entry.index]) && data[key][entry.index][entry.day]) ? ' active' : '');
-          btn.setAttribute('data-element', key);
-          btn.setAttribute('data-index', entry.index);
-          btn.setAttribute('data-day-slot', entry.day);
-          btn.textContent = entry.label;
-          card.appendChild(btn);
+        rowGrid.appendChild(card);
+      });
 
-          assignedGrid.appendChild(card);
-        });
+      unscheduled.forEach(function(entry) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
+        block.setAttribute('data-element', key);
+        block.setAttribute('data-index', entry.index);
+        block.textContent = entry.label;
+        rowGrid.appendChild(block);
+      });
 
-        grid.appendChild(assignedGrid);
-      }
-
-      if (unscheduled.length) {
-        var blockGrid = document.createElement('div');
-        blockGrid.className = 'element-plain-grid';
-
-        unscheduled.forEach(function(entry) {
-          var block = document.createElement('button');
-          block.type = 'button';
-          block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
-          block.setAttribute('data-element', key);
-          block.setAttribute('data-index', entry.index);
-          block.textContent = entry.label;
-          blockGrid.appendChild(block);
-        });
-
-        grid.appendChild(blockGrid);
-      }
+      rowGrid.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
+      grid.appendChild(rowGrid);
     }
 
     function renderWaterElement(key, config, data) {
@@ -11978,6 +14000,7 @@ function useMealPass() {
       water.innerHTML = '';
 
       var activeDays = getWaterActiveDays(config[key]);
+      water.style.setProperty('--element-water-days', String(activeDays.length || 1));
 
       activeDays.forEach(function(dayIndex) {
         var day = data[key][dayIndex] || [];
@@ -12006,6 +14029,8 @@ function useMealPass() {
         dayCard.appendChild(dayBlock);
         water.appendChild(dayCard);
       });
+
+      water.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
     }
 
     function toggleElementBlock(element, index) {
@@ -12272,6 +14297,7 @@ function useMealPass() {
       var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
       if (archiveFilter === 'main') return completed.filter(function(quest) { return quest.type === 'main'; });
       if (archiveFilter === 'side') return completed.filter(function(quest) { return quest.type === 'side'; });
+      if (archiveFilter === 'filler') return completed.filter(function(quest) { return quest.type === 'filler'; });
       return completed;
     }
 
@@ -12279,12 +14305,20 @@ function useMealPass() {
       var quests = getQuests();
       renderBriefing(quests);
 
+      renderQuestList('scheduledQuestList', quests.filter(function(quest) {
+        return isQuestLocked(quest);
+      }));
+
       renderQuestList('mainQuestList', quests.filter(function(quest) {
-        return quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
+        return !isQuestLocked(quest) && quest.type === 'main' && quest.status !== 'complete' && quest.status !== 'failed';
       }));
 
       renderQuestList('sideQuestList', quests.filter(function(quest) {
-        return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+        return !isQuestLocked(quest) && quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
+      }));
+
+      renderQuestList('fillerQuestList', quests.filter(function(quest) {
+        return !isQuestLocked(quest) && quest.type === 'filler' && quest.status !== 'complete' && quest.status !== 'failed';
       }));
 
       renderQuestList('completeQuestList', getFilteredCompletedQuests(quests));
@@ -12319,6 +14353,18 @@ function useMealPass() {
         event.preventDefault();
         event.stopPropagation();
         saveCurrentFormAsDefault();
+      });
+
+      byId('openDayTemplatesBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openDayTemplatesModal();
+      });
+
+      byId('saveDayTemplateBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        saveCurrentDayAsTemplate();
       });
       byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
       byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
@@ -12360,6 +14406,10 @@ function useMealPass() {
           moveArrayItem(draftTasks, index, 1);
           beep('click');
         }
+        if (action === 'edit') {
+          editDraftTask(index);
+          return;
+        }
         if (action === 'remove') {
           draftTasks = draftTasks.filter(function(task) { return task.id !== id; });
           beep('fail');
@@ -12367,6 +14417,9 @@ function useMealPass() {
 
         renderDraftTasks();
       });
+
+      if (byId('questTimeLockEnabled')) byId('questTimeLockEnabled').addEventListener('change', updateTimeLockPreview);
+      if (byId('questUnlockTime')) byId('questUnlockTime').addEventListener('input', updateTimeLockPreview);
 
       byId('questRewardType').addEventListener('change', function() { updateCustomRewardVisibility(true); });
       byId('questRewardCustomEmoji').addEventListener('input', function() {
@@ -12440,6 +14493,19 @@ function useMealPass() {
           if (!card) return;
           var questId = card.getAttribute('data-quest-id');
           var action = actionButton.getAttribute('data-action');
+          var actionQuest = getQuests().find(function(item) { return item.id === questId; });
+
+          if (action === 'locked') {
+            if (actionQuest && actionQuest.unlockAt) byId('questStatusText').textContent = 'Quest locked until ' + formatQuestUnlockTime(actionQuest.unlockAt) + '.';
+            beep('fail');
+            return;
+          }
+
+          if (actionQuest && isQuestLocked(actionQuest) && (action === 'new' || action === 'progress' || action === 'complete' || action === 'failed')) {
+            byId('questStatusText').textContent = 'Quest locked until ' + formatQuestUnlockTime(actionQuest.unlockAt) + '.';
+            beep('fail');
+            return;
+          }
 
           if (action === 'new') updateQuestStatus(questId, 'new');
           if (action === 'progress') updateQuestStatus(questId, 'progress');
@@ -12457,7 +14523,9 @@ function useMealPass() {
           if (action === 'delete') deleteQuest(questId);
           if (action === 'more') {
             card.classList.toggle('actions-open');
-            actionButton.textContent = card.classList.contains('actions-open') ? 'Less' : 'More';
+            var moreIsOpen = card.classList.contains('actions-open');
+            actionButton.textContent = moreIsOpen ? 'Less' : 'More';
+            if (!moreIsOpen) hardRefreshQuestCardOnPhone(card);
             beep('click');
           }
           if (action === 'toggleSteps') {
@@ -12471,6 +14539,7 @@ function useMealPass() {
               actionButton.textContent = 'Hide Tasks';
             } else {
               normalizeQuestCardLayout(card);
+              hardRefreshQuestCardOnPhone(card);
             }
             beep('click');
           }
@@ -12481,6 +14550,7 @@ function useMealPass() {
             beep('click');
             return;
           }
+
         }
 
         var taskInput = event.target.closest('[data-action="toggleTask"]');
@@ -12638,6 +14708,42 @@ function useMealPass() {
 
         if (action === 'remove') {
           removeDefaultById(id);
+          return;
+        }
+      });
+
+      byId('closeDayTemplatesModal').addEventListener('click', closeDayTemplatesModal);
+
+      byId('dayTemplatesModal').addEventListener('click', function(event) {
+        if (event.target === byId('dayTemplatesModal')) {
+          closeDayTemplatesModal();
+        }
+      });
+
+      byId('dayTemplatesModalBody').addEventListener('click', function(event) {
+        var button = event.target.closest('[data-day-template-action]');
+        if (!button) return;
+        event.preventDefault();
+        event.stopPropagation();
+
+        var card = button.closest('[data-day-template-id]');
+        if (!card) return;
+
+        var id = card.getAttribute('data-day-template-id');
+        var action = button.getAttribute('data-day-template-action');
+
+        if (action === 'add') {
+          loadDayTemplateById(id, 'add');
+          return;
+        }
+
+        if (action === 'replace') {
+          loadDayTemplateById(id, 'replace');
+          return;
+        }
+
+        if (action === 'remove') {
+          removeDayTemplateById(id);
           return;
         }
       });
@@ -13167,6 +15273,8 @@ function useMealPass() {
       var current = formatDateTime();
       byId('clock').textContent = current;
       byId('missionDateTime').textContent = current;
+      updateTimeLockPreview();
+      refreshTimeLockedQuests();
     }
 
 
@@ -13218,6 +15326,7 @@ function useMealPass() {
     bindRoutineEvents();
     setupMobileSectionToggles();
     renderDefaultSummary();
+    renderDayTemplateSummary();
     renderMissionText();
     renderDraftTasks();
     setSound(isSoundOn());
@@ -13525,6 +15634,95 @@ function renderMain() {
       </div>
     </div>
   `).join("");
+}
+
+
+
+function resultChipClass(r) {
+  if (r === "perfect" || r === "win") return "good";
+  if (r === "partial") return "warn";
+  if (r === "protected") return "purple";
+  if (r === "failed") return "danger";
+  return "";
+}
+
+function renderQuickUpdate() {
+  const box = s$("streakTodayQuickSummary");
+  if (!box) return;
+
+  const data = read();
+  const todayDate = new Date();
+  const today = key(todayDate);
+  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
+  const r = result(data.days[today], data.setup, todayDate, data);
+
+  let activeCount = 0;
+  let activeDone = 0;
+  let requiredCount = 0;
+  let requiredDone = 0;
+
+  data.setup.tasks.forEach((task, i) => {
+    const isActive = active(task, todayDate, i, data);
+    const isRequired = requiredToday(task, todayDate, i, data);
+    if (isActive) {
+      activeCount++;
+      if (entry.states[i] === "done") activeDone++;
+    }
+    if (isRequired) {
+      requiredCount++;
+      if (entry.states[i] === "done") requiredDone++;
+    }
+  });
+
+  const winRule = data.setup.requiredCount === "all"
+    ? "Need all active required tasks"
+    : "Need " + data.setup.requiredCount + " required task(s)";
+
+  box.innerHTML = `
+    <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
+    <div class="streak-today-chips">
+      <span class="streak-today-chip ${resultChipClass(r)}">Status: ${escapeHtml(r.toUpperCase())}</span>
+      <span class="streak-today-chip good">Required: ${requiredDone}/${requiredCount}</span>
+      <span class="streak-today-chip warn">Active: ${activeDone}/${activeCount}</span>
+      <span class="streak-today-chip purple">${escapeHtml(winRule)}</span>
+    </div>
+  `;
+}
+
+function quickSetToday(mode) {
+  const data = read();
+  const todayDate = new Date();
+  const today = key(todayDate);
+
+  if (mode === "clear") {
+    delete data.days[today];
+    write(data);
+    selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+    render();
+    return;
+  }
+
+  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
+  entry.manualStatus = "auto";
+
+  data.setup.tasks.forEach((task, i) => {
+    const isActive = active(task, todayDate, i, data);
+    const isRequired = requiredToday(task, todayDate, i, data);
+
+    if (mode === "all" && isActive) {
+      entry.states[i] = "done";
+      return;
+    }
+
+    if (mode === "required" && isRequired) {
+      entry.states[i] = "done";
+    }
+  });
+
+  data.days[today] = normalizeEntry(entry, data.setup.tasks.length);
+  write(data);
+  selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+  render();
 }
 
 function renderCalendar() {
@@ -13894,6 +16092,7 @@ function escapeHtml(v) {
 
 function render() {
   renderMain();
+  renderQuickUpdate();
   renderCalendar();
   bindStreakCalendarDirectClick();
   stats();
@@ -13911,6 +16110,10 @@ document.addEventListener("click", event => {
   const state = event.target.closest("[data-streak-state]");
   if (state) return setState(Number(state.dataset.streakIndex), state.dataset.streakState);
 });
+
+if (s$("streakQuickAllDoneBtn")) s$("streakQuickAllDoneBtn").addEventListener("click", () => quickSetToday("all"));
+if (s$("streakQuickRequiredDoneBtn")) s$("streakQuickRequiredDoneBtn").addEventListener("click", () => quickSetToday("required"));
+if (s$("streakQuickClearTodayBtn")) s$("streakQuickClearTodayBtn").addEventListener("click", () => quickSetToday("clear"));
 
 s$("streakOpenSetupBtn").addEventListener("click", openSetup);
 s$("streakCloseSetupBtn").addEventListener("click", closeSetup);
