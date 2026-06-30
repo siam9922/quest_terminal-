@@ -6,6 +6,8 @@
     <title>Quest Save Terminal</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700&display=swap');
+
         :root {
       --bg: #040404;
       --panel: #10100f;
@@ -8280,6 +8282,203 @@ header .player-card {
 
 
 
+
+
+/* ===== STREAK FONT + CLEANUP PASS V1 ===== */
+#streakView h1,
+#streakView .panel h2,
+#streakSetupModal .modal-title,
+#streakDayModal .modal-title,
+#streakView .month-title,
+#streakView .streak-today-title {
+  font-family: var(--quest-display-font, "Cinzel", Georgia, serif) !important;
+  letter-spacing: 1.5px !important;
+}
+
+#streakView h1 {
+  font-size: clamp(28px, 4vw, 40px) !important;
+}
+
+#streakView .panel h2 {
+  font-size: 17px !important;
+}
+
+#streakView .month-title {
+  letter-spacing: 1.2px !important;
+}
+
+#streakSetupModal .setup-grid {
+  gap: 12px !important;
+}
+
+#streakSetupModal .streak-setup-note {
+  border: 1px solid rgba(224,200,120,0.20);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224,200,120,0.08), transparent 38%),
+    rgba(0,0,0,0.24);
+  border-radius: 12px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+#streakSetupModal .streak-setup-note strong {
+  color: #f4df95;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: .75px;
+}
+
+#streakSetupModal .streak-setup-note span {
+  color: #cfc3ae;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#streakView .streak-quick-panel {
+  padding: 18px !important;
+  border-radius: 14px !important;
+}
+
+#streakView .streak-quick-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#streakView .streak-today-summary {
+  gap: 10px;
+}
+
+#streakView .streak-today-title {
+  color: #f5df98;
+  font-size: 15px;
+}
+
+#streakView .streak-today-chip {
+  min-height: 30px;
+  padding: 6px 10px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 55%),
+    rgba(0,0,0,0.28);
+  border-radius: 999px;
+}
+
+#streakView .streak-quick-actions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#streakView .streak-quick-actions button {
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+#streakView aside.panel {
+  align-content: start;
+}
+
+#streakView .quest-list {
+  gap: 9px;
+}
+
+#streakView .quest-pill {
+  grid-template-columns: 12px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 11px !important;
+}
+
+#streakView .quest-pill-main {
+  min-width: 0;
+}
+
+#streakView .quest-color {
+  height: 36px;
+}
+
+#streakView .quest-name {
+  color: #f4e0a3 !important;
+  font-size: 13px !important;
+  margin-bottom: 2px;
+}
+
+#streakView .quest-rule {
+  color: #b8ab95 !important;
+  font-size: 11px !important;
+}
+
+#streakView .quest-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  border: 1px solid rgba(216,208,189,0.14);
+  background: rgba(0,0,0,0.26);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: #ece2cf;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#streakView .quest-meta-badge.required {
+  border-color: rgba(79,194,122,0.35);
+  color: #cef7d9;
+}
+
+#streakView .quest-meta-badge.optional {
+  border-color: rgba(167,139,232,0.35);
+  color: #e3dcff;
+}
+
+#streakDayModal .result-box {
+  display: grid;
+  gap: 8px;
+}
+
+#streakDayModal .streak-result-line {
+  margin-bottom: 0;
+}
+
+#streakDayModal .streak-count-line {
+  color: #d8ccb6;
+}
+
+#streakDayModal .checklist-label {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+@media (max-width: 900px) {
+  #streakView .quest-pill {
+    grid-template-columns: 12px minmax(0, 1fr) !important;
+  }
+
+  #streakView .quest-meta-badge {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  #streakView .streak-quick-panel {
+    padding: 14px !important;
+  }
+
+  #streakView .streak-today-title {
+    font-size: 13px;
+  }
+
+  #streakView .quest-pill {
+    padding: 10px !important;
+  }
+}
+
 /* ===== IPHONE QUEST DRAWER HORIZONTAL SCROLL FIX ===== */
 /* Fixes iPhone narrow-screen stretching when View Tasks or More is opened.
    Drawers now stay inside the card and scroll sideways by touch instead of widening the whole layout. */
@@ -10630,6 +10829,1378 @@ header .player-card {
   box-shadow: 0 0 12px rgba(235,235,235,0.28) !important;
 }
 
+
+
+/* ===== QUEST ORDER CONTROLS V34 ===== */
+.action-order {
+  border-color: rgba(216,208,189,0.36) !important;
+  color: #f0eadf !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), transparent 44%),
+    linear-gradient(180deg, rgba(216,208,189,0.10), #0d0d0c) !important;
+}
+
+.action-order:hover {
+  border-color: rgba(224,200,120,0.58) !important;
+  color: #fff0d2 !important;
+  background: linear-gradient(180deg, rgba(224,200,120,0.18), #11100d) !important;
+}
+
+.quest-order-note {
+  color: rgba(216,208,189,0.54);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 2px 0 0;
+}
+
+@media (max-width: 700px) {
+  .quest-order-note {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+}
+
+
+/* ===== QUEST ORDER BUTTON PLACEMENT V35 ===== */
+/* Order buttons now sit near Edit/Delete instead of appearing first in More. */
+.quest-card.qt-card-epic .action-order {
+  opacity: 0.92;
+}
+
+.quest-card.qt-card-epic .qt-secondary-grid .action-delete {
+  grid-column: auto;
+}
+
+@media (max-width: 700px) {
+  .quest-card.qt-card-epic .action-order {
+    min-height: 38px !important;
+  }
+}
+
+  
+
+/* ===== SERIOUS QUEST TYPOGRAPHY UPDATE V34 ===== */
+/* Serious RPG/terminal typography for quest section headers and quest cards only.
+   Keeps layout, number rail, buttons, and quest logic unchanged. */
+:root {
+  --quest-display-font: "Cinzel", "Trajan Pro", "Palatino Linotype", Georgia, serif;
+  --quest-display-decor: "Cinzel Decorative", "Cinzel", "Trajan Pro", Georgia, serif;
+  --quest-ui-font: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+/* Quest section names: MAIN / SIDE / FILLER / SCHEDULED / COMPLETED / FAILED */
+#questsView .section-toggle,
+#questsView .quest-section-panel .section-toggle,
+#questsView .main-heading,
+#questsView .side-heading,
+#questsView .filler-heading,
+#questsView .scheduled-heading,
+#questsView .complete-heading,
+#questsView .failed-heading,
+#questsView .panel h2 {
+  font-family: var(--quest-display-font) !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.9px !important;
+  text-transform: uppercase !important;
+  line-height: 1.05 !important;
+  font-variant-ligatures: none !important;
+}
+
+/* Main quest titles inside cards */
+#questsView .quest-card .quest-title,
+#questsView .quest-card.qt-card-epic .qt-title,
+#questsView .qt-title,
+#questsView .quest-title {
+  font-family: var(--quest-display-font) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.35px !important;
+  line-height: 1.08 !important;
+  color: #f4ead3 !important;
+  text-shadow:
+    0 0 10px rgba(var(--quest-accent-rgb, 224,200,120),0.18),
+    0 1px 0 rgba(0,0,0,0.72) !important;
+}
+
+/* Quest type chips, XP chips, priority chips, and small card labels */
+#questsView .qt-type-pill,
+#questsView .qt-priority-pill,
+#questsView .qt-reward-chip,
+#questsView .quest-chip,
+#questsView .badge,
+#questsView .priority-tag,
+#questsView .qt-task-row,
+#questsView .progress-label,
+#questsView .quest-status-line,
+#questsView .qt-date-line {
+  font-family: var(--quest-ui-font) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.85px !important;
+  text-transform: uppercase !important;
+}
+
+/* Buttons stay readable but more serious */
+#questsView .qt-primary-btn,
+#questsView .qt-more-btn,
+#questsView .quest-primary-btn,
+#questsView .quest-more-btn,
+#questsView .quest-secondary-grid button,
+#questsView .qt-secondary-grid button,
+#questsView .steps-toggle,
+#questsView .qt-steps-button {
+  font-family: var(--quest-ui-font) !important;
+  font-weight: 950 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+}
+
+/* Number rail: only font weight/shape, no size/layout changes */
+#questsView .qt-crest-symbol {
+  font-family: var(--quest-display-font) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Filler keeps gray/white seriousness instead of colorful fantasy */
+#questsView .quest-section-panel[data-section="filler"] .section-toggle,
+#questsView .filler-heading {
+  color: #f1f1ea !important;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.16),
+    0 0 22px rgba(255,255,255,0.06) !important;
+}
+
+/* Scheduled reads as cyan/terminal, but still uses the serious display font */
+#questsView .quest-section-panel[data-section="scheduled"] .section-toggle,
+#questsView .scheduled-heading {
+  color: #73eaff !important;
+  text-shadow:
+    0 0 12px rgba(115,234,255,0.22),
+    0 0 26px rgba(115,234,255,0.08) !important;
+}
+
+@media (max-width: 900px) {
+  #questsView .section-toggle,
+  #questsView .quest-section-panel .section-toggle {
+    letter-spacing: 1.45px !important;
+  }
+
+  #questsView .quest-card.qt-card-epic .qt-title,
+  #questsView .quest-title {
+    letter-spacing: 0.18px !important;
+  }
+}
+
+
+
+/* ===== ELEMENT VIEW MODE + CLEAN ROW BOARD V2 ===== */
+#elementsView .elements-header h2 {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif !important;
+  font-size: clamp(28px, 4vw, 44px) !important;
+  letter-spacing: 7px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  color: #f4efe3 !important;
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 7px !important;
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.10),
+    0 0 24px rgba(110,182,255,0.10),
+    0 2px 0 rgba(0,0,0,0.78) !important;
+}
+
+#elementsView .elements-header h2::after {
+  content: "";
+  display: block;
+  width: min(260px, 76%);
+  height: 3px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, #ff5a4d, #56d67d, #67b8ff, #d8d8d8);
+  box-shadow: 0 0 16px rgba(103,184,255,0.22);
+}
+
+.elements-view-controls {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px;
+  border: 1px solid rgba(216,208,189,0.14);
+  background: rgba(0,0,0,0.26);
+}
+
+.elements-view-controls button {
+  min-height: 32px;
+  padding: 7px 11px;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #bdb4a4;
+  border-color: rgba(216,208,189,0.16);
+  background: rgba(255,255,255,0.025);
+}
+
+.elements-view-controls button.active {
+  color: #fff0d2;
+  border-color: rgba(224,200,120,0.62);
+  background: linear-gradient(180deg, rgba(224,200,120,0.14), rgba(0,0,0,0.30));
+  box-shadow: 0 0 14px rgba(224,200,120,0.08);
+}
+
+#elementsView .element-activity-board,
+#elementsView .element-day-board {
+  display: grid !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+#elementsView .element-activity-row {
+  display: grid !important;
+  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+  border: 1px solid rgba(216,208,189,0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.020), transparent 45%),
+    rgba(0,0,0,0.24) !important;
+  padding: 10px !important;
+}
+
+#elementsView .element-activity-name {
+  display: grid !important;
+  place-items: center start !important;
+  min-height: 48px !important;
+  border: 1px solid rgba(216,208,189,0.10) !important;
+  background: rgba(0,0,0,0.28) !important;
+  color: #f4efe3 !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.7px !important;
+  padding: 10px 12px !important;
+  overflow-wrap: anywhere !important;
+}
+
+#elementsView .element-activity-days {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)) !important;
+  gap: 8px !important;
+}
+
+#elementsView .element-activity-days .element-assigned-card-skill,
+#elementsView .element-activity-days .element-block {
+  min-height: 48px !important;
+  width: 100% !important;
+}
+
+#elementsView .element-day-board {
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)) !important;
+}
+
+#elementsView .element-day-stack {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  border: 1px solid rgba(216,208,189,0.14) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.020), transparent 44%),
+    rgba(0,0,0,0.22) !important;
+  padding: 9px !important;
+}
+
+#elementsView .element-day-stack-label {
+  min-height: 28px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #f4df95 !important;
+  border: 1px solid rgba(224,200,120,0.20) !important;
+  background: rgba(0,0,0,0.28) !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+#elementsView .element-day-empty-note {
+  grid-column: 1 / -1;
+  color: #b8afa2;
+  border: 1px dashed rgba(216,208,189,0.18);
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#elementsView .element-day-stack .element-assigned-card-skill,
+#elementsView .element-day-stack .element-block {
+  min-height: 46px !important;
+  width: 100% !important;
+}
+
+#elementsView .element-activity-board .element-medal-cell,
+#elementsView .element-day-board .element-medal-cell {
+  min-height: 54px !important;
+}
+
+#elementsView[data-element-view="activity"] .element-card {
+  padding-bottom: 14px !important;
+}
+
+/* Editor cleanup: each skill row is easier to scan and edit. */
+#elementEditModal .element-editor-row {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+  padding: 10px !important;
+  border-color: rgba(216,208,189,0.16) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 44%),
+    rgba(0,0,0,0.22) !important;
+}
+
+#elementEditModal .element-editor-top {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 38px 38px 38px !important;
+  gap: 7px !important;
+  align-items: center !important;
+}
+
+#elementEditModal .element-schedule-row {
+  border-radius: 10px !important;
+  padding: 10px !important;
+  border: 1px solid rgba(216,208,189,0.12) !important;
+  background: rgba(0,0,0,0.22) !important;
+}
+
+#elementEditModal .element-schedule-name {
+  color: #f4df95 !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+}
+
+#elementEditModal .element-day-note {
+  color: #9a9388 !important;
+  font-size: 10px !important;
+}
+
+@media (max-width: 900px) {
+  #elementsView .elements-header {
+    grid-template-columns: 44px 1fr 44px !important;
+    align-items: start !important;
+  }
+
+  #elementsView .elements-header h2 {
+    font-size: clamp(24px, 7vw, 34px) !important;
+    letter-spacing: 4px !important;
+  }
+
+  .elements-view-controls {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementsView .element-activity-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementsView .element-activity-days,
+  #elementsView .element-day-board {
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementsView .element-activity-name {
+    min-height: 42px !important;
+  }
+
+  #elementEditModal .element-editor-top {
+    grid-template-columns: minmax(0, 1fr) 36px 36px 36px !important;
+  }
+}
+
+
+
+/* ===== ELEMENT GROUPS + PHONE EDITOR CLEANUP V3 ===== */
+#elementEditModal .modal-card {
+  width: min(880px, 100%) !important;
+}
+
+#elementEditModal .element-editor-list {
+  gap: 10px !important;
+}
+
+#elementEditModal .element-editor-top {
+  grid-template-columns: minmax(0, 1fr) 40px 40px 40px !important;
+  align-items: end !important;
+}
+
+#elementEditModal .element-editor-fields {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+#elementEditModal .element-editor-fields.single {
+  grid-template-columns: 1fr !important;
+}
+
+#elementEditModal .element-inline-field {
+  display: grid !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+
+#elementEditModal .element-inline-field span {
+  color: #f4df95 !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+}
+
+#elementEditModal .element-inline-field input {
+  min-height: 42px !important;
+  width: 100% !important;
+}
+
+#elementsView .element-day-group {
+  display: grid !important;
+  gap: 7px !important;
+  padding: 8px !important;
+  border: 1px solid rgba(216,208,189,0.13) !important;
+  background: rgba(0,0,0,0.24) !important;
+}
+
+#elementsView .element-day-group-label {
+  min-height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #f4efe3 !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.9px !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(216,208,189,0.12) !important;
+  padding-bottom: 5px !important;
+}
+
+#elementsView .element-day-group-label::after {
+  content: "GROUP";
+  color: rgba(216,208,189,0.42);
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+
+#elementsView .fire .element-day-group-label { color: #ffb1a3 !important; }
+#elementsView .earth .element-day-group-label { color: #9df0b4 !important; }
+#elementsView .water .element-day-group-label { color: #9fd9ff !important; }
+#elementsView .air .element-day-group-label { color: #e6e6e6 !important; }
+
+@media (max-width: 900px) {
+  #elementEditModal {
+    align-items: stretch !important;
+    padding: 0 !important;
+  }
+
+  #elementEditModal .modal-card {
+    width: 100% !important;
+    max-height: 100dvh !important;
+    min-height: 100dvh !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+    padding: 12px !important;
+  }
+
+  #elementEditModal .modal-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 3 !important;
+    background: linear-gradient(180deg, #121212, #070707) !important;
+    padding: 10px 0 12px !important;
+  }
+
+  #elementEditModal .modal-title {
+    font-size: 20px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  #elementEditModal .element-add-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementEditModal .element-editor-row {
+    padding: 9px !important;
+  }
+
+  #elementEditModal .element-editor-top {
+    grid-template-columns: 1fr 42px 42px 42px !important;
+    align-items: end !important;
+  }
+
+  #elementEditModal .element-editor-fields {
+    grid-column: 1 / -1 !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementEditModal .element-mini-btn {
+    min-height: 40px !important;
+  }
+
+  #elementEditModal .element-schedule-top {
+    align-items: flex-start !important;
+  }
+
+  #elementEditModal .element-day-presets,
+  #elementEditModal .element-day-editor {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  #elementEditModal .element-day-preset-btn,
+  #elementEditModal .element-day-btn {
+    min-height: 38px !important;
+    padding: 7px 5px !important;
+    font-size: 9px !important;
+  }
+
+  #elementEditModal .element-edit-actions,
+  #elementEditModal .actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementsView .element-day-group {
+    padding: 7px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  #elementEditModal .element-day-presets,
+  #elementEditModal .element-day-editor {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+
+/* Elements controls centered + medal/badge placement cleanup */
+#elementsView .elements-header > div {
+  display: grid !important;
+  justify-items: center !important;
+  text-align: center !important;
+}
+
+#elementsView .elements-week-label,
+#elementsView .elements-subtitle {
+  text-align: center !important;
+}
+
+#elementsView .elements-view-controls {
+  margin: 14px auto 0 !important;
+  justify-content: center !important;
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+#elementsView .elements-panel {
+  overflow: hidden;
+}
+
+#elementsView .element-card {
+  position: relative !important;
+}
+
+#elementsView .element-activity-board,
+#elementsView .element-day-board,
+#elementsView .element-unified-grid,
+#elementsView .water-week-grid {
+  position: relative !important;
+  padding-right: 94px !important;
+  padding-bottom: 6px !important;
+  align-items: start !important;
+}
+
+#elementsView .element-activity-board .element-medal-cell,
+#elementsView .element-day-board .element-medal-cell,
+#elementsView .element-unified-grid .element-medal-cell,
+#elementsView .water-week-grid .element-medal-cell {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  justify-self: end !important;
+  align-self: end !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 900px) {
+  #elementsView .elements-header > div {
+    width: 100% !important;
+  }
+
+  #elementsView .elements-view-controls {
+    width: min(100%, 350px) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    margin: 12px auto 0 !important;
+  }
+
+  #elementsView .elements-view-controls button {
+    min-width: 0 !important;
+    padding: 8px 6px !important;
+    font-size: 10px !important;
+  }
+
+  #elementsView .element-activity-board,
+  #elementsView .element-day-board,
+  #elementsView .element-unified-grid,
+  #elementsView .water-week-grid {
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #elementsView .element-activity-board .element-medal-cell,
+  #elementsView .element-day-board .element-medal-cell,
+  #elementsView .element-unified-grid .element-medal-cell,
+  #elementsView .water-week-grid .element-medal-cell {
+    position: static !important;
+    grid-column: 1 / -1 !important;
+    justify-self: end !important;
+    align-self: end !important;
+    margin-top: 8px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #elementsView .elements-view-controls {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+
+/* ===== ELEMENT GROUP SPACING FIX ===== */
+/* Group/category is now used as invisible layout structure, not visible text.
+   Example: Prayer -> Fajr/Dhuhr/Asr stacks together inside each day.
+   Ungrouped items stay outside that group in their own spaced row. */
+
+#elementsView .element-day-group-label {
+  display: none !important;
+}
+
+#elementsView .element-day-stack {
+  align-content: start !important;
+}
+
+#elementsView .element-day-group {
+  display: grid !important;
+  gap: 7px !important;
+  min-width: 0 !important;
+  padding: 8px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(216,208,189,0.10) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 45%),
+    rgba(0,0,0,0.18) !important;
+}
+
+#elementsView .element-day-group.grouped {
+  border-color: rgba(224,200,120,0.16) !important;
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.045), transparent 48%),
+    rgba(0,0,0,0.22) !important;
+}
+
+#elementsView .element-day-group.loose {
+  border-color: rgba(216,208,189,0.07) !important;
+  background: rgba(0,0,0,0.10) !important;
+}
+
+#elementsView .element-day-stack > .element-day-group + .element-day-group {
+  margin-top: 4px !important;
+}
+
+/* When a day has Prayer items plus non-group items, they no longer collapse into one same line. */
+#elementsView .element-day-group .element-assigned-card-skill,
+#elementsView .element-day-group .element-block {
+  width: 100% !important;
+  min-height: 42px !important;
+}
+
+/* Activity Rows view: show group as small internal spacing only, not loud text. */
+#elementsView .element-activity-row[data-element-group] {
+  border-left: 2px solid rgba(224,200,120,0.28) !important;
+}
+
+@media (max-width: 900px) {
+  #elementsView .element-day-group {
+    padding: 8px !important;
+    gap: 7px !important;
+  }
+
+  #elementsView .element-day-board {
+    gap: 9px !important;
+  }
+
+  #elementsView .element-day-stack {
+    gap: 8px !important;
+  }
+}
+
+
+
+/* ===== ELEMENT DAY BOARD GROUP LABEL + SUNDAY FIX ===== */
+/* Groups are visible again and used as real spacing sections.
+   Ungrouped skills remain outside grouped sections, one loose row per skill. */
+
+#elementsView .element-day-board {
+  grid-template-columns: repeat(7, minmax(92px, 1fr)) !important;
+  align-items: start !important;
+  gap: 8px !important;
+}
+
+#elementsView .element-day-stack {
+  min-width: 0 !important;
+  align-content: start !important;
+}
+
+#elementsView .element-day-group {
+  display: grid !important;
+  gap: 7px !important;
+  min-width: 0 !important;
+  padding: 8px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(216,208,189,0.11) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 45%),
+    rgba(0,0,0,0.18) !important;
+}
+
+#elementsView .element-day-group.grouped {
+  border-color: rgba(224,200,120,0.20) !important;
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.055), transparent 48%),
+    rgba(0,0,0,0.24) !important;
+}
+
+#elementsView .element-day-group.loose {
+  border-color: rgba(216,208,189,0.08) !important;
+  background: rgba(0,0,0,0.10) !important;
+}
+
+#elementsView .element-day-group-label {
+  display: block !important;
+  color: #f4df95 !important;
+  font-size: 9px !important;
+  font-weight: 950 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.9px !important;
+  text-transform: uppercase !important;
+  padding: 0 0 5px !important;
+  margin: 0 0 2px !important;
+  border-bottom: 1px solid rgba(224,200,120,0.18) !important;
+}
+
+#elementsView .element-day-stack > .element-day-group + .element-day-group {
+  margin-top: 5px !important;
+}
+
+#elementsView .element-day-group .element-assigned-card-skill,
+#elementsView .element-day-group .element-block {
+  width: 100% !important;
+  min-height: 42px !important;
+}
+
+/* Keep the medal from forcing Sunday onto a new row on desktop. */
+@media (min-width: 901px) {
+  #elementsView .element-day-board {
+    padding-right: 0 !important;
+    padding-bottom: 76px !important;
+  }
+
+  #elementsView .element-day-board .element-medal-cell {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+}
+
+/* Tablet: allow wrapping only when the screen is truly too narrow. */
+@media (max-width: 1100px) and (min-width: 901px) {
+  #elementsView .element-day-board {
+    grid-template-columns: repeat(4, minmax(120px, 1fr)) !important;
+  }
+}
+
+/* Phone stays vertical and easy to tap. */
+@media (max-width: 900px) {
+  #elementsView .element-day-board {
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #elementsView .element-day-board .element-medal-cell {
+    position: static !important;
+    grid-column: 1 / -1 !important;
+    justify-self: end !important;
+    margin-top: 8px !important;
+  }
+
+  #elementsView .element-day-group {
+    padding: 8px !important;
+    gap: 7px !important;
+  }
+
+  #elementsView .element-day-group-label {
+    font-size: 9px !important;
+  }
+}
+
+
+
+/* ===== ELEMENT GROUP CONTAINER SYSTEM FINAL ===== */
+/* Group is a real container/section across Activity Rows, Day Board, and Compact.
+   Items with the same group live together. Items with no group become their own section. */
+
+#elementsView .element-day-group,
+#elementsView .element-day-group-label {
+  display: none !important;
+}
+
+/* View mode controls stay centered. */
+#elementsView .elements-header > div {
+  display: grid !important;
+  justify-items: center !important;
+  text-align: center !important;
+}
+
+#elementsView .elements-view-controls {
+  margin: 14px auto 0 !important;
+  justify-self: center !important;
+  justify-content: center !important;
+}
+
+/* Shared group container. */
+#elementsView .element-group-container {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  padding: 9px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(216,208,189,0.12) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 45%),
+    rgba(0,0,0,0.18) !important;
+}
+
+#elementsView .element-group-container.grouped {
+  border-color: rgba(224,200,120,0.23) !important;
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.060), transparent 48%),
+    rgba(0,0,0,0.26) !important;
+}
+
+#elementsView .element-group-container.loose {
+  border-color: rgba(216,208,189,0.08) !important;
+  background: rgba(0,0,0,0.12) !important;
+}
+
+#elementsView .element-group-container-title {
+  display: block !important;
+  color: #f4df95 !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  padding: 0 0 6px !important;
+  margin: 0 0 2px !important;
+  border-bottom: 1px solid rgba(224,200,120,0.20) !important;
+}
+
+/* Day Board: seven day columns on desktop, phone vertical. */
+#elementsView .element-day-board {
+  grid-template-columns: repeat(7, minmax(88px, 1fr)) !important;
+  align-items: start !important;
+  gap: 8px !important;
+  padding-right: 0 !important;
+  padding-bottom: 76px !important;
+  position: relative !important;
+}
+
+#elementsView .element-day-stack {
+  display: grid !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  align-content: start !important;
+}
+
+#elementsView .element-day-stack > .element-group-container + .element-group-container {
+  margin-top: 4px !important;
+}
+
+/* Compact: groups become compact sections instead of a flat row. */
+#elementsView .element-unified-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)) !important;
+  gap: 9px !important;
+  position: relative !important;
+  padding-right: 0 !important;
+  padding-bottom: 76px !important;
+}
+
+#elementsView .element-unified-grid .element-group-container {
+  align-content: start !important;
+}
+
+/* Activity Rows: group container wraps the related activity rows. */
+#elementsView .element-activity-board {
+  display: grid !important;
+  gap: 10px !important;
+  position: relative !important;
+  padding-right: 0 !important;
+  padding-bottom: 76px !important;
+}
+
+#elementsView .element-activity-board .element-group-container {
+  gap: 9px !important;
+}
+
+#elementsView .element-activity-row {
+  margin: 0 !important;
+}
+
+/* Make text not mash into the group label. */
+#elementsView .element-assigned-card-skill,
+#elementsView .element-block,
+#elementsView .water-segment {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Medal/badge bottom-right without stealing Sunday column. */
+@media (min-width: 901px) {
+  #elementsView .element-day-board .element-medal-cell,
+  #elementsView .element-unified-grid .element-medal-cell,
+  #elementsView .element-activity-board .element-medal-cell,
+  #elementsView .water-week-grid .element-medal-cell {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  #elementsView .element-day-board {
+    grid-template-columns: repeat(4, minmax(120px, 1fr)) !important;
+  }
+}
+
+/* Phone: everything becomes clean vertical sections. */
+@media (max-width: 900px) {
+  #elementsView .elements-view-controls {
+    width: min(100%, 360px) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  #elementsView .elements-view-controls button {
+    min-width: 0 !important;
+    padding: 8px 6px !important;
+    font-size: 10px !important;
+  }
+
+  #elementsView .element-day-board,
+  #elementsView .element-unified-grid,
+  #elementsView .element-activity-board {
+    grid-template-columns: 1fr !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #elementsView .element-day-board .element-medal-cell,
+  #elementsView .element-unified-grid .element-medal-cell,
+  #elementsView .element-activity-board .element-medal-cell,
+  #elementsView .water-week-grid .element-medal-cell {
+    position: static !important;
+    grid-column: 1 / -1 !important;
+    justify-self: end !important;
+    margin-top: 8px !important;
+  }
+
+  #elementsView .element-activity-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #elementsView .elements-view-controls {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+
+/* ===== ELEMENT GROUP VISUAL SEPARATION FIX ===== */
+/* Separate unrelated element groups clearly.
+   Same-group items stay tight inside the same container.
+   Different groups / loose ungrouped items get breathing room. */
+
+#elementsView .element-day-stack > .element-group-container + .element-group-container,
+#elementsView .element-activity-board > .element-group-container + .element-group-container,
+#elementsView .element-unified-grid > .element-group-container + .element-group-container {
+  margin-top: 14px !important;
+}
+
+/* Inside the same group, keep items close together. */
+#elementsView .element-group-container.grouped > .element-assigned-card-skill + .element-assigned-card-skill,
+#elementsView .element-group-container.grouped > .element-block + .element-block,
+#elementsView .element-group-container.grouped > .element-activity-row + .element-activity-row,
+#elementsView .element-group-container.grouped > .element-assigned-card + .element-assigned-card {
+  margin-top: 0 !important;
+}
+
+/* Ungrouped single items look like their own separate mini-section. */
+#elementsView .element-group-container.loose {
+  margin-top: 14px !important;
+  border-style: dashed !important;
+  border-color: rgba(216,208,189,0.16) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.012), transparent 45%),
+    rgba(0,0,0,0.09) !important;
+}
+
+/* First item in a day should not get unnecessary top gap. */
+#elementsView .element-day-stack > .element-group-container:first-of-type,
+#elementsView .element-activity-board > .element-group-container:first-of-type,
+#elementsView .element-unified-grid > .element-group-container:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* Phone: stronger vertical separation for tap clarity. */
+@media (max-width: 900px) {
+  #elementsView .element-day-stack > .element-group-container + .element-group-container,
+  #elementsView .element-activity-board > .element-group-container + .element-group-container,
+  #elementsView .element-unified-grid > .element-group-container + .element-group-container {
+    margin-top: 16px !important;
+  }
+
+  #elementsView .element-group-container.loose {
+    margin-top: 16px !important;
+  }
+}
+
+
+
+/* ===== ELEMENT COMPACT + GROUP POLISH ===== */
+/* Compact is smaller, group labels look integrated, and Day Board indentation is cleaner. */
+
+/* Group label: make it feel like part of the container, not an extra random font piece. */
+#elementsView .element-group-container-title {
+  width: fit-content !important;
+  max-width: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 20px !important;
+  padding: 4px 8px !important;
+  margin: 0 0 7px 0 !important;
+  border: 1px solid rgba(224,200,120,0.20) !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(224,200,120,0.08), rgba(0,0,0,0.12)) !important;
+  color: #eadaa8 !important;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.75px !important;
+  text-transform: uppercase !important;
+  text-shadow: none !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Day Board: reduce the nested/indented look. */
+#elementsView .element-day-stack {
+  padding: 8px !important;
+  gap: 8px !important;
+}
+
+#elementsView .element-day-stack .element-group-container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 7px !important;
+  gap: 6px !important;
+}
+
+#elementsView .element-day-stack .element-group-container.grouped {
+  box-shadow: inset 2px 0 0 rgba(224,200,120,0.20) !important;
+}
+
+#elementsView .element-day-stack .element-group-container.loose {
+  padding: 6px !important;
+  border-style: solid !important;
+  box-shadow: inset 2px 0 0 rgba(216,208,189,0.10) !important;
+}
+
+#elementsView .element-day-stack .element-assigned-card-skill,
+#elementsView .element-day-stack .element-block {
+  min-height: 38px !important;
+  padding: 7px 8px !important;
+  font-size: 11px !important;
+}
+
+/* Compact view: smaller and less bulky. */
+#elementsView[data-element-view="compact"] .element-unified-grid {
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr)) !important;
+  gap: 7px !important;
+  padding-bottom: 62px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-group-container {
+  padding: 7px !important;
+  gap: 6px !important;
+  border-radius: 8px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-group-container-title {
+  min-height: 18px !important;
+  padding: 3px 7px !important;
+  margin-bottom: 5px !important;
+  font-size: 8px !important;
+  letter-spacing: 0.65px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-assigned-card {
+  display: grid !important;
+  gap: 4px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-assigned-card-day {
+  min-height: 20px !important;
+  padding: 4px 6px !important;
+  font-size: 9px !important;
+  letter-spacing: 0.7px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-assigned-card-skill,
+#elementsView[data-element-view="compact"] .element-block {
+  min-height: 36px !important;
+  padding: 6px 7px !important;
+  font-size: 10px !important;
+  letter-spacing: 0.65px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-medal-cell {
+  min-height: 48px !important;
+  width: 82px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-medal-icon {
+  font-size: 20px !important;
+}
+
+#elementsView[data-element-view="compact"] .element-medal-text {
+  font-size: 8px !important;
+}
+
+/* Activity Rows also gets cleaner group containers. */
+#elementsView[data-element-view="activity"] .element-activity-board .element-group-container {
+  padding: 9px !important;
+  gap: 8px !important;
+}
+
+#elementsView[data-element-view="activity"] .element-activity-board .element-group-container-title {
+  margin-bottom: 2px !important;
+}
+
+/* Phone: compact stays compact, day board remains readable. */
+@media (max-width: 900px) {
+  #elementsView .element-group-container-title {
+    font-size: 9px !important;
+    min-height: 20px !important;
+  }
+
+  #elementsView .element-day-stack {
+    padding: 8px !important;
+  }
+
+  #elementsView .element-day-stack .element-group-container {
+    padding: 8px !important;
+  }
+
+  #elementsView[data-element-view="compact"] .element-unified-grid {
+    grid-template-columns: 1fr !important;
+    padding-bottom: 0 !important;
+  }
+
+  #elementsView[data-element-view="compact"] .element-group-container {
+    padding: 8px !important;
+  }
+
+  #elementsView[data-element-view="compact"] .element-assigned-card-skill,
+  #elementsView[data-element-view="compact"] .element-block {
+    min-height: 40px !important;
+    font-size: 11px !important;
+  }
+}
+
+
+
+/* ===== ELEMENTS ROW MODE RESTORE V2 ===== */
+/* Removes Compact / Day Board selector and locks Fire/Earth/Air back to the row layout. */
+.elements-view-controls {
+  display: none !important;
+}
+
+#elementsView[data-element-view="activity"] .element-activity-board {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+#elementsView[data-element-view="activity"] .element-activity-row {
+  grid-template-columns: minmax(140px, 0.9fr) minmax(0, 1.4fr) !important;
+  align-items: stretch !important;
+}
+
+#elementsView[data-element-view="activity"] .element-activity-name {
+  display: grid !important;
+  place-items: center start !important;
+  min-height: 48px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
+
+#elementsView[data-element-view="activity"] .element-activity-days {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(74px, 1fr)) !important;
+  gap: 8px !important;
+}
+
+#elementsView[data-element-view="activity"] .element-assigned-card-skill,
+#elementsView[data-element-view="activity"] .element-block {
+  min-height: 48px !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
+
+@media (max-width: 700px) {
+  #elementsView[data-element-view="activity"] .element-activity-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  #elementsView[data-element-view="activity"] .element-activity-days {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+  
+
+/* ===== ELEMENTS DUAL LAYOUT ORGANIZED V3 ===== */
+#elementsView .elements-view-controls {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+}
+
+#elementsView .elements-view-controls button {
+  border: 1px solid rgba(245, 210, 115, 0.35) !important;
+  background: rgba(10, 10, 8, 0.92) !important;
+  color: rgba(244, 235, 208, 0.78) !important;
+  border-radius: 10px !important;
+  min-height: 30px !important;
+  padding: 0 12px !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+#elementsView .elements-view-controls button.active {
+  color: #fff7dc !important;
+  border-color: rgba(255, 213, 96, 0.75) !important;
+  box-shadow: 0 0 16px rgba(255, 213, 96, 0.12) !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-board {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-group {
+  padding: 10px !important;
+  border-radius: 10px !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 10px !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-card {
+  display: grid !important;
+  grid-template-rows: 24px minmax(54px, auto) !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-card-day {
+  display: grid !important;
+  place-items: center !important;
+  min-height: 24px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-bottom: 0 !important;
+  background: rgba(0,0,0,0.74) !important;
+  color: rgba(240, 230, 205, 0.68) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-card .element-assigned-card-skill,
+#elementsView[data-element-view="day"] .element-week-card .element-block {
+  width: 100% !important;
+  min-height: 54px !important;
+  border-radius: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+}
+
+#elementsView[data-element-view="day"] .element-week-board > .element-medal-cell {
+  justify-self: end !important;
+}
+
+@media (max-width: 700px) {
+  #elementsView .elements-view-controls {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  #elementsView .elements-view-controls button {
+    width: 100% !important;
+  }
+
+  #elementsView[data-element-view="day"] .element-week-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
 </style>
 </head>
 
@@ -10881,6 +12452,10 @@ header .player-card {
               <h2>Elements</h2>
               <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
               <div class="elements-subtitle">Weekly discipline board · Edit to add skills and choose days</div>
+              <div class="elements-view-controls" aria-label="Element layout mode">
+                <button type="button" data-element-view-mode="activity">Rows</button>
+                <button type="button" data-element-view-mode="day">Week Board</button>
+              </div>
             </div>
             <button type="button" id="nextWeekBtn">▶</button>
           </div>
@@ -10945,7 +12520,7 @@ header .player-card {
     </div>
     <div class="streak-quick-actions">
       <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
-      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
+      <button id="streakQuickRequiredDoneBtn" class="warn">Mark Required Done</button>
       <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
     </div>
   </section>
@@ -10975,11 +12550,6 @@ header .player-card {
 
         <div id="streakCalendarGrid" class="calendar-grid"></div>
         <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
-      </div>
-
-      <div class="rule-box">
-        <div class="rule-title">Win rule</div>
-        <div id="streakWinRuleText" class="rule-text"></div>
       </div>
 
       <div class="log" id="streakProofLog"></div>
@@ -11138,13 +12708,10 @@ header .player-card {
       <label for="streakNameInput">Streak name</label>
       <input id="streakNameInput" />
 
-      <label for="streakRequiredCount">Daily win rule</label>
-      <select id="streakRequiredCount">
-        <option value="1">Need 1 active required task</option>
-        <option value="2">Need 2 active required tasks</option>
-        <option value="3">Need 3 active required tasks</option>
-        <option value="all">Need all active required tasks</option>
-      </select>
+      <div class="streak-setup-note">
+        <strong>How results work</strong>
+        <span>Perfect = all active tasks done. Win = all active required tasks done. Partial = some progress. Optional or inactive tasks never hurt the day.</span>
+      </div>
 
       <label>Add task</label>
       <div style="display:grid;grid-template-columns:1fr 82px;gap:8px;">
@@ -11185,7 +12752,7 @@ header .player-card {
       </div>
       <button type="button" id="streakUseAutoBtn" class="streak-auto-btn">Use task checks instead</button>
       <input id="streakManualStatus" type="hidden" value="auto" />
-      <div class="small-note">Pick one status. This directly controls the calendar square until you change it.</div>
+      <div class="small-note">Pick one status to override the square, or stay on auto mode and let the task checks decide it.</div>
     </div>
 
     <div id="streakDayChecklist" class="checklist"></div>
@@ -11274,6 +12841,7 @@ header .player-card {
     var STORE_DAY_TEMPLATES = 'qt_day_templates_v1';
     var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
     var STORE_ELEMENTS_CONFIG = 'qt_editable_elements_config_v1';
+    var STORE_ELEMENT_VIEW_MODE = 'qt_elements_view_mode_v1';
     var STORE_XP = 'qt_player_xp_v1';
     var STORE_REWARDS_LEGACY = 'qt_rewards_meal_pass_v1';
     var STORE_LEVEL_REWARDS = 'qt_level_rewards_meal_pass_v1';
@@ -11288,6 +12856,7 @@ header .player-card {
     var editingElementKey = null;
     var editingElementLabels = [];
     var editingElementDays = [];
+    var editingElementGroups = [];
     var ELEMENT_DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     var archiveFilter = 'all';
     var lastTimeLockRenderMinute = null;
@@ -12117,6 +13686,20 @@ function useMealPass() {
       return result;
     }
 
+    function cleanElementGroupConfig(groups, labelCount) {
+      var result = [];
+      for (var i = 0; i < labelCount; i += 1) {
+        var value = groups && groups[i] !== undefined ? String(groups[i] || '').trim() : '';
+        result.push(value.slice(0, 32));
+      }
+      return result;
+    }
+
+    function getElementGroup(item, index) {
+      if (!item || !Array.isArray(item.groups)) return '';
+      return String(item.groups[index] || '').trim();
+    }
+
     function getElementSchedule(item, index) {
       if (!item || !Array.isArray(item.days)) return [];
       return sanitizeElementDays(item.days[index]);
@@ -12224,6 +13807,9 @@ function useMealPass() {
 
         var sourceDays = stored[key] && Array.isArray(stored[key].days) ? stored[key].days : config[key].days;
         config[key].days = cloneElementDayConfig(sourceDays, config[key].labels.length);
+
+        var sourceGroups = stored[key] && Array.isArray(stored[key].groups) ? stored[key].groups : config[key].groups;
+        config[key].groups = cleanElementGroupConfig(sourceGroups, config[key].labels.length);
       });
 
       return config;
@@ -12431,6 +14017,51 @@ function useMealPass() {
       setTimeout(function() {
         try { renderAll(); } catch (error) {}
       }, 90);
+    }
+
+    function getQuestOrderGroupKey(quest) {
+      if (!quest) return '';
+      if (isQuestLocked(quest)) return 'scheduled';
+      if (quest.status === 'complete') return 'complete';
+      if (quest.status === 'failed') return 'failed';
+      return quest.type || 'main';
+    }
+
+    function moveQuestOrder(questId, direction) {
+      var quests = getQuests();
+      var currentIndex = quests.findIndex(function(quest) { return quest.id === questId; });
+      if (currentIndex === -1) return;
+
+      var currentQuest = quests[currentIndex];
+      var groupKey = getQuestOrderGroupKey(currentQuest);
+
+      if (!groupKey || groupKey === 'complete' || groupKey === 'failed') {
+        byId('questStatusText').textContent = 'Only active quest order can be changed.';
+        return;
+      }
+
+      var groupIndexes = [];
+      quests.forEach(function(quest, index) {
+        if (getQuestOrderGroupKey(quest) === groupKey) groupIndexes.push(index);
+      });
+
+      var groupPosition = groupIndexes.indexOf(currentIndex);
+      var nextPosition = groupPosition + direction;
+
+      if (groupPosition === -1 || nextPosition < 0 || nextPosition >= groupIndexes.length) {
+        byId('questStatusText').textContent = direction < 0 ? 'Quest is already first in this section.' : 'Quest is already last in this section.';
+        return;
+      }
+
+      var targetIndex = groupIndexes[nextPosition];
+      var movedQuest = quests[currentIndex];
+      quests[currentIndex] = quests[targetIndex];
+      quests[targetIndex] = movedQuest;
+
+      setQuests(quests);
+      byId('questStatusText').textContent = 'Quest order updated.';
+      beep('save');
+      renderAll();
     }
 
     function moveMicroTask(questId, taskId, direction) {
@@ -13347,6 +14978,10 @@ function useMealPass() {
                 '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
                 '<button class="action-info" data-action="info">Details</button>' +
                 '<button class="action-edit" data-action="edit">Edit Time</button>' +
+                (quest.status !== "complete" && quest.status !== "failed" ?
+                  '<button class="action-order" data-action="moveQuestUp">↑ Up</button>' +
+                  '<button class="action-order" data-action="moveQuestDown">↓ Down</button>'
+                : '') +
                 '<button class="action-delete" data-action="delete">Delete</button>'
               ) +
             '</div>' +
@@ -13878,12 +15513,33 @@ function useMealPass() {
       }, 0);
     }
 
+    function getElementViewMode() {
+      var mode = readStore(STORE_ELEMENT_VIEW_MODE, 'activity');
+      return mode === 'day' ? 'day' : 'activity';
+    }
+
+    function setElementViewMode(mode) {
+      writeStore(STORE_ELEMENT_VIEW_MODE, mode === 'day' ? 'day' : 'activity');
+    }
+
+    function updateElementViewControls() {
+      var mode = getElementViewMode();
+      var view = byId('elementsView');
+      if (view) view.setAttribute('data-element-view', mode);
+
+      document.querySelectorAll('[data-element-view-mode]').forEach(function(button) {
+        var buttonMode = button.getAttribute('data-element-view-mode');
+        button.classList.toggle('active', buttonMode === mode);
+      });
+    }
+
     function renderElements() {
       var config = getElementConfig();
       var data = getWeekElements();
       var start = getWeekStart(currentElementWeek);
       var end = addDays(start, 6);
       byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
+      updateElementViewControls();
 
       getElementOrder().forEach(function(key) {
         var item = config[key];
@@ -13934,63 +15590,284 @@ function useMealPass() {
       return medal;
     }
 
-    function renderElementBlocks(key, config, data) {
-      var grid = byId(key + 'Grid');
-      if (!grid) return;
+    function isScheduledElementDone(data, key, index, day) {
+      return Boolean(data[key] && Array.isArray(data[key][index]) && data[key][index][day]);
+    }
 
-      grid.innerHTML = '';
+    function createScheduledElementButton(key, entry, data) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'element-assigned-card-skill ' + key + (isScheduledElementDone(data, key, entry.index, entry.day) ? ' active' : '');
+      btn.setAttribute('data-element', key);
+      btn.setAttribute('data-index', entry.index);
+      btn.setAttribute('data-day-slot', entry.day);
+      btn.textContent = entry.label;
+      return btn;
+    }
 
-      var rowGrid = document.createElement('div');
-      rowGrid.className = 'element-unified-grid ' + key;
+    function createUnscheduledElementButton(key, entry, data) {
+      var block = document.createElement('button');
+      block.type = 'button';
+      block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
+      block.setAttribute('data-element', key);
+      block.setAttribute('data-index', entry.index);
+      block.textContent = entry.label;
+      return block;
+    }
 
+    function getElementEntries(key, config) {
       var scheduledEntries = [];
       var unscheduled = [];
 
       config[key].labels.forEach(function(label, index) {
         var schedule = getElementSchedule(config[key], index);
-
         if (schedule.length) {
           schedule.forEach(function(dayIndex) {
-            scheduledEntries.push({ label: label, index: index, day: dayIndex, dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY' });
+            scheduledEntries.push({ label: label, index: index, day: dayIndex, dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY', group: getElementGroup(config[key], index) });
           });
         } else {
-          unscheduled.push({ label: label, index: index });
+          unscheduled.push({ label: label, index: index, group: getElementGroup(config[key], index) });
         }
       });
 
-      scheduledEntries.forEach(function(entry) {
-        var card = document.createElement('div');
-        card.className = 'element-assigned-card ' + key;
+      return { scheduled: scheduledEntries, unscheduled: unscheduled };
+    }
 
-        var dayLabel = document.createElement('div');
-        dayLabel.className = 'element-assigned-card-day';
-        dayLabel.textContent = entry.dayLabel;
-        card.appendChild(dayLabel);
+    function renderElementCompactGrid(key, grid, config, data) {
+      var rowGrid = document.createElement('div');
+      rowGrid.className = 'element-unified-grid ' + key;
+      var entries = getElementEntries(key, config);
 
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'element-assigned-card-skill ' + key + ((Array.isArray(data[key][entry.index]) && data[key][entry.index][entry.day]) ? ' active' : '');
-        btn.setAttribute('data-element', key);
-        btn.setAttribute('data-index', entry.index);
-        btn.setAttribute('data-day-slot', entry.day);
-        btn.textContent = entry.label;
-        card.appendChild(btn);
+      function appendCompactSection(container, groupName, list, scheduled) {
+        var cleanGroup = String(groupName || '').trim();
+        var section = document.createElement('div');
+        section.className = 'element-group-container ' + key + (cleanGroup ? ' grouped' : ' loose');
 
-        rowGrid.appendChild(card);
+        if (cleanGroup) {
+          var title = document.createElement('div');
+          title.className = 'element-group-container-title';
+          title.textContent = cleanGroup;
+          section.appendChild(title);
+        }
+
+        list.forEach(function(entry) {
+          if (scheduled) {
+            var card = document.createElement('div');
+            card.className = 'element-assigned-card ' + key;
+
+            var dayLabel = document.createElement('div');
+            dayLabel.className = 'element-assigned-card-day';
+            dayLabel.textContent = entry.dayLabel;
+            card.appendChild(dayLabel);
+            card.appendChild(createScheduledElementButton(key, entry, data));
+            section.appendChild(card);
+          } else {
+            section.appendChild(createUnscheduledElementButton(key, entry, data));
+          }
+        });
+
+        container.appendChild(section);
+      }
+
+      var scheduledGrouped = {};
+      var scheduledLoose = [];
+      entries.scheduled.forEach(function(entry) {
+        var group = String(entry.group || '').trim();
+        if (group) {
+          if (!scheduledGrouped[group]) scheduledGrouped[group] = [];
+          scheduledGrouped[group].push(entry);
+        } else {
+          scheduledLoose.push(entry);
+        }
       });
 
-      unscheduled.forEach(function(entry) {
-        var block = document.createElement('button');
-        block.type = 'button';
-        block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
-        block.setAttribute('data-element', key);
-        block.setAttribute('data-index', entry.index);
-        block.textContent = entry.label;
-        rowGrid.appendChild(block);
+      Object.keys(scheduledGrouped).sort().forEach(function(groupName) {
+        appendCompactSection(rowGrid, groupName, scheduledGrouped[groupName], true);
+      });
+
+      scheduledLoose.forEach(function(entry) {
+        appendCompactSection(rowGrid, '', [entry], true);
+      });
+
+      var unscheduledGrouped = {};
+      var unscheduledLoose = [];
+      entries.unscheduled.forEach(function(entry) {
+        var group = String(entry.group || '').trim();
+        if (group) {
+          if (!unscheduledGrouped[group]) unscheduledGrouped[group] = [];
+          unscheduledGrouped[group].push(entry);
+        } else {
+          unscheduledLoose.push(entry);
+        }
+      });
+
+      Object.keys(unscheduledGrouped).sort().forEach(function(groupName) {
+        appendCompactSection(rowGrid, groupName, unscheduledGrouped[groupName], false);
+      });
+
+      unscheduledLoose.forEach(function(entry) {
+        appendCompactSection(rowGrid, '', [entry], false);
       });
 
       rowGrid.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
       grid.appendChild(rowGrid);
+    }
+
+
+    function renderElementActivityRows(key, grid, config, data) {
+      var board = document.createElement('div');
+      board.className = 'element-activity-board ' + key;
+
+      var grouped = {};
+      var ungrouped = [];
+
+      config[key].labels.forEach(function(label, index) {
+        var group = String(getElementGroup(config[key], index) || '').trim();
+        var entry = { label: label, index: index, group: group, schedule: getElementSchedule(config[key], index) };
+        if (group) {
+          if (!grouped[group]) grouped[group] = [];
+          grouped[group].push(entry);
+        } else {
+          ungrouped.push(entry);
+        }
+      });
+
+      function addActivityContainer(groupName, entries) {
+        var container = document.createElement('div');
+        container.className = 'element-group-container ' + key + (groupName ? ' grouped' : ' loose');
+
+        if (groupName) {
+          var groupTitle = document.createElement('div');
+          groupTitle.className = 'element-group-container-title';
+          groupTitle.textContent = groupName;
+          container.appendChild(groupTitle);
+        }
+
+        entries.forEach(function(item) {
+          var row = document.createElement('div');
+          row.className = 'element-activity-row ' + key + (item.schedule.length ? ' scheduled' : ' anytime');
+
+          var name = document.createElement('div');
+          name.className = 'element-activity-name';
+          name.textContent = item.label;
+          row.appendChild(name);
+
+          var days = document.createElement('div');
+          days.className = 'element-activity-days';
+
+          if (item.schedule.length) {
+            item.schedule.forEach(function(dayIndex) {
+              days.appendChild(createScheduledElementButton(key, { label: ELEMENT_DAY_LABELS[dayIndex] || 'DAY', index: item.index, day: dayIndex, group: item.group }, data));
+            });
+          } else {
+            days.appendChild(createUnscheduledElementButton(key, { label: 'Anytime', index: item.index, group: item.group }, data));
+          }
+
+          row.appendChild(days);
+          container.appendChild(row);
+        });
+
+        board.appendChild(container);
+      }
+
+      Object.keys(grouped).sort().forEach(function(groupName) {
+        addActivityContainer(groupName, grouped[groupName]);
+      });
+
+      ungrouped.forEach(function(item) {
+        addActivityContainer('', [item]);
+      });
+
+      board.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
+      grid.appendChild(board);
+    }
+
+
+    function renderElementDayBoard(key, grid, config, data) {
+      var entries = getElementEntries(key, config);
+      var board = document.createElement('div');
+      board.className = 'element-week-board ' + key;
+
+      function createWeekCard(entry, scheduled) {
+        var card = document.createElement('div');
+        card.className = 'element-week-card ' + key + (scheduled ? ' scheduled' : ' anytime');
+
+        var dayLabel = document.createElement('div');
+        dayLabel.className = 'element-week-card-day';
+        dayLabel.textContent = scheduled ? (entry.dayLabel || 'DAY') : 'ANYTIME';
+        card.appendChild(dayLabel);
+
+        if (scheduled) {
+          card.appendChild(createScheduledElementButton(key, entry, data));
+        } else {
+          card.appendChild(createUnscheduledElementButton(key, entry, data));
+        }
+
+        return card;
+      }
+
+      function appendGroup(groupName, list, scheduled) {
+        var cleanGroup = String(groupName || '').trim();
+        var section = document.createElement('div');
+        section.className = 'element-week-group element-group-container ' + key + (cleanGroup ? ' grouped' : ' loose');
+
+        if (cleanGroup) {
+          var title = document.createElement('div');
+          title.className = 'element-group-container-title';
+          title.textContent = cleanGroup;
+          section.appendChild(title);
+        }
+
+        var cards = document.createElement('div');
+        cards.className = 'element-week-card-grid ' + key;
+        list.forEach(function(entry) {
+          cards.appendChild(createWeekCard(entry, scheduled));
+        });
+        section.appendChild(cards);
+        board.appendChild(section);
+      }
+
+      function appendGrouped(list, scheduled) {
+        var grouped = {};
+        var ungrouped = [];
+
+        list.forEach(function(entry) {
+          var group = String(entry.group || '').trim();
+          if (group) {
+            if (!grouped[group]) grouped[group] = [];
+            grouped[group].push(entry);
+          } else {
+            ungrouped.push(entry);
+          }
+        });
+
+        Object.keys(grouped).sort().forEach(function(groupName) {
+          appendGroup(groupName, grouped[groupName], scheduled);
+        });
+
+        if (ungrouped.length) {
+          appendGroup('', ungrouped, scheduled);
+        }
+      }
+
+      appendGrouped(entries.scheduled, true);
+      appendGrouped(entries.unscheduled, false);
+
+      board.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
+      grid.appendChild(board);
+    }
+
+
+    function renderElementBlocks(key, config, data) {
+      var grid = byId(key + 'Grid');
+      if (!grid) return;
+
+      grid.innerHTML = '';
+      if (getElementViewMode() === 'day') {
+        renderElementDayBoard(key, grid, config, data);
+      } else {
+        renderElementActivityRows(key, grid, config, data);
+      }
     }
 
     function renderWaterElement(key, config, data) {
@@ -14065,6 +15942,7 @@ function useMealPass() {
       editingElementKey = key;
       editingElementLabels = config[key].labels.slice();
       editingElementDays = cloneElementDayConfig(config[key].days, editingElementLabels.length);
+      editingElementGroups = cleanElementGroupConfig(config[key].groups, editingElementLabels.length);
       byId('elementEditTitle').textContent = 'Edit ' + config[key].title + ' Skills';
       byId('elementSkillInput').value = '';
       byId('elementEditStatus').textContent = '';
@@ -14083,26 +15961,33 @@ function useMealPass() {
       editingElementKey = null;
       editingElementLabels = [];
       editingElementDays = [];
+      editingElementGroups = [];
       byId('elementEditModal').classList.remove('open');
     }
 
     function syncElementEditorInputs() {
       var rawDays = editingElementDays.slice();
+      var rawGroups = editingElementGroups.slice();
       var inputs = document.querySelectorAll('[data-element-label-index]');
       var labels = [];
       var days = [];
+      var groups = [];
 
       inputs.forEach(function(input) {
         var oldIndex = Number(input.getAttribute('data-element-label-index'));
         var value = input.value.trim();
+        var groupInput = document.querySelector('[data-element-group-index="' + oldIndex + '"]');
+        var groupValue = groupInput ? groupInput.value.trim() : (rawGroups[oldIndex] || '');
         if (value) {
           labels.push(value);
           days.push(sanitizeElementDays(rawDays[oldIndex]));
+          groups.push(String(groupValue || '').slice(0, 32));
         }
       });
 
       editingElementLabels = labels;
       editingElementDays = cloneElementDayConfig(days, editingElementLabels.length);
+      editingElementGroups = cleanElementGroupConfig(groups, editingElementLabels.length);
     }
 
     function renderElementEditorList() {
@@ -14148,7 +16033,9 @@ function useMealPass() {
         if (editingElementKey === 'water') {
           row.innerHTML =
             '<div class="element-editor-top water-label-only">' +
-              '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
+              '<div class="element-editor-fields single">' +
+                '<label class="element-inline-field"><span>Skill name</span><input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '"></label>' +
+              '</div>' +
               '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
               '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>↓</button>' +
               '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">×</button>' +
@@ -14164,7 +16051,10 @@ function useMealPass() {
 
         row.innerHTML =
           '<div class="element-editor-top">' +
-            '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
+            '<div class="element-editor-fields">' +
+              '<label class="element-inline-field"><span>Skill name</span><input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '"></label>' +
+              '<label class="element-inline-field"><span>Group / category</span><input type="text" maxlength="32" placeholder="Optional: Combat, Gym, Career" value="' + escapeHtml(editingElementGroups[index] || '') + '" data-element-group-index="' + index + '"></label>' +
+            '</div>' +
             '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
             '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>↓</button>' +
             '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">×</button>' +
@@ -14196,6 +16086,7 @@ function useMealPass() {
 
       editingElementLabels.push(value);
       editingElementDays.push([]);
+      editingElementGroups.push('');
       input.value = '';
       renderElementEditorList();
       beep('click');
@@ -14205,6 +16096,7 @@ function useMealPass() {
       syncElementEditorInputs();
       moveArrayItem(editingElementLabels, index, direction);
       moveArrayItem(editingElementDays, index, direction);
+      moveArrayItem(editingElementGroups, index, direction);
       renderElementEditorList();
       beep('click');
     }
@@ -14213,6 +16105,7 @@ function useMealPass() {
       syncElementEditorInputs();
       editingElementLabels.splice(index, 1);
       editingElementDays.splice(index, 1);
+      editingElementGroups.splice(index, 1);
       renderElementEditorList();
       beep('click');
     }
@@ -14228,6 +16121,7 @@ function useMealPass() {
 
       var config = getElementConfig();
       config[editingElementKey].labels = editingElementLabels.slice();
+      config[editingElementKey].groups = cleanElementGroupConfig(editingElementGroups, editingElementLabels.length);
 
       if (editingElementKey === 'water') {
         var waterDays = getWaterEditorDays();
@@ -14258,6 +16152,7 @@ function useMealPass() {
       var config = getElementConfig();
       config[editingElementKey].labels = defaults[editingElementKey].labels.slice();
       config[editingElementKey].days = cloneElementDayConfig(defaults[editingElementKey].days, config[editingElementKey].labels.length);
+      config[editingElementKey].groups = cleanElementGroupConfig(defaults[editingElementKey].groups, config[editingElementKey].labels.length);
       setElementConfig(config);
 
       var data = getWeekElements();
@@ -14528,6 +16423,13 @@ function useMealPass() {
             if (!moreIsOpen) hardRefreshQuestCardOnPhone(card);
             beep('click');
           }
+          if (action === 'moveQuestUp' || action === 'moveQuestDown') {
+            event.preventDefault();
+            event.stopPropagation();
+            moveQuestOrder(questId, action === 'moveQuestUp' ? -1 : 1);
+            return;
+          }
+
           if (action === 'toggleSteps') {
             var microList = card.querySelector('.micro-list');
             if (!microList) return;
@@ -14565,6 +16467,14 @@ function useMealPass() {
               openQuestStepsCard(getQuestCardById(keepQuestId));
             });
           }
+        }
+
+        var elementViewButton = event.target.closest('[data-element-view-mode]');
+        if (elementViewButton) {
+          setElementViewMode(elementViewButton.getAttribute('data-element-view-mode'));
+          renderElements();
+          beep('click');
+          return;
         }
 
         var elementEditButton = event.target.closest('[data-element-edit]');
@@ -15393,7 +17303,7 @@ function defaults() {
   return {
     setup: {
       name: "Skill Building",
-      requiredCount: "2",
+      requiredCount: "all",
       consequence: "Before entertainment tomorrow, complete 20 minutes of the missed required task or clean/reset your space for 10 minutes.",
       tasks: [
         { name:"DP-300", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
@@ -15438,6 +17348,7 @@ function normalize(data) {
   const base = defaults();
   data = data || base;
   data.setup = Object.assign({}, base.setup, data.setup || {});
+  data.setup.requiredCount = "all";
   if (!Array.isArray(data.setup.tasks) || !data.setup.tasks.length) data.setup.tasks = base.setup.tasks;
   data.setup.tasks = data.setup.tasks.map(normalizeTask).filter(t => t.name);
   data.days = data.days && typeof data.days === "object" ? data.days : {};
@@ -15548,25 +17459,26 @@ function result(entry, setup, date, data) {
     return entry.manualStatus === "empty" ? "empty" : entry.manualStatus;
   }
 
-  const req = [];
+  const requiredIndexes = [];
+  const activeIndexes = [];
   setup.tasks.forEach((task, i) => {
-    if (requiredToday(task, date, i, data)) req.push(i);
+    if (active(task, date, i, data)) activeIndexes.push(i);
+    if (requiredToday(task, date, i, data)) requiredIndexes.push(i);
   });
 
-  if (!req.length) return entry.states.some(s => s === "done") ? "win" : "empty";
+  if (!activeIndexes.length) return "empty";
 
-  const done = req.filter(i => entry.states[i] === "done").length;
-  const safe = req.filter(i => entry.states[i] === "protected").length;
-  const fail = req.filter(i => entry.states[i] === "fail").length;
+  const requiredDone = requiredIndexes.filter(i => entry.states[i] === "done").length;
+  const requiredProtected = requiredIndexes.filter(i => entry.states[i] === "protected").length;
+  const requiredFailed = requiredIndexes.filter(i => entry.states[i] === "fail").length;
+  const activeDone = activeIndexes.filter(i => entry.states[i] === "done").length;
+  const activeProtected = activeIndexes.filter(i => entry.states[i] === "protected").length;
 
-  if (fail > 0) return "failed";
-  if (safe === req.length) return "protected";
-
-  const min = setup.requiredCount === "all" ? req.length : Math.min(Number(setup.requiredCount || 1), req.length);
-
-  if (done === req.length) return "perfect";
-  if (done >= min) return "win";
-  if (done > 0 || safe > 0) return "partial";
+  if (requiredFailed > 0) return "failed";
+  if (requiredIndexes.length && requiredProtected === requiredIndexes.length) return "protected";
+  if (activeDone === activeIndexes.length) return "perfect";
+  if (requiredIndexes.length && requiredDone === requiredIndexes.length) return "win";
+  if (requiredDone > 0 || activeDone > 0 || activeProtected > 0) return "partial";
   return "empty";
 }
 
@@ -15577,7 +17489,7 @@ function valid(r) {
 function saveSetup() {
   const data = read();
   data.setup.name = s$("streakNameInput").value.trim() || "Untitled Streak";
-  data.setup.requiredCount = s$("streakRequiredCount").value;
+  data.setup.requiredCount = "all";
   data.setup.consequence = s$("streakConsequenceInput").value.trim() || "Repair before entertainment tomorrow.";
   data.setup.tasks = Array.from(document.querySelectorAll("[data-streak-task-card]")).map(card => ({
     name: card.querySelector("[data-streak-task-name]").value,
@@ -15620,20 +17532,27 @@ function deleteTask(index) {
 
 function renderMain() {
   const data = read();
+  const todayDate = new Date();
   s$("streakConsequenceTextView").textContent = data.setup.consequence;
-  s$("streakWinRuleText").textContent = data.setup.requiredCount === "all"
-    ? "Win = all active required tasks completed. Inactive and optional tasks do not hurt the day."
-    : "Win = at least " + data.setup.requiredCount + " active required task(s) completed. Inactive and optional tasks do not hurt the day.";
 
-  s$("streakTaskList").innerHTML = data.setup.tasks.map((task, i) => `
-    <div class="quest-pill">
-      <i class="quest-color" style="background:${color(i)}"></i>
-      <div>
-        <div class="quest-name">${escapeHtml(task.name)}</div>
-        <div class="quest-rule">${escapeHtml(taskRule(task))}</div>
+  const todaysTasks = data.setup.tasks.filter((task, i) => active(task, todayDate, i, data));
+  const tasksToRender = todaysTasks.length ? todaysTasks : data.setup.tasks;
+
+  s$("streakTaskList").innerHTML = tasksToRender.map(task => {
+    const originalIndex = data.setup.tasks.indexOf(task);
+    const badge = task.required ? "required" : "optional";
+    const badgeText = task.required ? "Required" : "Optional";
+    return `
+      <div class="quest-pill">
+        <i class="quest-color" style="background:${color(originalIndex)}"></i>
+        <div class="quest-pill-main">
+          <div class="quest-name">${escapeHtml(task.name)}</div>
+          <div class="quest-rule">${escapeHtml(taskRule(task))}</div>
+        </div>
+        <span class="quest-meta-badge ${badge}">${badgeText}</span>
       </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 }
 
 
@@ -15674,9 +17593,9 @@ function renderQuickUpdate() {
     }
   });
 
-  const winRule = data.setup.requiredCount === "all"
-    ? "Need all active required tasks"
-    : "Need " + data.setup.requiredCount + " required task(s)";
+  const goalText = requiredCount
+    ? (requiredDone === requiredCount ? "Required goal met" : "Finish all required tasks")
+    : "No required tasks today";
 
   box.innerHTML = `
     <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
@@ -15684,7 +17603,7 @@ function renderQuickUpdate() {
       <span class="streak-today-chip ${resultChipClass(r)}">Status: ${escapeHtml(r.toUpperCase())}</span>
       <span class="streak-today-chip good">Required: ${requiredDone}/${requiredCount}</span>
       <span class="streak-today-chip warn">Active: ${activeDone}/${activeCount}</span>
-      <span class="streak-today-chip purple">${escapeHtml(winRule)}</span>
+      <span class="streak-today-chip purple">${escapeHtml(goalText)}</span>
     </div>
   `;
 }
@@ -15945,7 +17864,6 @@ function closeSetup() {
 function renderSetupModal() {
   const data = read();
   s$("streakNameInput").value = data.setup.name;
-  s$("streakRequiredCount").value = data.setup.requiredCount;
   s$("streakConsequenceInput").value = data.setup.consequence;
 
   s$("streakTaskEditorList").innerHTML = data.setup.tasks.map((task, i) => `
@@ -16005,10 +17923,20 @@ function renderDayModal() {
   const r = result(modalEntry, data.setup, date, data);
   const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
   const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
-  const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
-    ? `<br><span class="manual-status-banner">Manual edit active</span>`
-    : `<br><span class="manual-status-banner">Auto mode</span>`;
-  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
+  const activeCount = data.setup.tasks.filter((t,i) => active(t,date,i,data)).length;
+  const activeDone = data.setup.tasks.filter((t,i) => active(t,date,i,data) && modalEntry.states[i] === "done").length;
+  const modeBadge = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
+    ? '<span class="manual-status-banner">Manual mode</span>'
+    : '<span class="manual-status-banner">Auto mode</span>';
+
+  s$("streakDayResultBox").innerHTML = `
+    <div class="streak-result-line">
+      <span class="streak-result-label">Square result</span>
+      <span class="log-result-badge ${r}">${escapeHtml(r.toUpperCase())}</span>
+      ${modeBadge}
+    </div>
+    <div class="streak-count-line">Required progress: ${completedRequired}/${requiredActive} · Active progress: ${activeDone}/${activeCount}</div>
+  `;
 
   document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
@@ -16017,11 +17945,11 @@ function renderDayModal() {
     s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
   }
 
-  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
+  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Task check details</div>' + data.setup.tasks.map((task, i) => {
     const state = modalEntry.states[i] || "skip";
     const isActive = active(task,date,i,data);
     const isRequired = requiredToday(task,date,i,data);
-    const meta = isActive ? (isRequired ? "Active today · required" : "Optional/bonus") : "Not active today";
+    const meta = isActive ? (isRequired ? "Active today · required" : "Active today · optional") : "Not active today";
     return `
       <div class="check-row ${isActive ? "" : "inactive"}">
         <i class="quest-color" style="background:${color(i)}"></i>
