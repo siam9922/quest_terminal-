@@ -10570,66 +10570,66 @@ header .player-card {
 }
 
 
-/* ===== EMERGENCY QUESTS FEATURE V35 ===== */
+/* ===== FILLER QUESTS FEATURE V34 ===== */
 #questsView .quest-section-panel[data-section="filler"] {
-  border-color: rgba(255,59,59,0.38) !important;
+  border-color: rgba(225,225,225,0.26) !important;
   background:
-    radial-gradient(circle at 50% 0%, rgba(255,59,59,0.12), transparent 38%),
-    linear-gradient(180deg, rgba(255,104,83,0.035), transparent 42%),
-    linear-gradient(180deg, #160909, #050202) !important;
+    radial-gradient(circle at 50% 0%, rgba(235,235,235,0.07), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
+    linear-gradient(180deg, #121212, #050505) !important;
 }
 
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #ffb4a8 !important;
+  color: #e8e8e8 !important;
   text-shadow:
-    0 0 14px rgba(255,59,59,0.34),
-    0 0 28px rgba(255,104,83,0.14) !important;
-  border-bottom-color: rgba(255,59,59,0.28) !important;
+    0 0 14px rgba(235,235,235,0.20),
+    0 0 28px rgba(235,235,235,0.08) !important;
+  border-bottom-color: rgba(225,225,225,0.22) !important;
 }
 
 .quest-card.filler {
-  border-color: rgba(255,59,59,0.48) !important;
-  box-shadow: inset 5px 0 0 #ff3b3b, 0 12px 28px rgba(0,0,0,0.34), 0 0 18px rgba(255,59,59,0.10) !important;
+  border-color: rgba(225,225,225,0.42) !important;
+  box-shadow: inset 5px 0 0 #cfcfcf, 0 12px 28px rgba(0,0,0,0.34) !important;
 }
 
 .quest-card.qt-card-epic.filler {
-  --quest-accent: #ff3b3b;
-  --quest-accent-rgb: 255,59,59;
-  border-color: rgba(255,59,59,0.50) !important;
+  --quest-accent: #dcdcdc;
+  --quest-accent-rgb: 220,220,220;
+  border-color: rgba(220,220,220,0.44) !important;
   background:
-    linear-gradient(90deg, rgba(0,0,0,0.84), rgba(26,4,4,0.36) 44%, rgba(255,59,59,0.10) 100%),
-    radial-gradient(circle at 72% 30%, rgba(255,59,59,0.16), transparent 35%),
-    linear-gradient(180deg, #170707 0%, #050202 100%) !important;
+    linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.28) 44%, rgba(220,220,220,0.07) 100%),
+    radial-gradient(circle at 72% 30%, rgba(235,235,235,0.12), transparent 35%),
+    linear-gradient(180deg, #121212 0%, #050505 100%) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-type-pill {
-  border-color: rgba(255,59,59,0.54) !important;
-  color: #ffe3dd !important;
+  border-color: rgba(235,235,235,0.44) !important;
+  color: #f1f1f1 !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255,104,83,0.22), transparent 60%),
-    rgba(34,0,0,0.42) !important;
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.16), transparent 60%),
+    rgba(0,0,0,0.36) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-crest-symbol {
-  color: #ffe3dd !important;
-  border-color: rgba(255,59,59,0.56) !important;
+  color: #f2f2f2 !important;
+  border-color: rgba(230,230,230,0.48) !important;
   background:
-    radial-gradient(circle at 50% 35%, rgba(255,104,83,0.22), transparent 48%),
-    linear-gradient(180deg, rgba(255,59,59,0.16), rgba(0,0,0,0.70)) !important;
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 48%),
+    linear-gradient(180deg, rgba(235,235,235,0.10), rgba(0,0,0,0.66)) !important;
   text-shadow:
-    0 0 9px rgba(255,59,59,0.66),
-    0 0 20px rgba(255,104,83,0.28) !important;
+    0 0 9px rgba(255,255,255,0.62),
+    0 0 20px rgba(220,220,220,0.24) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-art-orb::before {
-  content: "!" !important;
-  color: #ffb4a8 !important;
+  content: "○" !important;
+  color: #f1f1f1 !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-progress-fill {
-  background: linear-gradient(90deg, #9f1f1f, #ff3b3b, #ff8a75) !important;
-  box-shadow: 0 0 12px rgba(255,59,59,0.32) !important;
+  background: linear-gradient(90deg, #9f9f9f, #f1f1f1) !important;
+  box-shadow: 0 0 12px rgba(235,235,235,0.28) !important;
 }
 
 
@@ -10765,13 +10765,13 @@ header .player-card {
   letter-spacing: 0.5px !important;
 }
 
-/* Emergency quests use danger red without changing the quest type data key */
+/* Filler keeps gray/white seriousness instead of colorful fantasy */
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #ffb4a8 !important;
+  color: #f1f1ea !important;
   text-shadow:
-    0 0 10px rgba(255,59,59,0.28),
-    0 0 22px rgba(255,104,83,0.10) !important;
+    0 0 10px rgba(255,255,255,0.16),
+    0 0 22px rgba(255,255,255,0.06) !important;
 }
 
 /* Scheduled reads as cyan/terminal, but still uses the serious display font */
@@ -10792,162 +10792,6 @@ header .player-card {
   #questsView .quest-card.qt-card-epic .qt-title,
   #questsView .quest-title {
     letter-spacing: 0.18px !important;
-  }
-}
-
-
-
-/* ===== MICROTASK SOFT VISUALS + DRAG REORDER + XP CUT V14 ===== */
-.quest-card.qt-card-epic .micro-list,
-.quest-card.qt-card-epic .qt-micro-list {
-  gap: 8px !important;
-  border-top: 1px solid rgba(var(--quest-accent-rgb),0.14) !important;
-  padding-top: 10px !important;
-}
-
-.quest-card.qt-card-epic .micro-item {
-  display: grid !important;
-  grid-template-columns: 34px 34px minmax(0, 1fr) 34px 34px 34px !important;
-  align-items: center !important;
-  gap: 7px !important;
-  min-height: 46px !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(216,208,189,0.13) !important;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 48%),
-    rgba(0,0,0,0.24) !important;
-  padding: 7px !important;
-  color: #ddd4c4 !important;
-  cursor: default !important;
-  touch-action: pan-y !important;
-  user-select: text !important;
-  transition: border-color 0.14s ease, background 0.14s ease, transform 0.14s ease, opacity 0.14s ease;
-}
-
-
-.quest-card.qt-card-epic .micro-item.done {
-  border-color: rgba(69,211,138,0.34) !important;
-  background:
-    linear-gradient(180deg, rgba(69,211,138,0.08), transparent 52%),
-    rgba(0,0,0,0.24) !important;
-}
-
-.quest-card.qt-card-epic .micro-item.failed {
-  border-color: rgba(198,96,96,0.34) !important;
-  background:
-    linear-gradient(180deg, rgba(198,96,96,0.08), transparent 52%),
-    rgba(0,0,0,0.24) !important;
-}
-
-.quest-card.qt-card-epic .micro-item.dragging {
-  opacity: 0.55 !important;
-  transform: scale(0.99) !important;
-  border-color: rgba(var(--quest-accent-rgb),0.58) !important;
-}
-
-.quest-card.qt-card-epic .micro-item.drag-over {
-  border-color: rgba(var(--quest-accent-rgb),0.86) !important;
-  box-shadow: 0 0 0 2px rgba(var(--quest-accent-rgb),0.16), 0 0 18px rgba(var(--quest-accent-rgb),0.10) !important;
-}
-
-.micro-dragging-active {
-  cursor: grabbing !important;
-  user-select: none !important;
-}
-
-.quest-card.qt-card-epic .micro-task-text {
-  color: #d8d0bd !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  line-height: 1.32 !important;
-  letter-spacing: 0.1px !important;
-  text-transform: none !important;
-  overflow-wrap: anywhere !important;
-}
-
-.quest-card.qt-card-epic .micro-item.done .micro-task-text {
-  color: rgba(201,255,216,0.72) !important;
-  text-decoration: none !important;
-}
-
-.quest-card.qt-card-epic .micro-item.failed .micro-task-text {
-  color: rgba(255,198,198,0.72) !important;
-  text-decoration: none !important;
-}
-
-.micro-state-btn,
-.quest-card.qt-card-epic .micro-move-btn,
-.micro-drag-handle {
-  width: 34px !important;
-  height: 34px !important;
-  min-height: 34px !important;
-  border-radius: 10px !important;
-  display: grid !important;
-  place-items: center !important;
-  padding: 0 !important;
-  font-size: 15px !important;
-  font-weight: 950 !important;
-  line-height: 1 !important;
-}
-
-.micro-state-btn {
-  border: 1px solid rgba(216,208,189,0.13) !important;
-  background: rgba(0,0,0,0.22) !important;
-  color: rgba(216,208,189,0.54) !important;
-}
-
-.micro-check-btn.active {
-  border-color: rgba(69,211,138,0.70) !important;
-  color: #c9ffd8 !important;
-  background: rgba(69,211,138,0.16) !important;
-  box-shadow: 0 0 12px rgba(69,211,138,0.10) !important;
-}
-
-.micro-cross-btn.active {
-  border-color: rgba(198,96,96,0.70) !important;
-  color: #ffc6c6 !important;
-  background: rgba(198,96,96,0.16) !important;
-  box-shadow: 0 0 12px rgba(198,96,96,0.10) !important;
-}
-
-.micro-drag-handle {
-  border: 1px dashed rgba(216,208,189,0.18) !important;
-  color: rgba(216,208,189,0.48) !important;
-  background: rgba(0,0,0,0.18) !important;
-  cursor: grab !important;
-  touch-action: none !important;
-  user-select: none !important;
-}
-
-.micro-drag-handle:active {
-  cursor: grabbing !important;
-}
-
-.quest-card.qt-card-epic .micro-move-btn {
-  border-color: rgba(216,208,189,0.12) !important;
-  color: rgba(216,208,189,0.58) !important;
-  background: rgba(0,0,0,0.18) !important;
-}
-
-.quest-card.qt-card-epic .micro-move-btn:disabled {
-  opacity: 0.28 !important;
-}
-
-@media (max-width: 700px) {
-  .quest-card.qt-card-epic .micro-item {
-    grid-template-columns: 32px 32px minmax(0, 1fr) 32px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-move-btn {
-    display: none !important;
-  }
-
-  .micro-state-btn,
-  .micro-drag-handle {
-    width: 32px !important;
-    height: 32px !important;
-    min-height: 32px !important;
-    border-radius: 9px !important;
   }
 }
 
@@ -11079,451 +10923,6 @@ header .player-card {
 @media(max-width:900px){#streakView .pa-shell{border:0;border-radius:0;padding:12px;min-height:100vh;}#streakView .pa-top{align-items:flex-start;flex-direction:column;padding:54px 14px 14px 14px;}#streakView .pa-manage-btn{top:12px;right:12px;min-height:34px;padding:0 11px;font-size:10px;}#streakView .pa-top-actions{width:100%;justify-content:flex-start;}#streakView .pa-badge{width:100%;text-align:center;}#streakView .pa-layout{grid-template-columns:1fr;}#streakView .pa-today-card{grid-template-columns:1fr;}#streakView .pa-today-score{width:100%;height:58px;border-radius:14px;}#streakView .pa-calendar-grid,#streakView .pa-weekdays{gap:5px;}#streakView .pa-day-cell{min-height:62px;border-radius:11px;padding:6px;}#streakView .pa-actions{justify-content:flex-end;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr auto;}.pa-manager-grid{grid-template-columns:1fr}.pa-add-task-row{grid-template-columns:1fr}.pa-manager-row{grid-template-columns:1fr}.pa-manager-actions{display:grid;grid-template-columns:1fr 1fr 1fr}.pa-manager-actions button{height:38px}.pa-modal-card{max-height:92vh;}}
 @media(max-width:480px){#streakView .pa-shell{padding:9px;}#streakView .pa-panel{padding:11px;border-radius:14px;}#streakView .pa-title h1{font-size:28px;}#streakView .pa-title p{font-size:12px;}#streakView .pa-weekdays{gap:3px;}#streakView .pa-calendar-grid{gap:4px;}#streakView .pa-weekday{font-size:8px;}#streakView .pa-day-cell{min-height:52px;border-radius:9px;padding:5px;}#streakView .pa-day-icon{font-size:14px;}#streakView .pa-day-mini{display:none;}#streakView .pa-month-title{font-size:15px;}#streakView .pa-calendar-header{grid-template-columns:36px 1fr 36px;}#streakView .pa-calendar-header button{height:36px;}#streakView .pa-stat-grid{grid-template-columns:1fr 1fr;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr;}#streakView .pa-actions{justify-content:flex-start;}.pa-modal-actions{display:grid;grid-template-columns:1fr;}}
 @media(max-width:1200px){.tabs .tab[data-view="streakView"]::after{content:"Streak" !important;}}
-
-
-/* ===== PHONE VIEW SWIPE NAVIGATION V1 ===== */
-/* Adds finger-swipe navigation between main app views while keeping the phone nav tabs. */
-@media (max-width: 900px) {
-  .content {
-    touch-action: pan-y;
-  }
-
-  .view {
-    min-height: 55vh;
-  }
-
-  .tabs .tab[data-view="streakView"]::after {
-    content: "Streak" !important;
-  }
-}
-
-
-/* ===== MICROTASK PHONE LAYOUT FIX + SWIPE SAFETY V30 ===== */
-/* Fixes microtask rows getting crushed on phone and prevents horizontal scroll from triggering tab swipe. */
-
-@media (max-width: 900px) {
-  .qt-micro-list,
-  .micro-list {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    gap: 8px !important;
-  }
-
-  .qt-micro-list .micro-item,
-  .micro-list .micro-item {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    display: grid !important;
-    grid-template-columns: auto minmax(0, 1fr) !important;
-    grid-template-areas:
-      "actions text" !important;
-    align-items: center !important;
-    gap: 10px !important;
-    padding: 9px 10px !important;
-    overflow: hidden !important;
-    border-radius: 12px !important;
-  }
-
-  .qt-micro-list .micro-item span,
-  .micro-list .micro-item span,
-  .qt-micro-list .micro-text,
-  .micro-list .micro-text,
-  .qt-micro-list .micro-task-text,
-  .micro-list .micro-task-text {
-    grid-area: text !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    overflow: hidden !important;
-    overflow-wrap: anywhere !important;
-    word-break: normal !important;
-    text-overflow: clip !important;
-    line-height: 1.35 !important;
-    font-size: 13px !important;
-  }
-
-  .qt-micro-list .micro-actions,
-  .micro-list .micro-actions,
-  .qt-micro-list .micro-status-actions,
-  .micro-list .micro-status-actions,
-  .qt-micro-list .micro-step-actions,
-  .micro-list .micro-step-actions {
-    grid-area: actions !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 5px !important;
-    flex: 0 0 auto !important;
-    width: auto !important;
-    min-width: 0 !important;
-  }
-
-  .qt-micro-list .micro-item button,
-  .micro-list .micro-item button,
-  .qt-micro-list .micro-done-btn,
-  .micro-list .micro-done-btn,
-  .qt-micro-list .micro-fail-btn,
-  .micro-list .micro-fail-btn,
-  .qt-micro-list .micro-skip-btn,
-  .micro-list .micro-skip-btn {
-    width: 42px !important;
-    min-width: 42px !important;
-    max-width: 42px !important;
-    height: 42px !important;
-    min-height: 42px !important;
-    padding: 0 !important;
-    display: inline-grid !important;
-    place-items: center !important;
-    border-radius: 12px !important;
-    font-size: 18px !important;
-    line-height: 1 !important;
-  }
-
-  .qt-micro-list .micro-drag-handle,
-  .micro-list .micro-drag-handle,
-  .qt-micro-list .micro-drag-grip,
-  .micro-list .micro-drag-grip {
-    width: 34px !important;
-    min-width: 34px !important;
-    height: 42px !important;
-    display: inline-grid !important;
-    place-items: center !important;
-    touch-action: none !important;
-  }
-
-  .quest-card.qt-card-epic .qt-micro-list,
-  .quest-card.qt-card-epic .micro-list {
-    margin-right: 10px !important;
-  }
-
-  .quest-card.qt-card-epic .qt-micro-list .micro-item,
-  .quest-card.qt-card-epic .micro-list .micro-item {
-    background: rgba(0,0,0,0.28) !important;
-    border-color: rgba(var(--quest-accent-rgb),0.14) !important;
-  }
-}
-
-/* Very small phones: keep buttons together but smaller. */
-@media (max-width: 430px) {
-  .qt-micro-list .micro-item,
-  .micro-list .micro-item {
-    grid-template-columns: auto minmax(0, 1fr) !important;
-    gap: 8px !important;
-    padding: 8px !important;
-  }
-
-  .qt-micro-list .micro-item button,
-  .micro-list .micro-item button,
-  .qt-micro-list .micro-done-btn,
-  .micro-list .micro-done-btn,
-  .qt-micro-list .micro-fail-btn,
-  .micro-list .micro-fail-btn {
-    width: 38px !important;
-    min-width: 38px !important;
-    max-width: 38px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    font-size: 17px !important;
-  }
-}
-
-
-/* ===== MICROTASK PHONE BUTTONS TOGETHER FIX V31 ===== */
-/* Fixes the screenshot issue: check and X stay together beside the task text.
-   Also hides the empty dotted drag square on phone so the row stops looking broken. */
-
-@media (max-width: 900px) {
-  .quest-card.qt-card-epic .micro-list,
-  .quest-card.qt-card-epic .qt-micro-list {
-    overflow: visible !important;
-    padding-right: 10px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item,
-  .quest-card.qt-card-epic .micro-list .micro-item {
-    position: relative !important;
-    display: grid !important;
-    grid-template-columns: 92px minmax(0, 1fr) !important;
-    grid-template-areas: "buttons text" !important;
-    align-items: center !important;
-    column-gap: 10px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    padding: 10px 12px !important;
-    overflow: hidden !important;
-  }
-
-  /* Put all microtask action controls in the same left-side lane. */
-  .quest-card.qt-card-epic .micro-actions,
-  .quest-card.qt-card-epic .micro-status-actions,
-  .quest-card.qt-card-epic .micro-step-actions,
-  .quest-card.qt-card-epic .micro-control-row,
-  .quest-card.qt-card-epic .micro-buttons {
-    grid-area: buttons !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 6px !important;
-    width: 92px !important;
-    min-width: 92px !important;
-    max-width: 92px !important;
-    justify-self: start !important;
-  }
-
-  /* Some versions render the buttons directly inside .micro-item.
-     Force the first two buttons to the left lane and stop the X from floating right. */
-  .quest-card.qt-card-epic .micro-item > button,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button,
-  .quest-card.qt-card-epic .micro-list .micro-item > button {
-    position: static !important;
-    inset: auto !important;
-    right: auto !important;
-    left: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    grid-area: buttons !important;
-    justify-self: start !important;
-    width: 42px !important;
-    min-width: 42px !important;
-    max-width: 42px !important;
-    height: 42px !important;
-    min-height: 42px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: inline-grid !important;
-    place-items: center !important;
-    border-radius: 12px !important;
-    font-size: 18px !important;
-    line-height: 1 !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .micro-list .micro-item > button:nth-of-type(2) {
-    margin-left: 48px !important;
-    margin-top: -42px !important;
-  }
-
-  /* Hide the empty dotted drag placeholder on phone. Desktop drag can stay untouched. */
-  .quest-card.qt-card-epic .micro-drag-handle,
-  .quest-card.qt-card-epic .micro-drag-grip,
-  .quest-card.qt-card-epic .micro-reorder-handle,
-  .quest-card.qt-card-epic .drag-handle {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    max-width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-  }
-
-  /* Text gets all remaining width and does not go underneath the X button. */
-  .quest-card.qt-card-epic .micro-item span,
-  .quest-card.qt-card-epic .micro-text,
-  .quest-card.qt-card-epic .micro-task-text,
-  .quest-card.qt-card-epic .step-text,
-  .quest-card.qt-card-epic .micro-label {
-    grid-area: text !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    justify-self: stretch !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-    line-height: 1.35 !important;
-    font-size: 15px !important;
-    font-weight: 850 !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .quest-card.qt-card-epic .micro-item,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item,
-  .quest-card.qt-card-epic .micro-list .micro-item {
-    grid-template-columns: 82px minmax(0, 1fr) !important;
-    column-gap: 8px !important;
-    padding: 9px 10px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-actions,
-  .quest-card.qt-card-epic .micro-status-actions,
-  .quest-card.qt-card-epic .micro-step-actions,
-  .quest-card.qt-card-epic .micro-control-row,
-  .quest-card.qt-card-epic .micro-buttons {
-    width: 82px !important;
-    min-width: 82px !important;
-    max-width: 82px !important;
-    gap: 5px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button,
-  .quest-card.qt-card-epic .micro-list .micro-item > button {
-    width: 38px !important;
-    min-width: 38px !important;
-    max-width: 38px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    font-size: 17px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .micro-list .micro-item > button:nth-of-type(2) {
-    margin-left: 43px !important;
-    margin-top: -38px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item span,
-  .quest-card.qt-card-epic .micro-text,
-  .quest-card.qt-card-epic .micro-task-text,
-  .quest-card.qt-card-epic .step-text,
-  .quest-card.qt-card-epic .micro-label {
-    font-size: 14px !important;
-  }
-}
-
-
-/* ===== MICROTASK PHONE HORIZONTAL VIEW FIX V32 ===== */
-/* Restores the old useful behavior: microtask rows can slide horizontally so you can see full controls/text,
-   but app tab-swipe still stays protected from triggering inside microtasks. */
-
-@media (max-width: 900px) {
-  .quest-card.qt-card-epic .micro-list,
-  .quest-card.qt-card-epic .qt-micro-list {
-    overflow-x: auto !important;
-    overflow-y: visible !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-    padding-right: 0 !important;
-    touch-action: pan-x pan-y !important;
-  }
-
-  .quest-card.qt-card-epic .micro-list::-webkit-scrollbar,
-  .quest-card.qt-card-epic .qt-micro-list::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item,
-  .quest-card.qt-card-epic .micro-list .micro-item {
-    width: max-content !important;
-    min-width: 100% !important;
-    max-width: none !important;
-    display: grid !important;
-    grid-template-columns: 42px 42px minmax(240px, 1fr) !important;
-    grid-template-areas: "done fail text" !important;
-    align-items: center !important;
-    column-gap: 7px !important;
-    overflow: visible !important;
-    padding: 10px 12px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button,
-  .quest-card.qt-card-epic .micro-list .micro-item > button {
-    position: static !important;
-    inset: auto !important;
-    transform: none !important;
-    margin: 0 !important;
-    width: 42px !important;
-    min-width: 42px !important;
-    max-width: 42px !important;
-    height: 42px !important;
-    min-height: 42px !important;
-    padding: 0 !important;
-    display: inline-grid !important;
-    place-items: center !important;
-    border-radius: 12px !important;
-    font-size: 18px !important;
-    line-height: 1 !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button:nth-of-type(1),
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button:nth-of-type(1),
-  .quest-card.qt-card-epic .micro-list .micro-item > button:nth-of-type(1) {
-    grid-area: done !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button:nth-of-type(2),
-  .quest-card.qt-card-epic .micro-list .micro-item > button:nth-of-type(2) {
-    grid-area: fail !important;
-  }
-
-  .quest-card.qt-card-epic .micro-actions,
-  .quest-card.qt-card-epic .micro-status-actions,
-  .quest-card.qt-card-epic .micro-step-actions,
-  .quest-card.qt-card-epic .micro-control-row,
-  .quest-card.qt-card-epic .micro-buttons {
-    display: contents !important;
-  }
-
-  .quest-card.qt-card-epic .micro-drag-handle,
-  .quest-card.qt-card-epic .micro-drag-grip,
-  .quest-card.qt-card-epic .micro-reorder-handle,
-  .quest-card.qt-card-epic .drag-handle {
-    display: none !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item span,
-  .quest-card.qt-card-epic .micro-text,
-  .quest-card.qt-card-epic .micro-task-text,
-  .quest-card.qt-card-epic .step-text,
-  .quest-card.qt-card-epic .micro-label {
-    grid-area: text !important;
-    min-width: 240px !important;
-    max-width: none !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-    line-height: 1.35 !important;
-    font-size: 15px !important;
-    font-weight: 850 !important;
-  }
-}
-
-@media (max-width: 430px) {
-  .quest-card.qt-card-epic .micro-item,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item,
-  .quest-card.qt-card-epic .micro-list .micro-item {
-    grid-template-columns: 38px 38px minmax(230px, 1fr) !important;
-    column-gap: 6px !important;
-    padding: 9px 10px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item > button,
-  .quest-card.qt-card-epic .qt-micro-list .micro-item > button,
-  .quest-card.qt-card-epic .micro-list .micro-item > button {
-    width: 38px !important;
-    min-width: 38px !important;
-    max-width: 38px !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    font-size: 17px !important;
-  }
-
-  .quest-card.qt-card-epic .micro-item span,
-  .quest-card.qt-card-epic .micro-text,
-  .quest-card.qt-card-epic .micro-task-text,
-  .quest-card.qt-card-epic .step-text,
-  .quest-card.qt-card-epic .micro-label {
-    min-width: 230px !important;
-    font-size: 14px !important;
-  }
-}
 
 </style>
 </head>
@@ -11660,7 +11059,7 @@ header .player-card {
             <select id="questType">
               <option value="main">Main Quest</option>
               <option value="side">Side Quest</option>
-              <option value="filler">Emergency Quest</option>
+              <option value="filler">Filler Quest</option>
             </select>
 
             <label for="questTitle">Quest name</label>
@@ -11746,7 +11145,7 @@ header .player-card {
           </div>
 
           <div class="panel quest-section-panel" data-section="filler">
-            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Emergency Quests</button>
+            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Filler Quests</button>
             <div id="fillerQuestList" class="quest-list collapsible-content"></div>
           </div>
 
@@ -11761,7 +11160,7 @@ header .player-card {
               <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
               <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
               <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
-              <button type="button" class="archive-filter" data-archive-filter="filler">Emergency</button>
+              <button type="button" class="archive-filter" data-archive-filter="filler">Filler</button>
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
@@ -12137,8 +11536,7 @@ header .player-card {
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
     var STORE_MISSION_TEXT = 'qt_everyday_mission_text_v1';
-    var VERSION = 'merged-old-save-v14-microtask-drag-xp-cut';
-    var microDragState = null;
+    var VERSION = 'merged-old-save-v13-microtask-draft-row-fix';
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
@@ -12646,7 +12044,7 @@ header .player-card {
     function getQuestTypeLabel(type, longLabel) {
       if (type === 'main') return longLabel ? 'Main Quest' : 'Main';
       if (type === 'side') return longLabel ? 'Side Quest' : 'Side';
-      if (type === 'filler') return longLabel ? 'Emergency Quest' : 'Emergency';
+      if (type === 'filler') return longLabel ? 'Filler Quest' : 'Filler';
       return longLabel ? 'Side Quest' : 'Side';
     }
 
@@ -12663,26 +12061,11 @@ header .player-card {
       return 'side';
     }
 
-    function getQuestBaseXp(quest) {
+    function getQuestXp(quest) {
       if (!quest) return 0;
       if (quest.type === 'main') return 5;
       if (quest.type === 'filler') return 1;
       return 2;
-    }
-
-    function getCompletedMicroTaskCount(quest) {
-      return (quest && quest.microTasks || []).filter(function(task) { return !!task.done; }).length;
-    }
-
-    function getQuestXp(quest) {
-      if (!quest) return 0;
-      var baseXp = getQuestBaseXp(quest);
-      var tasks = quest.microTasks || [];
-
-      if (quest.type !== 'main' || tasks.length === 0) return baseXp;
-
-      var done = getCompletedMicroTaskCount(quest);
-      return Math.max(0, Math.round(baseXp * (done / tasks.length)));
     }
 
     function awardQuestXpOnce(quest) {
@@ -13230,100 +12613,6 @@ function useMealPass() {
       renderAll();
     }
 
-
-    var phoneSwipeViewOrder = ['questsView', 'elementsView', 'streakView', 'saveView', 'archiveView'];
-    var phoneSwipeState = {
-      tracking: false,
-      startX: 0,
-      startY: 0,
-      startTime: 0
-    };
-
-    function getCurrentViewId() {
-      var activeView = document.querySelector('.view.active');
-      return activeView ? activeView.id : 'questsView';
-    }
-
-    function isPhoneSwipeMode() {
-      return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
-    }
-
-    function isPhoneSwipeBlockedTarget(target) {
-      if (!target) return true;
-      return !!target.closest(
-        'button, input, textarea, select, a, [contenteditable="true"], .tabs, .modal.open, ' +
-        '.micro-list, .qt-micro-list, .micro-item, .micro-drag-handle, .micro-drag-grip, .micro-drag-actions, ' +
-        '.qt-more-actions, .quest-more-actions, .quest-card, .save-list, .save-card, .draft-list, .draft-item, ' +
-        '#streakSetupModal, #streakDayModal, #paDayModal, #paTaskManagerModal'
-      );
-    }
-
-    function switchPhoneViewBySwipe(direction) {
-      var currentId = getCurrentViewId();
-      var currentIndex = phoneSwipeViewOrder.indexOf(currentId);
-      if (currentIndex === -1) return;
-
-      var nextIndex = currentIndex + direction;
-      if (nextIndex < 0 || nextIndex >= phoneSwipeViewOrder.length) return;
-
-      showView(phoneSwipeViewOrder[nextIndex]);
-    }
-
-    function bindPhoneViewSwipe() {
-      var swipeRoot = document.querySelector('.content');
-      if (!swipeRoot || swipeRoot.getAttribute('data-phone-swipe-bound') === 'true') return;
-
-      swipeRoot.setAttribute('data-phone-swipe-bound', 'true');
-
-      swipeRoot.addEventListener('touchstart', function(event) {
-        if (!isPhoneSwipeMode()) return;
-        if (!event.touches || event.touches.length !== 1) return;
-        if (isPhoneSwipeBlockedTarget(event.target)) return;
-
-        var touch = event.touches[0];
-        phoneSwipeState.tracking = true;
-        phoneSwipeState.startX = touch.clientX;
-        phoneSwipeState.startY = touch.clientY;
-        phoneSwipeState.startTime = Date.now();
-      }, { passive: true });
-
-      swipeRoot.addEventListener('touchend', function(event) {
-        if (!phoneSwipeState.tracking) return;
-        phoneSwipeState.tracking = false;
-
-        if (!isPhoneSwipeMode()) return;
-        if (!event.changedTouches || event.changedTouches.length !== 1) return;
-
-        var touch = event.changedTouches[0];
-        var diffX = touch.clientX - phoneSwipeState.startX;
-        var diffY = touch.clientY - phoneSwipeState.startY;
-        var elapsed = Date.now() - phoneSwipeState.startTime;
-
-        var horizontalDistance = Math.abs(diffX);
-        var verticalDistance = Math.abs(diffY);
-
-        if (elapsed > 700) return;
-        if (horizontalDistance < 135) return;
-        if (horizontalDistance < verticalDistance * 2.4) return;
-
-        var screenWidth = window.innerWidth || document.documentElement.clientWidth || 0;
-        var edgeZone = Math.min(48, Math.max(28, screenWidth * 0.12));
-        var startedNearLeftEdge = phoneSwipeState.startX <= edgeZone;
-        var startedNearRightEdge = phoneSwipeState.startX >= (screenWidth - edgeZone);
-
-        // To avoid fighting normal horizontal content movement, tab switching only happens from screen edges.
-        if (diffX < 0 && startedNearRightEdge) {
-          switchPhoneViewBySwipe(1);
-        } else if (diffX > 0 && startedNearLeftEdge) {
-          switchPhoneViewBySwipe(-1);
-        }
-      }, { passive: true });
-
-      swipeRoot.addEventListener('touchcancel', function() {
-        phoneSwipeState.tracking = false;
-      }, { passive: true });
-    }
-
     function moveArrayItem(array, fromIndex, direction) {
       var toIndex = fromIndex + direction;
       if (toIndex < 0 || toIndex >= array.length) return false;
@@ -13465,90 +12754,6 @@ function useMealPass() {
       requestAnimationFrame(function() {
         openQuestStepsCard(getQuestCardById(questId));
       });
-    }
-
-    function moveMicroTaskToIndex(questId, taskId, targetIndex) {
-      var changed = false;
-      var quests = getQuests().map(function(quest) {
-        if (quest.id !== questId) return quest;
-        var tasks = (quest.microTasks || []).slice();
-        var fromIndex = tasks.findIndex(function(task) { return task.id === taskId; });
-        if (fromIndex === -1) return quest;
-        if (targetIndex < 0) targetIndex = 0;
-        if (targetIndex >= tasks.length) targetIndex = tasks.length - 1;
-        if (fromIndex === targetIndex) return quest;
-        var moved = tasks.splice(fromIndex, 1)[0];
-        tasks.splice(targetIndex, 0, moved);
-        changed = true;
-        return Object.assign({}, quest, {
-          microTasks: tasks,
-          updatedAt: nowIso()
-        });
-      });
-
-      if (!changed) return;
-      setQuests(quests);
-      byId('questStatusText').textContent = 'Microtask order updated.';
-      beep('save');
-      renderAll();
-      requestAnimationFrame(function() {
-        openQuestStepsCard(getQuestCardById(questId));
-      });
-    }
-
-    function clearMicroDragVisuals() {
-      document.querySelectorAll('.micro-item.dragging, .micro-item.drag-over').forEach(function(item) {
-        item.classList.remove('dragging');
-        item.classList.remove('drag-over');
-      });
-      document.body.classList.remove('micro-dragging-active');
-    }
-
-    function startMicroPointerDrag(row, pointerId) {
-      if (!row) return;
-      var card = row.closest('[data-quest-id]');
-      if (!card) return;
-
-      microDragState = {
-        active: true,
-        pointerId: pointerId,
-        questId: card.getAttribute('data-quest-id'),
-        taskId: row.getAttribute('data-task-id'),
-        sourceRow: row,
-        targetRow: row
-      };
-
-      row.classList.add('dragging');
-      document.body.classList.add('micro-dragging-active');
-    }
-
-    function updateMicroPointerDrag(event) {
-      if (!microDragState || !microDragState.active) return;
-      event.preventDefault();
-
-      var element = document.elementFromPoint(event.clientX, event.clientY);
-      var row = element ? element.closest('.micro-item[data-task-id]') : null;
-      if (!row) return;
-      var card = row.closest('[data-quest-id]');
-      if (!card || card.getAttribute('data-quest-id') !== microDragState.questId) return;
-
-      document.querySelectorAll('.micro-item.drag-over').forEach(function(item) {
-        item.classList.remove('drag-over');
-      });
-      row.classList.add('drag-over');
-      microDragState.targetRow = row;
-    }
-
-    function finishMicroPointerDrag() {
-      if (!microDragState) return;
-      var state = microDragState;
-      microDragState = null;
-      clearMicroDragVisuals();
-
-      if (!state.active || !state.targetRow) return;
-      var targetIndex = Number(state.targetRow.getAttribute('data-task-index'));
-      if (Number.isNaN(targetIndex)) return;
-      moveMicroTaskToIndex(state.questId, state.taskId, targetIndex);
     }
 
     function editMicroTask(questId, taskId) {
@@ -13933,7 +13138,7 @@ function useMealPass() {
       });
 
       if (sourceQuests.length === 0) {
-        byId('questStatusText').textContent = 'No active Main, Side, or Emergency quests to save as a day template.';
+        byId('questStatusText').textContent = 'No active Main, Side, or Filler quests to save as a day template.';
         beep('fail');
         return;
       }
@@ -14034,7 +13239,7 @@ function useMealPass() {
 
         card.innerHTML =
           '<div class="default-title">' + escapeHtml(template.name || 'Day Template') + '</div>' +
-          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' emergency · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
+          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' filler · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
           '<div class="day-template-actions">' +
             '<button type="button" class="action-add-quest" data-day-template-action="add">Add To Board</button>' +
             '<button type="button" class="action-progress" data-day-template-action="replace">Replace Board</button>' +
@@ -14090,7 +13295,6 @@ function useMealPass() {
 
       setQuests(quests);
       if (quest.status === 'complete') awardQuestXpOnce(quest);
-      syncActiveSaveFromCurrentState();
       beep('click');
       resetQuestForm();
       renderAll();
@@ -14109,6 +13313,9 @@ function useMealPass() {
         if (quest.id !== id) return quest;
 
         var tasks = quest.microTasks || [];
+        if (nextStatus === 'complete') {
+          tasks = tasks.map(function(task) { return Object.assign({}, task, { done: true }); });
+        }
 
         var updated = Object.assign({}, quest, {
           status: nextStatus,
@@ -14124,14 +13331,13 @@ function useMealPass() {
 
       setQuests(quests);
       if (completedQuest) awardQuestXpOnce(completedQuest);
-      syncActiveSaveFromCurrentState();
       if (nextStatus === 'complete') beep('complete');
       else if (nextStatus === 'failed') beep('fail');
       else beep('click');
       renderAll();
     }
 
-    function setMicroTaskState(questId, taskId, state) {
+    function toggleMicroTask(questId, taskId) {
       var time = nowIso();
       var completedQuest = null;
       var questBeforeChange = getQuests().find(function(item) { return item.id === questId; });
@@ -14141,25 +13347,7 @@ function useMealPass() {
 
         var tasks = (quest.microTasks || []).map(function(task) {
           if (task.id !== taskId) return task;
-
-          if (state === 'done') {
-            return Object.assign({}, task, {
-              done: !task.done,
-              failed: false
-            });
-          }
-
-          if (state === 'failed') {
-            return Object.assign({}, task, {
-              done: false,
-              failed: !task.failed
-            });
-          }
-
-          return Object.assign({}, task, {
-            done: false,
-            failed: false
-          });
+          return Object.assign({}, task, { done: !task.done });
         });
 
         var total = tasks.length;
@@ -14185,13 +13373,8 @@ function useMealPass() {
 
       setQuests(quests);
       if (completedQuest) awardQuestXpOnce(completedQuest);
-      syncActiveSaveFromCurrentState();
-      beep(state === 'failed' ? 'fail' : 'click');
+      beep('click');
       renderAll();
-    }
-
-    function toggleMicroTask(questId, taskId) {
-      setMicroTaskState(questId, taskId, 'done');
     }
 
     function deleteQuest(id) {
@@ -14201,7 +13384,6 @@ function useMealPass() {
       }
 
       setQuests(getQuests().filter(function(quest) { return quest.id !== id; }));
-      syncActiveSaveFromCurrentState();
       byId('questStatusText').textContent = 'Quest deleted.';
       beep('fail');
       renderAll();
@@ -14275,7 +13457,7 @@ function useMealPass() {
         lines.push('None added.');
       } else {
         (quest.microTasks || []).forEach(function(task) {
-          lines.push((task.done ? '[x] ' : task.failed ? '[failed] ' : '[ ] ') + task.text);
+          lines.push((task.done ? '[x] ' : '[ ] ') + task.text);
         });
       }
 
@@ -14328,11 +13510,9 @@ function useMealPass() {
         taskNodeHtml += '<span class="qt-task-node ' + (nodeIndex < doneCount ? 'done' : '') + '"></span>';
       }
 
-      var baseXpValue = getQuestBaseXp(quest);
-      var xpLabel = quest.type === 'main' && totalCount > 0 && xpValue !== baseXpValue ? String(xpValue) + '/' + String(baseXpValue) + ' XP' : String(xpValue) + ' XP';
       var rewardHtml =
         '<div class="qt-reward-row">' +
-          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(xpLabel) + '</span>' +
+          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
           '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
         '</div>';
 
@@ -14344,15 +13524,12 @@ function useMealPass() {
         microToggleHtml += '<button class="steps-toggle qt-steps-button" data-action="toggleSteps">View Tasks</button>';
         microDrawerHtml += '<div class="micro-list hidden qt-micro-list">';
         tasks.forEach(function(task, taskIndex) {
-          var taskStateClass = task.done ? 'done' : task.failed ? 'failed' : '';
-          microDrawerHtml += '<div class="micro-item ' + taskStateClass + '" data-task-id="' + task.id + '" data-task-index="' + taskIndex + '">';
-          microDrawerHtml += '<button type="button" class="micro-state-btn micro-check-btn ' + (task.done ? 'active' : '') + '" data-action="toggleTask" data-task-id="' + task.id + '" aria-label="Complete microtask">✓</button>';
-          microDrawerHtml += '<button type="button" class="micro-state-btn micro-cross-btn ' + (task.failed ? 'active' : '') + '" data-action="failTask" data-task-id="' + task.id + '" aria-label="Mark microtask failed">×</button>';
+          microDrawerHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
+          microDrawerHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
           microDrawerHtml += '<span class="micro-task-text">' + (taskIndex + 1) + '. ' + escapeHtml(task.text) + '</span>';
-          microDrawerHtml += '<span class="micro-drag-handle" draggable="true" role="button" aria-label="Hold and drag to reorder microtask" title="Hold and drag to reorder">↕</span>';
           microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>↑</button>';
           microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>↓</button>';
-          microDrawerHtml += '</div>';
+          microDrawerHtml += '</label>';
         });
         microDrawerHtml += '</div>';
       }
@@ -14570,7 +13747,6 @@ function useMealPass() {
       data.totalXp = Math.max(0, finalXp);
       if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
       setXpData(data);
-      syncActiveSaveFromCurrentState();
 
       byId('saveStatusText').textContent = 'XP updated manually.';
       beep('save');
@@ -14653,7 +13829,7 @@ function useMealPass() {
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Emergency +1';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Filler +1';
       syncManualXpInputs();
       renderRoutineTop();
     }
@@ -14689,25 +13865,6 @@ function useMealPass() {
         savedRoutine: getSavedRoutineData(),
         missionText: getMissionText()
       };
-    }
-
-    function syncActiveSaveFromCurrentState() {
-      var activeId = getActiveSaveId();
-      if (!activeId) return;
-
-      var saves = getSaves();
-      var index = saves.findIndex(function(item) { return item.id === activeId; });
-      if (index < 0) return;
-
-      var existing = saves[index] || {};
-      var now = new Date();
-      saves[index] = buildSaveFile(
-        existing.id,
-        existing.name || 'Quest Day',
-        existing.createdAt || existing.timestamp || now.toISOString(),
-        now
-      );
-      setSaves(saves);
     }
 
     function createSaveSnapshot(resetAfterSave) {
@@ -14799,17 +13956,10 @@ function useMealPass() {
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
     if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
     if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
-    // XP and level rewards are lifetime player progress. Loading an older day should not roll them back.
-    // Save-specific quest rewards still load with the day so each day keeps its own reward vault state.
-    if (save.questRewards && typeof save.questRewards === 'object') {
-      setQuestRewardData(save.questRewards);
-    } else if (save.rewards && typeof save.rewards === 'object') {
-      if (save.rewards.questRewards && typeof save.rewards.questRewards === 'object') {
-        setQuestRewardData(save.rewards.questRewards);
-      } else if (save.rewards.questVault || save.rewards.awardedQuestRewardIds || save.rewards.usedQuestRewards) {
-        setQuestRewardData(save.rewards);
-      }
-    }
+    if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
+    if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
+    if (save.questRewards && typeof save.questRewards === 'object') setQuestRewardData(save.questRewards);
+    if (!save.levelRewards && !save.questRewards && save.rewards && typeof save.rewards === 'object') setRewardData(save.rewards);
     if (save.routine && typeof save.routine === 'object') setRoutineData(save.routine);
     if (save.savedRoutine && typeof save.savedRoutine === 'object') setSavedRoutineData(save.savedRoutine);
 
@@ -14902,7 +14052,6 @@ function useMealPass() {
       });
 
       setQuests(active);
-      syncActiveSaveFromCurrentState();
       byId('saveStatusText').textContent = 'Completed quests cleared and XP adjusted.';
       beep('fail');
       renderAll();
@@ -15497,8 +14646,6 @@ function useMealPass() {
         showView(button.getAttribute('data-view'));
       });
 
-      bindPhoneViewSwipe();
-
       byId('addMicroBtn').addEventListener('click', addDraftTask);
       byId('openDefaultsBtn').addEventListener('click', function(event) {
         event.preventDefault();
@@ -15585,69 +14732,8 @@ function useMealPass() {
         byId('questRewardEmoji').value = byId('questRewardCustomEmoji').value.trim() || base.emoji;
       });
       byId('submitQuestBtn').addEventListener('click', saveQuestFromForm);
+
       byId('cancelEditBtn').addEventListener('click', function() {
-      document.body.addEventListener('dragstart', function(event) {
-        var handle = event.target.closest('.micro-drag-handle');
-        if (!handle) return;
-        var row = handle.closest('.micro-item[data-task-id]');
-        if (!row) return;
-        var card = row.closest('[data-quest-id]');
-        if (!card) return;
-        event.dataTransfer.setData('text/plain', card.getAttribute('data-quest-id') + '|' + row.getAttribute('data-task-id'));
-        event.dataTransfer.effectAllowed = 'move';
-        row.classList.add('dragging');
-      });
-
-      document.body.addEventListener('dragover', function(event) {
-        var row = event.target.closest('.micro-item[data-task-id]');
-        if (!row) return;
-        event.preventDefault();
-        row.classList.add('drag-over');
-      });
-
-      document.body.addEventListener('dragleave', function(event) {
-        var row = event.target.closest('.micro-item[data-task-id]');
-        if (row) row.classList.remove('drag-over');
-      });
-
-      document.body.addEventListener('drop', function(event) {
-        var row = event.target.closest('.micro-item[data-task-id]');
-        if (!row) return;
-        event.preventDefault();
-        var data = event.dataTransfer.getData('text/plain').split('|');
-        var card = row.closest('[data-quest-id]');
-        if (!card || data[0] !== card.getAttribute('data-quest-id')) return;
-        moveMicroTaskToIndex(data[0], data[1], Number(row.getAttribute('data-task-index')));
-        clearMicroDragVisuals();
-      });
-
-      document.body.addEventListener('dragend', clearMicroDragVisuals);
-
-      document.body.addEventListener('pointerdown', function(event) {
-        var handle = event.target.closest('.micro-drag-handle');
-        if (!handle) return;
-        var row = handle.closest('.micro-item[data-task-id]');
-        if (!row) return;
-        microDragState = {
-          active: false,
-          timer: setTimeout(function() {
-            startMicroPointerDrag(row, event.pointerId);
-          }, 220)
-        };
-      });
-
-      document.body.addEventListener('pointermove', updateMicroPointerDrag, { passive: false });
-      document.body.addEventListener('pointerup', function() {
-        if (microDragState && microDragState.timer) clearTimeout(microDragState.timer);
-        finishMicroPointerDrag();
-      });
-      document.body.addEventListener('pointercancel', function() {
-        if (microDragState && microDragState.timer) clearTimeout(microDragState.timer);
-        microDragState = null;
-        clearMicroDragVisuals();
-      });
-
-
         resetQuestForm();
         byId('questStatusText').textContent = 'Edit cancelled.';
       });
@@ -15768,32 +14854,6 @@ function useMealPass() {
             }
             beep('click');
           }
-          if (action === 'toggleTask') {
-            event.preventDefault();
-            event.stopPropagation();
-            var keepOpenDone = card.classList.contains('steps-open');
-            toggleMicroTask(questId, actionButton.getAttribute('data-task-id'));
-            if (keepOpenDone) {
-              requestAnimationFrame(function() {
-                openQuestStepsCard(getQuestCardById(questId));
-              });
-            }
-            return;
-          }
-
-          if (action === 'failTask') {
-            event.preventDefault();
-            event.stopPropagation();
-            var keepOpenFailed = card.classList.contains('steps-open');
-            setMicroTaskState(questId, actionButton.getAttribute('data-task-id'), 'failed');
-            if (keepOpenFailed) {
-              requestAnimationFrame(function() {
-                openQuestStepsCard(getQuestCardById(questId));
-              });
-            }
-            return;
-          }
-
           if (action === 'moveTaskUp' || action === 'moveTaskDown') {
             event.preventDefault();
             event.stopPropagation();
