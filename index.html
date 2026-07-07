@@ -11097,6 +11097,138 @@ header .player-card {
   }
 }
 
+
+/* ===== MICROTASK PHONE LAYOUT FIX + SWIPE SAFETY V30 ===== */
+/* Fixes microtask rows getting crushed on phone and prevents horizontal scroll from triggering tab swipe. */
+
+@media (max-width: 900px) {
+  .qt-micro-list,
+  .micro-list {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    gap: 8px !important;
+  }
+
+  .qt-micro-list .micro-item,
+  .micro-list .micro-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    grid-template-areas:
+      "actions text" !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 9px 10px !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+  }
+
+  .qt-micro-list .micro-item span,
+  .micro-list .micro-item span,
+  .qt-micro-list .micro-text,
+  .micro-list .micro-text,
+  .qt-micro-list .micro-task-text,
+  .micro-list .micro-task-text {
+    grid-area: text !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    text-overflow: clip !important;
+    line-height: 1.35 !important;
+    font-size: 13px !important;
+  }
+
+  .qt-micro-list .micro-actions,
+  .micro-list .micro-actions,
+  .qt-micro-list .micro-status-actions,
+  .micro-list .micro-status-actions,
+  .qt-micro-list .micro-step-actions,
+  .micro-list .micro-step-actions {
+    grid-area: actions !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 5px !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .qt-micro-list .micro-item button,
+  .micro-list .micro-item button,
+  .qt-micro-list .micro-done-btn,
+  .micro-list .micro-done-btn,
+  .qt-micro-list .micro-fail-btn,
+  .micro-list .micro-fail-btn,
+  .qt-micro-list .micro-skip-btn,
+  .micro-list .micro-skip-btn {
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    border-radius: 12px !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+  }
+
+  .qt-micro-list .micro-drag-handle,
+  .micro-list .micro-drag-handle,
+  .qt-micro-list .micro-drag-grip,
+  .micro-list .micro-drag-grip {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 42px !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    touch-action: none !important;
+  }
+
+  .quest-card.qt-card-epic .qt-micro-list,
+  .quest-card.qt-card-epic .micro-list {
+    margin-right: 10px !important;
+  }
+
+  .quest-card.qt-card-epic .qt-micro-list .micro-item,
+  .quest-card.qt-card-epic .micro-list .micro-item {
+    background: rgba(0,0,0,0.28) !important;
+    border-color: rgba(var(--quest-accent-rgb),0.14) !important;
+  }
+}
+
+/* Very small phones: keep buttons together but smaller. */
+@media (max-width: 430px) {
+  .qt-micro-list .micro-item,
+  .micro-list .micro-item {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    gap: 8px !important;
+    padding: 8px !important;
+  }
+
+  .qt-micro-list .micro-item button,
+  .micro-list .micro-item button,
+  .qt-micro-list .micro-done-btn,
+  .micro-list .micro-done-btn,
+  .qt-micro-list .micro-fail-btn,
+  .micro-list .micro-fail-btn {
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    font-size: 17px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -12824,7 +12956,8 @@ function useMealPass() {
       if (!target) return true;
       return !!target.closest(
         'button, input, textarea, select, a, [contenteditable="true"], .tabs, .modal.open, ' +
-        '.micro-drag-handle, .micro-drag-grip, .micro-drag-actions, .qt-more-actions, .quest-more-actions, ' +
+        '.micro-list, .qt-micro-list, .micro-item, .micro-drag-handle, .micro-drag-grip, .micro-drag-actions, ' +
+        '.qt-more-actions, .quest-more-actions, .quest-card, .save-list, .save-card, .draft-list, .draft-item, ' +
         '#streakSetupModal, #streakDayModal, #paDayModal, #paTaskManagerModal'
       );
     }
@@ -12873,13 +13006,19 @@ function useMealPass() {
         var horizontalDistance = Math.abs(diffX);
         var verticalDistance = Math.abs(diffY);
 
-        if (elapsed > 900) return;
-        if (horizontalDistance < 85) return;
-        if (horizontalDistance < verticalDistance * 1.35) return;
+        if (elapsed > 700) return;
+        if (horizontalDistance < 135) return;
+        if (horizontalDistance < verticalDistance * 2.4) return;
 
-        if (diffX < 0) {
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+        var edgeZone = Math.min(48, Math.max(28, screenWidth * 0.12));
+        var startedNearLeftEdge = phoneSwipeState.startX <= edgeZone;
+        var startedNearRightEdge = phoneSwipeState.startX >= (screenWidth - edgeZone);
+
+        // To avoid fighting normal horizontal content movement, tab switching only happens from screen edges.
+        if (diffX < 0 && startedNearRightEdge) {
           switchPhoneViewBySwipe(1);
-        } else {
+        } else if (diffX > 0 && startedNearLeftEdge) {
           switchPhoneViewBySwipe(-1);
         }
       }, { passive: true });
