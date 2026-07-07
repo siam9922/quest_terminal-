@@ -10570,66 +10570,66 @@ header .player-card {
 }
 
 
-/* ===== FILLER QUESTS FEATURE V34 ===== */
+/* ===== EMERGENCY QUESTS FEATURE V35 ===== */
 #questsView .quest-section-panel[data-section="filler"] {
-  border-color: rgba(225,225,225,0.26) !important;
+  border-color: rgba(255,59,59,0.38) !important;
   background:
-    radial-gradient(circle at 50% 0%, rgba(235,235,235,0.07), transparent 36%),
-    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
-    linear-gradient(180deg, #121212, #050505) !important;
+    radial-gradient(circle at 50% 0%, rgba(255,59,59,0.12), transparent 38%),
+    linear-gradient(180deg, rgba(255,104,83,0.035), transparent 42%),
+    linear-gradient(180deg, #160909, #050202) !important;
 }
 
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #e8e8e8 !important;
+  color: #ffb4a8 !important;
   text-shadow:
-    0 0 14px rgba(235,235,235,0.20),
-    0 0 28px rgba(235,235,235,0.08) !important;
-  border-bottom-color: rgba(225,225,225,0.22) !important;
+    0 0 14px rgba(255,59,59,0.34),
+    0 0 28px rgba(255,104,83,0.14) !important;
+  border-bottom-color: rgba(255,59,59,0.28) !important;
 }
 
 .quest-card.filler {
-  border-color: rgba(225,225,225,0.42) !important;
-  box-shadow: inset 5px 0 0 #cfcfcf, 0 12px 28px rgba(0,0,0,0.34) !important;
+  border-color: rgba(255,59,59,0.48) !important;
+  box-shadow: inset 5px 0 0 #ff3b3b, 0 12px 28px rgba(0,0,0,0.34), 0 0 18px rgba(255,59,59,0.10) !important;
 }
 
 .quest-card.qt-card-epic.filler {
-  --quest-accent: #dcdcdc;
-  --quest-accent-rgb: 220,220,220;
-  border-color: rgba(220,220,220,0.44) !important;
+  --quest-accent: #ff3b3b;
+  --quest-accent-rgb: 255,59,59;
+  border-color: rgba(255,59,59,0.50) !important;
   background:
-    linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.28) 44%, rgba(220,220,220,0.07) 100%),
-    radial-gradient(circle at 72% 30%, rgba(235,235,235,0.12), transparent 35%),
-    linear-gradient(180deg, #121212 0%, #050505 100%) !important;
+    linear-gradient(90deg, rgba(0,0,0,0.84), rgba(26,4,4,0.36) 44%, rgba(255,59,59,0.10) 100%),
+    radial-gradient(circle at 72% 30%, rgba(255,59,59,0.16), transparent 35%),
+    linear-gradient(180deg, #170707 0%, #050202 100%) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-type-pill {
-  border-color: rgba(235,235,235,0.44) !important;
-  color: #f1f1f1 !important;
+  border-color: rgba(255,59,59,0.54) !important;
+  color: #ffe3dd !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.16), transparent 60%),
-    rgba(0,0,0,0.36) !important;
+    radial-gradient(circle at 0% 0%, rgba(255,104,83,0.22), transparent 60%),
+    rgba(34,0,0,0.42) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-crest-symbol {
-  color: #f2f2f2 !important;
-  border-color: rgba(230,230,230,0.48) !important;
+  color: #ffe3dd !important;
+  border-color: rgba(255,59,59,0.56) !important;
   background:
-    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 48%),
-    linear-gradient(180deg, rgba(235,235,235,0.10), rgba(0,0,0,0.66)) !important;
+    radial-gradient(circle at 50% 35%, rgba(255,104,83,0.22), transparent 48%),
+    linear-gradient(180deg, rgba(255,59,59,0.16), rgba(0,0,0,0.70)) !important;
   text-shadow:
-    0 0 9px rgba(255,255,255,0.62),
-    0 0 20px rgba(220,220,220,0.24) !important;
+    0 0 9px rgba(255,59,59,0.66),
+    0 0 20px rgba(255,104,83,0.28) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-art-orb::before {
-  content: "○" !important;
-  color: #f1f1f1 !important;
+  content: "!" !important;
+  color: #ffb4a8 !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-progress-fill {
-  background: linear-gradient(90deg, #9f9f9f, #f1f1f1) !important;
-  box-shadow: 0 0 12px rgba(235,235,235,0.28) !important;
+  background: linear-gradient(90deg, #9f1f1f, #ff3b3b, #ff8a75) !important;
+  box-shadow: 0 0 12px rgba(255,59,59,0.32) !important;
 }
 
 
@@ -10765,13 +10765,13 @@ header .player-card {
   letter-spacing: 0.5px !important;
 }
 
-/* Filler keeps gray/white seriousness instead of colorful fantasy */
+/* Emergency quests use danger red without changing the quest type data key */
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #f1f1ea !important;
+  color: #ffb4a8 !important;
   text-shadow:
-    0 0 10px rgba(255,255,255,0.16),
-    0 0 22px rgba(255,255,255,0.06) !important;
+    0 0 10px rgba(255,59,59,0.28),
+    0 0 22px rgba(255,104,83,0.10) !important;
 }
 
 /* Scheduled reads as cyan/terminal, but still uses the serious display font */
@@ -10792,6 +10792,308 @@ header .player-card {
   #questsView .quest-card.qt-card-epic .qt-title,
   #questsView .quest-title {
     letter-spacing: 0.18px !important;
+  }
+}
+
+
+
+/* ===== MICROTASK SOFT VISUALS + DRAG REORDER + XP CUT V14 ===== */
+.quest-card.qt-card-epic .micro-list,
+.quest-card.qt-card-epic .qt-micro-list {
+  gap: 8px !important;
+  border-top: 1px solid rgba(var(--quest-accent-rgb),0.14) !important;
+  padding-top: 10px !important;
+}
+
+.quest-card.qt-card-epic .micro-item {
+  display: grid !important;
+  grid-template-columns: 34px 34px minmax(0, 1fr) 34px 34px 34px !important;
+  align-items: center !important;
+  gap: 7px !important;
+  min-height: 46px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(216,208,189,0.13) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 48%),
+    rgba(0,0,0,0.24) !important;
+  padding: 7px !important;
+  color: #ddd4c4 !important;
+  cursor: default !important;
+  touch-action: pan-y !important;
+  user-select: text !important;
+  transition: border-color 0.14s ease, background 0.14s ease, transform 0.14s ease, opacity 0.14s ease;
+}
+
+
+.quest-card.qt-card-epic .micro-item.done {
+  border-color: rgba(69,211,138,0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(69,211,138,0.08), transparent 52%),
+    rgba(0,0,0,0.24) !important;
+}
+
+.quest-card.qt-card-epic .micro-item.failed {
+  border-color: rgba(198,96,96,0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(198,96,96,0.08), transparent 52%),
+    rgba(0,0,0,0.24) !important;
+}
+
+.quest-card.qt-card-epic .micro-item.dragging {
+  opacity: 0.55 !important;
+  transform: scale(0.99) !important;
+  border-color: rgba(var(--quest-accent-rgb),0.58) !important;
+}
+
+.quest-card.qt-card-epic .micro-item.drag-over {
+  border-color: rgba(var(--quest-accent-rgb),0.86) !important;
+  box-shadow: 0 0 0 2px rgba(var(--quest-accent-rgb),0.16), 0 0 18px rgba(var(--quest-accent-rgb),0.10) !important;
+}
+
+.micro-dragging-active {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+.quest-card.qt-card-epic .micro-task-text {
+  color: #d8d0bd !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.32 !important;
+  letter-spacing: 0.1px !important;
+  text-transform: none !important;
+  overflow-wrap: anywhere !important;
+}
+
+.quest-card.qt-card-epic .micro-item.done .micro-task-text {
+  color: rgba(201,255,216,0.72) !important;
+  text-decoration: none !important;
+}
+
+.quest-card.qt-card-epic .micro-item.failed .micro-task-text {
+  color: rgba(255,198,198,0.72) !important;
+  text-decoration: none !important;
+}
+
+.micro-state-btn,
+.quest-card.qt-card-epic .micro-move-btn,
+.micro-drag-handle {
+  width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  font-size: 15px !important;
+  font-weight: 950 !important;
+  line-height: 1 !important;
+}
+
+.micro-state-btn {
+  border: 1px solid rgba(216,208,189,0.13) !important;
+  background: rgba(0,0,0,0.22) !important;
+  color: rgba(216,208,189,0.54) !important;
+}
+
+.micro-check-btn.active {
+  border-color: rgba(69,211,138,0.70) !important;
+  color: #c9ffd8 !important;
+  background: rgba(69,211,138,0.16) !important;
+  box-shadow: 0 0 12px rgba(69,211,138,0.10) !important;
+}
+
+.micro-cross-btn.active {
+  border-color: rgba(198,96,96,0.70) !important;
+  color: #ffc6c6 !important;
+  background: rgba(198,96,96,0.16) !important;
+  box-shadow: 0 0 12px rgba(198,96,96,0.10) !important;
+}
+
+.micro-drag-handle {
+  border: 1px dashed rgba(216,208,189,0.18) !important;
+  color: rgba(216,208,189,0.48) !important;
+  background: rgba(0,0,0,0.18) !important;
+  cursor: grab !important;
+  touch-action: none !important;
+  user-select: none !important;
+}
+
+.micro-drag-handle:active {
+  cursor: grabbing !important;
+}
+
+.quest-card.qt-card-epic .micro-move-btn {
+  border-color: rgba(216,208,189,0.12) !important;
+  color: rgba(216,208,189,0.58) !important;
+  background: rgba(0,0,0,0.18) !important;
+}
+
+.quest-card.qt-card-epic .micro-move-btn:disabled {
+  opacity: 0.28 !important;
+}
+
+@media (max-width: 700px) {
+  .quest-card.qt-card-epic .micro-item {
+    grid-template-columns: 32px 32px minmax(0, 1fr) 32px !important;
+  }
+
+  .quest-card.qt-card-epic .micro-move-btn {
+    display: none !important;
+  }
+
+  .micro-state-btn,
+  .micro-drag-handle {
+    width: 32px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    border-radius: 9px !important;
+  }
+}
+
+
+
+/* ===== PROGRESS ARCHIVE MERGED V1 ===== */
+#streakView{
+  --pa-bg:#020407;
+  --pa-surface:#071015;
+  --pa-surface2:#0d1820;
+  --pa-text:#edf4f4;
+  --pa-muted:#8ea1a8;
+  --pa-line:rgba(170,210,215,.16);
+  --pa-green:#6ee7a8;
+  --pa-blue:#7ab7ff;
+  --pa-purple:#c4a5ff;
+  --pa-orange:#f0b36a;
+  --pa-red:#ef8a8a;
+  --pa-fire:#ff6b35;
+  --pa-fire2:#f6a241;
+}
+#streakView .pa-shell{width:100%;margin:0 auto;border:1px solid var(--pa-line);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 34%),linear-gradient(180deg,#071014,#020407);box-shadow:0 18px 50px rgba(0,0,0,.54);padding:18px;border-radius:20px;color:var(--pa-text);font-family:Inter,"Segoe UI",Arial,sans-serif;}
+#streakView .pa-top{position:relative;display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px;border:1px solid rgba(255,107,53,.28);padding:18px 190px 18px 18px;border-radius:18px;background:radial-gradient(circle at 5% 0%,rgba(255,107,53,.18),transparent 34%),radial-gradient(circle at 82% 30%,rgba(246,162,65,.10),transparent 26%),linear-gradient(180deg,rgba(255,255,255,.025),transparent 44%),rgba(0,0,0,.27);}
+#streakView .pa-top::after{content:"";position:absolute;right:22px;bottom:12px;width:118px;height:2px;background:linear-gradient(90deg,transparent,var(--pa-fire),var(--pa-fire2),transparent);opacity:.58;}
+#streakView .pa-title h1{margin:0;color:#fff1df;font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,5vw,46px);letter-spacing:1.8px;line-height:1;text-transform:uppercase;text-shadow:0 0 16px rgba(255,107,53,.20),0 0 30px rgba(246,162,65,.08);}
+#streakView .pa-title p{margin:7px 0 0;color:#b8c8d7;font-size:13px;line-height:1.45;text-transform:none;letter-spacing:0;}
+#streakView .pa-top-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;}
+#streakView .pa-manage-btn{position:absolute;top:14px;right:14px;z-index:3;min-height:36px;border-radius:999px;border:1px solid rgba(255,107,53,.48);background:rgba(255,107,53,.10);color:#ffe3d2;padding:0 13px;font-weight:950;letter-spacing:.55px;text-transform:uppercase;font-size:11px;cursor:pointer;box-shadow:0 0 16px rgba(255,107,53,.08);}
+#streakView .pa-manage-btn:hover{border-color:rgba(246,162,65,.72);background:rgba(255,107,53,.16);}
+#streakView .pa-badge{border:1px solid rgba(122,183,255,.42);background:rgba(122,183,255,.075);color:#d7ebff;padding:10px 12px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap;}
+#streakView .pa-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start;}
+#streakView .pa-panel{border:1px solid var(--pa-line);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 44%),rgba(0,0,0,.24);border-radius:17px;padding:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);}
+#streakView .pa-panel h2{margin:0 0 12px;font-family:Georgia,"Times New Roman",serif;font-size:19px;letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid rgba(170,210,215,.13);padding-bottom:9px;color:#d7ebff;}
+#streakView .pa-today-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:12px;border:1px solid rgba(122,183,255,.26);background:radial-gradient(circle at 100% 0%,rgba(122,183,255,.12),transparent 35%),rgba(0,0,0,.25);padding:14px;border-radius:15px;}
+#streakView .pa-today-main strong{display:block;font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-size:24px;line-height:1.05;}
+#streakView .pa-today-main span{display:block;margin-top:5px;color:var(--pa-muted);font-size:13px;line-height:1.35;}
+#streakView .pa-today-score{width:82px;height:82px;border-radius:25px;display:grid;place-items:center;border:1px solid rgba(122,183,255,.42);background:rgba(122,183,255,.08);color:#d7ebff;font-size:25px;font-weight:950;box-shadow:0 0 22px rgba(122,183,255,.08);}
+#streakView .pa-task-stack{display:grid;gap:10px;}
+#streakView .pa-section-label{display:flex;align-items:center;gap:8px;color:var(--pa-muted);font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.85px;margin:14px 0 6px;}
+#streakView .pa-section-label::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--pa-blue);box-shadow:0 0 12px rgba(122,183,255,.34);}
+#streakView .pa-section-label.pa-optional::before{background:var(--pa-purple);box-shadow:0 0 12px rgba(196,165,255,.34);}
+#streakView .pa-card{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid rgba(170,210,215,.13);background:rgba(0,0,0,.24);border-radius:14px;padding:11px;}
+#streakView .pa-card.pa-done{border-color:rgba(110,231,168,.42);background:rgba(110,231,168,.065);}
+#streakView .pa-card.pa-missed{border-color:rgba(239,138,138,.42);background:rgba(239,138,138,.06);}
+#streakView .pa-card.pa-optional-card{border-color:rgba(196,165,255,.22);background:rgba(196,165,255,.045);}
+#streakView .pa-card.pa-optional-card.pa-done{border-color:rgba(196,165,255,.46);background:rgba(196,165,255,.085);}
+#streakView .pa-info strong{display:block;color:#f0f8f8;font-size:15px;line-height:1.2;text-transform:none;letter-spacing:0;}
+#streakView .pa-info span{display:block;margin-top:4px;color:var(--pa-muted);font-size:12px;line-height:1.35;}
+#streakView .pa-actions{display:inline-flex;justify-content:flex-end;align-items:center;gap:6px;width:auto;}
+#streakView .pa-icon-btn,#streakView .pa-log-btn,#streakView .pa-clear-btn{height:38px;border-radius:12px;border:1px solid rgba(170,210,215,.16);background:#081014;color:var(--pa-text);font-weight:950;cursor:pointer;}
+#streakView .pa-icon-btn{width:38px;min-width:38px;font-size:16px;}
+#streakView .pa-clear-btn{min-width:58px;font-size:12px;color:#9fb3bb;}
+#streakView .pa-icon-btn.pa-good.active,#streakView .pa-icon-btn.pa-good:hover{color:#caffde;border-color:rgba(110,231,168,.72);background:rgba(110,231,168,.13);}
+#streakView .pa-icon-btn.pa-bad.active,#streakView .pa-icon-btn.pa-bad:hover{color:#ffd4d4;border-color:rgba(239,138,138,.72);background:rgba(239,138,138,.12);}
+#streakView .pa-clear-btn:hover{border-color:rgba(170,210,215,.34);color:#e8f2f2;}
+#streakView .pa-log-btn{min-width:76px;padding:0 12px;border-color:rgba(196,165,255,.34);background:rgba(196,165,255,.07);color:#eadfff;text-transform:none;font-size:13px;}
+#streakView .pa-log-btn.active{border-color:rgba(196,165,255,.70);background:rgba(196,165,255,.14);color:#f1e9ff;}
+#streakView .pa-week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:12px;}
+#streakView .pa-week-day{min-height:64px;border:1px solid rgba(122,183,255,.18);border-radius:14px;background:rgba(122,183,255,.045);display:grid;place-items:center;text-align:center;padding:8px;}
+#streakView .pa-week-day span{display:block;color:#94afc5;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.6px;}
+#streakView .pa-week-day strong{display:block;margin-top:5px;color:#f3fbff;font-size:18px;}
+#streakView .pa-week-day.win{border-color:rgba(110,231,168,.45);background:rgba(110,231,168,.07);}
+#streakView .pa-week-day.gold{border-color:rgba(196,165,255,.52);background:rgba(196,165,255,.09);}
+#streakView .pa-week-day.partial{border-color:rgba(240,179,106,.45);background:rgba(240,179,106,.065);}
+#streakView .pa-week-day.miss{border-color:rgba(239,138,138,.42);background:rgba(239,138,138,.06);}
+#streakView .pa-calendar-shell{border:1px solid rgba(122,183,255,.18);border-radius:17px;background:linear-gradient(180deg,rgba(122,183,255,.035),transparent 44%),rgba(0,0,0,.22);padding:12px;}
+#streakView .pa-calendar-header{display:grid;grid-template-columns:42px 1fr 42px;gap:8px;align-items:center;margin-bottom:10px;}
+#streakView .pa-calendar-header button{height:40px;border-radius:12px;border:1px solid rgba(122,183,255,.25);background:#071016;color:#d7ebff;font-weight:950;cursor:pointer;}
+#streakView .pa-month-title{text-align:center;font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-weight:900;font-size:18px;letter-spacing:.8px;text-transform:uppercase;}
+#streakView .pa-weekdays,#streakView .pa-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;}
+#streakView .pa-weekdays{margin-bottom:7px;}
+#streakView .pa-weekday{text-align:center;color:#7e94a1;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.5px;}
+#streakView .pa-day-cell{min-height:72px;border:1px solid rgba(170,210,215,.13);border-radius:13px;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 45%),rgba(0,0,0,.26);display:grid;grid-template-rows:auto 1fr auto;gap:4px;padding:8px;cursor:pointer;user-select:none;}
+#streakView .pa-day-cell:hover{border-color:rgba(122,183,255,.52);transform:translateY(-1px);}
+#streakView .pa-day-cell.empty{opacity:.13;pointer-events:none;}
+#streakView .pa-day-cell.today{outline:1px solid rgba(255,107,53,.68);outline-offset:2px;}
+#streakView .pa-day-cell.win{border-color:rgba(110,231,168,.45);background:rgba(110,231,168,.07);}
+#streakView .pa-day-cell.gold{border-color:rgba(196,165,255,.55);background:rgba(196,165,255,.09);}
+#streakView .pa-day-cell.partial{border-color:rgba(240,179,106,.48);background:rgba(240,179,106,.065);}
+#streakView .pa-day-cell.miss{border-color:rgba(239,138,138,.43);background:rgba(239,138,138,.06);}
+#streakView .pa-day-number{color:#f0f8f8;font-size:13px;font-weight:950;}
+#streakView .pa-day-icon{display:grid;place-items:center;font-size:18px;font-weight:950;}
+#streakView .pa-day-mini{display:flex;gap:4px;justify-content:flex-end;}
+#streakView .pa-mini-dot{width:7px;height:7px;border-radius:50%;background:rgba(170,210,215,.18);}
+#streakView .pa-mini-dot.on{background:var(--pa-green);}
+#streakView .pa-mini-dot.opt{background:var(--pa-purple);}
+#streakView .pa-mini-dot.miss{background:var(--pa-red);}
+#streakView .pa-side-stack{display:grid;gap:14px;}
+#streakView .pa-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+#streakView .pa-stat-card{border:1px solid rgba(122,183,255,.16);background:rgba(122,183,255,.045);border-radius:14px;padding:12px;}
+#streakView .pa-stat-card strong{display:block;color:#d7ebff;font-size:25px;line-height:1;}
+#streakView .pa-stat-card span{display:block;margin-top:5px;color:var(--pa-muted);font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.65px;}
+#streakView .pa-note{color:#b8c8ce;font-size:13px;line-height:1.55;}
+#streakView .pa-legend{display:grid;gap:8px;}
+#streakView .pa-legend-row{display:flex;align-items:center;gap:8px;color:#cfe0e3;font-size:13px;}
+#streakView .pa-legend-box{width:14px;height:14px;border-radius:4px;border:1px solid rgba(170,210,215,.22);background:#111;}
+#streakView .pa-legend-box.green{background:rgba(110,231,168,.35);border-color:rgba(110,231,168,.55);}
+#streakView .pa-legend-box.purple{background:rgba(196,165,255,.35);border-color:rgba(196,165,255,.55);}
+#streakView .pa-legend-box.red{background:rgba(239,138,138,.35);border-color:rgba(239,138,138,.55);}
+#streakView .pa-legend-box.orange{background:rgba(240,179,106,.30);border-color:rgba(240,179,106,.50);}
+.pa-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.80);padding:16px;z-index:99;}
+.pa-modal.open{display:flex;}
+.pa-modal-card{width:min(620px,100%);max-height:88vh;overflow:auto;border:1px solid rgba(122,183,255,.34);background:linear-gradient(180deg,#0e1820,#030508);border-radius:18px;padding:16px;box-shadow:0 18px 60px rgba(0,0,0,.76);color:#edf4f4;}
+.pa-modal-top{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid rgba(170,210,215,.16);padding-bottom:12px;margin-bottom:12px;}
+.pa-modal-title{font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-size:22px;font-weight:900;}
+.pa-close-btn{width:40px;height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.20);background:#071014;color:#f3fbfb;font-size:18px;cursor:pointer;}
+.pa-editor-note{margin:0 0 12px;color:#8ea1a8;font-size:13px;line-height:1.45;}
+.pa-modal-section-title{margin:12px 0 7px;color:#d7ebff;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.85px;}
+.pa-modal-section-title.optional{color:#d8c6ff;}
+.pa-edit-list{display:grid;gap:9px;}
+.pa-modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.pa-modal-actions button{flex:1;min-height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.18);background:#071014;color:#eaf4f4;font-weight:900;cursor:pointer;}
+.pa-modal-actions .danger{border-color:rgba(239,138,138,.42);color:#ffd5d5;background:rgba(239,138,138,.08);}
+.pa-manager-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.pa-manager-column{border:1px solid rgba(170,210,215,.12);background:rgba(0,0,0,.20);border-radius:14px;padding:12px;}
+.pa-manager-column h3{margin:0 0 10px;color:#f1efff;font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.7px;text-transform:uppercase;}
+.pa-add-task-row{display:grid;grid-template-columns:1fr 72px;gap:8px;margin-bottom:10px;}
+.pa-add-task-row input{height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.16);background:#071014;color:#edf4f4;padding:0 11px;outline:none;}
+.pa-add-task-row button{min-height:40px;border-radius:12px;border:1px solid rgba(122,183,255,.28);background:rgba(122,183,255,.08);color:#d7ebff;font-weight:950;cursor:pointer;}
+.pa-manager-list{display:grid;gap:8px;}
+.pa-manager-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid rgba(170,210,215,.12);background:rgba(0,0,0,.24);border-radius:13px;padding:9px;}
+.pa-manager-row.archived{opacity:.48;}
+.pa-manager-row strong{display:block;color:#f2fafa;font-size:14px;}
+.pa-manager-row span{display:block;color:#8ea1a8;font-size:11px;margin-top:3px;}
+.pa-manager-actions{display:flex;gap:6px;}
+.pa-manager-actions button{height:34px;border-radius:10px;border:1px solid rgba(170,210,215,.16);background:#071014;color:#dce8ec;font-size:11px;font-weight:900;cursor:pointer;padding:0 8px;}
+.pa-manager-actions .danger{border-color:rgba(239,138,138,.36);color:#ffd5d5;background:rgba(239,138,138,.07);}
+.pa-manager-actions .move{border-color:rgba(196,165,255,.34);color:#eadfff;background:rgba(196,165,255,.06);}
+@media(max-width:900px){#streakView .pa-shell{border:0;border-radius:0;padding:12px;min-height:100vh;}#streakView .pa-top{align-items:flex-start;flex-direction:column;padding:54px 14px 14px 14px;}#streakView .pa-manage-btn{top:12px;right:12px;min-height:34px;padding:0 11px;font-size:10px;}#streakView .pa-top-actions{width:100%;justify-content:flex-start;}#streakView .pa-badge{width:100%;text-align:center;}#streakView .pa-layout{grid-template-columns:1fr;}#streakView .pa-today-card{grid-template-columns:1fr;}#streakView .pa-today-score{width:100%;height:58px;border-radius:14px;}#streakView .pa-calendar-grid,#streakView .pa-weekdays{gap:5px;}#streakView .pa-day-cell{min-height:62px;border-radius:11px;padding:6px;}#streakView .pa-actions{justify-content:flex-end;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr auto;}.pa-manager-grid{grid-template-columns:1fr}.pa-add-task-row{grid-template-columns:1fr}.pa-manager-row{grid-template-columns:1fr}.pa-manager-actions{display:grid;grid-template-columns:1fr 1fr 1fr}.pa-manager-actions button{height:38px}.pa-modal-card{max-height:92vh;}}
+@media(max-width:480px){#streakView .pa-shell{padding:9px;}#streakView .pa-panel{padding:11px;border-radius:14px;}#streakView .pa-title h1{font-size:28px;}#streakView .pa-title p{font-size:12px;}#streakView .pa-weekdays{gap:3px;}#streakView .pa-calendar-grid{gap:4px;}#streakView .pa-weekday{font-size:8px;}#streakView .pa-day-cell{min-height:52px;border-radius:9px;padding:5px;}#streakView .pa-day-icon{font-size:14px;}#streakView .pa-day-mini{display:none;}#streakView .pa-month-title{font-size:15px;}#streakView .pa-calendar-header{grid-template-columns:36px 1fr 36px;}#streakView .pa-calendar-header button{height:36px;}#streakView .pa-stat-grid{grid-template-columns:1fr 1fr;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr;}#streakView .pa-actions{justify-content:flex-start;}.pa-modal-actions{display:grid;grid-template-columns:1fr;}}
+@media(max-width:1200px){.tabs .tab[data-view="streakView"]::after{content:"Streak" !important;}}
+
+
+/* ===== PHONE VIEW SWIPE NAVIGATION V1 ===== */
+/* Adds finger-swipe navigation between main app views while keeping the phone nav tabs. */
+@media (max-width: 900px) {
+  .content {
+    touch-action: pan-y;
+  }
+
+  .view {
+    min-height: 55vh;
+  }
+
+  .tabs .tab[data-view="streakView"]::after {
+    content: "Streak" !important;
   }
 }
 
@@ -10930,7 +11232,7 @@ header .player-card {
             <select id="questType">
               <option value="main">Main Quest</option>
               <option value="side">Side Quest</option>
-              <option value="filler">Filler Quest</option>
+              <option value="filler">Emergency Quest</option>
             </select>
 
             <label for="questTitle">Quest name</label>
@@ -11016,7 +11318,7 @@ header .player-card {
           </div>
 
           <div class="panel quest-section-panel" data-section="filler">
-            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Filler Quests</button>
+            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Emergency Quests</button>
             <div id="fillerQuestList" class="quest-list collapsible-content"></div>
           </div>
 
@@ -11031,7 +11333,7 @@ header .player-card {
               <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
               <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
               <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
-              <button type="button" class="archive-filter" data-archive-filter="filler">Filler</button>
+              <button type="button" class="archive-filter" data-archive-filter="filler">Emergency</button>
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
@@ -11091,80 +11393,74 @@ header .player-card {
       </section>
 
       
+
 <section id="streakView" class="view">
-  <div class="streak-embedded-screen">
-<div class="topbar">
-    <div>
-      <h1>Smart Streak</h1>
-      <div class="subtitle">Click any calendar square. Big buttons let you set Perfect, Win, Partial, Protected, Failed, or Blank.</div>
-    </div>
-    <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
-  </div>
-
-  <section class="panel streak-quick-panel">
-    <div class="streak-quick-head">
-      <div>
-        <h2>Today Quick Update</h2>
-        <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
+  <div class="pa-shell">
+    <section class="pa-top">
+      <div class="pa-title">
+        <h1>Progress Archive</h1>
+        <p>Core tasks decide the day. Optional wins are logged only when they actually happen.</p>
       </div>
-    </div>
-    <div class="streak-quick-actions">
-      <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
-      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
-      <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
-    </div>
-  </section>
-
-  <section class="layout">
-    <section class="panel">
-      <h2>Month Proof</h2>
-
-      <div class="stats">
-        <div class="stat"><strong id="streakCurrentStreak">0</strong><span>Current</span></div>
-        <div class="stat"><strong id="streakBestStreak">0</strong><span>Best</span></div>
-        <div class="stat"><strong id="streakMonthWins">0</strong><span>Wins</span></div>
-        <div class="stat"><strong id="streakProofScore">0%</strong><span>Score</span></div>
+      <div class="pa-top-actions">
+        <div class="pa-badge" id="paStatusBadge">Today: In Progress</div>
+        <button class="pa-manage-btn" id="paOpenTaskManager" type="button">Manage Tasks</button>
       </div>
-
-      <div class="calendar-shell">
-        <div class="calendar-header">
-          <button id="streakPrevMonthBtn">‹</button>
-          <div id="streakMonthTitle" class="month-title"></div>
-          <button id="streakNextMonthBtn">›</button>
-        </div>
-
-        <div class="weekdays">
-          <div class="weekday">Sun</div><div class="weekday">Mon</div><div class="weekday">Tue</div>
-          <div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div>
-        </div>
-
-        <div id="streakCalendarGrid" class="calendar-grid"></div>
-        <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
-      </div>
-
-      <div class="rule-box">
-        <div class="rule-title">Win rule</div>
-        <div id="streakWinRuleText" class="rule-text"></div>
-      </div>
-
-      <div class="log" id="streakProofLog"></div>
     </section>
 
-    <aside class="panel">
-      <h2>Active Tasks</h2>
-      <div id="streakTaskList" class="quest-list"></div>
+    <section class="pa-layout">
+      <div class="pa-panel">
+        <div class="pa-today-card">
+          <div class="pa-today-main">
+            <strong id="paTodayTitle">Daily Core</strong>
+            <span id="paTodaySummary">Complete your required core first. Random wins stay available but do not punish you.</span>
+          </div>
+          <div class="pa-today-score" id="paTodayScore">0/2</div>
+        </div>
 
-      <div class="streak-medal-box">
-        <div class="streak-medal-title">Medal Case</div>
-        <div id="streakMedalCase" class="streak-medal-grid"></div>
+        <div class="pa-section-label">Required today</div>
+        <div class="pa-task-stack" id="paCoreTasks"></div>
+
+        <div class="pa-section-label pa-optional">Optional wins</div>
+        <div class="pa-task-stack" id="paOptionalTasks"></div>
+
+        <div class="pa-section-label">Weekly strip</div>
+        <div class="pa-week-strip" id="paWeekStrip"></div>
+
+        <div class="pa-calendar-shell">
+          <div class="pa-calendar-header">
+            <button id="paPrevMonth" type="button">‹</button>
+            <div class="pa-month-title" id="paMonthTitle">Month</div>
+            <button id="paNextMonth" type="button">›</button>
+          </div>
+          <div class="pa-weekdays">
+            <div class="pa-weekday">Sun</div><div class="pa-weekday">Mon</div><div class="pa-weekday">Tue</div><div class="pa-weekday">Wed</div><div class="pa-weekday">Thu</div><div class="pa-weekday">Fri</div><div class="pa-weekday">Sat</div>
+          </div>
+          <div class="pa-calendar-grid" id="paCalendarGrid"></div>
+        </div>
       </div>
 
-      <div class="rule-box">
-        <div class="rule-title">Consequence</div>
-        <div id="streakConsequenceTextView" class="rule-text"></div>
-      </div>
-    </aside>
-  </section>
+      <aside class="pa-side-stack">
+        <div class="pa-panel">
+          <h2>Stats</h2>
+          <div class="pa-stat-grid">
+            <div class="pa-stat-card"><strong id="paStatCore">0</strong><span>Core days</span></div>
+            <div class="pa-stat-card"><strong id="paStatGold">0</strong><span>Boosted days</span></div>
+            <div class="pa-stat-card"><strong id="paStatWins">0</strong><span>Optional wins</span></div>
+            <div class="pa-stat-card"><strong id="paStatPartial">0</strong><span>Partial days</span></div>
+          </div>
+        </div>
+        <div class="pa-panel">
+          <h2>Calendar Key</h2>
+          <div class="pa-legend">
+            <div class="pa-legend-row"><span class="pa-legend-box green"></span> Core completed</div>
+            <div class="pa-legend-row"><span class="pa-legend-box purple"></span> Core + optional wins</div>
+            <div class="pa-legend-row"><span class="pa-legend-box orange"></span> Partial core</div>
+            <div class="pa-legend-row"><span class="pa-legend-box red"></span> Missed core</div>
+          </div>
+          <p class="pa-note">Tap any date to edit that day directly. The calendar stays clean, but each date still has full detail.</p>
+        </div>
+      </aside>
+    </section>
   </div>
 </section>
 
@@ -11292,80 +11588,47 @@ header .player-card {
       <div id="dayTemplatesModalBody" class="default-list"></div>
     </div>
   </div>
-  <div id="streakSetupModal" class="modal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <div class="modal-title">Edit Streak Rules</div>
-      <button id="streakCloseSetupBtn">Close</button>
+  
+<div id="paDayModal" class="pa-modal">
+  <div class="pa-modal-card">
+    <div class="pa-modal-top">
+      <div id="paModalTitle" class="pa-modal-title">Edit Day</div>
+      <button class="pa-close-btn" id="paCloseDayModal" type="button">×</button>
     </div>
+    <p class="pa-editor-note">Change this date only. Core tasks affect the day color. Optional wins are extra logs and do not punish the day.</p>
+    <div class="pa-modal-section-title">Core tasks</div>
+    <div class="pa-edit-list" id="paModalCoreList"></div>
+    <div class="pa-modal-section-title optional">Optional wins</div>
+    <div class="pa-edit-list" id="paModalOptionalList"></div>
+    <div class="pa-modal-actions">
+      <button id="paMarkCoreDone" type="button">Mark Core Complete</button>
+      <button id="paClearDay" class="danger" type="button">Clear This Date</button>
+    </div>
+  </div>
+</div>
 
-    <div class="setup-grid">
-      <label for="streakNameInput">Streak name</label>
-      <input id="streakNameInput" />
-
-      <label for="streakRequiredCount">Daily win rule</label>
-      <select id="streakRequiredCount">
-        <option value="1">Need 1 active required task</option>
-        <option value="2">Need 2 active required tasks</option>
-        <option value="3">Need 3 active required tasks</option>
-        <option value="all">Need all active required tasks</option>
-      </select>
-
-      <label>Add task</label>
-      <div style="display:grid;grid-template-columns:1fr 82px;gap:8px;">
-        <input id="streakNewTaskInput" placeholder="Example: Reading" />
-        <button id="streakAddTaskBtn">Add</button>
+<div id="paTaskManagerModal" class="pa-modal">
+  <div class="pa-modal-card">
+    <div class="pa-modal-top">
+      <div class="pa-modal-title">Manage Tasks</div>
+      <button class="pa-close-btn" id="paCloseTaskManager" type="button">×</button>
+    </div>
+    <p class="pa-editor-note">Add, remove, or move tasks. Removed tasks disappear from future days, but old logged dates keep their records.</p>
+    <div class="pa-manager-grid">
+      <div class="pa-manager-column">
+        <h3>Core Tasks</h3>
+        <div class="pa-add-task-row"><input id="paNewCoreTask" placeholder="Add core task" /><button id="paAddCoreTask" type="button">Add</button></div>
+        <div class="pa-manager-list" id="paManagerCoreList"></div>
       </div>
-
-      <div id="streakTaskEditorList"></div>
-
-      <label for="streakConsequenceInput">Consequence for failed days</label>
-      <textarea id="streakConsequenceInput"></textarea>
-
-      <div class="actions">
-        <button id="streakSaveSetupBtn" class="good">Save Rules</button>
-        <button id="streakResetDemoBtn" class="danger">Reset Demo</button>
+      <div class="pa-manager-column">
+        <h3>Optional Wins</h3>
+        <div class="pa-add-task-row"><input id="paNewOptionalTask" placeholder="Add optional win" /><button id="paAddOptionalTask" type="button">Add</button></div>
+        <div class="pa-manager-list" id="paManagerOptionalList"></div>
       </div>
     </div>
   </div>
 </div>
-<div id="streakDayModal" class="modal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <div id="streakDayModalTitle" class="modal-title">Day</div>
-      <button id="streakCloseDayBtn">Close</button>
-    </div>
 
-    <div id="streakDayResultBox" class="result-box"></div>
-
-    <div class="streak-manual-editor">
-      <div class="streak-manual-title">Edit this calendar square</div>
-      <div class="streak-status-grid">
-        <button type="button" data-streak-manual-pick="perfect">★ Perfect</button>
-        <button type="button" data-streak-manual-pick="win">✓ Win</button>
-        <button type="button" data-streak-manual-pick="partial">◐ Partial</button>
-        <button type="button" data-streak-manual-pick="protected">◆ Protected</button>
-        <button type="button" data-streak-manual-pick="failed">× Failed</button>
-        <button type="button" data-streak-manual-pick="empty">Blank</button>
-      </div>
-      <button type="button" id="streakUseAutoBtn" class="streak-auto-btn">Use task checks instead</button>
-      <input id="streakManualStatus" type="hidden" value="auto" />
-      <div class="small-note">Pick one status. This directly controls the calendar square until you change it.</div>
-    </div>
-
-    <div id="streakDayChecklist" class="checklist"></div>
-
-    <label for="streakDayNote">Proof note</label>
-    <textarea id="streakDayNote" placeholder="Optional note"></textarea>
-
-    <div class="actions">
-      <button id="streakSaveDayBtn" class="good">Save Day</button>
-      <button id="streakClearDayBtn" class="danger">Clear Day</button>
-    </div>
-
-    <div class="small-note">Dimmed tasks are not active today and do not hurt the result.</div>
-  </div>
-</div>
 <div id="elementEditModal" class="modal">
     <div class="modal-card element-edit-card">
       <div class="modal-header">
@@ -11446,7 +11709,8 @@ header .player-card {
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
     var STORE_MISSION_TEXT = 'qt_everyday_mission_text_v1';
-    var VERSION = 'merged-old-save-v13-microtask-draft-row-fix';
+    var VERSION = 'merged-old-save-v14-microtask-drag-xp-cut';
+    var microDragState = null;
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
@@ -11954,7 +12218,7 @@ header .player-card {
     function getQuestTypeLabel(type, longLabel) {
       if (type === 'main') return longLabel ? 'Main Quest' : 'Main';
       if (type === 'side') return longLabel ? 'Side Quest' : 'Side';
-      if (type === 'filler') return longLabel ? 'Filler Quest' : 'Filler';
+      if (type === 'filler') return longLabel ? 'Emergency Quest' : 'Emergency';
       return longLabel ? 'Side Quest' : 'Side';
     }
 
@@ -11971,11 +12235,26 @@ header .player-card {
       return 'side';
     }
 
-    function getQuestXp(quest) {
+    function getQuestBaseXp(quest) {
       if (!quest) return 0;
       if (quest.type === 'main') return 5;
       if (quest.type === 'filler') return 1;
       return 2;
+    }
+
+    function getCompletedMicroTaskCount(quest) {
+      return (quest && quest.microTasks || []).filter(function(task) { return !!task.done; }).length;
+    }
+
+    function getQuestXp(quest) {
+      if (!quest) return 0;
+      var baseXp = getQuestBaseXp(quest);
+      var tasks = quest.microTasks || [];
+
+      if (quest.type !== 'main' || tasks.length === 0) return baseXp;
+
+      var done = getCompletedMicroTaskCount(quest);
+      return Math.max(0, Math.round(baseXp * (done / tasks.length)));
     }
 
     function awardQuestXpOnce(quest) {
@@ -12523,6 +12802,93 @@ function useMealPass() {
       renderAll();
     }
 
+
+    var phoneSwipeViewOrder = ['questsView', 'elementsView', 'streakView', 'saveView', 'archiveView'];
+    var phoneSwipeState = {
+      tracking: false,
+      startX: 0,
+      startY: 0,
+      startTime: 0
+    };
+
+    function getCurrentViewId() {
+      var activeView = document.querySelector('.view.active');
+      return activeView ? activeView.id : 'questsView';
+    }
+
+    function isPhoneSwipeMode() {
+      return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function isPhoneSwipeBlockedTarget(target) {
+      if (!target) return true;
+      return !!target.closest(
+        'button, input, textarea, select, a, [contenteditable="true"], .tabs, .modal.open, ' +
+        '.micro-drag-handle, .micro-drag-grip, .micro-drag-actions, .qt-more-actions, .quest-more-actions, ' +
+        '#streakSetupModal, #streakDayModal, #paDayModal, #paTaskManagerModal'
+      );
+    }
+
+    function switchPhoneViewBySwipe(direction) {
+      var currentId = getCurrentViewId();
+      var currentIndex = phoneSwipeViewOrder.indexOf(currentId);
+      if (currentIndex === -1) return;
+
+      var nextIndex = currentIndex + direction;
+      if (nextIndex < 0 || nextIndex >= phoneSwipeViewOrder.length) return;
+
+      showView(phoneSwipeViewOrder[nextIndex]);
+    }
+
+    function bindPhoneViewSwipe() {
+      var swipeRoot = document.querySelector('.content');
+      if (!swipeRoot || swipeRoot.getAttribute('data-phone-swipe-bound') === 'true') return;
+
+      swipeRoot.setAttribute('data-phone-swipe-bound', 'true');
+
+      swipeRoot.addEventListener('touchstart', function(event) {
+        if (!isPhoneSwipeMode()) return;
+        if (!event.touches || event.touches.length !== 1) return;
+        if (isPhoneSwipeBlockedTarget(event.target)) return;
+
+        var touch = event.touches[0];
+        phoneSwipeState.tracking = true;
+        phoneSwipeState.startX = touch.clientX;
+        phoneSwipeState.startY = touch.clientY;
+        phoneSwipeState.startTime = Date.now();
+      }, { passive: true });
+
+      swipeRoot.addEventListener('touchend', function(event) {
+        if (!phoneSwipeState.tracking) return;
+        phoneSwipeState.tracking = false;
+
+        if (!isPhoneSwipeMode()) return;
+        if (!event.changedTouches || event.changedTouches.length !== 1) return;
+
+        var touch = event.changedTouches[0];
+        var diffX = touch.clientX - phoneSwipeState.startX;
+        var diffY = touch.clientY - phoneSwipeState.startY;
+        var elapsed = Date.now() - phoneSwipeState.startTime;
+
+        var horizontalDistance = Math.abs(diffX);
+        var verticalDistance = Math.abs(diffY);
+
+        if (elapsed > 900) return;
+        if (horizontalDistance < 85) return;
+        if (horizontalDistance < verticalDistance * 1.35) return;
+
+        if (diffX < 0) {
+          switchPhoneViewBySwipe(1);
+        } else {
+          switchPhoneViewBySwipe(-1);
+        }
+      }, { passive: true });
+
+      swipeRoot.addEventListener('touchcancel', function() {
+        phoneSwipeState.tracking = false;
+      }, { passive: true });
+    }
+
     function moveArrayItem(array, fromIndex, direction) {
       var toIndex = fromIndex + direction;
       if (toIndex < 0 || toIndex >= array.length) return false;
@@ -12664,6 +13030,90 @@ function useMealPass() {
       requestAnimationFrame(function() {
         openQuestStepsCard(getQuestCardById(questId));
       });
+    }
+
+    function moveMicroTaskToIndex(questId, taskId, targetIndex) {
+      var changed = false;
+      var quests = getQuests().map(function(quest) {
+        if (quest.id !== questId) return quest;
+        var tasks = (quest.microTasks || []).slice();
+        var fromIndex = tasks.findIndex(function(task) { return task.id === taskId; });
+        if (fromIndex === -1) return quest;
+        if (targetIndex < 0) targetIndex = 0;
+        if (targetIndex >= tasks.length) targetIndex = tasks.length - 1;
+        if (fromIndex === targetIndex) return quest;
+        var moved = tasks.splice(fromIndex, 1)[0];
+        tasks.splice(targetIndex, 0, moved);
+        changed = true;
+        return Object.assign({}, quest, {
+          microTasks: tasks,
+          updatedAt: nowIso()
+        });
+      });
+
+      if (!changed) return;
+      setQuests(quests);
+      byId('questStatusText').textContent = 'Microtask order updated.';
+      beep('save');
+      renderAll();
+      requestAnimationFrame(function() {
+        openQuestStepsCard(getQuestCardById(questId));
+      });
+    }
+
+    function clearMicroDragVisuals() {
+      document.querySelectorAll('.micro-item.dragging, .micro-item.drag-over').forEach(function(item) {
+        item.classList.remove('dragging');
+        item.classList.remove('drag-over');
+      });
+      document.body.classList.remove('micro-dragging-active');
+    }
+
+    function startMicroPointerDrag(row, pointerId) {
+      if (!row) return;
+      var card = row.closest('[data-quest-id]');
+      if (!card) return;
+
+      microDragState = {
+        active: true,
+        pointerId: pointerId,
+        questId: card.getAttribute('data-quest-id'),
+        taskId: row.getAttribute('data-task-id'),
+        sourceRow: row,
+        targetRow: row
+      };
+
+      row.classList.add('dragging');
+      document.body.classList.add('micro-dragging-active');
+    }
+
+    function updateMicroPointerDrag(event) {
+      if (!microDragState || !microDragState.active) return;
+      event.preventDefault();
+
+      var element = document.elementFromPoint(event.clientX, event.clientY);
+      var row = element ? element.closest('.micro-item[data-task-id]') : null;
+      if (!row) return;
+      var card = row.closest('[data-quest-id]');
+      if (!card || card.getAttribute('data-quest-id') !== microDragState.questId) return;
+
+      document.querySelectorAll('.micro-item.drag-over').forEach(function(item) {
+        item.classList.remove('drag-over');
+      });
+      row.classList.add('drag-over');
+      microDragState.targetRow = row;
+    }
+
+    function finishMicroPointerDrag() {
+      if (!microDragState) return;
+      var state = microDragState;
+      microDragState = null;
+      clearMicroDragVisuals();
+
+      if (!state.active || !state.targetRow) return;
+      var targetIndex = Number(state.targetRow.getAttribute('data-task-index'));
+      if (Number.isNaN(targetIndex)) return;
+      moveMicroTaskToIndex(state.questId, state.taskId, targetIndex);
     }
 
     function editMicroTask(questId, taskId) {
@@ -13048,7 +13498,7 @@ function useMealPass() {
       });
 
       if (sourceQuests.length === 0) {
-        byId('questStatusText').textContent = 'No active Main, Side, or Filler quests to save as a day template.';
+        byId('questStatusText').textContent = 'No active Main, Side, or Emergency quests to save as a day template.';
         beep('fail');
         return;
       }
@@ -13149,7 +13599,7 @@ function useMealPass() {
 
         card.innerHTML =
           '<div class="default-title">' + escapeHtml(template.name || 'Day Template') + '</div>' +
-          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' filler · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
+          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' emergency · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
           '<div class="day-template-actions">' +
             '<button type="button" class="action-add-quest" data-day-template-action="add">Add To Board</button>' +
             '<button type="button" class="action-progress" data-day-template-action="replace">Replace Board</button>' +
@@ -13205,6 +13655,7 @@ function useMealPass() {
 
       setQuests(quests);
       if (quest.status === 'complete') awardQuestXpOnce(quest);
+      syncActiveSaveFromCurrentState();
       beep('click');
       resetQuestForm();
       renderAll();
@@ -13223,9 +13674,6 @@ function useMealPass() {
         if (quest.id !== id) return quest;
 
         var tasks = quest.microTasks || [];
-        if (nextStatus === 'complete') {
-          tasks = tasks.map(function(task) { return Object.assign({}, task, { done: true }); });
-        }
 
         var updated = Object.assign({}, quest, {
           status: nextStatus,
@@ -13241,13 +13689,14 @@ function useMealPass() {
 
       setQuests(quests);
       if (completedQuest) awardQuestXpOnce(completedQuest);
+      syncActiveSaveFromCurrentState();
       if (nextStatus === 'complete') beep('complete');
       else if (nextStatus === 'failed') beep('fail');
       else beep('click');
       renderAll();
     }
 
-    function toggleMicroTask(questId, taskId) {
+    function setMicroTaskState(questId, taskId, state) {
       var time = nowIso();
       var completedQuest = null;
       var questBeforeChange = getQuests().find(function(item) { return item.id === questId; });
@@ -13257,7 +13706,25 @@ function useMealPass() {
 
         var tasks = (quest.microTasks || []).map(function(task) {
           if (task.id !== taskId) return task;
-          return Object.assign({}, task, { done: !task.done });
+
+          if (state === 'done') {
+            return Object.assign({}, task, {
+              done: !task.done,
+              failed: false
+            });
+          }
+
+          if (state === 'failed') {
+            return Object.assign({}, task, {
+              done: false,
+              failed: !task.failed
+            });
+          }
+
+          return Object.assign({}, task, {
+            done: false,
+            failed: false
+          });
         });
 
         var total = tasks.length;
@@ -13283,8 +13750,13 @@ function useMealPass() {
 
       setQuests(quests);
       if (completedQuest) awardQuestXpOnce(completedQuest);
-      beep('click');
+      syncActiveSaveFromCurrentState();
+      beep(state === 'failed' ? 'fail' : 'click');
       renderAll();
+    }
+
+    function toggleMicroTask(questId, taskId) {
+      setMicroTaskState(questId, taskId, 'done');
     }
 
     function deleteQuest(id) {
@@ -13294,6 +13766,7 @@ function useMealPass() {
       }
 
       setQuests(getQuests().filter(function(quest) { return quest.id !== id; }));
+      syncActiveSaveFromCurrentState();
       byId('questStatusText').textContent = 'Quest deleted.';
       beep('fail');
       renderAll();
@@ -13367,7 +13840,7 @@ function useMealPass() {
         lines.push('None added.');
       } else {
         (quest.microTasks || []).forEach(function(task) {
-          lines.push((task.done ? '[x] ' : '[ ] ') + task.text);
+          lines.push((task.done ? '[x] ' : task.failed ? '[failed] ' : '[ ] ') + task.text);
         });
       }
 
@@ -13420,9 +13893,11 @@ function useMealPass() {
         taskNodeHtml += '<span class="qt-task-node ' + (nodeIndex < doneCount ? 'done' : '') + '"></span>';
       }
 
+      var baseXpValue = getQuestBaseXp(quest);
+      var xpLabel = quest.type === 'main' && totalCount > 0 && xpValue !== baseXpValue ? String(xpValue) + '/' + String(baseXpValue) + ' XP' : String(xpValue) + ' XP';
       var rewardHtml =
         '<div class="qt-reward-row">' +
-          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
+          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(xpLabel) + '</span>' +
           '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
         '</div>';
 
@@ -13434,12 +13909,15 @@ function useMealPass() {
         microToggleHtml += '<button class="steps-toggle qt-steps-button" data-action="toggleSteps">View Tasks</button>';
         microDrawerHtml += '<div class="micro-list hidden qt-micro-list">';
         tasks.forEach(function(task, taskIndex) {
-          microDrawerHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
-          microDrawerHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
+          var taskStateClass = task.done ? 'done' : task.failed ? 'failed' : '';
+          microDrawerHtml += '<div class="micro-item ' + taskStateClass + '" data-task-id="' + task.id + '" data-task-index="' + taskIndex + '">';
+          microDrawerHtml += '<button type="button" class="micro-state-btn micro-check-btn ' + (task.done ? 'active' : '') + '" data-action="toggleTask" data-task-id="' + task.id + '" aria-label="Complete microtask">✓</button>';
+          microDrawerHtml += '<button type="button" class="micro-state-btn micro-cross-btn ' + (task.failed ? 'active' : '') + '" data-action="failTask" data-task-id="' + task.id + '" aria-label="Mark microtask failed">×</button>';
           microDrawerHtml += '<span class="micro-task-text">' + (taskIndex + 1) + '. ' + escapeHtml(task.text) + '</span>';
+          microDrawerHtml += '<span class="micro-drag-handle" draggable="true" role="button" aria-label="Hold and drag to reorder microtask" title="Hold and drag to reorder">↕</span>';
           microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>↑</button>';
           microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>↓</button>';
-          microDrawerHtml += '</label>';
+          microDrawerHtml += '</div>';
         });
         microDrawerHtml += '</div>';
       }
@@ -13657,6 +14135,7 @@ function useMealPass() {
       data.totalXp = Math.max(0, finalXp);
       if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
       setXpData(data);
+      syncActiveSaveFromCurrentState();
 
       byId('saveStatusText').textContent = 'XP updated manually.';
       beep('save');
@@ -13739,7 +14218,7 @@ function useMealPass() {
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Filler +1';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Emergency +1';
       syncManualXpInputs();
       renderRoutineTop();
     }
@@ -13775,6 +14254,25 @@ function useMealPass() {
         savedRoutine: getSavedRoutineData(),
         missionText: getMissionText()
       };
+    }
+
+    function syncActiveSaveFromCurrentState() {
+      var activeId = getActiveSaveId();
+      if (!activeId) return;
+
+      var saves = getSaves();
+      var index = saves.findIndex(function(item) { return item.id === activeId; });
+      if (index < 0) return;
+
+      var existing = saves[index] || {};
+      var now = new Date();
+      saves[index] = buildSaveFile(
+        existing.id,
+        existing.name || 'Quest Day',
+        existing.createdAt || existing.timestamp || now.toISOString(),
+        now
+      );
+      setSaves(saves);
     }
 
     function createSaveSnapshot(resetAfterSave) {
@@ -13866,10 +14364,17 @@ function useMealPass() {
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
     if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
     if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
-    if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
-    if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
-    if (save.questRewards && typeof save.questRewards === 'object') setQuestRewardData(save.questRewards);
-    if (!save.levelRewards && !save.questRewards && save.rewards && typeof save.rewards === 'object') setRewardData(save.rewards);
+    // XP and level rewards are lifetime player progress. Loading an older day should not roll them back.
+    // Save-specific quest rewards still load with the day so each day keeps its own reward vault state.
+    if (save.questRewards && typeof save.questRewards === 'object') {
+      setQuestRewardData(save.questRewards);
+    } else if (save.rewards && typeof save.rewards === 'object') {
+      if (save.rewards.questRewards && typeof save.rewards.questRewards === 'object') {
+        setQuestRewardData(save.rewards.questRewards);
+      } else if (save.rewards.questVault || save.rewards.awardedQuestRewardIds || save.rewards.usedQuestRewards) {
+        setQuestRewardData(save.rewards);
+      }
+    }
     if (save.routine && typeof save.routine === 'object') setRoutineData(save.routine);
     if (save.savedRoutine && typeof save.savedRoutine === 'object') setSavedRoutineData(save.savedRoutine);
 
@@ -13962,6 +14467,7 @@ function useMealPass() {
       });
 
       setQuests(active);
+      syncActiveSaveFromCurrentState();
       byId('saveStatusText').textContent = 'Completed quests cleared and XP adjusted.';
       beep('fail');
       renderAll();
@@ -14556,6 +15062,8 @@ function useMealPass() {
         showView(button.getAttribute('data-view'));
       });
 
+      bindPhoneViewSwipe();
+
       byId('addMicroBtn').addEventListener('click', addDraftTask);
       byId('openDefaultsBtn').addEventListener('click', function(event) {
         event.preventDefault();
@@ -14642,8 +15150,69 @@ function useMealPass() {
         byId('questRewardEmoji').value = byId('questRewardCustomEmoji').value.trim() || base.emoji;
       });
       byId('submitQuestBtn').addEventListener('click', saveQuestFromForm);
-
       byId('cancelEditBtn').addEventListener('click', function() {
+      document.body.addEventListener('dragstart', function(event) {
+        var handle = event.target.closest('.micro-drag-handle');
+        if (!handle) return;
+        var row = handle.closest('.micro-item[data-task-id]');
+        if (!row) return;
+        var card = row.closest('[data-quest-id]');
+        if (!card) return;
+        event.dataTransfer.setData('text/plain', card.getAttribute('data-quest-id') + '|' + row.getAttribute('data-task-id'));
+        event.dataTransfer.effectAllowed = 'move';
+        row.classList.add('dragging');
+      });
+
+      document.body.addEventListener('dragover', function(event) {
+        var row = event.target.closest('.micro-item[data-task-id]');
+        if (!row) return;
+        event.preventDefault();
+        row.classList.add('drag-over');
+      });
+
+      document.body.addEventListener('dragleave', function(event) {
+        var row = event.target.closest('.micro-item[data-task-id]');
+        if (row) row.classList.remove('drag-over');
+      });
+
+      document.body.addEventListener('drop', function(event) {
+        var row = event.target.closest('.micro-item[data-task-id]');
+        if (!row) return;
+        event.preventDefault();
+        var data = event.dataTransfer.getData('text/plain').split('|');
+        var card = row.closest('[data-quest-id]');
+        if (!card || data[0] !== card.getAttribute('data-quest-id')) return;
+        moveMicroTaskToIndex(data[0], data[1], Number(row.getAttribute('data-task-index')));
+        clearMicroDragVisuals();
+      });
+
+      document.body.addEventListener('dragend', clearMicroDragVisuals);
+
+      document.body.addEventListener('pointerdown', function(event) {
+        var handle = event.target.closest('.micro-drag-handle');
+        if (!handle) return;
+        var row = handle.closest('.micro-item[data-task-id]');
+        if (!row) return;
+        microDragState = {
+          active: false,
+          timer: setTimeout(function() {
+            startMicroPointerDrag(row, event.pointerId);
+          }, 220)
+        };
+      });
+
+      document.body.addEventListener('pointermove', updateMicroPointerDrag, { passive: false });
+      document.body.addEventListener('pointerup', function() {
+        if (microDragState && microDragState.timer) clearTimeout(microDragState.timer);
+        finishMicroPointerDrag();
+      });
+      document.body.addEventListener('pointercancel', function() {
+        if (microDragState && microDragState.timer) clearTimeout(microDragState.timer);
+        microDragState = null;
+        clearMicroDragVisuals();
+      });
+
+
         resetQuestForm();
         byId('questStatusText').textContent = 'Edit cancelled.';
       });
@@ -14764,6 +15333,32 @@ function useMealPass() {
             }
             beep('click');
           }
+          if (action === 'toggleTask') {
+            event.preventDefault();
+            event.stopPropagation();
+            var keepOpenDone = card.classList.contains('steps-open');
+            toggleMicroTask(questId, actionButton.getAttribute('data-task-id'));
+            if (keepOpenDone) {
+              requestAnimationFrame(function() {
+                openQuestStepsCard(getQuestCardById(questId));
+              });
+            }
+            return;
+          }
+
+          if (action === 'failTask') {
+            event.preventDefault();
+            event.stopPropagation();
+            var keepOpenFailed = card.classList.contains('steps-open');
+            setMicroTaskState(questId, actionButton.getAttribute('data-task-id'), 'failed');
+            if (keepOpenFailed) {
+              requestAnimationFrame(function() {
+                openQuestStepsCard(getQuestCardById(questId));
+              });
+            }
+            return;
+          }
+
           if (action === 'moveTaskUp' || action === 'moveTaskDown') {
             event.preventDefault();
             event.stopPropagation();
@@ -15596,790 +16191,381 @@ document.addEventListener('click', function(event) {
 }, true);
 
 
-// ===== Smart Streak Section From Uploaded Code =====
+
+// ===== Progress Archive Merged V1 =====
 (function() {
-
-const STORE = "qt_simple_smart_streak_v1";
-const s$ = (id) => document.getElementById(id);
-const colors = ["#4fc27a", "#67aee8", "#d99a45", "#a78be8", "#d8d0bd", "#e0c878", "#7ad9c2", "#d78484"];
-const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const fullDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-let selectedMonth = new Date();
-selectedMonth.setDate(1);
-let selectedDateKey = null;
-let modalEntry = null;
-
-function defaults() {
-  return {
-    setup: {
-      name: "Skill Building",
-      requiredCount: "2",
-      consequence: "Before entertainment tomorrow, complete 20 minutes of the missed required task or clean/reset your space for 10 minutes.",
-      tasks: [
-        { name:"DP-300", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
-        { name:"SQL", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
-        { name:"Kickboxing", schedule:"specific", days:[2,4], required:true, weeklyTarget:0 },
-        { name:"Driving", schedule:"optional", days:[], required:false, weeklyTarget:0 },
-        { name:"Gym", schedule:"weekly", days:[], required:true, weeklyTarget:3 }
-      ]
-    },
-    days: seedDemo()
-  };
-}
-
-function seedDemo() {
-  const days = {};
-  const today = new Date();
-  [
-    [-1, ["done","done","skip","done","skip"], "Good study day."],
-    [-2, ["done","done","done","skip","done"], "Strong day."],
-    [-3, ["protected","protected","skip","skip","skip"], "Protected recovery."],
-    [-4, ["done","skip","skip","skip","done"], "Partial."],
-    [-5, ["fail","skip","skip","skip","skip"], "Missed."]
-  ].forEach(([offset, states, note]) => {
-    days[key(add(today, offset))] = { states, note };
-  });
-  return days;
-}
-
-function read() {
-  try {
-    const raw = localStorage.getItem(STORE);
-    if (raw) return normalize(JSON.parse(raw));
-  } catch {}
-  return defaults();
-}
-
-function write(data) {
-  localStorage.setItem(STORE, JSON.stringify(normalize(data)));
-}
-
-function normalize(data) {
-  const base = defaults();
-  data = data || base;
-  data.setup = Object.assign({}, base.setup, data.setup || {});
-  if (!Array.isArray(data.setup.tasks) || !data.setup.tasks.length) data.setup.tasks = base.setup.tasks;
-  data.setup.tasks = data.setup.tasks.map(normalizeTask).filter(t => t.name);
-  data.days = data.days && typeof data.days === "object" ? data.days : {};
-  Object.keys(data.days).forEach(k => {
-    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
-  });
-  return data;
-}
-
-function normalizeTask(task) {
-  task = task || {};
-  const schedule = ["daily","specific","weekly","optional"].includes(task.schedule) ? task.schedule : "daily";
-  return {
-    name: String(task.name || "").trim(),
-    schedule,
-    days: Array.isArray(task.days) ? task.days.map(Number).filter(d => d >= 0 && d <= 6) : [],
-    required: task.required !== false && schedule !== "optional",
-    weeklyTarget: Number(task.weeklyTarget || 0)
-  };
-}
-
-function normalizeEntry(entry, count) {
-  entry = entry || {};
-  let states = Array.isArray(entry.states) ? entry.states.slice(0, count) : [];
-  while (states.length < count) states.push("skip");
-  states = states.map(s => ["done","fail","protected","skip"].includes(s) ? s : "skip");
-  const manualStatus = ["auto","perfect","win","partial","protected","failed","empty"].includes(entry.manualStatus) ? entry.manualStatus : "auto";
-  return { states, note: String(entry.note || ""), manualStatus };
-}
-
-function key(date) {
-  return date.getFullYear() + "-" + String(date.getMonth()+1).padStart(2,"0") + "-" + String(date.getDate()).padStart(2,"0");
-}
-
-function fromKey(k) {
-  const [y,m,d] = k.split("-").map(Number);
-  return new Date(y, m-1, d);
-}
-
-function add(date, amount) {
-  const d = new Date(date);
-  d.setDate(d.getDate() + amount);
-  return d;
-}
-
-function monthName(date) {
-  return new Intl.DateTimeFormat(undefined, { month:"long", year:"numeric" }).format(date);
-}
-
-function dayName(date) {
-  return new Intl.DateTimeFormat(undefined, { weekday:"long", month:"short", day:"numeric" }).format(date);
-}
-
-function daysInMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-}
-
-function sameMonth(a,b) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
-}
-
-function weekStart(date) {
-  const d = new Date(date);
-  d.setHours(0,0,0,0);
-  const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
-  d.setDate(d.getDate() + diff);
-  return d;
-}
-
-function color(i) {
-  return colors[i % colors.length];
-}
-
-function weeklyDone(taskIndex, date, data) {
-  const start = weekStart(date);
-  let count = 0;
-  for (let i=0; i<7; i++) {
-    const entry = data.days[key(add(start, i))];
-    if (entry && entry.states[taskIndex] === "done") count++;
+  const STORE = "qt_progress_archive_v1";
+  const $ = id => document.getElementById(id);
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
-  return count;
-}
-
-function active(task, date, index, data) {
-  const day = date.getDay();
-  if (task.schedule === "daily") return true;
-  if (task.schedule === "specific") return task.days.includes(day);
-  if (task.schedule === "weekly") return weeklyDone(index, date, data) < Number(task.weeklyTarget || 1);
-  if (task.schedule === "optional") return false;
-  return true;
-}
-
-function requiredToday(task, date, index, data) {
-  return task.required && active(task, date, index, data);
-}
-
-function taskRule(task) {
-  if (task.schedule === "daily") return "Daily" + (task.required ? " · required" : " · optional");
-  if (task.schedule === "specific") return task.days.map(d => fullDays[d]).join(", ") + (task.required ? " · required" : " · optional");
-  if (task.schedule === "weekly") return (task.weeklyTarget || 1) + "x/week" + (task.required ? " · required" : " · optional");
-  return "Optional/random · bonus";
-}
-
-function result(entry, setup, date, data) {
-  if (!entry) return "empty";
-
-  if (entry.manualStatus && entry.manualStatus !== "auto") {
-    return entry.manualStatus === "empty" ? "empty" : entry.manualStatus;
+  function offsetDate(days) {
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d;
   }
-
-  const req = [];
-  setup.tasks.forEach((task, i) => {
-    if (requiredToday(task, date, i, data)) req.push(i);
-  });
-
-  if (!req.length) return entry.states.some(s => s === "done") ? "win" : "empty";
-
-  const done = req.filter(i => entry.states[i] === "done").length;
-  const safe = req.filter(i => entry.states[i] === "protected").length;
-  const fail = req.filter(i => entry.states[i] === "fail").length;
-
-  if (fail > 0) return "failed";
-  if (safe === req.length) return "protected";
-
-  const min = setup.requiredCount === "all" ? req.length : Math.min(Number(setup.requiredCount || 1), req.length);
-
-  if (done === req.length) return "perfect";
-  if (done >= min) return "win";
-  if (done > 0 || safe > 0) return "partial";
-  return "empty";
-}
-
-function valid(r) {
-  return r === "perfect" || r === "win" || r === "protected";
-}
-
-function saveSetup() {
-  const data = read();
-  data.setup.name = s$("streakNameInput").value.trim() || "Untitled Streak";
-  data.setup.requiredCount = s$("streakRequiredCount").value;
-  data.setup.consequence = s$("streakConsequenceInput").value.trim() || "Repair before entertainment tomorrow.";
-  data.setup.tasks = Array.from(document.querySelectorAll("[data-streak-task-card]")).map(card => ({
-    name: card.querySelector("[data-streak-task-name]").value,
-    schedule: card.querySelector("[data-streak-task-schedule]").value,
-    required: card.querySelector("[data-streak-task-required]").value === "required",
-    weeklyTarget: Number(card.querySelector("[data-streak-weekly-target]").value || 1),
-    days: Array.from(card.querySelectorAll("[data-streak-day-chip].active")).map(b => Number(b.dataset.streakDayChip))
-  })).map(normalizeTask).filter(t => t.name);
-
-  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
-  write(data);
-  closeSetup();
-  render();
-}
-
-function addTask() {
-  const value = s$("streakNewTaskInput").value.trim();
-  if (!value) return;
-  const data = read();
-  data.setup.tasks.push({ name:value, schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 });
-  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
-  write(data);
-  s$("streakNewTaskInput").value = "";
-  renderSetupModal();
-  render();
-}
-
-function deleteTask(index) {
-  const data = read();
-  if (data.setup.tasks.length <= 1) return;
-  data.setup.tasks.splice(index, 1);
-  Object.keys(data.days).forEach(k => {
-    if (data.days[k].states) data.days[k].states.splice(index, 1);
-    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
-  });
-  write(data);
-  renderSetupModal();
-  render();
-}
-
-function renderMain() {
-  const data = read();
-  s$("streakConsequenceTextView").textContent = data.setup.consequence;
-  s$("streakWinRuleText").textContent = data.setup.requiredCount === "all"
-    ? "Win = all active required tasks completed. Inactive and optional tasks do not hurt the day."
-    : "Win = at least " + data.setup.requiredCount + " active required task(s) completed. Inactive and optional tasks do not hurt the day.";
-
-  s$("streakTaskList").innerHTML = data.setup.tasks.map((task, i) => `
-    <div class="quest-pill">
-      <i class="quest-color" style="background:${color(i)}"></i>
-      <div>
-        <div class="quest-name">${escapeHtml(task.name)}</div>
-        <div class="quest-rule">${escapeHtml(taskRule(task))}</div>
-      </div>
-    </div>
-  `).join("");
-}
-
-
-
-function resultChipClass(r) {
-  if (r === "perfect" || r === "win") return "good";
-  if (r === "partial") return "warn";
-  if (r === "protected") return "purple";
-  if (r === "failed") return "danger";
-  return "";
-}
-
-function renderQuickUpdate() {
-  const box = s$("streakTodayQuickSummary");
-  if (!box) return;
-
-  const data = read();
-  const todayDate = new Date();
-  const today = key(todayDate);
-  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
-  const r = result(data.days[today], data.setup, todayDate, data);
-
-  let activeCount = 0;
-  let activeDone = 0;
-  let requiredCount = 0;
-  let requiredDone = 0;
-
-  data.setup.tasks.forEach((task, i) => {
-    const isActive = active(task, todayDate, i, data);
-    const isRequired = requiredToday(task, todayDate, i, data);
-    if (isActive) {
-      activeCount++;
-      if (entry.states[i] === "done") activeDone++;
-    }
-    if (isRequired) {
-      requiredCount++;
-      if (entry.states[i] === "done") requiredDone++;
-    }
-  });
-
-  const winRule = data.setup.requiredCount === "all"
-    ? "Need all active required tasks"
-    : "Need " + data.setup.requiredCount + " required task(s)";
-
-  box.innerHTML = `
-    <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
-    <div class="streak-today-chips">
-      <span class="streak-today-chip ${resultChipClass(r)}">Status: ${escapeHtml(r.toUpperCase())}</span>
-      <span class="streak-today-chip good">Required: ${requiredDone}/${requiredCount}</span>
-      <span class="streak-today-chip warn">Active: ${activeDone}/${activeCount}</span>
-      <span class="streak-today-chip purple">${escapeHtml(winRule)}</span>
-    </div>
-  `;
-}
-
-function quickSetToday(mode) {
-  const data = read();
-  const todayDate = new Date();
-  const today = key(todayDate);
-
-  if (mode === "clear") {
-    delete data.days[today];
-    write(data);
-    selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-    render();
-    return;
+  function dateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   }
-
-  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
-  entry.manualStatus = "auto";
-
-  data.setup.tasks.forEach((task, i) => {
-    const isActive = active(task, todayDate, i, data);
-    const isRequired = requiredToday(task, todayDate, i, data);
-
-    if (mode === "all" && isActive) {
-      entry.states[i] = "done";
-      return;
-    }
-
-    if (mode === "required" && isRequired) {
-      entry.states[i] = "done";
-    }
-  });
-
-  data.days[today] = normalizeEntry(entry, data.setup.tasks.length);
-  write(data);
-  selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-  render();
-}
-
-function renderCalendar() {
-  const data = read();
-  const grid = s$("streakCalendarGrid");
-  const y = selectedMonth.getFullYear();
-  const m = selectedMonth.getMonth();
-  const total = daysInMonth(selectedMonth);
-  const first = new Date(y,m,1).getDay();
-  const today = key(new Date());
-
-  s$("streakMonthTitle").textContent = monthName(selectedMonth);
-  grid.innerHTML = "";
-
-  for (let i=0; i<first; i++) {
-    const empty = document.createElement("div");
-    empty.className = "day-cell empty";
-    grid.appendChild(empty);
+  function taskIdFromName(name) {
+    return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + Date.now().toString(36).slice(-4);
   }
-
-  for (let day=1; day<=total; day++) {
-    const date = new Date(y,m,day);
-    const k = key(date);
-    const entry = data.days[k];
-    const r = result(entry, data.setup, date, data);
-    const cell = document.createElement("div");
-    cell.className = "day-cell " + r + (k === today ? " today" : "");
-    cell.setAttribute("role", "button");
-    cell.setAttribute("tabindex", "0");
-    cell.dataset.streakDate = k;
-
-    const label = r === "perfect" ? "Perfect" : r === "win" ? "Win" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
-    const states = entry ? entry.states : [];
-
-    cell.innerHTML = `
-      <div class="day-number">${day}</div>
-      <div class="day-dots">
-        ${data.setup.tasks.map((task, i) => {
-          const state = states[i] || "skip";
-          const isActive = active(task, date, i, data);
-          const isOptional = !requiredToday(task, date, i, data);
-          const bg = state === "done" ? `background:${color(i)};border-color:${color(i)};` : "";
-          return `<i class="dot ${isActive ? "" : "inactive"} ${isOptional ? "optional" : ""} ${state === "done" ? "done" : state === "fail" ? "failed" : state === "protected" ? "protected" : ""}" style="${bg}"></i>`;
-        }).join("")}
-      </div>
-      <div class="day-label">${label}</div>
-    `;
-
-    grid.appendChild(cell);
+  function defaultData() {
+    const today = dateKey(new Date());
+    const logs = {
+      [dateKey(offsetDate(-6))]: { core: { prayer: "done", quran: "done" }, optional: { gym: true } },
+      [dateKey(offsetDate(-5))]: { core: { prayer: "done", quran: "miss" }, optional: {} },
+      [dateKey(offsetDate(-4))]: { core: { prayer: "done", quran: "done" }, optional: { kickboxing: true, dp300: true } },
+      [dateKey(offsetDate(-3))]: { core: { prayer: "done", quran: "done" }, optional: {} },
+      [dateKey(offsetDate(-2))]: { core: { prayer: "miss", quran: "done" }, optional: { driving: true } },
+      [dateKey(offsetDate(-1))]: { core: { prayer: "done", quran: "done" }, optional: { gym: true, kickboxing: true } },
+      [today]: { core: {}, optional: {} }
+    };
+    return {
+      coreTasks: [
+        { id: "prayer", name: "Prayer", note: "Required core. Counts toward the daily result.", active: true },
+        { id: "quran", name: "Quran pages", note: "Required core. Small, stable, repeatable.", active: true }
+      ],
+      optionalTasks: [
+        { id: "gym", name: "Gym", note: "Random win. Log only when it happened.", active: true },
+        { id: "kickboxing", name: "Kickboxing", note: "Available, not required every day.", active: true },
+        { id: "driving", name: "Driving practice", note: "Useful when it happens. No punishment.", active: true },
+        { id: "dp300", name: "DP-300 extra block", note: "Bonus career progress.", active: true }
+      ],
+      logs
+    };
   }
-}
-
-
-function bindStreakCalendarDirectClick() {
-  const grid = s$("streakCalendarGrid");
-  if (!grid || grid.dataset.directClickBound === "true") return;
-  grid.dataset.directClickBound = "true";
-
-  grid.addEventListener("click", function(event) {
-    const cell = event.target.closest("[data-streak-date]");
-    if (!cell || !grid.contains(cell)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    openDay(cell.dataset.streakDate);
-  });
-
-  grid.addEventListener("keydown", function(event) {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    const cell = event.target.closest("[data-streak-date]");
-    if (!cell || !grid.contains(cell)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    openDay(cell.dataset.streakDate);
-  });
-}
-
-function stats() {
-  const data = read();
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  let current = 0;
-  let cursor = new Date(today);
-  while (true) {
-    const r = result(data.days[key(cursor)], data.setup, cursor, data);
-    if (valid(r)) {
-      current++;
-      cursor = add(cursor, -1);
-    } else break;
+  function read() {
+    try {
+      const raw = localStorage.getItem(STORE);
+      if (!raw) return defaultData();
+      const data = JSON.parse(raw);
+      data.coreTasks = Array.isArray(data.coreTasks) ? data.coreTasks : defaultData().coreTasks;
+      data.optionalTasks = Array.isArray(data.optionalTasks) ? data.optionalTasks : defaultData().optionalTasks;
+      data.logs = data.logs && typeof data.logs === "object" ? data.logs : {};
+      return data;
+    } catch (err) {
+      return defaultData();
+    }
   }
-
-  let best = 0, run = 0, prev = null;
-  Object.keys(data.days).sort().forEach(k => {
-    const date = fromKey(k);
-    const r = result(data.days[k], data.setup, date, data);
-    if (!valid(r)) {
-      run = 0;
-      prev = date;
-      return;
-    }
-    if (prev) {
-      const diff = Math.round((date - prev) / 86400000);
-      run = diff === 1 ? run + 1 : 1;
-    } else run = 1;
-    best = Math.max(best, run);
-    prev = date;
-  });
-
-  const monthEntries = Object.entries(data.days).filter(([k]) => sameMonth(fromKey(k), selectedMonth));
-  const wins = monthEntries.filter(([k,e]) => valid(result(e, data.setup, fromKey(k), data))).length;
-  const score = Math.round((wins / daysInMonth(selectedMonth)) * 100);
-
-  s$("streakCurrentStreak").textContent = current;
-  s$("streakBestStreak").textContent = best;
-  s$("streakMonthWins").textContent = wins;
-  s$("streakProofScore").textContent = score + "%";
-}
-
-function renderLog() {
-  const data = read();
-  const entries = Object.entries(data.days).sort((a,b) => b[0].localeCompare(a[0])).slice(0,5);
-
-  s$("streakProofLog").innerHTML = entries.map(([k,e]) => {
-    const date = fromKey(k);
-    const r = result(e, data.setup, date, data);
-    const icon = r === "perfect" ? "★" : r === "win" ? "✓" : r === "partial" ? "◐" : r === "protected" ? "◆" : r === "failed" ? "×" : "·";
-    const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
-    const manual = e.manualStatus && e.manualStatus !== "auto" ? '<span class="manual-status-banner">Manual</span> ' : "";
-    return `
-      <div class="log-item">
-        <div class="log-title"><span>${icon}</span><span>${dayName(date)}</span></div>
-        <div class="log-meta">${manual}<span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
-      </div>
-    `;
-  }).join("");
-}
-
-
-function renderMedals() {
-  const data = read();
-
-  let current = 0;
-  let best = 0;
-  let run = 0;
-  let prev = null;
-  let wins = 0;
-  let perfects = 0;
-  let failed = 0;
-  let protectedDays = 0;
-  let latestKey = null;
-  let latestResult = "empty";
-
-  Object.keys(data.days).sort().forEach(k => {
-    const date = fromKey(k);
-    const r = result(data.days[k], data.setup, date, data);
-
-    if (r !== "empty") {
-      latestKey = k;
-      latestResult = r;
-    }
-
-    if (r === "perfect") perfects++;
-    if (r === "failed") failed++;
-    if (r === "protected") protectedDays++;
-    if (valid(r)) wins++;
-
-    if (!valid(r)) {
-      run = 0;
-      prev = date;
-      return;
-    }
-
-    if (prev) {
-      const diff = Math.round((date - prev) / 86400000);
-      run = diff === 1 ? run + 1 : 1;
-    } else {
-      run = 1;
-    }
-
-    best = Math.max(best, run);
-    prev = date;
-  });
-
-  current = run;
-  const latestFailed = latestKey && latestResult === "failed";
-
-  const medals = [
-    { icon: "🥉", name: "3 Day Spark", unlock: current >= 3 },
-    { icon: "🥈", name: "7 Day Chain", unlock: current >= 7 },
-    { icon: "🥇", name: "14 Day Medal", unlock: current >= 14 },
-    { icon: "🛡️", name: "Safe Day", unlock: protectedDays >= 1 },
-    { icon: "🔨", name: "Repairer", unlock: failed >= 1 && !latestFailed },
-    { icon: "💎", name: "30 Wins", unlock: wins >= 30 },
-    { icon: "★", name: "Perfect Day", unlock: perfects >= 1 },
-    { icon: "👑", name: "10 Wins", unlock: wins >= 10 },
-    { icon: "⚔", name: "Comeback", unlock: failed >= 1 && current >= 3 }
-  ];
-
-  const box = s$("streakMedalCase");
-  if (!box) return;
-
-  box.innerHTML = medals.map(medal => `
-    <div class="streak-medal ${medal.unlock ? "unlocked" : ""}">
-      <div class="streak-medal-icon">${medal.icon}</div>
-      <span class="streak-medal-name">${medal.name}</span>
-    </div>
-  `).join("");
-}
-
-
-function openSetup() {
-  renderSetupModal();
-  s$("streakSetupModal").classList.add("open");
-}
-
-function closeSetup() {
-  s$("streakSetupModal").classList.remove("open");
-}
-
-function renderSetupModal() {
-  const data = read();
-  s$("streakNameInput").value = data.setup.name;
-  s$("streakRequiredCount").value = data.setup.requiredCount;
-  s$("streakConsequenceInput").value = data.setup.consequence;
-
-  s$("streakTaskEditorList").innerHTML = data.setup.tasks.map((task, i) => `
-    <div class="task-editor" data-streak-task-card="${i}">
-      <div class="task-top">
-        <i class="quest-color" style="background:${color(i)}"></i>
-        <input data-streak-task-name value="${escapeHtml(task.name)}">
-        <button class="danger" title="Delete task" data-streak-delete-task="${i}">×</button>
-      </div>
-      <div class="task-details">
-        <select data-streak-task-schedule>
-          <option value="daily" ${task.schedule === "daily" ? "selected" : ""}>Daily</option>
-          <option value="specific" ${task.schedule === "specific" ? "selected" : ""}>Specific days</option>
-          <option value="weekly" ${task.schedule === "weekly" ? "selected" : ""}>Weekly target</option>
-          <option value="optional" ${task.schedule === "optional" ? "selected" : ""}>Optional/random</option>
-        </select>
-        <select data-streak-task-required>
-          <option value="required" ${task.required ? "selected" : ""}>Required</option>
-          <option value="optional" ${!task.required ? "selected" : ""}>Optional</option>
-        </select>
-        <select data-streak-weekly-target>
-          <option value="1" ${task.weeklyTarget === 1 ? "selected" : ""}>1x/week</option>
-          <option value="2" ${task.weeklyTarget === 2 ? "selected" : ""}>2x/week</option>
-          <option value="3" ${task.weeklyTarget === 3 ? "selected" : ""}>3x/week</option>
-          <option value="4" ${task.weeklyTarget === 4 ? "selected" : ""}>4x/week</option>
-          <option value="5" ${task.weeklyTarget === 5 ? "selected" : ""}>5x/week</option>
-        </select>
-      </div>
-      <div class="days-picker">
-        ${dayNames.map((d, dayIndex) => `<button type="button" class="day-chip ${task.days.includes(dayIndex) ? "active" : ""}" data-streak-day-chip="${dayIndex}">${d}</button>`).join("")}
-      </div>
-    </div>
-  `).join("");
-}
-
-function openDay(k) {
-  selectedDateKey = k;
-  const data = read();
-  const date = fromKey(k);
-  modalEntry = normalizeEntry(data.days[k], data.setup.tasks.length);
-  s$("streakDayModalTitle").textContent = dayName(date);
-  if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus || "auto";
-  s$("streakDayNote").value = modalEntry.note || "";
-  renderDayModal();
-  s$("streakDayModal").classList.add("open");
-}
-
-function closeDay() {
-  s$("streakDayModal").classList.remove("open");
-  selectedDateKey = null;
-  modalEntry = null;
-}
-
-function renderDayModal() {
-  const data = read();
-  const date = fromKey(selectedDateKey);
-  const r = result(modalEntry, data.setup, date, data);
-  const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
-  const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
-  const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
-    ? `<br><span class="manual-status-banner">Manual edit active</span>`
-    : `<br><span class="manual-status-banner">Auto mode</span>`;
-  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
-
-  document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
-  });
-  if (s$("streakUseAutoBtn")) {
-    s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
+  function write() {
+    localStorage.setItem(STORE, JSON.stringify(data));
   }
+  const state = { viewDate: new Date(), todayKey: dateKey(new Date()), selectedKey: null };
+  let data = read();
+  data.logs[state.todayKey] = data.logs[state.todayKey] || { core: {}, optional: {} };
+  write();
 
-  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
-    const state = modalEntry.states[i] || "skip";
-    const isActive = active(task,date,i,data);
-    const isRequired = requiredToday(task,date,i,data);
-    const meta = isActive ? (isRequired ? "Active today · required" : "Optional/bonus") : "Not active today";
-    return `
-      <div class="check-row ${isActive ? "" : "inactive"}">
-        <i class="quest-color" style="background:${color(i)}"></i>
-        <div>
-          <div class="check-head">
-            <div>
-              <div class="check-name">${escapeHtml(task.name)}</div>
-              <div class="check-rule">${escapeHtml(meta)}</div>
-            </div>
-          </div>
+  function getLog(key) {
+    if (!data.logs[key]) data.logs[key] = { core: {}, optional: {} };
+    data.logs[key].core = data.logs[key].core || {};
+    data.logs[key].optional = data.logs[key].optional || {};
+    return data.logs[key];
+  }
+  function activeCoreTasks() { return data.coreTasks.filter(t => t.active !== false); }
+  function activeOptionalTasks() { return data.optionalTasks.filter(t => t.active !== false); }
+  function dayCoreTasks(key) {
+    const log = data.logs[key] || { core: {}, optional: {} };
+    const active = activeCoreTasks();
+    const archived = data.coreTasks.filter(t => t.active === false && log.core && log.core[t.id]);
+    return [...active, ...archived];
+  }
+  function dayOptionalTasks(key) {
+    const log = data.logs[key] || { core: {}, optional: {} };
+    const active = activeOptionalTasks();
+    const archived = data.optionalTasks.filter(t => t.active === false && log.optional && log.optional[t.id]);
+    return [...active, ...archived];
+  }
+  function clearLogIfEmpty(key) {
+    const log = data.logs[key];
+    if (!log) return;
+    const hasCore = data.coreTasks.some(t => log.core && log.core[t.id]);
+    const hasOpt = data.optionalTasks.some(t => log.optional && log.optional[t.id]);
+    if (!hasCore && !hasOpt && key !== state.todayKey) delete data.logs[key];
+  }
+  function statusFor(log, key = state.todayKey) {
+    const coreList = dayCoreTasks(key);
+    const optList = dayOptionalTasks(key);
+    const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
+    const miss = coreList.filter(t => log.core && log.core[t.id] === "miss").length;
+    const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
+    if (coreList.length && done === coreList.length && opt > 0) return "gold";
+    if (coreList.length && done === coreList.length) return "win";
+    if (done > 0 || miss > 0) return "partial";
+    return "empty";
+  }
+  function displayStatusForKey(key, log) {
+    let s = statusFor(log, key);
+    if (s === "empty" && key < state.todayKey) s = "miss";
+    return s;
+  }
+  function statusIcon(status) {
+    return status === "gold" ? "✦" : status === "win" ? "✓" : status === "partial" ? "◐" : status === "miss" ? "×" : "";
+  }
+  function renderTasks() {
+    const log = getLog(state.todayKey);
+    const coreHtml = activeCoreTasks().map(t => {
+      const val = log.core[t.id] || "";
+      return `<div class="pa-card ${val === "done" ? "pa-done" : val === "miss" ? "pa-missed" : ""}">
+        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${escapeHtml(t.note)}</span></div>
+        <div class="pa-actions">
+          <button class="pa-icon-btn pa-good ${val === "done" ? "active" : ""}" data-pa-core="${escapeHtml(t.id)}" data-value="done" type="button">✓</button>
+          <button class="pa-icon-btn pa-bad ${val === "miss" ? "active" : ""}" data-pa-core="${escapeHtml(t.id)}" data-value="miss" type="button">×</button>
+          <button class="pa-clear-btn" data-pa-core="${escapeHtml(t.id)}" data-value="clear" type="button">Clear</button>
         </div>
-        <div class="check-buttons">
-          <button class="good ${state === "done" ? "active" : ""}" data-streak-state="done" data-streak-index="${i}">Done</button>
-          <button class="warn ${state === "protected" ? "active" : ""}" data-streak-state="protected" data-streak-index="${i}">Safe</button>
-          <button class="danger ${state === "fail" ? "active" : ""}" data-streak-state="fail" data-streak-index="${i}">Fail</button>
-        </div>
+      </div>`;
+    }).join("");
+    const optionalHtml = activeOptionalTasks().map(t => {
+      const active = !!log.optional[t.id];
+      return `<div class="pa-card pa-optional-card ${active ? "pa-done" : ""}">
+        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${escapeHtml(t.note)}</span></div>
+        <div class="pa-actions"><button class="pa-log-btn ${active ? "active" : ""}" data-pa-optional="${escapeHtml(t.id)}" type="button">${active ? "Logged" : "+ Log"}</button></div>
+      </div>`;
+    }).join("");
+    $("paCoreTasks").innerHTML = coreHtml || '<div class="empty">No required tasks yet.</div>';
+    $("paOptionalTasks").innerHTML = optionalHtml || '<div class="empty">No optional wins yet.</div>';
+  }
+  function renderSummary() {
+    const log = getLog(state.todayKey);
+    const coreList = activeCoreTasks();
+    const optList = activeOptionalTasks();
+    const done = coreList.filter(t => log.core[t.id] === "done").length;
+    const miss = coreList.filter(t => log.core[t.id] === "miss").length;
+    const opt = optList.filter(t => log.optional[t.id]).length;
+    $("paTodayScore").textContent = `${done}/${coreList.length}`;
+    $("paTodaySummary").textContent = opt > 0 ? `${opt} optional win${opt === 1 ? "" : "s"} logged today. Optional wins boost the day without becoming required.` : "Complete your required core first. Random wins stay available but do not punish you.";
+    const status = statusFor(log, state.todayKey);
+    const label = status === "gold" ? "Core + Optional" : status === "win" ? "Core Complete" : miss > 0 ? "Partial / Repair" : "In Progress";
+    $("paStatusBadge").textContent = `Today: ${label}`;
+  }
+  function renderWeek() {
+    const today = new Date();
+    const start = new Date(today);
+    start.setDate(today.getDate() - today.getDay());
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      const key = dateKey(d);
+      const log = data.logs[key] || { core: {}, optional: {} };
+      const s = displayStatusForKey(key, log);
+      days.push({ d, key, status: s, icon: statusIcon(s) });
+    }
+    $("paWeekStrip").innerHTML = days.map(x => `<div class="pa-week-day ${x.status}"><div><span>${x.d.toLocaleDateString(undefined, { weekday: "short" })}</span><strong>${x.icon || x.d.getDate()}</strong></div></div>`).join("");
+  }
+  function renderCalendar() {
+    const grid = $("paCalendarGrid");
+    const d = new Date(state.viewDate.getFullYear(), state.viewDate.getMonth(), 1);
+    $("paMonthTitle").textContent = d.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+    const firstDay = d.getDay();
+    const daysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    let html = "";
+    for (let i = 0; i < firstDay; i++) html += '<div class="pa-day-cell empty"></div>';
+    for (let day = 1; day <= daysInMonth; day++) {
+      const current = new Date(d.getFullYear(), d.getMonth(), day);
+      const key = dateKey(current);
+      const log = data.logs[key] || { core: {}, optional: {} };
+      const s = displayStatusForKey(key, log);
+      const coreList = dayCoreTasks(key);
+      const optList = dayOptionalTasks(key);
+      const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
+      const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
+      const miss = coreList.filter(t => log.core && log.core[t.id] === "miss").length;
+      html += `<div class="pa-day-cell ${s} ${key === state.todayKey ? "today" : ""}" data-pa-date="${key}">
+        <div class="pa-day-number">${day}</div>
+        <div class="pa-day-icon">${statusIcon(s)}</div>
+        <div class="pa-day-mini"><span class="pa-mini-dot ${done > 0 ? "on" : ""}"></span><span class="pa-mini-dot ${coreList.length && done === coreList.length ? "on" : ""}"></span><span class="pa-mini-dot ${opt > 0 ? "opt" : miss > 0 ? "miss" : ""}"></span></div>
+      </div>`;
+    }
+    grid.innerHTML = html;
+  }
+  function renderStats() {
+    let core = 0, gold = 0, wins = 0, partial = 0;
+    Object.keys(data.logs).forEach(key => {
+      const log = data.logs[key];
+      const s = statusFor(log, key);
+      const coreList = dayCoreTasks(key);
+      const optList = dayOptionalTasks(key);
+      const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
+      const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
+      if (coreList.length && done === coreList.length) core++;
+      if (s === "gold") gold++;
+      wins += opt;
+      if (s === "partial") partial++;
+    });
+    $("paStatCore").textContent = core;
+    $("paStatGold").textContent = gold;
+    $("paStatWins").textContent = wins;
+    $("paStatPartial").textContent = partial;
+  }
+  function renderTaskManager() {
+    $("paManagerCoreList").innerHTML = data.coreTasks.map(t => `<div class="pa-manager-row ${t.active === false ? "archived" : ""}">
+      <div><strong>${escapeHtml(t.name)}</strong><span>${t.active === false ? "Removed from future days" : "Required daily core"}</span></div>
+      <div class="pa-manager-actions">
+        <button class="move" data-pa-move-task="${escapeHtml(t.id)}" data-from="core" type="button">Optional</button>
+        <button data-pa-restore-task="${escapeHtml(t.id)}" data-type="core" type="button">${t.active === false ? "Restore" : "Keep"}</button>
+        <button class="danger" data-pa-remove-task="${escapeHtml(t.id)}" data-type="core" type="button">Remove</button>
       </div>
-    `;
-  }).join("");
-}
-
-function setState(i, state) {
-  modalEntry.states[i] = modalEntry.states[i] === state ? "skip" : state;
-  renderDayModal();
-}
-
-function saveDay() {
-  const data = read();
-  modalEntry.note = s$("streakDayNote").value.trim();
-  modalEntry.manualStatus = s$("streakManualStatus") ? s$("streakManualStatus").value : "auto";
-
-  if (modalEntry.manualStatus === "empty" && !modalEntry.note && modalEntry.states.every(s => s === "skip")) {
-    delete data.days[selectedDateKey];
-  } else {
-    data.days[selectedDateKey] = normalizeEntry(modalEntry, data.setup.tasks.length);
+    </div>`).join("");
+    $("paManagerOptionalList").innerHTML = data.optionalTasks.map(t => `<div class="pa-manager-row ${t.active === false ? "archived" : ""}">
+      <div><strong>${escapeHtml(t.name)}</strong><span>${t.active === false ? "Removed from future days" : "Optional random win"}</span></div>
+      <div class="pa-manager-actions">
+        <button class="move" data-pa-move-task="${escapeHtml(t.id)}" data-from="optional" type="button">Core</button>
+        <button data-pa-restore-task="${escapeHtml(t.id)}" data-type="optional" type="button">${t.active === false ? "Restore" : "Keep"}</button>
+        <button class="danger" data-pa-remove-task="${escapeHtml(t.id)}" data-type="optional" type="button">Remove</button>
+      </div>
+    </div>`).join("");
+  }
+  function addTask(kind) {
+    const input = $(kind === "core" ? "paNewCoreTask" : "paNewOptionalTask");
+    const name = input.value.trim();
+    if (!name) return;
+    const task = { id: taskIdFromName(name), name, note: kind === "core" ? "Required core. Counts toward the daily result." : "Random win. Log only when it happened.", active: true };
+    if (kind === "core") data.coreTasks.push(task); else data.optionalTasks.push(task);
+    input.value = "";
+    write();
+    renderTaskManager();
+    renderAll();
+  }
+  function removeTask(id, type) {
+    const list = type === "core" ? data.coreTasks : data.optionalTasks;
+    const task = list.find(t => t.id === id);
+    if (task) task.active = false;
+    write();
+    renderTaskManager();
+    renderAll();
+  }
+  function restoreTask(id, type) {
+    const list = type === "core" ? data.coreTasks : data.optionalTasks;
+    const task = list.find(t => t.id === id);
+    if (task) task.active = true;
+    write();
+    renderTaskManager();
+    renderAll();
+  }
+  function moveTask(id, from) {
+    const fromList = from === "core" ? data.coreTasks : data.optionalTasks;
+    const toList = from === "core" ? data.optionalTasks : data.coreTasks;
+    const index = fromList.findIndex(t => t.id === id);
+    if (index < 0) return;
+    const task = fromList.splice(index, 1)[0];
+    task.active = true;
+    task.note = from === "core" ? "Random win. Log only when it happened." : "Required core. Counts toward the daily result.";
+    toList.push(task);
+    write();
+    renderTaskManager();
+    renderAll();
+  }
+  function renderEditor(key) {
+    const log = getLog(key);
+    $("paModalCoreList").innerHTML = dayCoreTasks(key).map(t => {
+      const val = log.core[t.id] || "";
+      return `<div class="pa-card ${val === "done" ? "pa-done" : val === "miss" ? "pa-missed" : ""}">
+        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${val === "done" ? "Marked done" : val === "miss" ? "Marked missed" : "Not logged for this date"}</span></div>
+        <div class="pa-actions">
+          <button class="pa-icon-btn pa-good ${val === "done" ? "active" : ""}" data-pa-edit-core="${escapeHtml(t.id)}" data-value="done" type="button">✓</button>
+          <button class="pa-icon-btn pa-bad ${val === "miss" ? "active" : ""}" data-pa-edit-core="${escapeHtml(t.id)}" data-value="miss" type="button">×</button>
+          <button class="pa-clear-btn" data-pa-edit-core="${escapeHtml(t.id)}" data-value="clear" type="button">Clear</button>
+        </div>
+      </div>`;
+    }).join("");
+    $("paModalOptionalList").innerHTML = dayOptionalTasks(key).map(t => {
+      const active = !!log.optional[t.id];
+      return `<div class="pa-card pa-optional-card ${active ? "pa-done" : ""}">
+        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${active ? "Logged on this date" : "Available if it happened"}</span></div>
+        <div class="pa-actions"><button class="pa-log-btn ${active ? "active" : ""}" data-pa-edit-optional="${escapeHtml(t.id)}" type="button">${active ? "Logged" : "+ Log"}</button></div>
+      </div>`;
+    }).join("");
+  }
+  function openDay(key) {
+    state.selectedKey = key;
+    const date = new Date(key + "T00:00:00");
+    $("paModalTitle").textContent = date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+    renderEditor(key);
+    $("paDayModal").classList.add("open");
+  }
+  function renderAll() {
+    renderTasks();
+    renderSummary();
+    renderWeek();
+    renderCalendar();
+    renderStats();
   }
 
-  write(data);
-  closeDay();
-  render();
-}
+  document.addEventListener("click", event => {
+    const core = event.target.closest("[data-pa-core]");
+    if (core) {
+      const log = getLog(state.todayKey);
+      const id = core.dataset.paCore;
+      const value = core.dataset.value;
+      if (value === "clear") delete log.core[id]; else log.core[id] = log.core[id] === value ? "" : value;
+      write(); renderAll(); return;
+    }
+    const opt = event.target.closest("[data-pa-optional]");
+    if (opt) {
+      const log = getLog(state.todayKey);
+      const id = opt.dataset.paOptional;
+      log.optional[id] = !log.optional[id];
+      write(); renderAll(); return;
+    }
+    const editCore = event.target.closest("[data-pa-edit-core]");
+    if (editCore) {
+      const log = getLog(state.selectedKey);
+      const id = editCore.dataset.paEditCore;
+      const value = editCore.dataset.value;
+      if (value === "clear") delete log.core[id]; else log.core[id] = log.core[id] === value ? "" : value;
+      clearLogIfEmpty(state.selectedKey);
+      write(); renderEditor(state.selectedKey); renderAll(); return;
+    }
+    const editOpt = event.target.closest("[data-pa-edit-optional]");
+    if (editOpt) {
+      const log = getLog(state.selectedKey);
+      const id = editOpt.dataset.paEditOptional;
+      log.optional[id] = !log.optional[id];
+      clearLogIfEmpty(state.selectedKey);
+      write(); renderEditor(state.selectedKey); renderAll(); return;
+    }
+    const move = event.target.closest("[data-pa-move-task]");
+    if (move) { moveTask(move.dataset.paMoveTask, move.dataset.from); return; }
+    const remove = event.target.closest("[data-pa-remove-task]");
+    if (remove) { removeTask(remove.dataset.paRemoveTask, remove.dataset.type); return; }
+    const restore = event.target.closest("[data-pa-restore-task]");
+    if (restore) { restoreTask(restore.dataset.paRestoreTask, restore.dataset.type); return; }
+    const day = event.target.closest("[data-pa-date]");
+    if (day) { openDay(day.dataset.paDate); return; }
+  });
 
-function clearDay() {
-  const data = read();
-  delete data.days[selectedDateKey];
-  write(data);
-  closeDay();
-  render();
-}
+  $("paPrevMonth")?.addEventListener("click", () => { state.viewDate.setMonth(state.viewDate.getMonth() - 1); renderCalendar(); });
+  $("paNextMonth")?.addEventListener("click", () => { state.viewDate.setMonth(state.viewDate.getMonth() + 1); renderCalendar(); });
+  $("paCloseDayModal")?.addEventListener("click", () => $("paDayModal").classList.remove("open"));
+  $("paDayModal")?.addEventListener("click", e => { if (e.target.id === "paDayModal") e.currentTarget.classList.remove("open"); });
+  $("paMarkCoreDone")?.addEventListener("click", () => {
+    const log = getLog(state.selectedKey);
+    dayCoreTasks(state.selectedKey).forEach(t => log.core[t.id] = "done");
+    write(); renderEditor(state.selectedKey); renderAll();
+  });
+  $("paClearDay")?.addEventListener("click", () => {
+    if (!state.selectedKey) return;
+    data.logs[state.selectedKey] = { core: {}, optional: {} };
+    clearLogIfEmpty(state.selectedKey);
+    write(); renderEditor(state.selectedKey); renderAll();
+  });
+  $("paOpenTaskManager")?.addEventListener("click", () => { renderTaskManager(); $("paTaskManagerModal").classList.add("open"); });
+  $("paCloseTaskManager")?.addEventListener("click", () => $("paTaskManagerModal").classList.remove("open"));
+  $("paTaskManagerModal")?.addEventListener("click", e => { if (e.target.id === "paTaskManagerModal") e.currentTarget.classList.remove("open"); });
+  $("paAddCoreTask")?.addEventListener("click", () => addTask("core"));
+  $("paAddOptionalTask")?.addEventListener("click", () => addTask("optional"));
+  $("paNewCoreTask")?.addEventListener("keydown", e => { if (e.key === "Enter") addTask("core"); });
+  $("paNewOptionalTask")?.addEventListener("keydown", e => { if (e.key === "Enter") addTask("optional"); });
 
-function resetDemo() {
-  if (!confirm("Reset demo data?")) return;
-  localStorage.removeItem(STORE);
-  selectedMonth = new Date();
-  selectedMonth.setDate(1);
-  closeSetup();
-  render();
-}
-
-function escapeHtml(v) {
-  return String(v)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-function render() {
-  renderMain();
-  renderQuickUpdate();
-  renderCalendar();
-  bindStreakCalendarDirectClick();
-  stats();
-  renderLog();
-  renderMedals();
-}
-
-document.addEventListener("click", event => {
-  const delTask = event.target.closest("[data-streak-delete-task]");
-  if (delTask) return deleteTask(Number(delTask.dataset.streakDeleteTask));
-
-  const chip = event.target.closest("[data-streak-day-chip]");
-  if (chip) return chip.classList.toggle("active");
-
-  const state = event.target.closest("[data-streak-state]");
-  if (state) return setState(Number(state.dataset.streakIndex), state.dataset.streakState);
-});
-
-if (s$("streakQuickAllDoneBtn")) s$("streakQuickAllDoneBtn").addEventListener("click", () => quickSetToday("all"));
-if (s$("streakQuickRequiredDoneBtn")) s$("streakQuickRequiredDoneBtn").addEventListener("click", () => quickSetToday("required"));
-if (s$("streakQuickClearTodayBtn")) s$("streakQuickClearTodayBtn").addEventListener("click", () => quickSetToday("clear"));
-
-s$("streakOpenSetupBtn").addEventListener("click", openSetup);
-s$("streakCloseSetupBtn").addEventListener("click", closeSetup);
-s$("streakSaveSetupBtn").addEventListener("click", saveSetup);
-s$("streakResetDemoBtn").addEventListener("click", resetDemo);
-s$("streakAddTaskBtn").addEventListener("click", addTask);
-s$("streakNewTaskInput").addEventListener("keydown", e => { if (e.key === "Enter") addTask(); });
-
-s$("streakPrevMonthBtn").addEventListener("click", () => {
-  selectedMonth.setMonth(selectedMonth.getMonth() - 1);
-  render();
-});
-s$("streakNextMonthBtn").addEventListener("click", () => {
-  selectedMonth.setMonth(selectedMonth.getMonth() + 1);
-  render();
-});
-
-s$("streakCloseDayBtn").addEventListener("click", closeDay);
-s$("streakSaveDayBtn").addEventListener("click", saveDay);
-s$("streakClearDayBtn").addEventListener("click", clearDay);
-document.addEventListener("click", function(event) {
-  const manualButton = event.target.closest("[data-streak-manual-pick]");
-  if (manualButton) {
-    if (!modalEntry) return;
-    modalEntry.manualStatus = manualButton.dataset.streakManualPick;
-    if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus;
-    renderDayModal();
-    return;
-  }
-
-  if (event.target.closest("#streakUseAutoBtn")) {
-    if (!modalEntry) return;
-    modalEntry.manualStatus = "auto";
-    if (s$("streakManualStatus")) s$("streakManualStatus").value = "auto";
-    renderDayModal();
-    return;
-  }
-});
-
-s$("streakSetupModal").addEventListener("click", e => { if (e.target.id === "streakSetupModal") closeSetup(); });
-s$("streakDayModal").addEventListener("click", e => { if (e.target.id === "streakDayModal") closeDay(); });
-
-render();
-
+  if ($("streakView")) renderAll();
 })();
+
 
 </script>
 
