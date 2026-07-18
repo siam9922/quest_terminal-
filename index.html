@@ -1087,7 +1087,7 @@
 
     .element-block.active::after,
     .water-segment.active::after {
-      content: "✓";
+      content: "\2713 ";
       position: absolute;
       right: 6px;
       top: 5px;
@@ -2869,7 +2869,7 @@
   }
 
   .quest-card::after {
-    content: "◆";
+    content: "\25C6 ";
     position: absolute;
     left: 21px;
     top: 42px;
@@ -3728,7 +3728,7 @@
     0 0 28px rgba(224,200,120,0.10) !important;
 }
 
-/* Better built-in “art” look without using real image files */
+/* Better built-in \201C art\201D  look without using real image files */
 .quest-card.qt-card-epic .qt-card-art {
   background:
     linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,0.12) 36%, transparent 41%),
@@ -3863,7 +3863,7 @@
 }
 
 .quest-card.qt-card-epic .qt-art-orb::before {
-  content: "⚔" !important;
+  content: "\2694 " !important;
   position: static !important;
   width: auto !important;
   height: auto !important;
@@ -3878,11 +3878,11 @@
 }
 
 .quest-card.qt-card-epic.side .qt-art-orb::before {
-  content: "◆" !important;
+  content: "\25C6 " !important;
 }
 
 .quest-card.qt-card-epic.complete .qt-art-orb::before {
-  content: "✓" !important;
+  content: "\2713 " !important;
 }
 
 .quest-card.qt-card-epic.failed .qt-art-orb::before {
@@ -4445,7 +4445,7 @@
   border-top: 1px solid rgba(var(--quest-accent-rgb),0.16) !important;
 }
 
-/* Less “image”, more UI panel */
+/* Less \201C image\201D , more UI panel */
 .quest-card.qt-card-epic .qt-primary-btn {
   clip-path: none !important;
   border-radius: 10px !important;
@@ -4635,7 +4635,7 @@
 }
 
 .quest-card.qt-card-epic .qt-art-orb::before {
-  content: "✦";
+  content: "\2726 ";
   color: var(--quest-accent) !important;
   font-size: 24px !important;
   font-weight: 900 !important;
@@ -4643,15 +4643,15 @@
 }
 
 .quest-card.qt-card-epic.main .qt-art-orb::before {
-  content: "⚔";
+  content: "\2694 ";
 }
 
 .quest-card.qt-card-epic.side .qt-art-orb::before {
-  content: "◆";
+  content: "\25C6 ";
 }
 
 .quest-card.qt-card-epic.complete .qt-art-orb::before {
-  content: "✓";
+  content: "\2713 ";
 }
 
 .quest-card.qt-card-epic.failed .qt-art-orb::before {
@@ -5478,7 +5478,7 @@ header .player-card {
 
 /* New unique symbol language: not the same crossed-sword symbol every time */
 .quest-card.qt-card-epic .qt-art-orb::before {
-  content: "✦" !important;
+  content: "\2726 " !important;
   font-family: "Segoe UI Symbol", "Segoe UI", Arial, sans-serif !important;
   font-size: 35px !important;
   line-height: 1 !important;
@@ -5486,33 +5486,33 @@ header .player-card {
 
 /* Main quests cycle through different mission marks */
 .quest-card.qt-card-epic.main:nth-child(3n+1) .qt-art-orb::before {
-  content: "⚔" !important;
+  content: "\2694 " !important;
 }
 
 .quest-card.qt-card-epic.main:nth-child(3n+2) .qt-art-orb::before {
-  content: "⬡" !important;
+  content: "\2B21 " !important;
 }
 
 .quest-card.qt-card-epic.main:nth-child(3n+3) .qt-art-orb::before {
-  content: "✦" !important;
+  content: "\2726 " !important;
 }
 
 /* Side quests use purple side-mission symbols */
 .quest-card.qt-card-epic.side:nth-child(3n+1) .qt-art-orb::before {
-  content: "◆" !important;
+  content: "\25C6 " !important;
 }
 
 .quest-card.qt-card-epic.side:nth-child(3n+2) .qt-art-orb::before {
-  content: "◇" !important;
+  content: "\25C7 " !important;
 }
 
 .quest-card.qt-card-epic.side:nth-child(3n+3) .qt-art-orb::before {
-  content: "✧" !important;
+  content: "\2727 " !important;
 }
 
 /* Completed / failed still stay obvious */
 .quest-card.qt-card-epic.complete .qt-art-orb::before {
-  content: "✓" !important;
+  content: "\2713 " !important;
   font-size: 38px !important;
 }
 
@@ -8450,7 +8450,7 @@ header .player-card {
 .element-assigned-card { display: grid !important; grid-template-rows: auto 1fr !important; gap: 6px !important; min-width: 0 !important; }
 .element-assigned-card-day { height: 22px !important; display: flex !important; align-items: center !important; justify-content: center !important; color: var(--muted) !important; text-align: center !important; font-size: 10px !important; font-weight: 900 !important; letter-spacing: 0.8px !important; text-transform: uppercase !important; border: 1px solid rgba(216,208,189,0.14) !important; background: rgba(0,0,0,0.18) !important; }
 .element-assigned-card-skill { min-height: 60px !important; width: 100% !important; border: 1px solid rgba(216,208,189,0.18) !important; background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 42%), linear-gradient(180deg, #101010, #060606) !important; cursor: pointer !important; display: flex !important; align-items: center !important; justify-content: center !important; color: #f0e8d8 !important; font-size: 15px !important; font-weight: 900 !important; text-transform: uppercase !important; letter-spacing: 0.45px !important; text-align: center !important; padding: 16px 10px !important; position: relative !important; border-radius: 0 !important; }
-.element-assigned-card-skill.active::after { content: "✓" !important; position: absolute !important; right: 8px !important; top: 6px !important; font-size: 12px !important; }
+.element-assigned-card-skill.active::after { content: "\2713 " !important; position: absolute !important; right: 8px !important; top: 6px !important; font-size: 12px !important; }
 .element-assigned-card-skill.fire.active { background: linear-gradient(180deg, #ff7958, #9b1f1f) !important; color: #fff6ef !important; }
 .element-assigned-card-skill.earth.active { background: linear-gradient(180deg, #79df93, #1f6f3d) !important; color: #f2fff6 !important; }
 .element-assigned-card-skill.air.active { background: linear-gradient(180deg, #dbdbdb, #7d7d7d) !important; color: #fff !important; }
@@ -8473,14 +8473,10 @@ header .player-card {
   .tabs .tab, .tabs button.tab { min-width: 0 !important; width: 100% !important; max-width: 100% !important; min-height: 66px !important; height: 66px !important; border-radius: 0 !important; box-sizing: border-box !important; padding: 7px 1px !important; display: grid !important; grid-template-rows: 30px 20px !important; justify-items: center !important; align-content: center !important; text-align: center !important; overflow: visible !important; white-space: nowrap !important; font-size: 0 !important; line-height: 1 !important; letter-spacing: 0 !important; background: transparent !important; border-color: transparent !important; }
   .tabs .tab::before, .tabs button.tab::before { display: block !important; height: 30px !important; line-height: 30px !important; font-size: 23px !important; margin: 0 !important; color: inherit !important; }
   .tabs .tab::after, .tabs button.tab::after { position: static !important; display: block !important; width: auto !important; height: 20px !important; line-height: 20px !important; background: none !important; color: inherit !important; font-size: 9px !important; font-weight: 950 !important; letter-spacing: 0.35px !important; text-transform: uppercase !important; opacity: 1 !important; white-space: nowrap !important; overflow: visible !important; }
-  .tabs .tab[data-view="questsView"]::before { content: "⚜" !important; }
-  .tabs .tab[data-view="elementsView"]::before { content: "♢" !important; }
-  .tabs .tab[data-view="streakView"]::before { content: "⟳" !important; }
-  .tabs .tab[data-view="saveView"]::before { content: "▣" !important; }
-  .tabs .tab[data-view="archiveView"]::before { content: "•••" !important; }
+  .tabs .tab[data-view="questsView"]::before { content: "\269C " !important; }
+  .tabs .tab[data-view="saveView"]::before { content: "\25A3 " !important; }
+  .tabs .tab[data-view="archiveView"]::before { content: "\2022 \2022 \2022 " !important; }
   .tabs .tab[data-view="questsView"]::after { content: "Quests" !important; }
-  .tabs .tab[data-view="elementsView"]::after { content: "Elements" !important; }
-  .tabs .tab[data-view="streakView"]::after { content: "Streak" !important; }
   .tabs .tab[data-view="saveView"]::after { content: "Save" !important; }
   .tabs .tab[data-view="archiveView"]::after { content: "Saves" !important; }
   .tabs .tab.active, .tabs button.tab.active { color: #f4df95 !important; text-shadow: 0 0 14px rgba(244,196,48,0.28) !important; box-shadow: none !important; }
@@ -10570,66 +10566,74 @@ header .player-card {
 }
 
 
-/* ===== FILLER QUESTS FEATURE V34 ===== */
+/* ===== EMERGENCY QUESTS FEATURE V34 =====
+   Internal class/data value stays "filler" so existing saved quests remain compatible. */
 #questsView .quest-section-panel[data-section="filler"] {
-  border-color: rgba(225,225,225,0.26) !important;
+  border-color: rgba(255,77,93,0.46) !important;
   background:
-    radial-gradient(circle at 50% 0%, rgba(235,235,235,0.07), transparent 36%),
-    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 40%),
-    linear-gradient(180deg, #121212, #050505) !important;
+    radial-gradient(circle at 50% 0%, rgba(255,77,93,0.14), transparent 36%),
+    linear-gradient(180deg, rgba(178,77,77,0.07), transparent 40%),
+    linear-gradient(180deg, #18090b, #050505) !important;
 }
 
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #e8e8e8 !important;
+  color: #ff6877 !important;
   text-shadow:
-    0 0 14px rgba(235,235,235,0.20),
-    0 0 28px rgba(235,235,235,0.08) !important;
-  border-bottom-color: rgba(225,225,225,0.22) !important;
+    0 0 14px rgba(255,77,93,0.34),
+    0 0 28px rgba(255,77,93,0.14) !important;
+  border-bottom-color: rgba(255,77,93,0.38) !important;
 }
 
 .quest-card.filler {
-  border-color: rgba(225,225,225,0.42) !important;
-  box-shadow: inset 5px 0 0 #cfcfcf, 0 12px 28px rgba(0,0,0,0.34) !important;
+  border-color: rgba(255,77,93,0.58) !important;
+  box-shadow: inset 5px 0 0 #d83f50, 0 12px 28px rgba(0,0,0,0.34) !important;
 }
 
 .quest-card.qt-card-epic.filler {
-  --quest-accent: #dcdcdc;
-  --quest-accent-rgb: 220,220,220;
-  border-color: rgba(220,220,220,0.44) !important;
+  --quest-accent: #ff4d5d;
+  --quest-accent-rgb: 255,77,93;
+  border-color: rgba(255,77,93,0.56) !important;
   background:
-    linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.28) 44%, rgba(220,220,220,0.07) 100%),
-    radial-gradient(circle at 72% 30%, rgba(235,235,235,0.12), transparent 35%),
-    linear-gradient(180deg, #121212 0%, #050505 100%) !important;
+    linear-gradient(90deg, rgba(0,0,0,0.82), rgba(0,0,0,0.28) 44%, rgba(255,77,93,0.12) 100%),
+    radial-gradient(circle at 72% 30%, rgba(255,77,93,0.18), transparent 35%),
+    linear-gradient(180deg, #18090b 0%, #050505 100%) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-type-pill {
-  border-color: rgba(235,235,235,0.44) !important;
-  color: #f1f1f1 !important;
+  border-color: rgba(255,104,119,0.58) !important;
+  color: #ff9aa4 !important;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.16), transparent 60%),
-    rgba(0,0,0,0.36) !important;
+    radial-gradient(circle at 0% 0%, rgba(255,77,93,0.22), transparent 60%),
+    rgba(34,5,9,0.58) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-crest-symbol {
-  color: #f2f2f2 !important;
-  border-color: rgba(230,230,230,0.48) !important;
+  color: #ff7a87 !important;
+  border-color: rgba(255,77,93,0.62) !important;
   background:
-    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 48%),
-    linear-gradient(180deg, rgba(235,235,235,0.10), rgba(0,0,0,0.66)) !important;
+    radial-gradient(circle at 50% 35%, rgba(255,77,93,0.26), transparent 48%),
+    linear-gradient(180deg, rgba(178,77,77,0.18), rgba(0,0,0,0.66)) !important;
   text-shadow:
-    0 0 9px rgba(255,255,255,0.62),
-    0 0 20px rgba(220,220,220,0.24) !important;
+    0 0 9px rgba(255,104,119,0.74),
+    0 0 20px rgba(255,77,93,0.34) !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-art-orb::before {
-  content: "○" !important;
-  color: #f1f1f1 !important;
+  content: "!" !important;
+  color: #ff6877 !important;
 }
 
 .quest-card.qt-card-epic.filler .qt-progress-fill {
-  background: linear-gradient(90deg, #9f9f9f, #f1f1f1) !important;
-  box-shadow: 0 0 12px rgba(235,235,235,0.28) !important;
+  background: linear-gradient(90deg, #a72838, #ff6877) !important;
+  box-shadow: 0 0 12px rgba(255,77,93,0.38) !important;
+}
+
+#questType option[value="filler"],
+#archiveFilters .archive-filter[data-archive-filter="filler"] {
+  color: #ff6877 !important;
+  border-color: rgba(255,77,93,0.52) !important;
+  background-color: #21070a !important;
 }
 
 
@@ -10693,7 +10697,7 @@ header .player-card {
   --quest-ui-font: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
-/* Quest section names: MAIN / SIDE / FILLER / SCHEDULED / COMPLETED / FAILED */
+/* Quest section names: MAIN / SIDE / EMERGENCY / SCHEDULED / COMPLETED / FAILED */
 #questsView .section-toggle,
 #questsView .quest-section-panel .section-toggle,
 #questsView .main-heading,
@@ -10765,13 +10769,13 @@ header .player-card {
   letter-spacing: 0.5px !important;
 }
 
-/* Filler keeps gray/white seriousness instead of colorful fantasy */
+/* Emergency quests use a red warning treatment. */
 #questsView .quest-section-panel[data-section="filler"] .section-toggle,
 #questsView .filler-heading {
-  color: #f1f1ea !important;
+  color: #ff6877 !important;
   text-shadow:
-    0 0 10px rgba(255,255,255,0.16),
-    0 0 22px rgba(255,255,255,0.06) !important;
+    0 0 10px rgba(255,77,93,0.34),
+    0 0 22px rgba(255,77,93,0.14) !important;
 }
 
 /* Scheduled reads as cyan/terminal, but still uses the serious display font */
@@ -10795,134 +10799,169 @@ header .player-card {
   }
 }
 
-
-
-/* ===== PROGRESS ARCHIVE MERGED V1 ===== */
-#streakView{
-  --pa-bg:#020407;
-  --pa-surface:#071015;
-  --pa-surface2:#0d1820;
-  --pa-text:#edf4f4;
-  --pa-muted:#8ea1a8;
-  --pa-line:rgba(170,210,215,.16);
-  --pa-green:#6ee7a8;
-  --pa-blue:#7ab7ff;
-  --pa-purple:#c4a5ff;
-  --pa-orange:#f0b36a;
-  --pa-red:#ef8a8a;
-  --pa-fire:#ff6b35;
-  --pa-fire2:#f6a241;
+/* ===== COLORED MOBILE NAVIGATION + COMPLETED FILTERS ===== */
+#archiveFilters {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  width: 100% !important;
 }
-#streakView .pa-shell{width:100%;margin:0 auto;border:1px solid var(--pa-line);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 34%),linear-gradient(180deg,#071014,#020407);box-shadow:0 18px 50px rgba(0,0,0,.54);padding:18px;border-radius:20px;color:var(--pa-text);font-family:Inter,"Segoe UI",Arial,sans-serif;}
-#streakView .pa-top{position:relative;display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px;border:1px solid rgba(255,107,53,.28);padding:18px 190px 18px 18px;border-radius:18px;background:radial-gradient(circle at 5% 0%,rgba(255,107,53,.18),transparent 34%),radial-gradient(circle at 82% 30%,rgba(246,162,65,.10),transparent 26%),linear-gradient(180deg,rgba(255,255,255,.025),transparent 44%),rgba(0,0,0,.27);}
-#streakView .pa-top::after{content:"";position:absolute;right:22px;bottom:12px;width:118px;height:2px;background:linear-gradient(90deg,transparent,var(--pa-fire),var(--pa-fire2),transparent);opacity:.58;}
-#streakView .pa-title h1{margin:0;color:#fff1df;font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,5vw,46px);letter-spacing:1.8px;line-height:1;text-transform:uppercase;text-shadow:0 0 16px rgba(255,107,53,.20),0 0 30px rgba(246,162,65,.08);}
-#streakView .pa-title p{margin:7px 0 0;color:#b8c8d7;font-size:13px;line-height:1.45;text-transform:none;letter-spacing:0;}
-#streakView .pa-top-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;}
-#streakView .pa-manage-btn{position:absolute;top:14px;right:14px;z-index:3;min-height:36px;border-radius:999px;border:1px solid rgba(255,107,53,.48);background:rgba(255,107,53,.10);color:#ffe3d2;padding:0 13px;font-weight:950;letter-spacing:.55px;text-transform:uppercase;font-size:11px;cursor:pointer;box-shadow:0 0 16px rgba(255,107,53,.08);}
-#streakView .pa-manage-btn:hover{border-color:rgba(246,162,65,.72);background:rgba(255,107,53,.16);}
-#streakView .pa-badge{border:1px solid rgba(122,183,255,.42);background:rgba(122,183,255,.075);color:#d7ebff;padding:10px 12px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap;}
-#streakView .pa-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start;}
-#streakView .pa-panel{border:1px solid var(--pa-line);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 44%),rgba(0,0,0,.24);border-radius:17px;padding:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);}
-#streakView .pa-panel h2{margin:0 0 12px;font-family:Georgia,"Times New Roman",serif;font-size:19px;letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid rgba(170,210,215,.13);padding-bottom:9px;color:#d7ebff;}
-#streakView .pa-today-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:12px;border:1px solid rgba(122,183,255,.26);background:radial-gradient(circle at 100% 0%,rgba(122,183,255,.12),transparent 35%),rgba(0,0,0,.25);padding:14px;border-radius:15px;}
-#streakView .pa-today-main strong{display:block;font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-size:24px;line-height:1.05;}
-#streakView .pa-today-main span{display:block;margin-top:5px;color:var(--pa-muted);font-size:13px;line-height:1.35;}
-#streakView .pa-today-score{width:82px;height:82px;border-radius:25px;display:grid;place-items:center;border:1px solid rgba(122,183,255,.42);background:rgba(122,183,255,.08);color:#d7ebff;font-size:25px;font-weight:950;box-shadow:0 0 22px rgba(122,183,255,.08);}
-#streakView .pa-task-stack{display:grid;gap:10px;}
-#streakView .pa-section-label{display:flex;align-items:center;gap:8px;color:var(--pa-muted);font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.85px;margin:14px 0 6px;}
-#streakView .pa-section-label::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--pa-blue);box-shadow:0 0 12px rgba(122,183,255,.34);}
-#streakView .pa-section-label.pa-optional::before{background:var(--pa-purple);box-shadow:0 0 12px rgba(196,165,255,.34);}
-#streakView .pa-card{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid rgba(170,210,215,.13);background:rgba(0,0,0,.24);border-radius:14px;padding:11px;}
-#streakView .pa-card.pa-done{border-color:rgba(110,231,168,.42);background:rgba(110,231,168,.065);}
-#streakView .pa-card.pa-missed{border-color:rgba(239,138,138,.42);background:rgba(239,138,138,.06);}
-#streakView .pa-card.pa-optional-card{border-color:rgba(196,165,255,.22);background:rgba(196,165,255,.045);}
-#streakView .pa-card.pa-optional-card.pa-done{border-color:rgba(196,165,255,.46);background:rgba(196,165,255,.085);}
-#streakView .pa-info strong{display:block;color:#f0f8f8;font-size:15px;line-height:1.2;text-transform:none;letter-spacing:0;}
-#streakView .pa-info span{display:block;margin-top:4px;color:var(--pa-muted);font-size:12px;line-height:1.35;}
-#streakView .pa-actions{display:inline-flex;justify-content:flex-end;align-items:center;gap:6px;width:auto;}
-#streakView .pa-icon-btn,#streakView .pa-log-btn,#streakView .pa-clear-btn{height:38px;border-radius:12px;border:1px solid rgba(170,210,215,.16);background:#081014;color:var(--pa-text);font-weight:950;cursor:pointer;}
-#streakView .pa-icon-btn{width:38px;min-width:38px;font-size:16px;}
-#streakView .pa-clear-btn{min-width:58px;font-size:12px;color:#9fb3bb;}
-#streakView .pa-icon-btn.pa-good.active,#streakView .pa-icon-btn.pa-good:hover{color:#caffde;border-color:rgba(110,231,168,.72);background:rgba(110,231,168,.13);}
-#streakView .pa-icon-btn.pa-bad.active,#streakView .pa-icon-btn.pa-bad:hover{color:#ffd4d4;border-color:rgba(239,138,138,.72);background:rgba(239,138,138,.12);}
-#streakView .pa-clear-btn:hover{border-color:rgba(170,210,215,.34);color:#e8f2f2;}
-#streakView .pa-log-btn{min-width:76px;padding:0 12px;border-color:rgba(196,165,255,.34);background:rgba(196,165,255,.07);color:#eadfff;text-transform:none;font-size:13px;}
-#streakView .pa-log-btn.active{border-color:rgba(196,165,255,.70);background:rgba(196,165,255,.14);color:#f1e9ff;}
-#streakView .pa-week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:12px;}
-#streakView .pa-week-day{min-height:64px;border:1px solid rgba(122,183,255,.18);border-radius:14px;background:rgba(122,183,255,.045);display:grid;place-items:center;text-align:center;padding:8px;}
-#streakView .pa-week-day span{display:block;color:#94afc5;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.6px;}
-#streakView .pa-week-day strong{display:block;margin-top:5px;color:#f3fbff;font-size:18px;}
-#streakView .pa-week-day.win{border-color:rgba(110,231,168,.45);background:rgba(110,231,168,.07);}
-#streakView .pa-week-day.gold{border-color:rgba(196,165,255,.52);background:rgba(196,165,255,.09);}
-#streakView .pa-week-day.partial{border-color:rgba(240,179,106,.45);background:rgba(240,179,106,.065);}
-#streakView .pa-week-day.miss{border-color:rgba(239,138,138,.42);background:rgba(239,138,138,.06);}
-#streakView .pa-calendar-shell{border:1px solid rgba(122,183,255,.18);border-radius:17px;background:linear-gradient(180deg,rgba(122,183,255,.035),transparent 44%),rgba(0,0,0,.22);padding:12px;}
-#streakView .pa-calendar-header{display:grid;grid-template-columns:42px 1fr 42px;gap:8px;align-items:center;margin-bottom:10px;}
-#streakView .pa-calendar-header button{height:40px;border-radius:12px;border:1px solid rgba(122,183,255,.25);background:#071016;color:#d7ebff;font-weight:950;cursor:pointer;}
-#streakView .pa-month-title{text-align:center;font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-weight:900;font-size:18px;letter-spacing:.8px;text-transform:uppercase;}
-#streakView .pa-weekdays,#streakView .pa-calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;}
-#streakView .pa-weekdays{margin-bottom:7px;}
-#streakView .pa-weekday{text-align:center;color:#7e94a1;font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.5px;}
-#streakView .pa-day-cell{min-height:72px;border:1px solid rgba(170,210,215,.13);border-radius:13px;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 45%),rgba(0,0,0,.26);display:grid;grid-template-rows:auto 1fr auto;gap:4px;padding:8px;cursor:pointer;user-select:none;}
-#streakView .pa-day-cell:hover{border-color:rgba(122,183,255,.52);transform:translateY(-1px);}
-#streakView .pa-day-cell.empty{opacity:.13;pointer-events:none;}
-#streakView .pa-day-cell.today{outline:1px solid rgba(255,107,53,.68);outline-offset:2px;}
-#streakView .pa-day-cell.win{border-color:rgba(110,231,168,.45);background:rgba(110,231,168,.07);}
-#streakView .pa-day-cell.gold{border-color:rgba(196,165,255,.55);background:rgba(196,165,255,.09);}
-#streakView .pa-day-cell.partial{border-color:rgba(240,179,106,.48);background:rgba(240,179,106,.065);}
-#streakView .pa-day-cell.miss{border-color:rgba(239,138,138,.43);background:rgba(239,138,138,.06);}
-#streakView .pa-day-number{color:#f0f8f8;font-size:13px;font-weight:950;}
-#streakView .pa-day-icon{display:grid;place-items:center;font-size:18px;font-weight:950;}
-#streakView .pa-day-mini{display:flex;gap:4px;justify-content:flex-end;}
-#streakView .pa-mini-dot{width:7px;height:7px;border-radius:50%;background:rgba(170,210,215,.18);}
-#streakView .pa-mini-dot.on{background:var(--pa-green);}
-#streakView .pa-mini-dot.opt{background:var(--pa-purple);}
-#streakView .pa-mini-dot.miss{background:var(--pa-red);}
-#streakView .pa-side-stack{display:grid;gap:14px;}
-#streakView .pa-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-#streakView .pa-stat-card{border:1px solid rgba(122,183,255,.16);background:rgba(122,183,255,.045);border-radius:14px;padding:12px;}
-#streakView .pa-stat-card strong{display:block;color:#d7ebff;font-size:25px;line-height:1;}
-#streakView .pa-stat-card span{display:block;margin-top:5px;color:var(--pa-muted);font-size:10px;font-weight:950;text-transform:uppercase;letter-spacing:.65px;}
-#streakView .pa-note{color:#b8c8ce;font-size:13px;line-height:1.55;}
-#streakView .pa-legend{display:grid;gap:8px;}
-#streakView .pa-legend-row{display:flex;align-items:center;gap:8px;color:#cfe0e3;font-size:13px;}
-#streakView .pa-legend-box{width:14px;height:14px;border-radius:4px;border:1px solid rgba(170,210,215,.22);background:#111;}
-#streakView .pa-legend-box.green{background:rgba(110,231,168,.35);border-color:rgba(110,231,168,.55);}
-#streakView .pa-legend-box.purple{background:rgba(196,165,255,.35);border-color:rgba(196,165,255,.55);}
-#streakView .pa-legend-box.red{background:rgba(239,138,138,.35);border-color:rgba(239,138,138,.55);}
-#streakView .pa-legend-box.orange{background:rgba(240,179,106,.30);border-color:rgba(240,179,106,.50);}
-.pa-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.80);padding:16px;z-index:99;}
-.pa-modal.open{display:flex;}
-.pa-modal-card{width:min(620px,100%);max-height:88vh;overflow:auto;border:1px solid rgba(122,183,255,.34);background:linear-gradient(180deg,#0e1820,#030508);border-radius:18px;padding:16px;box-shadow:0 18px 60px rgba(0,0,0,.76);color:#edf4f4;}
-.pa-modal-top{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid rgba(170,210,215,.16);padding-bottom:12px;margin-bottom:12px;}
-.pa-modal-title{font-family:Georgia,"Times New Roman",serif;color:#d7ebff;font-size:22px;font-weight:900;}
-.pa-close-btn{width:40px;height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.20);background:#071014;color:#f3fbfb;font-size:18px;cursor:pointer;}
-.pa-editor-note{margin:0 0 12px;color:#8ea1a8;font-size:13px;line-height:1.45;}
-.pa-modal-section-title{margin:12px 0 7px;color:#d7ebff;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.85px;}
-.pa-modal-section-title.optional{color:#d8c6ff;}
-.pa-edit-list{display:grid;gap:9px;}
-.pa-modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-.pa-modal-actions button{flex:1;min-height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.18);background:#071014;color:#eaf4f4;font-weight:900;cursor:pointer;}
-.pa-modal-actions .danger{border-color:rgba(239,138,138,.42);color:#ffd5d5;background:rgba(239,138,138,.08);}
-.pa-manager-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.pa-manager-column{border:1px solid rgba(170,210,215,.12);background:rgba(0,0,0,.20);border-radius:14px;padding:12px;}
-.pa-manager-column h3{margin:0 0 10px;color:#f1efff;font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.7px;text-transform:uppercase;}
-.pa-add-task-row{display:grid;grid-template-columns:1fr 72px;gap:8px;margin-bottom:10px;}
-.pa-add-task-row input{height:40px;border-radius:12px;border:1px solid rgba(170,210,215,.16);background:#071014;color:#edf4f4;padding:0 11px;outline:none;}
-.pa-add-task-row button{min-height:40px;border-radius:12px;border:1px solid rgba(122,183,255,.28);background:rgba(122,183,255,.08);color:#d7ebff;font-weight:950;cursor:pointer;}
-.pa-manager-list{display:grid;gap:8px;}
-.pa-manager-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid rgba(170,210,215,.12);background:rgba(0,0,0,.24);border-radius:13px;padding:9px;}
-.pa-manager-row.archived{opacity:.48;}
-.pa-manager-row strong{display:block;color:#f2fafa;font-size:14px;}
-.pa-manager-row span{display:block;color:#8ea1a8;font-size:11px;margin-top:3px;}
-.pa-manager-actions{display:flex;gap:6px;}
-.pa-manager-actions button{height:34px;border-radius:10px;border:1px solid rgba(170,210,215,.16);background:#071014;color:#dce8ec;font-size:11px;font-weight:900;cursor:pointer;padding:0 8px;}
-.pa-manager-actions .danger{border-color:rgba(239,138,138,.36);color:#ffd5d5;background:rgba(239,138,138,.07);}
-.pa-manager-actions .move{border-color:rgba(196,165,255,.34);color:#eadfff;background:rgba(196,165,255,.06);}
-@media(max-width:900px){#streakView .pa-shell{border:0;border-radius:0;padding:12px;min-height:100vh;}#streakView .pa-top{align-items:flex-start;flex-direction:column;padding:54px 14px 14px 14px;}#streakView .pa-manage-btn{top:12px;right:12px;min-height:34px;padding:0 11px;font-size:10px;}#streakView .pa-top-actions{width:100%;justify-content:flex-start;}#streakView .pa-badge{width:100%;text-align:center;}#streakView .pa-layout{grid-template-columns:1fr;}#streakView .pa-today-card{grid-template-columns:1fr;}#streakView .pa-today-score{width:100%;height:58px;border-radius:14px;}#streakView .pa-calendar-grid,#streakView .pa-weekdays{gap:5px;}#streakView .pa-day-cell{min-height:62px;border-radius:11px;padding:6px;}#streakView .pa-actions{justify-content:flex-end;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr auto;}.pa-manager-grid{grid-template-columns:1fr}.pa-add-task-row{grid-template-columns:1fr}.pa-manager-row{grid-template-columns:1fr}.pa-manager-actions{display:grid;grid-template-columns:1fr 1fr 1fr}.pa-manager-actions button{height:38px}.pa-modal-card{max-height:92vh;}}
-@media(max-width:480px){#streakView .pa-shell{padding:9px;}#streakView .pa-panel{padding:11px;border-radius:14px;}#streakView .pa-title h1{font-size:28px;}#streakView .pa-title p{font-size:12px;}#streakView .pa-weekdays{gap:3px;}#streakView .pa-calendar-grid{gap:4px;}#streakView .pa-weekday{font-size:8px;}#streakView .pa-day-cell{min-height:52px;border-radius:9px;padding:5px;}#streakView .pa-day-icon{font-size:14px;}#streakView .pa-day-mini{display:none;}#streakView .pa-month-title{font-size:15px;}#streakView .pa-calendar-header{grid-template-columns:36px 1fr 36px;}#streakView .pa-calendar-header button{height:36px;}#streakView .pa-stat-grid{grid-template-columns:1fr 1fr;}#streakView .pa-card:not(.pa-optional-card){grid-template-columns:1fr;}#streakView .pa-actions{justify-content:flex-start;}.pa-modal-actions{display:grid;grid-template-columns:1fr;}}
-@media(max-width:1200px){.tabs .tab[data-view="streakView"]::after{content:"Streak" !important;}}
+
+#archiveFilters .archive-filter {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  padding: 8px 4px !important;
+  border-radius: 7px !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.45px !important;
+  background: rgba(255,255,255,0.025) !important;
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="all"] {
+  color: #e4e0d7 !important;
+  border-color: rgba(228,224,215,0.30) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="main"] {
+  color: #f4d77b !important;
+  border-color: rgba(224,200,120,0.52) !important;
+  background: rgba(224,200,120,0.055) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="side"] {
+  color: #c29cff !important;
+  border-color: rgba(143,101,255,0.54) !important;
+  background: rgba(143,101,255,0.06) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="filler"] {
+  color: #ff6877 !important;
+  border-color: rgba(255,77,93,0.58) !important;
+  background: rgba(255,77,93,0.065) !important;
+}
+
+#archiveFilters .archive-filter.active {
+  transform: translateY(-1px) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="all"].active {
+  background: linear-gradient(180deg, rgba(228,224,215,0.16), rgba(228,224,215,0.045)) !important;
+  box-shadow: 0 0 16px rgba(228,224,215,0.10), inset 0 0 0 1px rgba(228,224,215,0.08) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="main"].active {
+  background: linear-gradient(180deg, rgba(224,200,120,0.24), rgba(224,200,120,0.07)) !important;
+  box-shadow: 0 0 18px rgba(224,200,120,0.18), inset 0 0 0 1px rgba(224,200,120,0.10) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="side"].active {
+  background: linear-gradient(180deg, rgba(143,101,255,0.25), rgba(143,101,255,0.07)) !important;
+  box-shadow: 0 0 18px rgba(143,101,255,0.20), inset 0 0 0 1px rgba(143,101,255,0.10) !important;
+}
+
+#archiveFilters .archive-filter[data-archive-filter="filler"].active {
+  background: linear-gradient(180deg, rgba(255,77,93,0.25), rgba(255,77,93,0.07)) !important;
+  box-shadow: 0 0 18px rgba(255,77,93,0.20), inset 0 0 0 1px rgba(255,77,93,0.10) !important;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding-bottom: calc(114px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .screen {
+    padding-bottom: calc(128px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+    min-height: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 10px 12px calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid rgba(216,208,189,0.16) !important;
+    background:
+      linear-gradient(180deg, rgba(18,19,24,0.985), rgba(4,5,8,0.995)) !important;
+    box-shadow:
+      0 -14px 34px rgba(0,0,0,0.64),
+      inset 0 1px 0 rgba(255,255,255,0.055) !important;
+  }
+
+  .tabs .tab,
+  .tabs button.tab {
+    min-height: 66px !important;
+    height: 66px !important;
+    padding: 7px 4px !important;
+    border: 1px solid rgba(255,255,255,0.09) !important;
+    border-radius: 11px !important;
+    background: rgba(255,255,255,0.022) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.035) !important;
+    transition: transform 150ms ease, background 150ms ease, border-color 150ms ease, box-shadow 150ms ease !important;
+  }
+
+  .tabs .tab[data-view="questsView"] {
+    color: #f1cf6d !important;
+    border-color: rgba(224,200,120,0.24) !important;
+    background: rgba(224,200,120,0.035) !important;
+  }
+
+  .tabs .tab[data-view="saveView"] {
+    color: #78c7ff !important;
+    border-color: rgba(103,174,232,0.25) !important;
+    background: rgba(103,174,232,0.035) !important;
+  }
+
+  .tabs .tab[data-view="archiveView"] {
+    color: #c29cff !important;
+    border-color: rgba(143,101,255,0.25) !important;
+    background: rgba(143,101,255,0.035) !important;
+  }
+
+  .tabs .tab.active,
+  .tabs button.tab.active {
+    transform: translateY(-2px) !important;
+  }
+
+  .tabs .tab[data-view="questsView"].active {
+    background: linear-gradient(180deg, rgba(224,200,120,0.20), rgba(224,200,120,0.055)) !important;
+    border-color: rgba(224,200,120,0.62) !important;
+    box-shadow: 0 0 19px rgba(224,200,120,0.17), inset 0 0 0 1px rgba(224,200,120,0.08) !important;
+    text-shadow: 0 0 13px rgba(224,200,120,0.34) !important;
+  }
+
+  .tabs .tab[data-view="saveView"].active {
+    background: linear-gradient(180deg, rgba(103,174,232,0.21), rgba(103,174,232,0.055)) !important;
+    border-color: rgba(103,174,232,0.64) !important;
+    box-shadow: 0 0 19px rgba(103,174,232,0.18), inset 0 0 0 1px rgba(103,174,232,0.08) !important;
+    text-shadow: 0 0 13px rgba(103,174,232,0.36) !important;
+  }
+
+  .tabs .tab[data-view="archiveView"].active {
+    background: linear-gradient(180deg, rgba(143,101,255,0.22), rgba(143,101,255,0.06)) !important;
+    border-color: rgba(143,101,255,0.66) !important;
+    box-shadow: 0 0 19px rgba(143,101,255,0.20), inset 0 0 0 1px rgba(143,101,255,0.09) !important;
+    text-shadow: 0 0 13px rgba(143,101,255,0.38) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .tabs {
+    gap: 6px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  #archiveFilters {
+    gap: 6px !important;
+  }
+
+  #archiveFilters .archive-filter {
+    font-size: 9px !important;
+    letter-spacing: 0.25px !important;
+  }
+}
 
 </style>
 </head>
@@ -10951,8 +10990,6 @@ header .player-card {
     <section class="content">
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
-        <button class="tab" data-view="elementsView">Elements</button>
-        <button class="tab" data-view="streakView">Streak</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
       </nav>
@@ -10962,7 +10999,7 @@ header .player-card {
           <div class="briefing-header">
             <div>
               <h2>Daily Briefing</h2>
-              <div class="helper-text">Quick scan of today’s mission board.</div>
+              <div class="helper-text">Quick scan of today&#x2019;s mission board.</div>
             </div>
             <div class="section-toggle-wrap">
               <div id="briefingStatus" class="briefing-status">Standing by</div>
@@ -11059,7 +11096,7 @@ header .player-card {
             <select id="questType">
               <option value="main">Main Quest</option>
               <option value="side">Side Quest</option>
-              <option value="filler">Filler Quest</option>
+              <option value="filler">Emergency Quest</option>
             </select>
 
             <label for="questTitle">Quest name</label>
@@ -11087,19 +11124,19 @@ header .player-card {
             <label for="questRewardType">Quest reward category</label>
             <div class="reward-picker-grid">
               <select id="questRewardType">
-                <option value="none">❌ None</option>
-                <option value="gaming">🎮 Gaming</option>
-                <option value="movie">🎬 Movie</option>
-                <option value="phone">📱 Phone</option>
-                <option value="youtube">▶️ YouTube</option>
-                <option value="custom">🏆 Custom</option>
+                <option value="none">&#x274C; None</option>
+                <option value="gaming">&#x1F3AE; Gaming</option>
+                <option value="movie">&#x1F3AC; Movie</option>
+                <option value="phone">&#x1F4F1; Phone</option>
+                <option value="youtube">&#x25B6;&#xFE0F; YouTube</option>
+                <option value="custom">&#x1F3C6; Custom</option>
               </select>
-              <input id="questRewardEmoji" type="hidden" value="❌" />
+              <input id="questRewardEmoji" type="hidden" value="&#x274C;" />
             </div>
             <div id="customRewardFields" class="reward-custom-grid">
               <div class="reward-field">
                 <span>Reward icon</span>
-                <input id="questRewardCustomEmoji" type="text" maxlength="4" placeholder="❌" aria-label="Reward icon" />
+                <input id="questRewardCustomEmoji" type="text" maxlength="4" placeholder="&#x274C;" aria-label="Reward icon" />
               </div>
               <div class="reward-field">
                 <span>Exact reward</span>
@@ -11135,162 +11172,38 @@ header .player-card {
 
           <div class="quest-sections-stack">
           <div class="panel quest-section-panel" data-section="main">
-            <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">▼ Main Quests</button>
+            <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">&#x25BC; Main Quests</button>
             <div id="mainQuestList" class="quest-list collapsible-content"></div>
           </div>
 
           <div class="panel quest-section-panel" data-section="side">
-            <button type="button" class="section-toggle side-heading" data-collapse-target="sideQuestList">▼ Side Quests</button>
+            <button type="button" class="section-toggle side-heading" data-collapse-target="sideQuestList">&#x25BC; Side Quests</button>
             <div id="sideQuestList" class="quest-list collapsible-content"></div>
           </div>
 
           <div class="panel quest-section-panel" data-section="filler">
-            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">▼ Filler Quests</button>
+            <button type="button" class="section-toggle filler-heading" data-collapse-target="fillerQuestList">&#x25BC; Emergency Quests</button>
             <div id="fillerQuestList" class="quest-list collapsible-content"></div>
           </div>
 
           <div class="panel quest-section-panel" data-section="scheduled">
-            <button type="button" class="section-toggle scheduled-heading" data-collapse-target="scheduledQuestList">▼ Scheduled Quests</button>
+            <button type="button" class="section-toggle scheduled-heading" data-collapse-target="scheduledQuestList">&#x25BC; Scheduled Quests</button>
             <div id="scheduledQuestList" class="quest-list collapsible-content"></div>
           </div>
 
           <div class="panel quest-section-panel" data-section="complete">
-            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">▼ Completed Quests</button>
+            <button type="button" class="section-toggle complete-heading" data-collapse-target="completeQuestList">&#x25BC; Completed Quests</button>
             <div class="archive-filters" id="archiveFilters">
               <button type="button" class="archive-filter active" data-archive-filter="all">All</button>
               <button type="button" class="archive-filter" data-archive-filter="main">Main</button>
               <button type="button" class="archive-filter" data-archive-filter="side">Side</button>
-              <button type="button" class="archive-filter" data-archive-filter="filler">Filler</button>
+              <button type="button" class="archive-filter" data-archive-filter="filler">Emergency</button>
             </div>
             <div id="completeQuestList" class="quest-list collapsible-content"></div>
           </div>
           </div>
         </div>
       </section>
-<section id="elementsView" class="view">
-        <div class="panel elements-panel">
-          <div class="elements-header">
-            <button type="button" id="prevWeekBtn">◀</button>
-            <div>
-              <h2>Elements</h2>
-              <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
-              <div class="elements-subtitle">Weekly discipline board · Edit to add skills and choose days</div>
-            </div>
-            <button type="button" id="nextWeekBtn">▶</button>
-          </div>
-
-          <div class="elements-grid">
-            <div class="element-card fire-card">
-              <div class="element-title-row">
-                <div class="element-title-main"><span id="fireTitle">Fire</span><em id="fireSubtitle">Combat</em></div>
-                <div class="element-card-actions"><b id="fireCount" class="element-count">0 / 3</b><button type="button" class="element-edit-btn" data-element-edit="fire">Edit</button></div>
-              </div>
-              <div class="element-strip fire-strip"></div>
-              <div id="fireGrid" class="element-block-row"></div>
-            </div>
-
-            <div class="element-card earth-card">
-              <div class="element-title-row">
-                <div class="element-title-main"><span id="earthTitle">Earth</span><em id="earthSubtitle">Strength</em></div>
-                <div class="element-card-actions"><b id="earthCount" class="element-count">0 / 3</b><button type="button" class="element-edit-btn" data-element-edit="earth">Edit</button></div>
-              </div>
-              <div class="element-strip earth-strip"></div>
-              <div id="earthGrid" class="element-block-row"></div>
-            </div>
-
-            <div class="element-card water-card">
-              <div class="element-title-row">
-                <div class="element-title-main"><span id="waterTitle">Water</span><em id="waterSubtitle">Career</em></div>
-                <div class="element-card-actions"><b id="waterCount" class="element-count">0 / 21</b><button type="button" class="element-edit-btn" data-element-edit="water">Edit</button></div>
-              </div>
-              <div class="element-strip water-strip"></div>
-              <div id="waterGrid" class="water-week-grid"></div>
-            </div>
-
-            <div class="element-card air-card">
-              <div class="element-title-row">
-                <div class="element-title-main"><span id="airTitle">Air</span><em id="airSubtitle">Unlocked Skills</em></div>
-                <div class="element-card-actions"><b id="airCount" class="element-count">0 / 4</b><button type="button" class="element-edit-btn" data-element-edit="air">Edit</button></div>
-              </div>
-              <div class="element-strip air-strip"></div>
-              <div id="airGrid" class="element-block-row"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-
-<section id="streakView" class="view">
-  <div class="pa-shell">
-    <section class="pa-top">
-      <div class="pa-title">
-        <h1>Progress Archive</h1>
-        <p>Core tasks decide the day. Optional wins are logged only when they actually happen.</p>
-      </div>
-      <div class="pa-top-actions">
-        <div class="pa-badge" id="paStatusBadge">Today: In Progress</div>
-        <button class="pa-manage-btn" id="paOpenTaskManager" type="button">Manage Tasks</button>
-      </div>
-    </section>
-
-    <section class="pa-layout">
-      <div class="pa-panel">
-        <div class="pa-today-card">
-          <div class="pa-today-main">
-            <strong id="paTodayTitle">Daily Core</strong>
-            <span id="paTodaySummary">Complete your required core first. Random wins stay available but do not punish you.</span>
-          </div>
-          <div class="pa-today-score" id="paTodayScore">0/2</div>
-        </div>
-
-        <div class="pa-section-label">Required today</div>
-        <div class="pa-task-stack" id="paCoreTasks"></div>
-
-        <div class="pa-section-label pa-optional">Optional wins</div>
-        <div class="pa-task-stack" id="paOptionalTasks"></div>
-
-        <div class="pa-section-label">Weekly strip</div>
-        <div class="pa-week-strip" id="paWeekStrip"></div>
-
-        <div class="pa-calendar-shell">
-          <div class="pa-calendar-header">
-            <button id="paPrevMonth" type="button">‹</button>
-            <div class="pa-month-title" id="paMonthTitle">Month</div>
-            <button id="paNextMonth" type="button">›</button>
-          </div>
-          <div class="pa-weekdays">
-            <div class="pa-weekday">Sun</div><div class="pa-weekday">Mon</div><div class="pa-weekday">Tue</div><div class="pa-weekday">Wed</div><div class="pa-weekday">Thu</div><div class="pa-weekday">Fri</div><div class="pa-weekday">Sat</div>
-          </div>
-          <div class="pa-calendar-grid" id="paCalendarGrid"></div>
-        </div>
-      </div>
-
-      <aside class="pa-side-stack">
-        <div class="pa-panel">
-          <h2>Stats</h2>
-          <div class="pa-stat-grid">
-            <div class="pa-stat-card"><strong id="paStatCore">0</strong><span>Core days</span></div>
-            <div class="pa-stat-card"><strong id="paStatGold">0</strong><span>Boosted days</span></div>
-            <div class="pa-stat-card"><strong id="paStatWins">0</strong><span>Optional wins</span></div>
-            <div class="pa-stat-card"><strong id="paStatPartial">0</strong><span>Partial days</span></div>
-          </div>
-        </div>
-        <div class="pa-panel">
-          <h2>Calendar Key</h2>
-          <div class="pa-legend">
-            <div class="pa-legend-row"><span class="pa-legend-box green"></span> Core completed</div>
-            <div class="pa-legend-row"><span class="pa-legend-box purple"></span> Core + optional wins</div>
-            <div class="pa-legend-row"><span class="pa-legend-box orange"></span> Partial core</div>
-            <div class="pa-legend-row"><span class="pa-legend-box red"></span> Missed core</div>
-          </div>
-          <p class="pa-note">Tap any date to edit that day directly. The calendar stays clean, but each date still has full detail.</p>
-        </div>
-      </aside>
-    </section>
-  </div>
-</section>
-
 <section id="saveView" class="view">
         <div class="grid-save">
           <div class="panel">
@@ -11316,7 +11229,7 @@ header .player-card {
               <h2>Export / Import</h2>
               <label for="dataBox">Save data</label>
               <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
-              <div class="helper-text">Export = copy current quests/saves/defaults/elements/routine. Import = replace this browser with pasted backup data.</div>
+              <div class="helper-text">Export = copy current quests, saves, defaults, rewards, and routine. Import = replace this browser with pasted backup data.</div>
               <div class="actions">
                 <button id="exportBtn">Export Data</button>
                 <button id="copyBtn">Copy Export</button>
@@ -11415,73 +11328,7 @@ header .player-card {
       <div id="dayTemplatesModalBody" class="default-list"></div>
     </div>
   </div>
-  
-<div id="paDayModal" class="pa-modal">
-  <div class="pa-modal-card">
-    <div class="pa-modal-top">
-      <div id="paModalTitle" class="pa-modal-title">Edit Day</div>
-      <button class="pa-close-btn" id="paCloseDayModal" type="button">×</button>
-    </div>
-    <p class="pa-editor-note">Change this date only. Core tasks affect the day color. Optional wins are extra logs and do not punish the day.</p>
-    <div class="pa-modal-section-title">Core tasks</div>
-    <div class="pa-edit-list" id="paModalCoreList"></div>
-    <div class="pa-modal-section-title optional">Optional wins</div>
-    <div class="pa-edit-list" id="paModalOptionalList"></div>
-    <div class="pa-modal-actions">
-      <button id="paMarkCoreDone" type="button">Mark Core Complete</button>
-      <button id="paClearDay" class="danger" type="button">Clear This Date</button>
-    </div>
-  </div>
-</div>
 
-<div id="paTaskManagerModal" class="pa-modal">
-  <div class="pa-modal-card">
-    <div class="pa-modal-top">
-      <div class="pa-modal-title">Manage Tasks</div>
-      <button class="pa-close-btn" id="paCloseTaskManager" type="button">×</button>
-    </div>
-    <p class="pa-editor-note">Add, remove, or move tasks. Removed tasks disappear from future days, but old logged dates keep their records.</p>
-    <div class="pa-manager-grid">
-      <div class="pa-manager-column">
-        <h3>Core Tasks</h3>
-        <div class="pa-add-task-row"><input id="paNewCoreTask" placeholder="Add core task" /><button id="paAddCoreTask" type="button">Add</button></div>
-        <div class="pa-manager-list" id="paManagerCoreList"></div>
-      </div>
-      <div class="pa-manager-column">
-        <h3>Optional Wins</h3>
-        <div class="pa-add-task-row"><input id="paNewOptionalTask" placeholder="Add optional win" /><button id="paAddOptionalTask" type="button">Add</button></div>
-        <div class="pa-manager-list" id="paManagerOptionalList"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="elementEditModal" class="modal">
-    <div class="modal-card element-edit-card">
-      <div class="modal-header">
-        <div class="modal-title" id="elementEditTitle">Edit Element Skills</div>
-        <button type="button" id="closeElementEditModal">Close</button>
-      </div>
-
-      <label for="elementSkillInput">Add skill square</label>
-      <div class="element-add-row">
-        <input id="elementSkillInput" type="text" maxlength="40" placeholder="Example: Python, Azure, SQL practice" />
-        <button type="button" id="addElementSkillBtn" class="action-add-quest">Add</button>
-      </div>
-
-      <div id="elementSkillEditorList" class="element-editor-list"></div>
-
-      <div class="helper-text">Use one square per skill. You can rename, move, delete, and add more. Your skill names stay saved until you change them.</div>
-
-      <div class="actions element-edit-actions">
-        <button type="button" id="saveElementEditBtn" class="action-done">Save Changes</button>
-        <button type="button" id="resetElementEditBtn" class="fail-btn">Reset Element</button>
-        <button type="button" id="cancelElementEditBtn">Cancel</button>
-      </div>
-
-      <div id="elementEditStatus" class="status-message"></div>
-    </div>
-  </div>
 
   <div id="missionEditModal" class="modal">
     <div class="modal-card mission-edit-card">
@@ -11527,8 +11374,6 @@ header .player-card {
     var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
     var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
     var STORE_DAY_TEMPLATES = 'qt_day_templates_v1';
-    var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
-    var STORE_ELEMENTS_CONFIG = 'qt_editable_elements_config_v1';
     var STORE_XP = 'qt_player_xp_v1';
     var STORE_REWARDS_LEGACY = 'qt_rewards_meal_pass_v1';
     var STORE_LEVEL_REWARDS = 'qt_level_rewards_meal_pass_v1';
@@ -11539,11 +11384,6 @@ header .player-card {
     var VERSION = 'merged-old-save-v13-microtask-draft-row-fix';
     var editingQuestId = null;
     var draftTasks = [];
-    var currentElementWeek = getWeekStart(new Date());
-    var editingElementKey = null;
-    var editingElementLabels = [];
-    var editingElementDays = [];
-    var ELEMENT_DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     var archiveFilter = 'all';
     var lastTimeLockRenderMinute = null;
     var lastTimeLockSignature = '';
@@ -11888,12 +11728,12 @@ header .player-card {
     }
 
     var REWARD_CATEGORIES = {
-      none: { type: 'none', emoji: '❌', label: 'None' },
-      gaming: { type: 'gaming', emoji: '🎮', label: 'Gaming' },
-      movie: { type: 'movie', emoji: '🎬', label: 'Movie' },
-      phone: { type: 'phone', emoji: '📱', label: 'Phone' },
-      youtube: { type: 'youtube', emoji: '▶️', label: 'YouTube' },
-      custom: { type: 'custom', emoji: '🏆', label: 'Custom' }
+      none: { type: 'none', emoji: '\u274C', label: 'None' },
+      gaming: { type: 'gaming', emoji: '\uD83C\uDFAE', label: 'Gaming' },
+      movie: { type: 'movie', emoji: '\uD83C\uDFAC', label: 'Movie' },
+      phone: { type: 'phone', emoji: '\uD83D\uDCF1', label: 'Phone' },
+      youtube: { type: 'youtube', emoji: '\u25B6\uFE0F', label: 'YouTube' },
+      custom: { type: 'custom', emoji: '\uD83C\uDFC6', label: 'Custom' }
     };
 
     function normalizeReward(reward) {
@@ -11915,7 +11755,7 @@ header .player-card {
       if (type === 'none') {
         return normalizeReward({
           type: 'none',
-          emoji: '❌',
+          emoji: '\u274C',
           label: 'None'
         });
       }
@@ -11950,15 +11790,15 @@ header .player-card {
       }
 
       if (type === 'none') {
-        emojiInput.value = '❌';
+        emojiInput.value = '\u274C';
         labelInput.value = 'None';
-        emojiInput.placeholder = '❌';
+        emojiInput.placeholder = '\u274C';
         labelInput.placeholder = 'None';
-        byId('questRewardEmoji').value = '❌';
+        byId('questRewardEmoji').value = '\u274C';
         return;
       }
 
-      if (resetFields || !emojiInput.value.trim() || emojiInput.value === '❌') emojiInput.value = base.emoji;
+      if (resetFields || !emojiInput.value.trim() || emojiInput.value === '\u274C') emojiInput.value = base.emoji;
       if (resetFields || !labelInput.value.trim() || labelInput.value === 'None') labelInput.value = defaultLabel;
 
       emojiInput.placeholder = base.emoji;
@@ -12014,7 +11854,7 @@ header .player-card {
         }
         var customReward = rewards.questVault.custom.shift();
         usedLabel = customReward.label || 'Custom Reward';
-        usedEmoji = customReward.emoji || '🏆';
+        usedEmoji = customReward.emoji || '\uD83C\uDFC6';
       } else {
         if ((rewards.questVault[type] || 0) <= 0) {
           byId('saveStatusText').textContent = 'No ' + base.label + ' rewards available.';
@@ -12044,7 +11884,7 @@ header .player-card {
     function getQuestTypeLabel(type, longLabel) {
       if (type === 'main') return longLabel ? 'Main Quest' : 'Main';
       if (type === 'side') return longLabel ? 'Side Quest' : 'Side';
-      if (type === 'filler') return longLabel ? 'Filler Quest' : 'Filler';
+      if (type === 'filler') return longLabel ? 'Emergency Quest' : 'Emergency';
       return longLabel ? 'Side Quest' : 'Side';
     }
 
@@ -12225,8 +12065,8 @@ function useMealPass() {
       var locked = isQuestLocked(quest);
       var lineClass = locked ? 'qt-time-lock-line' : 'qt-time-lock-line ready';
       var text = locked
-        ? '🔒 Opens ' + formatQuestUnlockTime(quest.unlockAt) + ' · ' + formatTimeRemaining(unlockDate.getTime() - Date.now())
-        : '✅ Ready now · Opened ' + formatQuestUnlockTime(quest.unlockAt);
+        ? '\uD83D\uDD12 Opens ' + formatQuestUnlockTime(quest.unlockAt) + ' \u00B7 ' + formatTimeRemaining(unlockDate.getTime() - Date.now())
+        : '\u2705 Ready now \u00B7 Opened ' + formatQuestUnlockTime(quest.unlockAt);
       return '<div class="' + lineClass + '">' + escapeHtml(text) + '</div>';
     }
 
@@ -12264,7 +12104,7 @@ function useMealPass() {
         return;
       }
 
-      preview.textContent = 'This quest opens ' + formatQuestUnlockTime(unlockDate.toISOString()) + ' · ' + formatTimeRemaining(unlockDate.getTime() - Date.now());
+      preview.textContent = 'This quest opens ' + formatQuestUnlockTime(unlockDate.toISOString()) + ' \u00B7 ' + formatTimeRemaining(unlockDate.getTime() - Date.now());
     }
 
     function setTimeLockFormValue(unlockAt) {
@@ -12308,243 +12148,6 @@ function useMealPass() {
       }
     }
 
-    function dateKey(value) {
-      var date = new Date(value);
-      if (isNaN(date.getTime())) return null;
-      return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
-    }
-
-    function getWeekStart(date) {
-      var d = new Date(date);
-      d.setHours(0, 0, 0, 0);
-      var day = d.getDay();
-      var diff = day === 0 ? -6 : 1 - day;
-      d.setDate(d.getDate() + diff);
-      return d;
-    }
-
-    function addDays(date, amount) {
-      var d = new Date(date);
-      d.setDate(d.getDate() + amount);
-      return d;
-    }
-
-    function shortDate(value) {
-      return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(value);
-    }
-
-    function weekKey(date) {
-      return dateKey(getWeekStart(date));
-    }
-
-    function getDefaultElementConfig() {
-      return {
-        fire: { title: 'Fire', subtitle: 'Combat', mode: 'blocks', labels: ['Kickboxing', 'Kickboxing', 'Muay Thai'], days: [[], [], []] },
-        earth: { title: 'Earth', subtitle: 'Strength', mode: 'blocks', labels: ['Push', 'Pull', 'Legs'], days: [[], [], []] },
-        water: { title: 'Water', subtitle: 'Career', mode: 'weekly', labels: ['SQL', 'Career', 'Cert'], days: [[0, 1, 2, 3, 4, 5, 6], [0, 1, 2, 3, 4, 5, 6], [0, 1, 2, 3, 4, 5, 6]] },
-        air: { title: 'Air', subtitle: 'Unlocked Skills', mode: 'blocks', labels: ['Python', 'Azure', 'Typing', 'Reading'], days: [[], [], [], []] }
-      };
-    }
-
-    function getElementOrder() {
-      return ['fire', 'earth', 'water', 'air'];
-    }
-
-    function cleanElementLabels(labels) {
-      if (!Array.isArray(labels)) return [];
-      return labels.map(function(label) {
-        return String(label || '').trim();
-      }).filter(Boolean);
-    }
-
-    function sanitizeElementDays(days) {
-      if (!Array.isArray(days)) return [];
-      return Array.from(new Set(days.map(Number).filter(function(day) {
-        return day >= 0 && day <= 6;
-      }))).sort(function(a, b) { return a - b; });
-    }
-
-    function cloneElementDayConfig(days, labelCount) {
-      var result = [];
-      for (var i = 0; i < labelCount; i += 1) {
-        result.push(sanitizeElementDays(days && days[i]));
-      }
-      return result;
-    }
-
-    function getElementSchedule(item, index) {
-      if (!item || !Array.isArray(item.days)) return [];
-      return sanitizeElementDays(item.days[index]);
-    }
-
-    function countElementTotal(key, config) {
-      var item = config[key];
-      if (!item) return 0;
-
-      if (item.mode === 'weekly') {
-        var activeDays = getWaterActiveDays(item);
-        return item.labels.length * activeDays.length;
-      }
-
-      return item.labels.reduce(function(sum, label, index) {
-        var schedule = getElementSchedule(item, index);
-        return sum + (schedule.length || 1);
-      }, 0);
-    }
-
-    function toggleElementEditorDay(index, day) {
-      syncElementEditorInputs();
-      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
-      var list = editingElementDays[index] || [];
-      if (list.indexOf(day) === -1) list.push(day);
-      else list = list.filter(function(item) { return item !== day; });
-      editingElementDays[index] = sanitizeElementDays(list);
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function applyElementEditorPreset(index, preset) {
-      syncElementEditorInputs();
-      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
-
-      if (preset === 'daily') editingElementDays[index] = [0, 1, 2, 3, 4, 5, 6];
-      if (preset === 'weekdays') editingElementDays[index] = [0, 1, 2, 3, 4];
-      if (preset === 'weekend') editingElementDays[index] = [5, 6];
-      if (preset === 'tueThu') editingElementDays[index] = [1, 3];
-      if (preset === 'clear') editingElementDays[index] = [];
-
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function toggleScheduledElementDay(element, index, day) {
-      var data = getWeekElements();
-      if (!data[element] || !Array.isArray(data[element][index])) return;
-      data[element][index][day] = !data[element][index][day];
-      saveWeekElements(data);
-      renderElements();
-      beep('click');
-    }
-
-    function getWaterActiveDays(item) {
-      if (!item) return [0, 1, 2, 3, 4, 5, 6];
-      if (Array.isArray(item.days) && item.days.length && Array.isArray(item.days[0]) && item.days[0].length) {
-        return sanitizeElementDays(item.days[0]);
-      }
-      return [0, 1, 2, 3, 4, 5, 6];
-    }
-
-    function getWaterEditorDays() {
-      if (Array.isArray(editingElementDays) && editingElementDays.length && Array.isArray(editingElementDays[0]) && editingElementDays[0].length) {
-        return sanitizeElementDays(editingElementDays[0]);
-      }
-      return [0, 1, 2, 3, 4, 5, 6];
-    }
-
-    function setWaterEditorDays(days) {
-      var clean = sanitizeElementDays(days);
-      if (!clean.length) clean = [0, 1, 2, 3, 4, 5, 6];
-      editingElementDays = cloneElementDayConfig([clean], editingElementLabels.length);
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function toggleWaterEditorDay(day) {
-      var days = getWaterEditorDays();
-      if (days.indexOf(day) === -1) days.push(day);
-      else days = days.filter(function(item) { return item !== day; });
-      setWaterEditorDays(days);
-    }
-
-    function applyWaterEditorPreset(preset) {
-      if (preset === 'daily') setWaterEditorDays([0, 1, 2, 3, 4, 5, 6]);
-      if (preset === 'weekdays') setWaterEditorDays([0, 1, 2, 3, 4]);
-      if (preset === 'weekend') setWaterEditorDays([5, 6]);
-      if (preset === 'tueThu') setWaterEditorDays([1, 3]);
-      if (preset === 'clear') setWaterEditorDays([]);
-    }
-
-
-
-    function getElementConfig() {
-      var defaults = getDefaultElementConfig();
-      var stored = readStore(STORE_ELEMENTS_CONFIG, {});
-      var config = JSON.parse(JSON.stringify(defaults));
-
-      getElementOrder().forEach(function(key) {
-        if (stored[key] && Array.isArray(stored[key].labels)) {
-          var labels = cleanElementLabels(stored[key].labels);
-          if (labels.length) config[key].labels = labels;
-        }
-
-        var sourceDays = stored[key] && Array.isArray(stored[key].days) ? stored[key].days : config[key].days;
-        config[key].days = cloneElementDayConfig(sourceDays, config[key].labels.length);
-      });
-
-      return config;
-    }
-
-    function setElementConfig(value) {
-      writeStore(STORE_ELEMENTS_CONFIG, value);
-    }
-
-    function getElementsStore() {
-      return readStore(STORE_ELEMENTS, {});
-    }
-
-    function setElementsStore(value) {
-      writeStore(STORE_ELEMENTS, value);
-    }
-
-    function normalizeElementWeekData(data, config) {
-      if (!data || typeof data !== 'object') data = {};
-
-      getElementOrder().forEach(function(key) {
-        var item = config[key];
-        var labels = item.labels || [];
-
-        if (item.mode === 'weekly') {
-          if (!Array.isArray(data[key])) data[key] = [];
-          for (var dayIndex = 0; dayIndex < 7; dayIndex += 1) {
-            if (!Array.isArray(data[key][dayIndex])) data[key][dayIndex] = [];
-            while (data[key][dayIndex].length < labels.length) data[key][dayIndex].push(false);
-            if (data[key][dayIndex].length > labels.length) data[key][dayIndex] = data[key][dayIndex].slice(0, labels.length);
-          }
-        } else {
-          if (!Array.isArray(data[key])) data[key] = [];
-          while (data[key].length < labels.length) data[key].push(false);
-          if (data[key].length > labels.length) data[key] = data[key].slice(0, labels.length);
-
-          labels.forEach(function(label, index) {
-            var schedule = getElementSchedule(item, index);
-            if (schedule.length) {
-              if (!Array.isArray(data[key][index])) data[key][index] = [false, false, false, false, false, false, false];
-              while (data[key][index].length < 7) data[key][index].push(false);
-              if (data[key][index].length > 7) data[key][index] = data[key][index].slice(0, 7);
-            } else if (Array.isArray(data[key][index])) {
-              data[key][index] = data[key][index].some(Boolean);
-            }
-          });
-        }
-      });
-
-      return data;
-    }
-
-    function getWeekElements() {
-      var config = getElementConfig();
-      var all = getElementsStore();
-      var key = weekKey(currentElementWeek);
-      all[key] = normalizeElementWeekData(all[key], config);
-      setElementsStore(all);
-      return all[key];
-    }
-
-    function saveWeekElements(data) {
-      var all = getElementsStore();
-      all[weekKey(currentElementWeek)] = data;
-      setElementsStore(all);
-    }
 
     function escapeHtml(value) {
       return String(value)
@@ -12829,9 +12432,9 @@ function useMealPass() {
         item.innerHTML =
           '<span class="micro-draft-text">' + (index + 1) + '. ' + escapeHtml(task.text) + '</span>' +
           '<button type="button" class="micro-mini-btn micro-edit-btn" data-draft-action="edit" data-draft-index="' + index + '">Edit</button>' +
-          '<button type="button" class="micro-mini-btn" data-draft-action="up" data-draft-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
-          '<button type="button" class="micro-mini-btn" data-draft-action="down" data-draft-index="' + index + '" ' + (index === draftTasks.length - 1 ? 'disabled' : '') + '>↓</button>' +
-          '<button type="button" class="micro-mini-btn micro-remove-btn" data-draft-action="remove" data-draft-id="' + task.id + '">×</button>';
+          '<button type="button" class="micro-mini-btn" data-draft-action="up" data-draft-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>\u2191</button>' +
+          '<button type="button" class="micro-mini-btn" data-draft-action="down" data-draft-index="' + index + '" ' + (index === draftTasks.length - 1 ? 'disabled' : '') + '>\u2193</button>' +
+          '<button type="button" class="micro-mini-btn micro-remove-btn" data-draft-action="remove" data-draft-id="' + task.id + '">\u00D7</button>';
         box.appendChild(item);
       });
     }
@@ -12911,7 +12514,7 @@ function useMealPass() {
 
         card.innerHTML =
           '<div class="default-title">' + escapeHtml(template.title) + '</div>' +
-          '<div class="default-meta">' + typeLabel + ' · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + ' · Reward: ' + escapeHtml(templateReward.emoji + ' ' + templateReward.label) + '<br>' + escapeHtml(template.desc || 'No description saved.') + '</div>' +
+          '<div class="default-meta">' + typeLabel + ' \u00B7 ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + ' \u00B7 Reward: ' + escapeHtml(templateReward.emoji + ' ' + templateReward.label) + '<br>' + escapeHtml(template.desc || 'No description saved.') + '</div>' +
           '<div class="default-actions">' +
             '<button type="button" data-default-action="add">Add Quest</button>' +
             '<button type="button" data-default-action="load">Load to Form</button>' +
@@ -13138,7 +12741,7 @@ function useMealPass() {
       });
 
       if (sourceQuests.length === 0) {
-        byId('questStatusText').textContent = 'No active Main, Side, or Filler quests to save as a day template.';
+        byId('questStatusText').textContent = 'No active Main, Side, or Emergency quests to save as a day template.';
         beep('fail');
         return;
       }
@@ -13239,7 +12842,7 @@ function useMealPass() {
 
         card.innerHTML =
           '<div class="default-title">' + escapeHtml(template.name || 'Day Template') + '</div>' +
-          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' · ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' filler · ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
+          '<div class="day-template-meta">' + quests.length + ' quest' + (quests.length === 1 ? '' : 's') + ' \u00B7 ' + mainCount + ' main / ' + sideCount + ' side / ' + fillerCount + ' emergency \u00B7 ' + taskCount + ' micro-task' + (taskCount === 1 ? '' : 's') + '<br>Loaded quests start fresh as New.</div>' +
           '<div class="day-template-actions">' +
             '<button type="button" class="action-add-quest" data-day-template-action="add">Add To Board</button>' +
             '<button type="button" class="action-progress" data-day-template-action="replace">Replace Board</button>' +
@@ -13512,7 +13115,7 @@ function useMealPass() {
 
       var rewardHtml =
         '<div class="qt-reward-row">' +
-          '<span class="qt-reward-chip qt-coin">◎ ' + escapeHtml(String(xpValue)) + ' XP</span>' +
+          '<span class="qt-reward-chip qt-coin">\u25CE ' + escapeHtml(String(xpValue)) + ' XP</span>' +
           '<span class="qt-reward-chip">' + escapeHtml(reward.emoji) + ' ' + escapeHtml(reward.label) + '</span>' +
         '</div>';
 
@@ -13527,8 +13130,8 @@ function useMealPass() {
           microDrawerHtml += '<label class="micro-item ' + (task.done ? "done" : "") + '">';
           microDrawerHtml += '<input type="checkbox" data-action="toggleTask" data-task-id="' + task.id + '" ' + (task.done ? "checked" : "") + ' />';
           microDrawerHtml += '<span class="micro-task-text">' + (taskIndex + 1) + '. ' + escapeHtml(task.text) + '</span>';
-          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>↑</button>';
-          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>↓</button>';
+          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskUp" data-task-id="' + task.id + '" ' + (taskIndex === 0 ? "disabled" : "") + '>\u2191</button>';
+          microDrawerHtml += '<button type="button" class="micro-move-btn" data-action="moveTaskDown" data-task-id="' + task.id + '" ' + (taskIndex === tasks.length - 1 ? "disabled" : "") + '>\u2193</button>';
           microDrawerHtml += '</label>';
         });
         microDrawerHtml += '</div>';
@@ -13628,7 +13231,7 @@ function useMealPass() {
           '</div>' +
 
           '<div class="qt-card-actions">' +
-            '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '" ' + (questIsLocked ? 'disabled' : '') + '>' + primaryLabel + ' <span>›</span></button>' +
+            '<button class="' + primaryClass + ' quest-primary-btn qt-primary-btn" data-action="' + primaryAction + '" ' + (questIsLocked ? 'disabled' : '') + '>' + primaryLabel + ' <span>\u203A</span></button>' +
             '<button class="action-more quest-more-btn qt-more-btn" data-action="more">More</button>' +
           '</div>' +
         '</div>' +
@@ -13648,8 +13251,8 @@ function useMealPass() {
                 '<button class="action-info" data-action="info">Details</button>' +
                 '<button class="action-edit" data-action="edit">Edit Time</button>' +
                 (quest.status !== "complete" && quest.status !== "failed" ?
-                  '<button class="action-order" data-action="moveQuestUp">↑ Up</button>' +
-                  '<button class="action-order" data-action="moveQuestDown">↓ Down</button>'
+                  '<button class="action-order" data-action="moveQuestUp">\u2191 Up</button>' +
+                  '<button class="action-order" data-action="moveQuestDown">\u2193 Down</button>'
                 : '') +
                 '<button class="action-delete" data-action="delete">Delete</button>'
               ) +
@@ -13788,11 +13391,11 @@ function useMealPass() {
       var rewards = getQuestRewardData();
       var customCount = rewards.questVault.custom.length;
       var cards = [
-        { type: 'gaming', emoji: '🎮', label: 'Gaming', count: rewards.questVault.gaming || 0 },
-        { type: 'movie', emoji: '🎬', label: 'Movie', count: rewards.questVault.movie || 0 },
-        { type: 'phone', emoji: '📱', label: 'Phone', count: rewards.questVault.phone || 0 },
-        { type: 'youtube', emoji: '▶️', label: 'YouTube', count: rewards.questVault.youtube || 0 },
-        { type: 'custom', emoji: '🏆', label: 'Custom', count: customCount }
+        { type: 'gaming', emoji: '\uD83C\uDFAE', label: 'Gaming', count: rewards.questVault.gaming || 0 },
+        { type: 'movie', emoji: '\uD83C\uDFAC', label: 'Movie', count: rewards.questVault.movie || 0 },
+        { type: 'phone', emoji: '\uD83D\uDCF1', label: 'Phone', count: rewards.questVault.phone || 0 },
+        { type: 'youtube', emoji: '\u25B6\uFE0F', label: 'YouTube', count: rewards.questVault.youtube || 0 },
+        { type: 'custom', emoji: '\uD83C\uDFC6', label: 'Custom', count: customCount }
       ];
 
       container.innerHTML = cards.map(function(item) {
@@ -13803,7 +13406,7 @@ function useMealPass() {
         '</div>';
       }).join('') +
       '<div class="reward-vault-custom-list">Custom rewards waiting: ' +
-      (customCount ? rewards.questVault.custom.map(function(item) { return escapeHtml((item.emoji || '🏆') + ' ' + (item.label || 'Custom Reward')); }).join(' · ') : 'None') +
+      (customCount ? rewards.questVault.custom.map(function(item) { return escapeHtml((item.emoji || '\uD83C\uDFC6') + ' ' + (item.label || 'Custom Reward')); }).join(' \u00B7 ') : 'None') +
       '</div>';
     }
 
@@ -13829,7 +13432,7 @@ function useMealPass() {
       byId('levelText').textContent = 'Level ' + level.level;
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
-      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level · Main +5 / Side +2 / Filler +1';
+      byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level \u00B7 Main +5 / Side +2 / Emergency +1';
       syncManualXpInputs();
       renderRoutineTop();
     }
@@ -13855,8 +13458,6 @@ function useMealPass() {
         quests: getQuests(),
         defaults: getCustomDefaults(),
         dayTemplates: getDayTemplates(),
-        elements: getElementsStore(),
-        elementConfig: getElementConfig(),
         xp: getXpData(),
         rewards: getRewardData(),
         levelRewards: getLevelRewardData(),
@@ -13955,7 +13556,6 @@ function useMealPass() {
 
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
     if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
-    if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
     if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
     if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
     if (save.questRewards && typeof save.questRewards === 'object') setQuestRewardData(save.questRewards);
@@ -14067,7 +13667,6 @@ function useMealPass() {
         activeSaveId: getActiveSaveId(),
         defaults: getCustomDefaults(),
         dayTemplates: getDayTemplates(),
-        elements: getElementsStore(),
         xp: getXpData(),
         rewards: getRewardData(),
         levelRewards: getLevelRewardData(),
@@ -14137,8 +13736,6 @@ function useMealPass() {
       setSaves(data.saves);
       if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
       if (Array.isArray(data.dayTemplates)) setDayTemplates(data.dayTemplates);
-      if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
-      if (data.elementConfig && typeof data.elementConfig === 'object') setElementConfig(data.elementConfig);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
       if (data.levelRewards && typeof data.levelRewards === 'object') setLevelRewardData(data.levelRewards);
       if (data.questRewards && typeof data.questRewards === 'object') setQuestRewardData(data.questRewards);
@@ -14157,420 +13754,6 @@ function useMealPass() {
       renderAll();
     }
 
-    function countElementDone(key, data, config) {
-      var item = config[key];
-      if (!item || !data[key]) return 0;
-
-      if (item.mode === 'weekly') {
-        var activeDays = getWaterActiveDays(item);
-        return activeDays.reduce(function(sum, dayIndex) {
-          var day = data[key][dayIndex] || [];
-          return sum + day.filter(Boolean).length;
-        }, 0);
-      }
-
-      return item.labels.reduce(function(sum, label, index) {
-        var schedule = getElementSchedule(item, index);
-        if (schedule.length) {
-          if (!Array.isArray(data[key][index])) return sum;
-          return sum + schedule.filter(function(dayIndex) {
-            return Boolean(data[key][index][dayIndex]);
-          }).length;
-        }
-
-        return sum + (data[key][index] ? 1 : 0);
-      }, 0);
-    }
-
-    function renderElements() {
-      var config = getElementConfig();
-      var data = getWeekElements();
-      var start = getWeekStart(currentElementWeek);
-      var end = addDays(start, 6);
-      byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
-
-      getElementOrder().forEach(function(key) {
-        var item = config[key];
-        var title = byId(key + 'Title');
-        var subtitle = byId(key + 'Subtitle');
-        var count = byId(key + 'Count');
-        var done = countElementDone(key, data, config);
-        var total = countElementTotal(key, config);
-
-        if (title) title.textContent = item.title;
-        if (subtitle) subtitle.textContent = item.subtitle;
-        if (count) count.textContent = done + ' / ' + total;
-      });
-
-      renderElementBlocks('fire', config, data);
-      renderElementBlocks('earth', config, data);
-      renderWaterElement('water', config, data);
-      renderElementBlocks('air', config, data);
-    }
-
-    function elementMedalEmoji(key) {
-      if (key === 'fire') return '🔥';
-      if (key === 'earth') return '⛰️';
-      if (key === 'water') return '🌊';
-      if (key === 'air') return '💨';
-      return '🏆';
-    }
-
-    function elementMedalName(key) {
-      if (key === 'fire') return 'Fire medal';
-      if (key === 'earth') return 'Earth medal';
-      if (key === 'water') return 'Water medal';
-      if (key === 'air') return 'Air medal';
-      return 'Element medal';
-    }
-
-    function isElementMedalUnlocked(key, data, config) {
-      var total = countElementTotal(key, config);
-      if (!total) return false;
-      return countElementDone(key, data, config) >= total;
-    }
-
-    function createElementMedalCard(key, unlocked) {
-      var medal = document.createElement('div');
-      medal.className = 'element-medal-cell ' + key + (unlocked ? ' unlocked' : '');
-      medal.innerHTML = '<div class="element-medal-icon">' + elementMedalEmoji(key) + '</div><div class="element-medal-text">' + (unlocked ? 'Unlocked' : 'Locked') + '</div>';
-      medal.setAttribute('title', elementMedalName(key));
-      return medal;
-    }
-
-    function renderElementBlocks(key, config, data) {
-      var grid = byId(key + 'Grid');
-      if (!grid) return;
-
-      grid.innerHTML = '';
-
-      var rowGrid = document.createElement('div');
-      rowGrid.className = 'element-unified-grid ' + key;
-
-      var scheduledEntries = [];
-      var unscheduled = [];
-
-      config[key].labels.forEach(function(label, index) {
-        var schedule = getElementSchedule(config[key], index);
-
-        if (schedule.length) {
-          schedule.forEach(function(dayIndex) {
-            scheduledEntries.push({ label: label, index: index, day: dayIndex, dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY' });
-          });
-        } else {
-          unscheduled.push({ label: label, index: index });
-        }
-      });
-
-      scheduledEntries.forEach(function(entry) {
-        var card = document.createElement('div');
-        card.className = 'element-assigned-card ' + key;
-
-        var dayLabel = document.createElement('div');
-        dayLabel.className = 'element-assigned-card-day';
-        dayLabel.textContent = entry.dayLabel;
-        card.appendChild(dayLabel);
-
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'element-assigned-card-skill ' + key + ((Array.isArray(data[key][entry.index]) && data[key][entry.index][entry.day]) ? ' active' : '');
-        btn.setAttribute('data-element', key);
-        btn.setAttribute('data-index', entry.index);
-        btn.setAttribute('data-day-slot', entry.day);
-        btn.textContent = entry.label;
-        card.appendChild(btn);
-
-        rowGrid.appendChild(card);
-      });
-
-      unscheduled.forEach(function(entry) {
-        var block = document.createElement('button');
-        block.type = 'button';
-        block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
-        block.setAttribute('data-element', key);
-        block.setAttribute('data-index', entry.index);
-        block.textContent = entry.label;
-        rowGrid.appendChild(block);
-      });
-
-      rowGrid.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
-      grid.appendChild(rowGrid);
-    }
-
-    function renderWaterElement(key, config, data) {
-      var water = byId('waterGrid');
-      if (!water) return;
-
-      water.innerHTML = '';
-
-      var activeDays = getWaterActiveDays(config[key]);
-      water.style.setProperty('--element-water-days', String(activeDays.length || 1));
-
-      activeDays.forEach(function(dayIndex) {
-        var day = data[key][dayIndex] || [];
-        var dayCard = document.createElement('div');
-        dayCard.className = 'water-day-card';
-
-        var label = document.createElement('div');
-        label.className = 'water-day-label';
-        label.textContent = ELEMENT_DAY_LABELS[dayIndex] || 'Day';
-        dayCard.appendChild(label);
-
-        var dayBlock = document.createElement('div');
-        dayBlock.className = 'water-day-block';
-
-        config[key].labels.forEach(function(skillLabel, segmentIndex) {
-          var segment = document.createElement('button');
-          segment.type = 'button';
-          segment.className = 'water-segment' + (day[segmentIndex] ? ' active' : '');
-          segment.setAttribute('data-element', key);
-          segment.setAttribute('data-day', dayIndex);
-          segment.setAttribute('data-segment', segmentIndex);
-          segment.textContent = skillLabel;
-          dayBlock.appendChild(segment);
-        });
-
-        dayCard.appendChild(dayBlock);
-        water.appendChild(dayCard);
-      });
-
-      water.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
-    }
-
-    function toggleElementBlock(element, index) {
-      var data = getWeekElements();
-      if (!data[element] || typeof data[element][index] === 'undefined') return;
-      if (Array.isArray(data[element][index])) return;
-      data[element][index] = !data[element][index];
-      saveWeekElements(data);
-      renderElements();
-      beep('click');
-    }
-
-    function toggleWaterSegment(day, segment) {
-      var data = getWeekElements();
-      if (!data.water || !data.water[day] || typeof data.water[day][segment] === 'undefined') return;
-      data.water[day][segment] = !data.water[day][segment];
-      saveWeekElements(data);
-      renderElements();
-      beep('click');
-    }
-
-    function shiftElementWeek(amount) {
-      currentElementWeek = addDays(currentElementWeek, amount * 7);
-      renderElements();
-      beep('click');
-    }
-
-    function openElementEditModal(key) {
-      var config = getElementConfig();
-      if (!config[key]) return;
-
-      editingElementKey = key;
-      editingElementLabels = config[key].labels.slice();
-      editingElementDays = cloneElementDayConfig(config[key].days, editingElementLabels.length);
-      byId('elementEditTitle').textContent = 'Edit ' + config[key].title + ' Skills';
-      byId('elementSkillInput').value = '';
-      byId('elementEditStatus').textContent = '';
-      renderElementEditorList();
-      byId('elementEditModal').classList.add('open');
-
-      setTimeout(function() {
-        try { byId('elementSkillInput').focus({ preventScroll: true }); }
-        catch (error) { byId('elementSkillInput').focus(); }
-      }, 80);
-
-      beep('click');
-    }
-
-    function closeElementEditModal() {
-      editingElementKey = null;
-      editingElementLabels = [];
-      editingElementDays = [];
-      byId('elementEditModal').classList.remove('open');
-    }
-
-    function syncElementEditorInputs() {
-      var rawDays = editingElementDays.slice();
-      var inputs = document.querySelectorAll('[data-element-label-index]');
-      var labels = [];
-      var days = [];
-
-      inputs.forEach(function(input) {
-        var oldIndex = Number(input.getAttribute('data-element-label-index'));
-        var value = input.value.trim();
-        if (value) {
-          labels.push(value);
-          days.push(sanitizeElementDays(rawDays[oldIndex]));
-        }
-      });
-
-      editingElementLabels = labels;
-      editingElementDays = cloneElementDayConfig(days, editingElementLabels.length);
-    }
-
-    function renderElementEditorList() {
-      var box = byId('elementSkillEditorList');
-      box.innerHTML = '';
-
-      if (!editingElementLabels.length) {
-        box.innerHTML = '<div class="empty">No skills added yet. Add at least one skill row.</div>';
-        return;
-      }
-
-      if (editingElementKey === 'water') {
-        var waterDays = getWaterEditorDays();
-
-        var waterSchedule = document.createElement('div');
-        waterSchedule.className = 'element-water-editor-panel';
-        waterSchedule.innerHTML =
-          '<div class="element-schedule-top">' +
-            '<span class="element-schedule-name">Visible Water Days</span>' +
-            '<span class="element-day-note">Remove days here and they disappear from Water</span>' +
-          '</div>' +
-          '<div class="element-day-presets">' +
-            '<button type="button" class="element-day-preset-btn" data-element-water-preset="daily">Everyday</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-water-preset="weekdays">Weekdays</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-water-preset="weekend">Weekend</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-water-preset="tueThu">Tue/Thu</button>' +
-            '<button type="button" class="element-day-preset-btn" data-element-water-preset="clear">Clear</button>' +
-          '</div>' +
-          '<div class="element-day-editor">' +
-            ELEMENT_DAY_LABELS.map(function(dayLabel, dayIndex) {
-              var active = waterDays.indexOf(dayIndex) !== -1;
-              return '<button type="button" class="element-day-btn water ' + (active ? 'active' : '') + '" data-element-water-day="' + dayIndex + '">' + dayLabel + '</button>';
-            }).join('') +
-          '</div>';
-
-        box.appendChild(waterSchedule);
-      }
-
-      editingElementLabels.forEach(function(label, index) {
-        var row = document.createElement('div');
-        row.className = 'element-editor-row';
-
-        if (editingElementKey === 'water') {
-          row.innerHTML =
-            '<div class="element-editor-top water-label-only">' +
-              '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
-              '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
-              '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>↓</button>' +
-              '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">×</button>' +
-            '</div>';
-          box.appendChild(row);
-          return;
-        }
-
-        var dayButtons = ELEMENT_DAY_LABELS.map(function(dayLabel, dayIndex) {
-          var active = editingElementDays[index] && editingElementDays[index].indexOf(dayIndex) !== -1;
-          return '<button type="button" class="element-day-btn ' + editingElementKey + (active ? ' active' : '') + '" data-element-daypick-index="' + index + '" data-element-daypick="' + dayIndex + '">' + dayLabel + '</button>';
-        }).join('');
-
-        row.innerHTML =
-          '<div class="element-editor-top">' +
-            '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
-            '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>↑</button>' +
-            '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>↓</button>' +
-            '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">×</button>' +
-          '</div>' +
-          '<div class="element-schedule-row">' +
-            '<div class="element-schedule-top">' +
-              '<span class="element-schedule-name">Assigned days</span>' +
-              '<span class="element-day-note">Leave blank for normal weekly square</span>' +
-            '</div>' +
-            '<div class="element-day-presets">' +
-              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="daily">Everyday</button>' +
-              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekdays">Weekdays</button>' +
-              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekend">Weekend</button>' +
-              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="tueThu">Tue/Thu</button>' +
-              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="clear">Clear</button>' +
-            '</div>' +
-            '<div class="element-day-editor">' + dayButtons + '</div>' +
-          '</div>';
-
-        box.appendChild(row);
-      });
-    }
-
-    function addElementSkill() {
-      syncElementEditorInputs();
-      var input = byId('elementSkillInput');
-      var value = input.value.trim();
-      if (!value) return;
-
-      editingElementLabels.push(value);
-      editingElementDays.push([]);
-      input.value = '';
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function changeElementSkillOrder(index, direction) {
-      syncElementEditorInputs();
-      moveArrayItem(editingElementLabels, index, direction);
-      moveArrayItem(editingElementDays, index, direction);
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function deleteElementSkill(index) {
-      syncElementEditorInputs();
-      editingElementLabels.splice(index, 1);
-      editingElementDays.splice(index, 1);
-      renderElementEditorList();
-      beep('click');
-    }
-
-    function saveElementEdit() {
-      syncElementEditorInputs();
-
-      if (!editingElementKey) return;
-      if (!editingElementLabels.length) {
-        byId('elementEditStatus').textContent = 'Add at least one skill square before saving.';
-        return;
-      }
-
-      var config = getElementConfig();
-      config[editingElementKey].labels = editingElementLabels.slice();
-
-      if (editingElementKey === 'water') {
-        var waterDays = getWaterEditorDays();
-        if (!waterDays.length) {
-          byId('elementEditStatus').textContent = 'Choose at least one visible Water day.';
-          return;
-        }
-        config[editingElementKey].days = cloneElementDayConfig([waterDays], editingElementLabels.length);
-      } else {
-        config[editingElementKey].days = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
-      }
-
-      setElementConfig(config);
-
-      var data = getWeekElements();
-      saveWeekElements(normalizeElementWeekData(data, config));
-
-      closeElementEditModal();
-      renderElements();
-      beep('save');
-    }
-
-    function resetElementEdit() {
-      if (!editingElementKey) return;
-      if (!confirm('Reset this element back to the default skill names?')) return;
-
-      var defaults = getDefaultElementConfig();
-      var config = getElementConfig();
-      config[editingElementKey].labels = defaults[editingElementKey].labels.slice();
-      config[editingElementKey].days = cloneElementDayConfig(defaults[editingElementKey].days, config[editingElementKey].labels.length);
-      setElementConfig(config);
-
-      var data = getWeekElements();
-      saveWeekElements(normalizeElementWeekData(data, config));
-
-      closeElementEditModal();
-      renderElements();
-      beep('load');
-    }
 
     function renderBriefing(quests) {
       var mainActive = quests.filter(function(quest) {
@@ -14634,7 +13817,6 @@ function useMealPass() {
       renderStats();
       renderArchive();
       renderActiveSavePrompt();
-      renderElements();
       renderRoutineBoard();
       setSound(isSoundOn());
     }
@@ -14670,22 +13852,7 @@ function useMealPass() {
         event.stopPropagation();
         saveCurrentDayAsTemplate();
       });
-      byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
-      byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
-      byId('closeElementEditModal').addEventListener('click', closeElementEditModal);
-      byId('cancelElementEditBtn').addEventListener('click', closeElementEditModal);
-      byId('saveElementEditBtn').addEventListener('click', saveElementEdit);
-      byId('resetElementEditBtn').addEventListener('click', resetElementEdit);
-      byId('addElementSkillBtn').addEventListener('click', addElementSkill);
-      byId('elementSkillInput').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          addElementSkill();
-        }
-      });
-      byId('elementEditModal').addEventListener('click', function(event) {
-        if (event.target === byId('elementEditModal')) closeElementEditModal();
-      });
+
 
       byId('microInput').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
@@ -14769,8 +13936,8 @@ function useMealPass() {
             if (filters) filters.classList.toggle('collapsed', isCollapsed);
           }
 
-          var cleanTitle = sectionToggle.textContent.replace(/^[▼▶]\s*/, '').trim();
-          sectionToggle.textContent = (isCollapsed ? '▶ ' : '▼ ') + cleanTitle;
+          var cleanTitle = sectionToggle.textContent.replace(/^[\u25BC\u25B6]\s*/, '').trim();
+          sectionToggle.textContent = (isCollapsed ? '\u25B6 ' : '\u25BC ') + cleanTitle;
           beep('click');
           return;
         }
@@ -14878,69 +14045,6 @@ function useMealPass() {
           }
         }
 
-        var elementEditButton = event.target.closest('[data-element-edit]');
-        if (elementEditButton) {
-          openElementEditModal(elementEditButton.getAttribute('data-element-edit'));
-          return;
-        }
-
-        var elementEditorButton = event.target.closest('[data-element-editor-action]');
-        if (elementEditorButton) {
-          var editorAction = elementEditorButton.getAttribute('data-element-editor-action');
-          var editorIndex = Number(elementEditorButton.getAttribute('data-element-editor-index'));
-          if (editorAction === 'up') changeElementSkillOrder(editorIndex, -1);
-          if (editorAction === 'down') changeElementSkillOrder(editorIndex, 1);
-          if (editorAction === 'delete') deleteElementSkill(editorIndex);
-          return;
-        }
-
-        var elementWaterDayButton = event.target.closest('[data-element-water-day]');
-        if (elementWaterDayButton) {
-          toggleWaterEditorDay(Number(elementWaterDayButton.getAttribute('data-element-water-day')));
-          return;
-        }
-
-        var elementWaterPresetButton = event.target.closest('[data-element-water-preset]');
-        if (elementWaterPresetButton) {
-          applyWaterEditorPreset(elementWaterPresetButton.getAttribute('data-element-water-preset'));
-          return;
-        }
-
-        var elementDayButton = event.target.closest('[data-element-daypick]');
-        if (elementDayButton) {
-          toggleElementEditorDay(
-            Number(elementDayButton.getAttribute('data-element-daypick-index')),
-            Number(elementDayButton.getAttribute('data-element-daypick'))
-          );
-          return;
-        }
-
-        var elementPresetButton = event.target.closest('[data-element-preset]');
-        if (elementPresetButton) {
-          applyElementEditorPreset(
-            Number(elementPresetButton.getAttribute('data-element-preset-index')),
-            elementPresetButton.getAttribute('data-element-preset')
-          );
-          return;
-        }
-
-        var elementButton = event.target.closest('[data-element]');
-        if (elementButton) {
-          var element = elementButton.getAttribute('data-element');
-          if (element === 'water') {
-            toggleWaterSegment(Number(elementButton.getAttribute('data-day')), Number(elementButton.getAttribute('data-segment')));
-            return;
-          }
-          if (element === 'fire' || element === 'earth' || element === 'air') {
-            var daySlot = elementButton.getAttribute('data-day-slot');
-            if (daySlot !== null) {
-              toggleScheduledElementDay(element, Number(elementButton.getAttribute('data-index')), Number(daySlot));
-            } else {
-              toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
-            }
-            return;
-          }
-        }
 
         var saveButton = event.target.closest('[data-save-action]');
         if (saveButton) {
@@ -15684,384 +14788,6 @@ document.addEventListener('click', function(event) {
     }
   }, 0);
 }, true);
-
-
-
-// ===== Progress Archive Merged V1 =====
-(function() {
-  const STORE = "qt_progress_archive_v1";
-  const $ = id => document.getElementById(id);
-  function escapeHtml(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-  function offsetDate(days) {
-    const d = new Date();
-    d.setDate(d.getDate() + days);
-    return d;
-  }
-  function dateKey(d) {
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  }
-  function taskIdFromName(name) {
-    return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + Date.now().toString(36).slice(-4);
-  }
-  function defaultData() {
-    const today = dateKey(new Date());
-    const logs = {
-      [dateKey(offsetDate(-6))]: { core: { prayer: "done", quran: "done" }, optional: { gym: true } },
-      [dateKey(offsetDate(-5))]: { core: { prayer: "done", quran: "miss" }, optional: {} },
-      [dateKey(offsetDate(-4))]: { core: { prayer: "done", quran: "done" }, optional: { kickboxing: true, dp300: true } },
-      [dateKey(offsetDate(-3))]: { core: { prayer: "done", quran: "done" }, optional: {} },
-      [dateKey(offsetDate(-2))]: { core: { prayer: "miss", quran: "done" }, optional: { driving: true } },
-      [dateKey(offsetDate(-1))]: { core: { prayer: "done", quran: "done" }, optional: { gym: true, kickboxing: true } },
-      [today]: { core: {}, optional: {} }
-    };
-    return {
-      coreTasks: [
-        { id: "prayer", name: "Prayer", note: "Required core. Counts toward the daily result.", active: true },
-        { id: "quran", name: "Quran pages", note: "Required core. Small, stable, repeatable.", active: true }
-      ],
-      optionalTasks: [
-        { id: "gym", name: "Gym", note: "Random win. Log only when it happened.", active: true },
-        { id: "kickboxing", name: "Kickboxing", note: "Available, not required every day.", active: true },
-        { id: "driving", name: "Driving practice", note: "Useful when it happens. No punishment.", active: true },
-        { id: "dp300", name: "DP-300 extra block", note: "Bonus career progress.", active: true }
-      ],
-      logs
-    };
-  }
-  function read() {
-    try {
-      const raw = localStorage.getItem(STORE);
-      if (!raw) return defaultData();
-      const data = JSON.parse(raw);
-      data.coreTasks = Array.isArray(data.coreTasks) ? data.coreTasks : defaultData().coreTasks;
-      data.optionalTasks = Array.isArray(data.optionalTasks) ? data.optionalTasks : defaultData().optionalTasks;
-      data.logs = data.logs && typeof data.logs === "object" ? data.logs : {};
-      return data;
-    } catch (err) {
-      return defaultData();
-    }
-  }
-  function write() {
-    localStorage.setItem(STORE, JSON.stringify(data));
-  }
-  const state = { viewDate: new Date(), todayKey: dateKey(new Date()), selectedKey: null };
-  let data = read();
-  data.logs[state.todayKey] = data.logs[state.todayKey] || { core: {}, optional: {} };
-  write();
-
-  function getLog(key) {
-    if (!data.logs[key]) data.logs[key] = { core: {}, optional: {} };
-    data.logs[key].core = data.logs[key].core || {};
-    data.logs[key].optional = data.logs[key].optional || {};
-    return data.logs[key];
-  }
-  function activeCoreTasks() { return data.coreTasks.filter(t => t.active !== false); }
-  function activeOptionalTasks() { return data.optionalTasks.filter(t => t.active !== false); }
-  function dayCoreTasks(key) {
-    const log = data.logs[key] || { core: {}, optional: {} };
-    const active = activeCoreTasks();
-    const archived = data.coreTasks.filter(t => t.active === false && log.core && log.core[t.id]);
-    return [...active, ...archived];
-  }
-  function dayOptionalTasks(key) {
-    const log = data.logs[key] || { core: {}, optional: {} };
-    const active = activeOptionalTasks();
-    const archived = data.optionalTasks.filter(t => t.active === false && log.optional && log.optional[t.id]);
-    return [...active, ...archived];
-  }
-  function clearLogIfEmpty(key) {
-    const log = data.logs[key];
-    if (!log) return;
-    const hasCore = data.coreTasks.some(t => log.core && log.core[t.id]);
-    const hasOpt = data.optionalTasks.some(t => log.optional && log.optional[t.id]);
-    if (!hasCore && !hasOpt && key !== state.todayKey) delete data.logs[key];
-  }
-  function statusFor(log, key = state.todayKey) {
-    const coreList = dayCoreTasks(key);
-    const optList = dayOptionalTasks(key);
-    const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
-    const miss = coreList.filter(t => log.core && log.core[t.id] === "miss").length;
-    const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
-    if (coreList.length && done === coreList.length && opt > 0) return "gold";
-    if (coreList.length && done === coreList.length) return "win";
-    if (done > 0 || miss > 0) return "partial";
-    return "empty";
-  }
-  function displayStatusForKey(key, log) {
-    let s = statusFor(log, key);
-    if (s === "empty" && key < state.todayKey) s = "miss";
-    return s;
-  }
-  function statusIcon(status) {
-    return status === "gold" ? "✦" : status === "win" ? "✓" : status === "partial" ? "◐" : status === "miss" ? "×" : "";
-  }
-  function renderTasks() {
-    const log = getLog(state.todayKey);
-    const coreHtml = activeCoreTasks().map(t => {
-      const val = log.core[t.id] || "";
-      return `<div class="pa-card ${val === "done" ? "pa-done" : val === "miss" ? "pa-missed" : ""}">
-        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${escapeHtml(t.note)}</span></div>
-        <div class="pa-actions">
-          <button class="pa-icon-btn pa-good ${val === "done" ? "active" : ""}" data-pa-core="${escapeHtml(t.id)}" data-value="done" type="button">✓</button>
-          <button class="pa-icon-btn pa-bad ${val === "miss" ? "active" : ""}" data-pa-core="${escapeHtml(t.id)}" data-value="miss" type="button">×</button>
-          <button class="pa-clear-btn" data-pa-core="${escapeHtml(t.id)}" data-value="clear" type="button">Clear</button>
-        </div>
-      </div>`;
-    }).join("");
-    const optionalHtml = activeOptionalTasks().map(t => {
-      const active = !!log.optional[t.id];
-      return `<div class="pa-card pa-optional-card ${active ? "pa-done" : ""}">
-        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${escapeHtml(t.note)}</span></div>
-        <div class="pa-actions"><button class="pa-log-btn ${active ? "active" : ""}" data-pa-optional="${escapeHtml(t.id)}" type="button">${active ? "Logged" : "+ Log"}</button></div>
-      </div>`;
-    }).join("");
-    $("paCoreTasks").innerHTML = coreHtml || '<div class="empty">No required tasks yet.</div>';
-    $("paOptionalTasks").innerHTML = optionalHtml || '<div class="empty">No optional wins yet.</div>';
-  }
-  function renderSummary() {
-    const log = getLog(state.todayKey);
-    const coreList = activeCoreTasks();
-    const optList = activeOptionalTasks();
-    const done = coreList.filter(t => log.core[t.id] === "done").length;
-    const miss = coreList.filter(t => log.core[t.id] === "miss").length;
-    const opt = optList.filter(t => log.optional[t.id]).length;
-    $("paTodayScore").textContent = `${done}/${coreList.length}`;
-    $("paTodaySummary").textContent = opt > 0 ? `${opt} optional win${opt === 1 ? "" : "s"} logged today. Optional wins boost the day without becoming required.` : "Complete your required core first. Random wins stay available but do not punish you.";
-    const status = statusFor(log, state.todayKey);
-    const label = status === "gold" ? "Core + Optional" : status === "win" ? "Core Complete" : miss > 0 ? "Partial / Repair" : "In Progress";
-    $("paStatusBadge").textContent = `Today: ${label}`;
-  }
-  function renderWeek() {
-    const today = new Date();
-    const start = new Date(today);
-    start.setDate(today.getDate() - today.getDay());
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(start);
-      d.setDate(start.getDate() + i);
-      const key = dateKey(d);
-      const log = data.logs[key] || { core: {}, optional: {} };
-      const s = displayStatusForKey(key, log);
-      days.push({ d, key, status: s, icon: statusIcon(s) });
-    }
-    $("paWeekStrip").innerHTML = days.map(x => `<div class="pa-week-day ${x.status}"><div><span>${x.d.toLocaleDateString(undefined, { weekday: "short" })}</span><strong>${x.icon || x.d.getDate()}</strong></div></div>`).join("");
-  }
-  function renderCalendar() {
-    const grid = $("paCalendarGrid");
-    const d = new Date(state.viewDate.getFullYear(), state.viewDate.getMonth(), 1);
-    $("paMonthTitle").textContent = d.toLocaleDateString(undefined, { month: "long", year: "numeric" });
-    const firstDay = d.getDay();
-    const daysInMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-    let html = "";
-    for (let i = 0; i < firstDay; i++) html += '<div class="pa-day-cell empty"></div>';
-    for (let day = 1; day <= daysInMonth; day++) {
-      const current = new Date(d.getFullYear(), d.getMonth(), day);
-      const key = dateKey(current);
-      const log = data.logs[key] || { core: {}, optional: {} };
-      const s = displayStatusForKey(key, log);
-      const coreList = dayCoreTasks(key);
-      const optList = dayOptionalTasks(key);
-      const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
-      const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
-      const miss = coreList.filter(t => log.core && log.core[t.id] === "miss").length;
-      html += `<div class="pa-day-cell ${s} ${key === state.todayKey ? "today" : ""}" data-pa-date="${key}">
-        <div class="pa-day-number">${day}</div>
-        <div class="pa-day-icon">${statusIcon(s)}</div>
-        <div class="pa-day-mini"><span class="pa-mini-dot ${done > 0 ? "on" : ""}"></span><span class="pa-mini-dot ${coreList.length && done === coreList.length ? "on" : ""}"></span><span class="pa-mini-dot ${opt > 0 ? "opt" : miss > 0 ? "miss" : ""}"></span></div>
-      </div>`;
-    }
-    grid.innerHTML = html;
-  }
-  function renderStats() {
-    let core = 0, gold = 0, wins = 0, partial = 0;
-    Object.keys(data.logs).forEach(key => {
-      const log = data.logs[key];
-      const s = statusFor(log, key);
-      const coreList = dayCoreTasks(key);
-      const optList = dayOptionalTasks(key);
-      const done = coreList.filter(t => log.core && log.core[t.id] === "done").length;
-      const opt = optList.filter(t => log.optional && log.optional[t.id]).length;
-      if (coreList.length && done === coreList.length) core++;
-      if (s === "gold") gold++;
-      wins += opt;
-      if (s === "partial") partial++;
-    });
-    $("paStatCore").textContent = core;
-    $("paStatGold").textContent = gold;
-    $("paStatWins").textContent = wins;
-    $("paStatPartial").textContent = partial;
-  }
-  function renderTaskManager() {
-    $("paManagerCoreList").innerHTML = data.coreTasks.map(t => `<div class="pa-manager-row ${t.active === false ? "archived" : ""}">
-      <div><strong>${escapeHtml(t.name)}</strong><span>${t.active === false ? "Removed from future days" : "Required daily core"}</span></div>
-      <div class="pa-manager-actions">
-        <button class="move" data-pa-move-task="${escapeHtml(t.id)}" data-from="core" type="button">Optional</button>
-        <button data-pa-restore-task="${escapeHtml(t.id)}" data-type="core" type="button">${t.active === false ? "Restore" : "Keep"}</button>
-        <button class="danger" data-pa-remove-task="${escapeHtml(t.id)}" data-type="core" type="button">Remove</button>
-      </div>
-    </div>`).join("");
-    $("paManagerOptionalList").innerHTML = data.optionalTasks.map(t => `<div class="pa-manager-row ${t.active === false ? "archived" : ""}">
-      <div><strong>${escapeHtml(t.name)}</strong><span>${t.active === false ? "Removed from future days" : "Optional random win"}</span></div>
-      <div class="pa-manager-actions">
-        <button class="move" data-pa-move-task="${escapeHtml(t.id)}" data-from="optional" type="button">Core</button>
-        <button data-pa-restore-task="${escapeHtml(t.id)}" data-type="optional" type="button">${t.active === false ? "Restore" : "Keep"}</button>
-        <button class="danger" data-pa-remove-task="${escapeHtml(t.id)}" data-type="optional" type="button">Remove</button>
-      </div>
-    </div>`).join("");
-  }
-  function addTask(kind) {
-    const input = $(kind === "core" ? "paNewCoreTask" : "paNewOptionalTask");
-    const name = input.value.trim();
-    if (!name) return;
-    const task = { id: taskIdFromName(name), name, note: kind === "core" ? "Required core. Counts toward the daily result." : "Random win. Log only when it happened.", active: true };
-    if (kind === "core") data.coreTasks.push(task); else data.optionalTasks.push(task);
-    input.value = "";
-    write();
-    renderTaskManager();
-    renderAll();
-  }
-  function removeTask(id, type) {
-    const list = type === "core" ? data.coreTasks : data.optionalTasks;
-    const task = list.find(t => t.id === id);
-    if (task) task.active = false;
-    write();
-    renderTaskManager();
-    renderAll();
-  }
-  function restoreTask(id, type) {
-    const list = type === "core" ? data.coreTasks : data.optionalTasks;
-    const task = list.find(t => t.id === id);
-    if (task) task.active = true;
-    write();
-    renderTaskManager();
-    renderAll();
-  }
-  function moveTask(id, from) {
-    const fromList = from === "core" ? data.coreTasks : data.optionalTasks;
-    const toList = from === "core" ? data.optionalTasks : data.coreTasks;
-    const index = fromList.findIndex(t => t.id === id);
-    if (index < 0) return;
-    const task = fromList.splice(index, 1)[0];
-    task.active = true;
-    task.note = from === "core" ? "Random win. Log only when it happened." : "Required core. Counts toward the daily result.";
-    toList.push(task);
-    write();
-    renderTaskManager();
-    renderAll();
-  }
-  function renderEditor(key) {
-    const log = getLog(key);
-    $("paModalCoreList").innerHTML = dayCoreTasks(key).map(t => {
-      const val = log.core[t.id] || "";
-      return `<div class="pa-card ${val === "done" ? "pa-done" : val === "miss" ? "pa-missed" : ""}">
-        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${val === "done" ? "Marked done" : val === "miss" ? "Marked missed" : "Not logged for this date"}</span></div>
-        <div class="pa-actions">
-          <button class="pa-icon-btn pa-good ${val === "done" ? "active" : ""}" data-pa-edit-core="${escapeHtml(t.id)}" data-value="done" type="button">✓</button>
-          <button class="pa-icon-btn pa-bad ${val === "miss" ? "active" : ""}" data-pa-edit-core="${escapeHtml(t.id)}" data-value="miss" type="button">×</button>
-          <button class="pa-clear-btn" data-pa-edit-core="${escapeHtml(t.id)}" data-value="clear" type="button">Clear</button>
-        </div>
-      </div>`;
-    }).join("");
-    $("paModalOptionalList").innerHTML = dayOptionalTasks(key).map(t => {
-      const active = !!log.optional[t.id];
-      return `<div class="pa-card pa-optional-card ${active ? "pa-done" : ""}">
-        <div class="pa-info"><strong>${escapeHtml(t.name)}</strong><span>${active ? "Logged on this date" : "Available if it happened"}</span></div>
-        <div class="pa-actions"><button class="pa-log-btn ${active ? "active" : ""}" data-pa-edit-optional="${escapeHtml(t.id)}" type="button">${active ? "Logged" : "+ Log"}</button></div>
-      </div>`;
-    }).join("");
-  }
-  function openDay(key) {
-    state.selectedKey = key;
-    const date = new Date(key + "T00:00:00");
-    $("paModalTitle").textContent = date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
-    renderEditor(key);
-    $("paDayModal").classList.add("open");
-  }
-  function renderAll() {
-    renderTasks();
-    renderSummary();
-    renderWeek();
-    renderCalendar();
-    renderStats();
-  }
-
-  document.addEventListener("click", event => {
-    const core = event.target.closest("[data-pa-core]");
-    if (core) {
-      const log = getLog(state.todayKey);
-      const id = core.dataset.paCore;
-      const value = core.dataset.value;
-      if (value === "clear") delete log.core[id]; else log.core[id] = log.core[id] === value ? "" : value;
-      write(); renderAll(); return;
-    }
-    const opt = event.target.closest("[data-pa-optional]");
-    if (opt) {
-      const log = getLog(state.todayKey);
-      const id = opt.dataset.paOptional;
-      log.optional[id] = !log.optional[id];
-      write(); renderAll(); return;
-    }
-    const editCore = event.target.closest("[data-pa-edit-core]");
-    if (editCore) {
-      const log = getLog(state.selectedKey);
-      const id = editCore.dataset.paEditCore;
-      const value = editCore.dataset.value;
-      if (value === "clear") delete log.core[id]; else log.core[id] = log.core[id] === value ? "" : value;
-      clearLogIfEmpty(state.selectedKey);
-      write(); renderEditor(state.selectedKey); renderAll(); return;
-    }
-    const editOpt = event.target.closest("[data-pa-edit-optional]");
-    if (editOpt) {
-      const log = getLog(state.selectedKey);
-      const id = editOpt.dataset.paEditOptional;
-      log.optional[id] = !log.optional[id];
-      clearLogIfEmpty(state.selectedKey);
-      write(); renderEditor(state.selectedKey); renderAll(); return;
-    }
-    const move = event.target.closest("[data-pa-move-task]");
-    if (move) { moveTask(move.dataset.paMoveTask, move.dataset.from); return; }
-    const remove = event.target.closest("[data-pa-remove-task]");
-    if (remove) { removeTask(remove.dataset.paRemoveTask, remove.dataset.type); return; }
-    const restore = event.target.closest("[data-pa-restore-task]");
-    if (restore) { restoreTask(restore.dataset.paRestoreTask, restore.dataset.type); return; }
-    const day = event.target.closest("[data-pa-date]");
-    if (day) { openDay(day.dataset.paDate); return; }
-  });
-
-  $("paPrevMonth")?.addEventListener("click", () => { state.viewDate.setMonth(state.viewDate.getMonth() - 1); renderCalendar(); });
-  $("paNextMonth")?.addEventListener("click", () => { state.viewDate.setMonth(state.viewDate.getMonth() + 1); renderCalendar(); });
-  $("paCloseDayModal")?.addEventListener("click", () => $("paDayModal").classList.remove("open"));
-  $("paDayModal")?.addEventListener("click", e => { if (e.target.id === "paDayModal") e.currentTarget.classList.remove("open"); });
-  $("paMarkCoreDone")?.addEventListener("click", () => {
-    const log = getLog(state.selectedKey);
-    dayCoreTasks(state.selectedKey).forEach(t => log.core[t.id] = "done");
-    write(); renderEditor(state.selectedKey); renderAll();
-  });
-  $("paClearDay")?.addEventListener("click", () => {
-    if (!state.selectedKey) return;
-    data.logs[state.selectedKey] = { core: {}, optional: {} };
-    clearLogIfEmpty(state.selectedKey);
-    write(); renderEditor(state.selectedKey); renderAll();
-  });
-  $("paOpenTaskManager")?.addEventListener("click", () => { renderTaskManager(); $("paTaskManagerModal").classList.add("open"); });
-  $("paCloseTaskManager")?.addEventListener("click", () => $("paTaskManagerModal").classList.remove("open"));
-  $("paTaskManagerModal")?.addEventListener("click", e => { if (e.target.id === "paTaskManagerModal") e.currentTarget.classList.remove("open"); });
-  $("paAddCoreTask")?.addEventListener("click", () => addTask("core"));
-  $("paAddOptionalTask")?.addEventListener("click", () => addTask("optional"));
-  $("paNewCoreTask")?.addEventListener("keydown", e => { if (e.key === "Enter") addTask("core"); });
-  $("paNewOptionalTask")?.addEventListener("keydown", e => { if (e.key === "Enter") addTask("optional"); });
-
-  if ($("streakView")) renderAll();
-})();
-
-
 </script>
 
 
