@@ -8474,9 +8474,13 @@ header .player-card {
   .tabs .tab::before, .tabs button.tab::before { display: block !important; height: 30px !important; line-height: 30px !important; font-size: 23px !important; margin: 0 !important; color: inherit !important; }
   .tabs .tab::after, .tabs button.tab::after { position: static !important; display: block !important; width: auto !important; height: 20px !important; line-height: 20px !important; background: none !important; color: inherit !important; font-size: 9px !important; font-weight: 950 !important; letter-spacing: 0.35px !important; text-transform: uppercase !important; opacity: 1 !important; white-space: nowrap !important; overflow: visible !important; }
   .tabs .tab[data-view="questsView"]::before { content: "\269C " !important; }
+  .tabs .tab[data-view="elementsView"]::before { content: "\2662 " !important; }
+  .tabs .tab[data-view="streakView"]::before { content: "\27F3 " !important; }
   .tabs .tab[data-view="saveView"]::before { content: "\25A3 " !important; }
   .tabs .tab[data-view="archiveView"]::before { content: "\2022 \2022 \2022 " !important; }
   .tabs .tab[data-view="questsView"]::after { content: "Quests" !important; }
+  .tabs .tab[data-view="elementsView"]::after { content: "Elements" !important; }
+  .tabs .tab[data-view="streakView"]::after { content: "Streak" !important; }
   .tabs .tab[data-view="saveView"]::after { content: "Save" !important; }
   .tabs .tab[data-view="archiveView"]::after { content: "Saves" !important; }
   .tabs .tab.active, .tabs button.tab.active { color: #f4df95 !important; text-shadow: 0 0 14px rgba(244,196,48,0.28) !important; box-shadow: none !important; }
@@ -10799,7 +10803,7 @@ header .player-card {
   }
 }
 
-/* ===== COLORED MOBILE NAVIGATION + COMPLETED FILTERS ===== */
+/* ===== RESTORED BUILD: COMPLETED QUEST FILTER COLORS ===== */
 #archiveFilters {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
@@ -10817,7 +10821,6 @@ header .player-card {
   font-weight: 950 !important;
   letter-spacing: 0.45px !important;
   background: rgba(255,255,255,0.025) !important;
-  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease !important;
 }
 
 #archiveFilters .archive-filter[data-archive-filter="all"] {
@@ -10844,115 +10847,10 @@ header .player-card {
 }
 
 #archiveFilters .archive-filter.active {
-  transform: translateY(-1px) !important;
-}
-
-#archiveFilters .archive-filter[data-archive-filter="all"].active {
-  background: linear-gradient(180deg, rgba(228,224,215,0.16), rgba(228,224,215,0.045)) !important;
-  box-shadow: 0 0 16px rgba(228,224,215,0.10), inset 0 0 0 1px rgba(228,224,215,0.08) !important;
-}
-
-#archiveFilters .archive-filter[data-archive-filter="main"].active {
-  background: linear-gradient(180deg, rgba(224,200,120,0.24), rgba(224,200,120,0.07)) !important;
-  box-shadow: 0 0 18px rgba(224,200,120,0.18), inset 0 0 0 1px rgba(224,200,120,0.10) !important;
-}
-
-#archiveFilters .archive-filter[data-archive-filter="side"].active {
-  background: linear-gradient(180deg, rgba(143,101,255,0.25), rgba(143,101,255,0.07)) !important;
-  box-shadow: 0 0 18px rgba(143,101,255,0.20), inset 0 0 0 1px rgba(143,101,255,0.10) !important;
-}
-
-#archiveFilters .archive-filter[data-archive-filter="filler"].active {
-  background: linear-gradient(180deg, rgba(255,77,93,0.25), rgba(255,77,93,0.07)) !important;
-  box-shadow: 0 0 18px rgba(255,77,93,0.20), inset 0 0 0 1px rgba(255,77,93,0.10) !important;
-}
-
-@media (max-width: 900px) {
-  body {
-    padding-bottom: calc(114px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  .screen {
-    padding-bottom: calc(128px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  .tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 9px !important;
-    min-height: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 10px 12px calc(14px + env(safe-area-inset-bottom, 0px)) !important;
-    border-top: 1px solid rgba(216,208,189,0.16) !important;
-    background:
-      linear-gradient(180deg, rgba(18,19,24,0.985), rgba(4,5,8,0.995)) !important;
-    box-shadow:
-      0 -14px 34px rgba(0,0,0,0.64),
-      inset 0 1px 0 rgba(255,255,255,0.055) !important;
-  }
-
-  .tabs .tab,
-  .tabs button.tab {
-    min-height: 66px !important;
-    height: 66px !important;
-    padding: 7px 4px !important;
-    border: 1px solid rgba(255,255,255,0.09) !important;
-    border-radius: 11px !important;
-    background: rgba(255,255,255,0.022) !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.035) !important;
-    transition: transform 150ms ease, background 150ms ease, border-color 150ms ease, box-shadow 150ms ease !important;
-  }
-
-  .tabs .tab[data-view="questsView"] {
-    color: #f1cf6d !important;
-    border-color: rgba(224,200,120,0.24) !important;
-    background: rgba(224,200,120,0.035) !important;
-  }
-
-  .tabs .tab[data-view="saveView"] {
-    color: #78c7ff !important;
-    border-color: rgba(103,174,232,0.25) !important;
-    background: rgba(103,174,232,0.035) !important;
-  }
-
-  .tabs .tab[data-view="archiveView"] {
-    color: #c29cff !important;
-    border-color: rgba(143,101,255,0.25) !important;
-    background: rgba(143,101,255,0.035) !important;
-  }
-
-  .tabs .tab.active,
-  .tabs button.tab.active {
-    transform: translateY(-2px) !important;
-  }
-
-  .tabs .tab[data-view="questsView"].active {
-    background: linear-gradient(180deg, rgba(224,200,120,0.20), rgba(224,200,120,0.055)) !important;
-    border-color: rgba(224,200,120,0.62) !important;
-    box-shadow: 0 0 19px rgba(224,200,120,0.17), inset 0 0 0 1px rgba(224,200,120,0.08) !important;
-    text-shadow: 0 0 13px rgba(224,200,120,0.34) !important;
-  }
-
-  .tabs .tab[data-view="saveView"].active {
-    background: linear-gradient(180deg, rgba(103,174,232,0.21), rgba(103,174,232,0.055)) !important;
-    border-color: rgba(103,174,232,0.64) !important;
-    box-shadow: 0 0 19px rgba(103,174,232,0.18), inset 0 0 0 1px rgba(103,174,232,0.08) !important;
-    text-shadow: 0 0 13px rgba(103,174,232,0.36) !important;
-  }
-
-  .tabs .tab[data-view="archiveView"].active {
-    background: linear-gradient(180deg, rgba(143,101,255,0.22), rgba(143,101,255,0.06)) !important;
-    border-color: rgba(143,101,255,0.66) !important;
-    box-shadow: 0 0 19px rgba(143,101,255,0.20), inset 0 0 0 1px rgba(143,101,255,0.09) !important;
-    text-shadow: 0 0 13px rgba(143,101,255,0.38) !important;
-  }
+  box-shadow: inset 0 0 0 1px currentColor !important;
 }
 
 @media (max-width: 430px) {
-  .tabs {
-    gap: 6px !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
   #archiveFilters {
     gap: 6px !important;
   }
@@ -10990,6 +10888,8 @@ header .player-card {
     <section class="content">
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
+        <button class="tab" data-view="elementsView">Elements</button>
+        <button class="tab" data-view="streakView">Streak</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
       </nav>
@@ -11204,6 +11104,136 @@ header .player-card {
           </div>
         </div>
       </section>
+<section id="elementsView" class="view">
+        <div class="panel elements-panel">
+          <div class="elements-header">
+            <button type="button" id="prevWeekBtn">&#x25C0;</button>
+            <div>
+              <h2>Elements</h2>
+              <div id="elementsWeekLabel" class="elements-week-label">Loading week...</div>
+              <div class="elements-subtitle">Weekly discipline board &#xB7; Edit to add skills and choose days</div>
+            </div>
+            <button type="button" id="nextWeekBtn">&#x25B6;</button>
+          </div>
+
+          <div class="elements-grid">
+            <div class="element-card fire-card">
+              <div class="element-title-row">
+                <div class="element-title-main"><span id="fireTitle">Fire</span><em id="fireSubtitle">Combat</em></div>
+                <div class="element-card-actions"><b id="fireCount" class="element-count">0 / 3</b><button type="button" class="element-edit-btn" data-element-edit="fire">Edit</button></div>
+              </div>
+              <div class="element-strip fire-strip"></div>
+              <div id="fireGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card earth-card">
+              <div class="element-title-row">
+                <div class="element-title-main"><span id="earthTitle">Earth</span><em id="earthSubtitle">Strength</em></div>
+                <div class="element-card-actions"><b id="earthCount" class="element-count">0 / 3</b><button type="button" class="element-edit-btn" data-element-edit="earth">Edit</button></div>
+              </div>
+              <div class="element-strip earth-strip"></div>
+              <div id="earthGrid" class="element-block-row"></div>
+            </div>
+
+            <div class="element-card water-card">
+              <div class="element-title-row">
+                <div class="element-title-main"><span id="waterTitle">Water</span><em id="waterSubtitle">Career</em></div>
+                <div class="element-card-actions"><b id="waterCount" class="element-count">0 / 21</b><button type="button" class="element-edit-btn" data-element-edit="water">Edit</button></div>
+              </div>
+              <div class="element-strip water-strip"></div>
+              <div id="waterGrid" class="water-week-grid"></div>
+            </div>
+
+            <div class="element-card air-card">
+              <div class="element-title-row">
+                <div class="element-title-main"><span id="airTitle">Air</span><em id="airSubtitle">Unlocked Skills</em></div>
+                <div class="element-card-actions"><b id="airCount" class="element-count">0 / 4</b><button type="button" class="element-edit-btn" data-element-edit="air">Edit</button></div>
+              </div>
+              <div class="element-strip air-strip"></div>
+              <div id="airGrid" class="element-block-row"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+<section id="streakView" class="view">
+  <div class="streak-embedded-screen">
+<div class="topbar">
+    <div>
+      <h1>Smart Streak</h1>
+      <div class="subtitle">Click any calendar square. Big buttons let you set Perfect, Win, Partial, Protected, Failed, or Blank.</div>
+    </div>
+    <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
+  </div>
+
+  <section class="panel streak-quick-panel">
+    <div class="streak-quick-head">
+      <div>
+        <h2>Today Quick Update</h2>
+        <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
+      </div>
+    </div>
+    <div class="streak-quick-actions">
+      <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
+      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
+      <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
+    </div>
+  </section>
+
+  <section class="layout">
+    <section class="panel">
+      <h2>Month Proof</h2>
+
+      <div class="stats">
+        <div class="stat"><strong id="streakCurrentStreak">0</strong><span>Current</span></div>
+        <div class="stat"><strong id="streakBestStreak">0</strong><span>Best</span></div>
+        <div class="stat"><strong id="streakMonthWins">0</strong><span>Wins</span></div>
+        <div class="stat"><strong id="streakProofScore">0%</strong><span>Score</span></div>
+      </div>
+
+      <div class="calendar-shell">
+        <div class="calendar-header">
+          <button id="streakPrevMonthBtn">&#x2039;</button>
+          <div id="streakMonthTitle" class="month-title"></div>
+          <button id="streakNextMonthBtn">&#x203A;</button>
+        </div>
+
+        <div class="weekdays">
+          <div class="weekday">Sun</div><div class="weekday">Mon</div><div class="weekday">Tue</div>
+          <div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div>
+        </div>
+
+        <div id="streakCalendarGrid" class="calendar-grid"></div>
+        <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
+      </div>
+
+      <div class="rule-box">
+        <div class="rule-title">Win rule</div>
+        <div id="streakWinRuleText" class="rule-text"></div>
+      </div>
+
+      <div class="log" id="streakProofLog"></div>
+    </section>
+
+    <aside class="panel">
+      <h2>Active Tasks</h2>
+      <div id="streakTaskList" class="quest-list"></div>
+
+      <div class="streak-medal-box">
+        <div class="streak-medal-title">Medal Case</div>
+        <div id="streakMedalCase" class="streak-medal-grid"></div>
+      </div>
+
+      <div class="rule-box">
+        <div class="rule-title">Consequence</div>
+        <div id="streakConsequenceTextView" class="rule-text"></div>
+      </div>
+    </aside>
+  </section>
+  </div>
+</section>
+
 <section id="saveView" class="view">
         <div class="grid-save">
           <div class="panel">
@@ -11229,7 +11259,7 @@ header .player-card {
               <h2>Export / Import</h2>
               <label for="dataBox">Save data</label>
               <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
-              <div class="helper-text">Export = copy current quests, saves, defaults, rewards, and routine. Import = replace this browser with pasted backup data.</div>
+              <div class="helper-text">Export = copy current quests/saves/defaults/elements/routine. Import = replace this browser with pasted backup data.</div>
               <div class="actions">
                 <button id="exportBtn">Export Data</button>
                 <button id="copyBtn">Copy Export</button>
@@ -11328,7 +11358,106 @@ header .player-card {
       <div id="dayTemplatesModalBody" class="default-list"></div>
     </div>
   </div>
+  <div id="streakSetupModal" class="modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">Edit Streak Rules</div>
+      <button id="streakCloseSetupBtn">Close</button>
+    </div>
 
+    <div class="setup-grid">
+      <label for="streakNameInput">Streak name</label>
+      <input id="streakNameInput" />
+
+      <label for="streakRequiredCount">Daily win rule</label>
+      <select id="streakRequiredCount">
+        <option value="1">Need 1 active required task</option>
+        <option value="2">Need 2 active required tasks</option>
+        <option value="3">Need 3 active required tasks</option>
+        <option value="all">Need all active required tasks</option>
+      </select>
+
+      <label>Add task</label>
+      <div style="display:grid;grid-template-columns:1fr 82px;gap:8px;">
+        <input id="streakNewTaskInput" placeholder="Example: Reading" />
+        <button id="streakAddTaskBtn">Add</button>
+      </div>
+
+      <div id="streakTaskEditorList"></div>
+
+      <label for="streakConsequenceInput">Consequence for failed days</label>
+      <textarea id="streakConsequenceInput"></textarea>
+
+      <div class="actions">
+        <button id="streakSaveSetupBtn" class="good">Save Rules</button>
+        <button id="streakResetDemoBtn" class="danger">Reset Demo</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="streakDayModal" class="modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div id="streakDayModalTitle" class="modal-title">Day</div>
+      <button id="streakCloseDayBtn">Close</button>
+    </div>
+
+    <div id="streakDayResultBox" class="result-box"></div>
+
+    <div class="streak-manual-editor">
+      <div class="streak-manual-title">Edit this calendar square</div>
+      <div class="streak-status-grid">
+        <button type="button" data-streak-manual-pick="perfect">&#x2605; Perfect</button>
+        <button type="button" data-streak-manual-pick="win">&#x2713; Win</button>
+        <button type="button" data-streak-manual-pick="partial">&#x25D0; Partial</button>
+        <button type="button" data-streak-manual-pick="protected">&#x25C6; Protected</button>
+        <button type="button" data-streak-manual-pick="failed">&#xD7; Failed</button>
+        <button type="button" data-streak-manual-pick="empty">Blank</button>
+      </div>
+      <button type="button" id="streakUseAutoBtn" class="streak-auto-btn">Use task checks instead</button>
+      <input id="streakManualStatus" type="hidden" value="auto" />
+      <div class="small-note">Pick one status. This directly controls the calendar square until you change it.</div>
+    </div>
+
+    <div id="streakDayChecklist" class="checklist"></div>
+
+    <label for="streakDayNote">Proof note</label>
+    <textarea id="streakDayNote" placeholder="Optional note"></textarea>
+
+    <div class="actions">
+      <button id="streakSaveDayBtn" class="good">Save Day</button>
+      <button id="streakClearDayBtn" class="danger">Clear Day</button>
+    </div>
+
+    <div class="small-note">Dimmed tasks are not active today and do not hurt the result.</div>
+  </div>
+</div>
+<div id="elementEditModal" class="modal">
+    <div class="modal-card element-edit-card">
+      <div class="modal-header">
+        <div class="modal-title" id="elementEditTitle">Edit Element Skills</div>
+        <button type="button" id="closeElementEditModal">Close</button>
+      </div>
+
+      <label for="elementSkillInput">Add skill square</label>
+      <div class="element-add-row">
+        <input id="elementSkillInput" type="text" maxlength="40" placeholder="Example: Python, Azure, SQL practice" />
+        <button type="button" id="addElementSkillBtn" class="action-add-quest">Add</button>
+      </div>
+
+      <div id="elementSkillEditorList" class="element-editor-list"></div>
+
+      <div class="helper-text">Use one square per skill. You can rename, move, delete, and add more. Your skill names stay saved until you change them.</div>
+
+      <div class="actions element-edit-actions">
+        <button type="button" id="saveElementEditBtn" class="action-done">Save Changes</button>
+        <button type="button" id="resetElementEditBtn" class="fail-btn">Reset Element</button>
+        <button type="button" id="cancelElementEditBtn">Cancel</button>
+      </div>
+
+      <div id="elementEditStatus" class="status-message"></div>
+    </div>
+  </div>
 
   <div id="missionEditModal" class="modal">
     <div class="modal-card mission-edit-card">
@@ -11374,6 +11503,8 @@ header .player-card {
     var STORE_SOUND = 'qt_old_ui_clean_sound_v1';
     var STORE_DEFAULTS = 'qt_old_ui_clean_custom_defaults_v1';
     var STORE_DAY_TEMPLATES = 'qt_day_templates_v1';
+    var STORE_ELEMENTS = 'qt_old_ui_clean_elements_v1';
+    var STORE_ELEMENTS_CONFIG = 'qt_editable_elements_config_v1';
     var STORE_XP = 'qt_player_xp_v1';
     var STORE_REWARDS_LEGACY = 'qt_rewards_meal_pass_v1';
     var STORE_LEVEL_REWARDS = 'qt_level_rewards_meal_pass_v1';
@@ -11384,6 +11515,11 @@ header .player-card {
     var VERSION = 'merged-old-save-v13-microtask-draft-row-fix';
     var editingQuestId = null;
     var draftTasks = [];
+    var currentElementWeek = getWeekStart(new Date());
+    var editingElementKey = null;
+    var editingElementLabels = [];
+    var editingElementDays = [];
+    var ELEMENT_DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     var archiveFilter = 'all';
     var lastTimeLockRenderMinute = null;
     var lastTimeLockSignature = '';
@@ -12148,6 +12284,243 @@ function useMealPass() {
       }
     }
 
+    function dateKey(value) {
+      var date = new Date(value);
+      if (isNaN(date.getTime())) return null;
+      return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+    }
+
+    function getWeekStart(date) {
+      var d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+      var day = d.getDay();
+      var diff = day === 0 ? -6 : 1 - day;
+      d.setDate(d.getDate() + diff);
+      return d;
+    }
+
+    function addDays(date, amount) {
+      var d = new Date(date);
+      d.setDate(d.getDate() + amount);
+      return d;
+    }
+
+    function shortDate(value) {
+      return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(value);
+    }
+
+    function weekKey(date) {
+      return dateKey(getWeekStart(date));
+    }
+
+    function getDefaultElementConfig() {
+      return {
+        fire: { title: 'Fire', subtitle: 'Combat', mode: 'blocks', labels: ['Kickboxing', 'Kickboxing', 'Muay Thai'], days: [[], [], []] },
+        earth: { title: 'Earth', subtitle: 'Strength', mode: 'blocks', labels: ['Push', 'Pull', 'Legs'], days: [[], [], []] },
+        water: { title: 'Water', subtitle: 'Career', mode: 'weekly', labels: ['SQL', 'Career', 'Cert'], days: [[0, 1, 2, 3, 4, 5, 6], [0, 1, 2, 3, 4, 5, 6], [0, 1, 2, 3, 4, 5, 6]] },
+        air: { title: 'Air', subtitle: 'Unlocked Skills', mode: 'blocks', labels: ['Python', 'Azure', 'Typing', 'Reading'], days: [[], [], [], []] }
+      };
+    }
+
+    function getElementOrder() {
+      return ['fire', 'earth', 'water', 'air'];
+    }
+
+    function cleanElementLabels(labels) {
+      if (!Array.isArray(labels)) return [];
+      return labels.map(function(label) {
+        return String(label || '').trim();
+      }).filter(Boolean);
+    }
+
+    function sanitizeElementDays(days) {
+      if (!Array.isArray(days)) return [];
+      return Array.from(new Set(days.map(Number).filter(function(day) {
+        return day >= 0 && day <= 6;
+      }))).sort(function(a, b) { return a - b; });
+    }
+
+    function cloneElementDayConfig(days, labelCount) {
+      var result = [];
+      for (var i = 0; i < labelCount; i += 1) {
+        result.push(sanitizeElementDays(days && days[i]));
+      }
+      return result;
+    }
+
+    function getElementSchedule(item, index) {
+      if (!item || !Array.isArray(item.days)) return [];
+      return sanitizeElementDays(item.days[index]);
+    }
+
+    function countElementTotal(key, config) {
+      var item = config[key];
+      if (!item) return 0;
+
+      if (item.mode === 'weekly') {
+        var activeDays = getWaterActiveDays(item);
+        return item.labels.length * activeDays.length;
+      }
+
+      return item.labels.reduce(function(sum, label, index) {
+        var schedule = getElementSchedule(item, index);
+        return sum + (schedule.length || 1);
+      }, 0);
+    }
+
+    function toggleElementEditorDay(index, day) {
+      syncElementEditorInputs();
+      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
+      var list = editingElementDays[index] || [];
+      if (list.indexOf(day) === -1) list.push(day);
+      else list = list.filter(function(item) { return item !== day; });
+      editingElementDays[index] = sanitizeElementDays(list);
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function applyElementEditorPreset(index, preset) {
+      syncElementEditorInputs();
+      editingElementDays = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
+
+      if (preset === 'daily') editingElementDays[index] = [0, 1, 2, 3, 4, 5, 6];
+      if (preset === 'weekdays') editingElementDays[index] = [0, 1, 2, 3, 4];
+      if (preset === 'weekend') editingElementDays[index] = [5, 6];
+      if (preset === 'tueThu') editingElementDays[index] = [1, 3];
+      if (preset === 'clear') editingElementDays[index] = [];
+
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function toggleScheduledElementDay(element, index, day) {
+      var data = getWeekElements();
+      if (!data[element] || !Array.isArray(data[element][index])) return;
+      data[element][index][day] = !data[element][index][day];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function getWaterActiveDays(item) {
+      if (!item) return [0, 1, 2, 3, 4, 5, 6];
+      if (Array.isArray(item.days) && item.days.length && Array.isArray(item.days[0]) && item.days[0].length) {
+        return sanitizeElementDays(item.days[0]);
+      }
+      return [0, 1, 2, 3, 4, 5, 6];
+    }
+
+    function getWaterEditorDays() {
+      if (Array.isArray(editingElementDays) && editingElementDays.length && Array.isArray(editingElementDays[0]) && editingElementDays[0].length) {
+        return sanitizeElementDays(editingElementDays[0]);
+      }
+      return [0, 1, 2, 3, 4, 5, 6];
+    }
+
+    function setWaterEditorDays(days) {
+      var clean = sanitizeElementDays(days);
+      if (!clean.length) clean = [0, 1, 2, 3, 4, 5, 6];
+      editingElementDays = cloneElementDayConfig([clean], editingElementLabels.length);
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function toggleWaterEditorDay(day) {
+      var days = getWaterEditorDays();
+      if (days.indexOf(day) === -1) days.push(day);
+      else days = days.filter(function(item) { return item !== day; });
+      setWaterEditorDays(days);
+    }
+
+    function applyWaterEditorPreset(preset) {
+      if (preset === 'daily') setWaterEditorDays([0, 1, 2, 3, 4, 5, 6]);
+      if (preset === 'weekdays') setWaterEditorDays([0, 1, 2, 3, 4]);
+      if (preset === 'weekend') setWaterEditorDays([5, 6]);
+      if (preset === 'tueThu') setWaterEditorDays([1, 3]);
+      if (preset === 'clear') setWaterEditorDays([]);
+    }
+
+
+
+    function getElementConfig() {
+      var defaults = getDefaultElementConfig();
+      var stored = readStore(STORE_ELEMENTS_CONFIG, {});
+      var config = JSON.parse(JSON.stringify(defaults));
+
+      getElementOrder().forEach(function(key) {
+        if (stored[key] && Array.isArray(stored[key].labels)) {
+          var labels = cleanElementLabels(stored[key].labels);
+          if (labels.length) config[key].labels = labels;
+        }
+
+        var sourceDays = stored[key] && Array.isArray(stored[key].days) ? stored[key].days : config[key].days;
+        config[key].days = cloneElementDayConfig(sourceDays, config[key].labels.length);
+      });
+
+      return config;
+    }
+
+    function setElementConfig(value) {
+      writeStore(STORE_ELEMENTS_CONFIG, value);
+    }
+
+    function getElementsStore() {
+      return readStore(STORE_ELEMENTS, {});
+    }
+
+    function setElementsStore(value) {
+      writeStore(STORE_ELEMENTS, value);
+    }
+
+    function normalizeElementWeekData(data, config) {
+      if (!data || typeof data !== 'object') data = {};
+
+      getElementOrder().forEach(function(key) {
+        var item = config[key];
+        var labels = item.labels || [];
+
+        if (item.mode === 'weekly') {
+          if (!Array.isArray(data[key])) data[key] = [];
+          for (var dayIndex = 0; dayIndex < 7; dayIndex += 1) {
+            if (!Array.isArray(data[key][dayIndex])) data[key][dayIndex] = [];
+            while (data[key][dayIndex].length < labels.length) data[key][dayIndex].push(false);
+            if (data[key][dayIndex].length > labels.length) data[key][dayIndex] = data[key][dayIndex].slice(0, labels.length);
+          }
+        } else {
+          if (!Array.isArray(data[key])) data[key] = [];
+          while (data[key].length < labels.length) data[key].push(false);
+          if (data[key].length > labels.length) data[key] = data[key].slice(0, labels.length);
+
+          labels.forEach(function(label, index) {
+            var schedule = getElementSchedule(item, index);
+            if (schedule.length) {
+              if (!Array.isArray(data[key][index])) data[key][index] = [false, false, false, false, false, false, false];
+              while (data[key][index].length < 7) data[key][index].push(false);
+              if (data[key][index].length > 7) data[key][index] = data[key][index].slice(0, 7);
+            } else if (Array.isArray(data[key][index])) {
+              data[key][index] = data[key][index].some(Boolean);
+            }
+          });
+        }
+      });
+
+      return data;
+    }
+
+    function getWeekElements() {
+      var config = getElementConfig();
+      var all = getElementsStore();
+      var key = weekKey(currentElementWeek);
+      all[key] = normalizeElementWeekData(all[key], config);
+      setElementsStore(all);
+      return all[key];
+    }
+
+    function saveWeekElements(data) {
+      var all = getElementsStore();
+      all[weekKey(currentElementWeek)] = data;
+      setElementsStore(all);
+    }
 
     function escapeHtml(value) {
       return String(value)
@@ -13458,6 +13831,8 @@ function useMealPass() {
         quests: getQuests(),
         defaults: getCustomDefaults(),
         dayTemplates: getDayTemplates(),
+        elements: getElementsStore(),
+        elementConfig: getElementConfig(),
         xp: getXpData(),
         rewards: getRewardData(),
         levelRewards: getLevelRewardData(),
@@ -13556,6 +13931,7 @@ function useMealPass() {
 
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
     if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
+    if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
     if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
     if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
     if (save.questRewards && typeof save.questRewards === 'object') setQuestRewardData(save.questRewards);
@@ -13667,6 +14043,7 @@ function useMealPass() {
         activeSaveId: getActiveSaveId(),
         defaults: getCustomDefaults(),
         dayTemplates: getDayTemplates(),
+        elements: getElementsStore(),
         xp: getXpData(),
         rewards: getRewardData(),
         levelRewards: getLevelRewardData(),
@@ -13736,6 +14113,8 @@ function useMealPass() {
       setSaves(data.saves);
       if (Array.isArray(data.defaults)) setCustomDefaults(data.defaults);
       if (Array.isArray(data.dayTemplates)) setDayTemplates(data.dayTemplates);
+      if (data.elements && typeof data.elements === 'object') setElementsStore(data.elements);
+      if (data.elementConfig && typeof data.elementConfig === 'object') setElementConfig(data.elementConfig);
       if (data.xp && typeof data.xp === 'object') setXpData(data.xp);
       if (data.levelRewards && typeof data.levelRewards === 'object') setLevelRewardData(data.levelRewards);
       if (data.questRewards && typeof data.questRewards === 'object') setQuestRewardData(data.questRewards);
@@ -13754,6 +14133,420 @@ function useMealPass() {
       renderAll();
     }
 
+    function countElementDone(key, data, config) {
+      var item = config[key];
+      if (!item || !data[key]) return 0;
+
+      if (item.mode === 'weekly') {
+        var activeDays = getWaterActiveDays(item);
+        return activeDays.reduce(function(sum, dayIndex) {
+          var day = data[key][dayIndex] || [];
+          return sum + day.filter(Boolean).length;
+        }, 0);
+      }
+
+      return item.labels.reduce(function(sum, label, index) {
+        var schedule = getElementSchedule(item, index);
+        if (schedule.length) {
+          if (!Array.isArray(data[key][index])) return sum;
+          return sum + schedule.filter(function(dayIndex) {
+            return Boolean(data[key][index][dayIndex]);
+          }).length;
+        }
+
+        return sum + (data[key][index] ? 1 : 0);
+      }, 0);
+    }
+
+    function renderElements() {
+      var config = getElementConfig();
+      var data = getWeekElements();
+      var start = getWeekStart(currentElementWeek);
+      var end = addDays(start, 6);
+      byId('elementsWeekLabel').textContent = shortDate(start) + ' - ' + shortDate(end);
+
+      getElementOrder().forEach(function(key) {
+        var item = config[key];
+        var title = byId(key + 'Title');
+        var subtitle = byId(key + 'Subtitle');
+        var count = byId(key + 'Count');
+        var done = countElementDone(key, data, config);
+        var total = countElementTotal(key, config);
+
+        if (title) title.textContent = item.title;
+        if (subtitle) subtitle.textContent = item.subtitle;
+        if (count) count.textContent = done + ' / ' + total;
+      });
+
+      renderElementBlocks('fire', config, data);
+      renderElementBlocks('earth', config, data);
+      renderWaterElement('water', config, data);
+      renderElementBlocks('air', config, data);
+    }
+
+    function elementMedalEmoji(key) {
+      if (key === 'fire') return '\uD83D\uDD25';
+      if (key === 'earth') return '\u26F0\uFE0F';
+      if (key === 'water') return '\uD83C\uDF0A';
+      if (key === 'air') return '\uD83D\uDCA8';
+      return '\uD83C\uDFC6';
+    }
+
+    function elementMedalName(key) {
+      if (key === 'fire') return 'Fire medal';
+      if (key === 'earth') return 'Earth medal';
+      if (key === 'water') return 'Water medal';
+      if (key === 'air') return 'Air medal';
+      return 'Element medal';
+    }
+
+    function isElementMedalUnlocked(key, data, config) {
+      var total = countElementTotal(key, config);
+      if (!total) return false;
+      return countElementDone(key, data, config) >= total;
+    }
+
+    function createElementMedalCard(key, unlocked) {
+      var medal = document.createElement('div');
+      medal.className = 'element-medal-cell ' + key + (unlocked ? ' unlocked' : '');
+      medal.innerHTML = '<div class="element-medal-icon">' + elementMedalEmoji(key) + '</div><div class="element-medal-text">' + (unlocked ? 'Unlocked' : 'Locked') + '</div>';
+      medal.setAttribute('title', elementMedalName(key));
+      return medal;
+    }
+
+    function renderElementBlocks(key, config, data) {
+      var grid = byId(key + 'Grid');
+      if (!grid) return;
+
+      grid.innerHTML = '';
+
+      var rowGrid = document.createElement('div');
+      rowGrid.className = 'element-unified-grid ' + key;
+
+      var scheduledEntries = [];
+      var unscheduled = [];
+
+      config[key].labels.forEach(function(label, index) {
+        var schedule = getElementSchedule(config[key], index);
+
+        if (schedule.length) {
+          schedule.forEach(function(dayIndex) {
+            scheduledEntries.push({ label: label, index: index, day: dayIndex, dayLabel: ELEMENT_DAY_LABELS[dayIndex] || 'DAY' });
+          });
+        } else {
+          unscheduled.push({ label: label, index: index });
+        }
+      });
+
+      scheduledEntries.forEach(function(entry) {
+        var card = document.createElement('div');
+        card.className = 'element-assigned-card ' + key;
+
+        var dayLabel = document.createElement('div');
+        dayLabel.className = 'element-assigned-card-day';
+        dayLabel.textContent = entry.dayLabel;
+        card.appendChild(dayLabel);
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'element-assigned-card-skill ' + key + ((Array.isArray(data[key][entry.index]) && data[key][entry.index][entry.day]) ? ' active' : '');
+        btn.setAttribute('data-element', key);
+        btn.setAttribute('data-index', entry.index);
+        btn.setAttribute('data-day-slot', entry.day);
+        btn.textContent = entry.label;
+        card.appendChild(btn);
+
+        rowGrid.appendChild(card);
+      });
+
+      unscheduled.forEach(function(entry) {
+        var block = document.createElement('button');
+        block.type = 'button';
+        block.className = 'element-block ' + key + (data[key][entry.index] ? ' active' : '');
+        block.setAttribute('data-element', key);
+        block.setAttribute('data-index', entry.index);
+        block.textContent = entry.label;
+        rowGrid.appendChild(block);
+      });
+
+      rowGrid.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
+      grid.appendChild(rowGrid);
+    }
+
+    function renderWaterElement(key, config, data) {
+      var water = byId('waterGrid');
+      if (!water) return;
+
+      water.innerHTML = '';
+
+      var activeDays = getWaterActiveDays(config[key]);
+      water.style.setProperty('--element-water-days', String(activeDays.length || 1));
+
+      activeDays.forEach(function(dayIndex) {
+        var day = data[key][dayIndex] || [];
+        var dayCard = document.createElement('div');
+        dayCard.className = 'water-day-card';
+
+        var label = document.createElement('div');
+        label.className = 'water-day-label';
+        label.textContent = ELEMENT_DAY_LABELS[dayIndex] || 'Day';
+        dayCard.appendChild(label);
+
+        var dayBlock = document.createElement('div');
+        dayBlock.className = 'water-day-block';
+
+        config[key].labels.forEach(function(skillLabel, segmentIndex) {
+          var segment = document.createElement('button');
+          segment.type = 'button';
+          segment.className = 'water-segment' + (day[segmentIndex] ? ' active' : '');
+          segment.setAttribute('data-element', key);
+          segment.setAttribute('data-day', dayIndex);
+          segment.setAttribute('data-segment', segmentIndex);
+          segment.textContent = skillLabel;
+          dayBlock.appendChild(segment);
+        });
+
+        dayCard.appendChild(dayBlock);
+        water.appendChild(dayCard);
+      });
+
+      water.appendChild(createElementMedalCard(key, isElementMedalUnlocked(key, data, config)));
+    }
+
+    function toggleElementBlock(element, index) {
+      var data = getWeekElements();
+      if (!data[element] || typeof data[element][index] === 'undefined') return;
+      if (Array.isArray(data[element][index])) return;
+      data[element][index] = !data[element][index];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function toggleWaterSegment(day, segment) {
+      var data = getWeekElements();
+      if (!data.water || !data.water[day] || typeof data.water[day][segment] === 'undefined') return;
+      data.water[day][segment] = !data.water[day][segment];
+      saveWeekElements(data);
+      renderElements();
+      beep('click');
+    }
+
+    function shiftElementWeek(amount) {
+      currentElementWeek = addDays(currentElementWeek, amount * 7);
+      renderElements();
+      beep('click');
+    }
+
+    function openElementEditModal(key) {
+      var config = getElementConfig();
+      if (!config[key]) return;
+
+      editingElementKey = key;
+      editingElementLabels = config[key].labels.slice();
+      editingElementDays = cloneElementDayConfig(config[key].days, editingElementLabels.length);
+      byId('elementEditTitle').textContent = 'Edit ' + config[key].title + ' Skills';
+      byId('elementSkillInput').value = '';
+      byId('elementEditStatus').textContent = '';
+      renderElementEditorList();
+      byId('elementEditModal').classList.add('open');
+
+      setTimeout(function() {
+        try { byId('elementSkillInput').focus({ preventScroll: true }); }
+        catch (error) { byId('elementSkillInput').focus(); }
+      }, 80);
+
+      beep('click');
+    }
+
+    function closeElementEditModal() {
+      editingElementKey = null;
+      editingElementLabels = [];
+      editingElementDays = [];
+      byId('elementEditModal').classList.remove('open');
+    }
+
+    function syncElementEditorInputs() {
+      var rawDays = editingElementDays.slice();
+      var inputs = document.querySelectorAll('[data-element-label-index]');
+      var labels = [];
+      var days = [];
+
+      inputs.forEach(function(input) {
+        var oldIndex = Number(input.getAttribute('data-element-label-index'));
+        var value = input.value.trim();
+        if (value) {
+          labels.push(value);
+          days.push(sanitizeElementDays(rawDays[oldIndex]));
+        }
+      });
+
+      editingElementLabels = labels;
+      editingElementDays = cloneElementDayConfig(days, editingElementLabels.length);
+    }
+
+    function renderElementEditorList() {
+      var box = byId('elementSkillEditorList');
+      box.innerHTML = '';
+
+      if (!editingElementLabels.length) {
+        box.innerHTML = '<div class="empty">No skills added yet. Add at least one skill row.</div>';
+        return;
+      }
+
+      if (editingElementKey === 'water') {
+        var waterDays = getWaterEditorDays();
+
+        var waterSchedule = document.createElement('div');
+        waterSchedule.className = 'element-water-editor-panel';
+        waterSchedule.innerHTML =
+          '<div class="element-schedule-top">' +
+            '<span class="element-schedule-name">Visible Water Days</span>' +
+            '<span class="element-day-note">Remove days here and they disappear from Water</span>' +
+          '</div>' +
+          '<div class="element-day-presets">' +
+            '<button type="button" class="element-day-preset-btn" data-element-water-preset="daily">Everyday</button>' +
+            '<button type="button" class="element-day-preset-btn" data-element-water-preset="weekdays">Weekdays</button>' +
+            '<button type="button" class="element-day-preset-btn" data-element-water-preset="weekend">Weekend</button>' +
+            '<button type="button" class="element-day-preset-btn" data-element-water-preset="tueThu">Tue/Thu</button>' +
+            '<button type="button" class="element-day-preset-btn" data-element-water-preset="clear">Clear</button>' +
+          '</div>' +
+          '<div class="element-day-editor">' +
+            ELEMENT_DAY_LABELS.map(function(dayLabel, dayIndex) {
+              var active = waterDays.indexOf(dayIndex) !== -1;
+              return '<button type="button" class="element-day-btn water ' + (active ? 'active' : '') + '" data-element-water-day="' + dayIndex + '">' + dayLabel + '</button>';
+            }).join('') +
+          '</div>';
+
+        box.appendChild(waterSchedule);
+      }
+
+      editingElementLabels.forEach(function(label, index) {
+        var row = document.createElement('div');
+        row.className = 'element-editor-row';
+
+        if (editingElementKey === 'water') {
+          row.innerHTML =
+            '<div class="element-editor-top water-label-only">' +
+              '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
+              '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>\u2191</button>' +
+              '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>\u2193</button>' +
+              '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">\u00D7</button>' +
+            '</div>';
+          box.appendChild(row);
+          return;
+        }
+
+        var dayButtons = ELEMENT_DAY_LABELS.map(function(dayLabel, dayIndex) {
+          var active = editingElementDays[index] && editingElementDays[index].indexOf(dayIndex) !== -1;
+          return '<button type="button" class="element-day-btn ' + editingElementKey + (active ? ' active' : '') + '" data-element-daypick-index="' + index + '" data-element-daypick="' + dayIndex + '">' + dayLabel + '</button>';
+        }).join('');
+
+        row.innerHTML =
+          '<div class="element-editor-top">' +
+            '<input type="text" maxlength="40" value="' + escapeHtml(label) + '" data-element-label-index="' + index + '">' +
+            '<button type="button" class="element-mini-btn" data-element-editor-action="up" data-element-editor-index="' + index + '" ' + (index === 0 ? 'disabled' : '') + '>\u2191</button>' +
+            '<button type="button" class="element-mini-btn" data-element-editor-action="down" data-element-editor-index="' + index + '" ' + (index === editingElementLabels.length - 1 ? 'disabled' : '') + '>\u2193</button>' +
+            '<button type="button" class="element-mini-btn element-delete-btn" data-element-editor-action="delete" data-element-editor-index="' + index + '">\u00D7</button>' +
+          '</div>' +
+          '<div class="element-schedule-row">' +
+            '<div class="element-schedule-top">' +
+              '<span class="element-schedule-name">Assigned days</span>' +
+              '<span class="element-day-note">Leave blank for normal weekly square</span>' +
+            '</div>' +
+            '<div class="element-day-presets">' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="daily">Everyday</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekdays">Weekdays</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="weekend">Weekend</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="tueThu">Tue/Thu</button>' +
+              '<button type="button" class="element-day-preset-btn" data-element-preset-index="' + index + '" data-element-preset="clear">Clear</button>' +
+            '</div>' +
+            '<div class="element-day-editor">' + dayButtons + '</div>' +
+          '</div>';
+
+        box.appendChild(row);
+      });
+    }
+
+    function addElementSkill() {
+      syncElementEditorInputs();
+      var input = byId('elementSkillInput');
+      var value = input.value.trim();
+      if (!value) return;
+
+      editingElementLabels.push(value);
+      editingElementDays.push([]);
+      input.value = '';
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function changeElementSkillOrder(index, direction) {
+      syncElementEditorInputs();
+      moveArrayItem(editingElementLabels, index, direction);
+      moveArrayItem(editingElementDays, index, direction);
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function deleteElementSkill(index) {
+      syncElementEditorInputs();
+      editingElementLabels.splice(index, 1);
+      editingElementDays.splice(index, 1);
+      renderElementEditorList();
+      beep('click');
+    }
+
+    function saveElementEdit() {
+      syncElementEditorInputs();
+
+      if (!editingElementKey) return;
+      if (!editingElementLabels.length) {
+        byId('elementEditStatus').textContent = 'Add at least one skill square before saving.';
+        return;
+      }
+
+      var config = getElementConfig();
+      config[editingElementKey].labels = editingElementLabels.slice();
+
+      if (editingElementKey === 'water') {
+        var waterDays = getWaterEditorDays();
+        if (!waterDays.length) {
+          byId('elementEditStatus').textContent = 'Choose at least one visible Water day.';
+          return;
+        }
+        config[editingElementKey].days = cloneElementDayConfig([waterDays], editingElementLabels.length);
+      } else {
+        config[editingElementKey].days = cloneElementDayConfig(editingElementDays, editingElementLabels.length);
+      }
+
+      setElementConfig(config);
+
+      var data = getWeekElements();
+      saveWeekElements(normalizeElementWeekData(data, config));
+
+      closeElementEditModal();
+      renderElements();
+      beep('save');
+    }
+
+    function resetElementEdit() {
+      if (!editingElementKey) return;
+      if (!confirm('Reset this element back to the default skill names?')) return;
+
+      var defaults = getDefaultElementConfig();
+      var config = getElementConfig();
+      config[editingElementKey].labels = defaults[editingElementKey].labels.slice();
+      config[editingElementKey].days = cloneElementDayConfig(defaults[editingElementKey].days, config[editingElementKey].labels.length);
+      setElementConfig(config);
+
+      var data = getWeekElements();
+      saveWeekElements(normalizeElementWeekData(data, config));
+
+      closeElementEditModal();
+      renderElements();
+      beep('load');
+    }
 
     function renderBriefing(quests) {
       var mainActive = quests.filter(function(quest) {
@@ -13817,6 +14610,7 @@ function useMealPass() {
       renderStats();
       renderArchive();
       renderActiveSavePrompt();
+      renderElements();
       renderRoutineBoard();
       setSound(isSoundOn());
     }
@@ -13852,7 +14646,22 @@ function useMealPass() {
         event.stopPropagation();
         saveCurrentDayAsTemplate();
       });
-
+      byId('prevWeekBtn').addEventListener('click', function() { shiftElementWeek(-1); });
+      byId('nextWeekBtn').addEventListener('click', function() { shiftElementWeek(1); });
+      byId('closeElementEditModal').addEventListener('click', closeElementEditModal);
+      byId('cancelElementEditBtn').addEventListener('click', closeElementEditModal);
+      byId('saveElementEditBtn').addEventListener('click', saveElementEdit);
+      byId('resetElementEditBtn').addEventListener('click', resetElementEdit);
+      byId('addElementSkillBtn').addEventListener('click', addElementSkill);
+      byId('elementSkillInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          addElementSkill();
+        }
+      });
+      byId('elementEditModal').addEventListener('click', function(event) {
+        if (event.target === byId('elementEditModal')) closeElementEditModal();
+      });
 
       byId('microInput').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
@@ -14045,6 +14854,69 @@ function useMealPass() {
           }
         }
 
+        var elementEditButton = event.target.closest('[data-element-edit]');
+        if (elementEditButton) {
+          openElementEditModal(elementEditButton.getAttribute('data-element-edit'));
+          return;
+        }
+
+        var elementEditorButton = event.target.closest('[data-element-editor-action]');
+        if (elementEditorButton) {
+          var editorAction = elementEditorButton.getAttribute('data-element-editor-action');
+          var editorIndex = Number(elementEditorButton.getAttribute('data-element-editor-index'));
+          if (editorAction === 'up') changeElementSkillOrder(editorIndex, -1);
+          if (editorAction === 'down') changeElementSkillOrder(editorIndex, 1);
+          if (editorAction === 'delete') deleteElementSkill(editorIndex);
+          return;
+        }
+
+        var elementWaterDayButton = event.target.closest('[data-element-water-day]');
+        if (elementWaterDayButton) {
+          toggleWaterEditorDay(Number(elementWaterDayButton.getAttribute('data-element-water-day')));
+          return;
+        }
+
+        var elementWaterPresetButton = event.target.closest('[data-element-water-preset]');
+        if (elementWaterPresetButton) {
+          applyWaterEditorPreset(elementWaterPresetButton.getAttribute('data-element-water-preset'));
+          return;
+        }
+
+        var elementDayButton = event.target.closest('[data-element-daypick]');
+        if (elementDayButton) {
+          toggleElementEditorDay(
+            Number(elementDayButton.getAttribute('data-element-daypick-index')),
+            Number(elementDayButton.getAttribute('data-element-daypick'))
+          );
+          return;
+        }
+
+        var elementPresetButton = event.target.closest('[data-element-preset]');
+        if (elementPresetButton) {
+          applyElementEditorPreset(
+            Number(elementPresetButton.getAttribute('data-element-preset-index')),
+            elementPresetButton.getAttribute('data-element-preset')
+          );
+          return;
+        }
+
+        var elementButton = event.target.closest('[data-element]');
+        if (elementButton) {
+          var element = elementButton.getAttribute('data-element');
+          if (element === 'water') {
+            toggleWaterSegment(Number(elementButton.getAttribute('data-day')), Number(elementButton.getAttribute('data-segment')));
+            return;
+          }
+          if (element === 'fire' || element === 'earth' || element === 'air') {
+            var daySlot = elementButton.getAttribute('data-day-slot');
+            if (daySlot !== null) {
+              toggleScheduledElementDay(element, Number(elementButton.getAttribute('data-index')), Number(daySlot));
+            } else {
+              toggleElementBlock(element, Number(elementButton.getAttribute('data-index')));
+            }
+            return;
+          }
+        }
 
         var saveButton = event.target.closest('[data-save-action]');
         if (saveButton) {
@@ -14788,6 +15660,793 @@ document.addEventListener('click', function(event) {
     }
   }, 0);
 }, true);
+
+
+// ===== Smart Streak Section From Uploaded Code =====
+(function() {
+
+const STORE = "qt_simple_smart_streak_v1";
+const s$ = (id) => document.getElementById(id);
+const colors = ["#4fc27a", "#67aee8", "#d99a45", "#a78be8", "#d8d0bd", "#e0c878", "#7ad9c2", "#d78484"];
+const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const fullDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+let selectedMonth = new Date();
+selectedMonth.setDate(1);
+let selectedDateKey = null;
+let modalEntry = null;
+
+function defaults() {
+  return {
+    setup: {
+      name: "Skill Building",
+      requiredCount: "2",
+      consequence: "Before entertainment tomorrow, complete 20 minutes of the missed required task or clean/reset your space for 10 minutes.",
+      tasks: [
+        { name:"DP-300", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
+        { name:"SQL", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
+        { name:"Kickboxing", schedule:"specific", days:[2,4], required:true, weeklyTarget:0 },
+        { name:"Driving", schedule:"optional", days:[], required:false, weeklyTarget:0 },
+        { name:"Gym", schedule:"weekly", days:[], required:true, weeklyTarget:3 }
+      ]
+    },
+    days: seedDemo()
+  };
+}
+
+function seedDemo() {
+  const days = {};
+  const today = new Date();
+  [
+    [-1, ["done","done","skip","done","skip"], "Good study day."],
+    [-2, ["done","done","done","skip","done"], "Strong day."],
+    [-3, ["protected","protected","skip","skip","skip"], "Protected recovery."],
+    [-4, ["done","skip","skip","skip","done"], "Partial."],
+    [-5, ["fail","skip","skip","skip","skip"], "Missed."]
+  ].forEach(([offset, states, note]) => {
+    days[key(add(today, offset))] = { states, note };
+  });
+  return days;
+}
+
+function read() {
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (raw) return normalize(JSON.parse(raw));
+  } catch {}
+  return defaults();
+}
+
+function write(data) {
+  localStorage.setItem(STORE, JSON.stringify(normalize(data)));
+}
+
+function normalize(data) {
+  const base = defaults();
+  data = data || base;
+  data.setup = Object.assign({}, base.setup, data.setup || {});
+  if (!Array.isArray(data.setup.tasks) || !data.setup.tasks.length) data.setup.tasks = base.setup.tasks;
+  data.setup.tasks = data.setup.tasks.map(normalizeTask).filter(t => t.name);
+  data.days = data.days && typeof data.days === "object" ? data.days : {};
+  Object.keys(data.days).forEach(k => {
+    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
+  });
+  return data;
+}
+
+function normalizeTask(task) {
+  task = task || {};
+  const schedule = ["daily","specific","weekly","optional"].includes(task.schedule) ? task.schedule : "daily";
+  return {
+    name: String(task.name || "").trim(),
+    schedule,
+    days: Array.isArray(task.days) ? task.days.map(Number).filter(d => d >= 0 && d <= 6) : [],
+    required: task.required !== false && schedule !== "optional",
+    weeklyTarget: Number(task.weeklyTarget || 0)
+  };
+}
+
+function normalizeEntry(entry, count) {
+  entry = entry || {};
+  let states = Array.isArray(entry.states) ? entry.states.slice(0, count) : [];
+  while (states.length < count) states.push("skip");
+  states = states.map(s => ["done","fail","protected","skip"].includes(s) ? s : "skip");
+  const manualStatus = ["auto","perfect","win","partial","protected","failed","empty"].includes(entry.manualStatus) ? entry.manualStatus : "auto";
+  return { states, note: String(entry.note || ""), manualStatus };
+}
+
+function key(date) {
+  return date.getFullYear() + "-" + String(date.getMonth()+1).padStart(2,"0") + "-" + String(date.getDate()).padStart(2,"0");
+}
+
+function fromKey(k) {
+  const [y,m,d] = k.split("-").map(Number);
+  return new Date(y, m-1, d);
+}
+
+function add(date, amount) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + amount);
+  return d;
+}
+
+function monthName(date) {
+  return new Intl.DateTimeFormat(undefined, { month:"long", year:"numeric" }).format(date);
+}
+
+function dayName(date) {
+  return new Intl.DateTimeFormat(undefined, { weekday:"long", month:"short", day:"numeric" }).format(date);
+}
+
+function daysInMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+}
+
+function sameMonth(a,b) {
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+}
+
+function weekStart(date) {
+  const d = new Date(date);
+  d.setHours(0,0,0,0);
+  const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
+  d.setDate(d.getDate() + diff);
+  return d;
+}
+
+function color(i) {
+  return colors[i % colors.length];
+}
+
+function weeklyDone(taskIndex, date, data) {
+  const start = weekStart(date);
+  let count = 0;
+  for (let i=0; i<7; i++) {
+    const entry = data.days[key(add(start, i))];
+    if (entry && entry.states[taskIndex] === "done") count++;
+  }
+  return count;
+}
+
+function active(task, date, index, data) {
+  const day = date.getDay();
+  if (task.schedule === "daily") return true;
+  if (task.schedule === "specific") return task.days.includes(day);
+  if (task.schedule === "weekly") return weeklyDone(index, date, data) < Number(task.weeklyTarget || 1);
+  if (task.schedule === "optional") return false;
+  return true;
+}
+
+function requiredToday(task, date, index, data) {
+  return task.required && active(task, date, index, data);
+}
+
+function taskRule(task) {
+  if (task.schedule === "daily") return "Daily" + (task.required ? " \u00B7 required" : " \u00B7 optional");
+  if (task.schedule === "specific") return task.days.map(d => fullDays[d]).join(", ") + (task.required ? " \u00B7 required" : " \u00B7 optional");
+  if (task.schedule === "weekly") return (task.weeklyTarget || 1) + "x/week" + (task.required ? " \u00B7 required" : " \u00B7 optional");
+  return "Optional/random \u00B7 bonus";
+}
+
+function result(entry, setup, date, data) {
+  if (!entry) return "empty";
+
+  if (entry.manualStatus && entry.manualStatus !== "auto") {
+    return entry.manualStatus === "empty" ? "empty" : entry.manualStatus;
+  }
+
+  const req = [];
+  setup.tasks.forEach((task, i) => {
+    if (requiredToday(task, date, i, data)) req.push(i);
+  });
+
+  if (!req.length) return entry.states.some(s => s === "done") ? "win" : "empty";
+
+  const done = req.filter(i => entry.states[i] === "done").length;
+  const safe = req.filter(i => entry.states[i] === "protected").length;
+  const fail = req.filter(i => entry.states[i] === "fail").length;
+
+  if (fail > 0) return "failed";
+  if (safe === req.length) return "protected";
+
+  const min = setup.requiredCount === "all" ? req.length : Math.min(Number(setup.requiredCount || 1), req.length);
+
+  if (done === req.length) return "perfect";
+  if (done >= min) return "win";
+  if (done > 0 || safe > 0) return "partial";
+  return "empty";
+}
+
+function valid(r) {
+  return r === "perfect" || r === "win" || r === "protected";
+}
+
+function saveSetup() {
+  const data = read();
+  data.setup.name = s$("streakNameInput").value.trim() || "Untitled Streak";
+  data.setup.requiredCount = s$("streakRequiredCount").value;
+  data.setup.consequence = s$("streakConsequenceInput").value.trim() || "Repair before entertainment tomorrow.";
+  data.setup.tasks = Array.from(document.querySelectorAll("[data-streak-task-card]")).map(card => ({
+    name: card.querySelector("[data-streak-task-name]").value,
+    schedule: card.querySelector("[data-streak-task-schedule]").value,
+    required: card.querySelector("[data-streak-task-required]").value === "required",
+    weeklyTarget: Number(card.querySelector("[data-streak-weekly-target]").value || 1),
+    days: Array.from(card.querySelectorAll("[data-streak-day-chip].active")).map(b => Number(b.dataset.streakDayChip))
+  })).map(normalizeTask).filter(t => t.name);
+
+  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
+  write(data);
+  closeSetup();
+  render();
+}
+
+function addTask() {
+  const value = s$("streakNewTaskInput").value.trim();
+  if (!value) return;
+  const data = read();
+  data.setup.tasks.push({ name:value, schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 });
+  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
+  write(data);
+  s$("streakNewTaskInput").value = "";
+  renderSetupModal();
+  render();
+}
+
+function deleteTask(index) {
+  const data = read();
+  if (data.setup.tasks.length <= 1) return;
+  data.setup.tasks.splice(index, 1);
+  Object.keys(data.days).forEach(k => {
+    if (data.days[k].states) data.days[k].states.splice(index, 1);
+    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
+  });
+  write(data);
+  renderSetupModal();
+  render();
+}
+
+function renderMain() {
+  const data = read();
+  s$("streakConsequenceTextView").textContent = data.setup.consequence;
+  s$("streakWinRuleText").textContent = data.setup.requiredCount === "all"
+    ? "Win = all active required tasks completed. Inactive and optional tasks do not hurt the day."
+    : "Win = at least " + data.setup.requiredCount + " active required task(s) completed. Inactive and optional tasks do not hurt the day.";
+
+  s$("streakTaskList").innerHTML = data.setup.tasks.map((task, i) => `
+    <div class="quest-pill">
+      <i class="quest-color" style="background:${color(i)}"></i>
+      <div>
+        <div class="quest-name">${escapeHtml(task.name)}</div>
+        <div class="quest-rule">${escapeHtml(taskRule(task))}</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+
+
+function resultChipClass(r) {
+  if (r === "perfect" || r === "win") return "good";
+  if (r === "partial") return "warn";
+  if (r === "protected") return "purple";
+  if (r === "failed") return "danger";
+  return "";
+}
+
+function renderQuickUpdate() {
+  const box = s$("streakTodayQuickSummary");
+  if (!box) return;
+
+  const data = read();
+  const todayDate = new Date();
+  const today = key(todayDate);
+  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
+  const r = result(data.days[today], data.setup, todayDate, data);
+
+  let activeCount = 0;
+  let activeDone = 0;
+  let requiredCount = 0;
+  let requiredDone = 0;
+
+  data.setup.tasks.forEach((task, i) => {
+    const isActive = active(task, todayDate, i, data);
+    const isRequired = requiredToday(task, todayDate, i, data);
+    if (isActive) {
+      activeCount++;
+      if (entry.states[i] === "done") activeDone++;
+    }
+    if (isRequired) {
+      requiredCount++;
+      if (entry.states[i] === "done") requiredDone++;
+    }
+  });
+
+  const winRule = data.setup.requiredCount === "all"
+    ? "Need all active required tasks"
+    : "Need " + data.setup.requiredCount + " required task(s)";
+
+  box.innerHTML = `
+    <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
+    <div class="streak-today-chips">
+      <span class="streak-today-chip ${resultChipClass(r)}">Status: ${escapeHtml(r.toUpperCase())}</span>
+      <span class="streak-today-chip good">Required: ${requiredDone}/${requiredCount}</span>
+      <span class="streak-today-chip warn">Active: ${activeDone}/${activeCount}</span>
+      <span class="streak-today-chip purple">${escapeHtml(winRule)}</span>
+    </div>
+  `;
+}
+
+function quickSetToday(mode) {
+  const data = read();
+  const todayDate = new Date();
+  const today = key(todayDate);
+
+  if (mode === "clear") {
+    delete data.days[today];
+    write(data);
+    selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+    render();
+    return;
+  }
+
+  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
+  entry.manualStatus = "auto";
+
+  data.setup.tasks.forEach((task, i) => {
+    const isActive = active(task, todayDate, i, data);
+    const isRequired = requiredToday(task, todayDate, i, data);
+
+    if (mode === "all" && isActive) {
+      entry.states[i] = "done";
+      return;
+    }
+
+    if (mode === "required" && isRequired) {
+      entry.states[i] = "done";
+    }
+  });
+
+  data.days[today] = normalizeEntry(entry, data.setup.tasks.length);
+  write(data);
+  selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+  render();
+}
+
+function renderCalendar() {
+  const data = read();
+  const grid = s$("streakCalendarGrid");
+  const y = selectedMonth.getFullYear();
+  const m = selectedMonth.getMonth();
+  const total = daysInMonth(selectedMonth);
+  const first = new Date(y,m,1).getDay();
+  const today = key(new Date());
+
+  s$("streakMonthTitle").textContent = monthName(selectedMonth);
+  grid.innerHTML = "";
+
+  for (let i=0; i<first; i++) {
+    const empty = document.createElement("div");
+    empty.className = "day-cell empty";
+    grid.appendChild(empty);
+  }
+
+  for (let day=1; day<=total; day++) {
+    const date = new Date(y,m,day);
+    const k = key(date);
+    const entry = data.days[k];
+    const r = result(entry, data.setup, date, data);
+    const cell = document.createElement("div");
+    cell.className = "day-cell " + r + (k === today ? " today" : "");
+    cell.setAttribute("role", "button");
+    cell.setAttribute("tabindex", "0");
+    cell.dataset.streakDate = k;
+
+    const label = r === "perfect" ? "Perfect" : r === "win" ? "Win" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
+    const states = entry ? entry.states : [];
+
+    cell.innerHTML = `
+      <div class="day-number">${day}</div>
+      <div class="day-dots">
+        ${data.setup.tasks.map((task, i) => {
+          const state = states[i] || "skip";
+          const isActive = active(task, date, i, data);
+          const isOptional = !requiredToday(task, date, i, data);
+          const bg = state === "done" ? `background:${color(i)};border-color:${color(i)};` : "";
+          return `<i class="dot ${isActive ? "" : "inactive"} ${isOptional ? "optional" : ""} ${state === "done" ? "done" : state === "fail" ? "failed" : state === "protected" ? "protected" : ""}" style="${bg}"></i>`;
+        }).join("")}
+      </div>
+      <div class="day-label">${label}</div>
+    `;
+
+    grid.appendChild(cell);
+  }
+}
+
+
+function bindStreakCalendarDirectClick() {
+  const grid = s$("streakCalendarGrid");
+  if (!grid || grid.dataset.directClickBound === "true") return;
+  grid.dataset.directClickBound = "true";
+
+  grid.addEventListener("click", function(event) {
+    const cell = event.target.closest("[data-streak-date]");
+    if (!cell || !grid.contains(cell)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    openDay(cell.dataset.streakDate);
+  });
+
+  grid.addEventListener("keydown", function(event) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const cell = event.target.closest("[data-streak-date]");
+    if (!cell || !grid.contains(cell)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    openDay(cell.dataset.streakDate);
+  });
+}
+
+function stats() {
+  const data = read();
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  let current = 0;
+  let cursor = new Date(today);
+  while (true) {
+    const r = result(data.days[key(cursor)], data.setup, cursor, data);
+    if (valid(r)) {
+      current++;
+      cursor = add(cursor, -1);
+    } else break;
+  }
+
+  let best = 0, run = 0, prev = null;
+  Object.keys(data.days).sort().forEach(k => {
+    const date = fromKey(k);
+    const r = result(data.days[k], data.setup, date, data);
+    if (!valid(r)) {
+      run = 0;
+      prev = date;
+      return;
+    }
+    if (prev) {
+      const diff = Math.round((date - prev) / 86400000);
+      run = diff === 1 ? run + 1 : 1;
+    } else run = 1;
+    best = Math.max(best, run);
+    prev = date;
+  });
+
+  const monthEntries = Object.entries(data.days).filter(([k]) => sameMonth(fromKey(k), selectedMonth));
+  const wins = monthEntries.filter(([k,e]) => valid(result(e, data.setup, fromKey(k), data))).length;
+  const score = Math.round((wins / daysInMonth(selectedMonth)) * 100);
+
+  s$("streakCurrentStreak").textContent = current;
+  s$("streakBestStreak").textContent = best;
+  s$("streakMonthWins").textContent = wins;
+  s$("streakProofScore").textContent = score + "%";
+}
+
+function renderLog() {
+  const data = read();
+  const entries = Object.entries(data.days).sort((a,b) => b[0].localeCompare(a[0])).slice(0,5);
+
+  s$("streakProofLog").innerHTML = entries.map(([k,e]) => {
+    const date = fromKey(k);
+    const r = result(e, data.setup, date, data);
+    const icon = r === "perfect" ? "\u2605" : r === "win" ? "\u2713" : r === "partial" ? "\u25D0" : r === "protected" ? "\u25C6" : r === "failed" ? "\u00D7" : "\u00B7";
+    const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
+    const manual = e.manualStatus && e.manualStatus !== "auto" ? '<span class="manual-status-banner">Manual</span> ' : "";
+    return `
+      <div class="log-item">
+        <div class="log-title"><span>${icon}</span><span>${dayName(date)}</span></div>
+        <div class="log-meta">${manual}<span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+
+function renderMedals() {
+  const data = read();
+
+  let current = 0;
+  let best = 0;
+  let run = 0;
+  let prev = null;
+  let wins = 0;
+  let perfects = 0;
+  let failed = 0;
+  let protectedDays = 0;
+  let latestKey = null;
+  let latestResult = "empty";
+
+  Object.keys(data.days).sort().forEach(k => {
+    const date = fromKey(k);
+    const r = result(data.days[k], data.setup, date, data);
+
+    if (r !== "empty") {
+      latestKey = k;
+      latestResult = r;
+    }
+
+    if (r === "perfect") perfects++;
+    if (r === "failed") failed++;
+    if (r === "protected") protectedDays++;
+    if (valid(r)) wins++;
+
+    if (!valid(r)) {
+      run = 0;
+      prev = date;
+      return;
+    }
+
+    if (prev) {
+      const diff = Math.round((date - prev) / 86400000);
+      run = diff === 1 ? run + 1 : 1;
+    } else {
+      run = 1;
+    }
+
+    best = Math.max(best, run);
+    prev = date;
+  });
+
+  current = run;
+  const latestFailed = latestKey && latestResult === "failed";
+
+  const medals = [
+    { icon: "\uD83E\uDD49", name: "3 Day Spark", unlock: current >= 3 },
+    { icon: "\uD83E\uDD48", name: "7 Day Chain", unlock: current >= 7 },
+    { icon: "\uD83E\uDD47", name: "14 Day Medal", unlock: current >= 14 },
+    { icon: "\uD83D\uDEE1\uFE0F", name: "Safe Day", unlock: protectedDays >= 1 },
+    { icon: "\uD83D\uDD28", name: "Repairer", unlock: failed >= 1 && !latestFailed },
+    { icon: "\uD83D\uDC8E", name: "30 Wins", unlock: wins >= 30 },
+    { icon: "\u2605", name: "Perfect Day", unlock: perfects >= 1 },
+    { icon: "\uD83D\uDC51", name: "10 Wins", unlock: wins >= 10 },
+    { icon: "\u2694", name: "Comeback", unlock: failed >= 1 && current >= 3 }
+  ];
+
+  const box = s$("streakMedalCase");
+  if (!box) return;
+
+  box.innerHTML = medals.map(medal => `
+    <div class="streak-medal ${medal.unlock ? "unlocked" : ""}">
+      <div class="streak-medal-icon">${medal.icon}</div>
+      <span class="streak-medal-name">${medal.name}</span>
+    </div>
+  `).join("");
+}
+
+
+function openSetup() {
+  renderSetupModal();
+  s$("streakSetupModal").classList.add("open");
+}
+
+function closeSetup() {
+  s$("streakSetupModal").classList.remove("open");
+}
+
+function renderSetupModal() {
+  const data = read();
+  s$("streakNameInput").value = data.setup.name;
+  s$("streakRequiredCount").value = data.setup.requiredCount;
+  s$("streakConsequenceInput").value = data.setup.consequence;
+
+  s$("streakTaskEditorList").innerHTML = data.setup.tasks.map((task, i) => `
+    <div class="task-editor" data-streak-task-card="${i}">
+      <div class="task-top">
+        <i class="quest-color" style="background:${color(i)}"></i>
+        <input data-streak-task-name value="${escapeHtml(task.name)}">
+        <button class="danger" title="Delete task" data-streak-delete-task="${i}">\u00D7</button>
+      </div>
+      <div class="task-details">
+        <select data-streak-task-schedule>
+          <option value="daily" ${task.schedule === "daily" ? "selected" : ""}>Daily</option>
+          <option value="specific" ${task.schedule === "specific" ? "selected" : ""}>Specific days</option>
+          <option value="weekly" ${task.schedule === "weekly" ? "selected" : ""}>Weekly target</option>
+          <option value="optional" ${task.schedule === "optional" ? "selected" : ""}>Optional/random</option>
+        </select>
+        <select data-streak-task-required>
+          <option value="required" ${task.required ? "selected" : ""}>Required</option>
+          <option value="optional" ${!task.required ? "selected" : ""}>Optional</option>
+        </select>
+        <select data-streak-weekly-target>
+          <option value="1" ${task.weeklyTarget === 1 ? "selected" : ""}>1x/week</option>
+          <option value="2" ${task.weeklyTarget === 2 ? "selected" : ""}>2x/week</option>
+          <option value="3" ${task.weeklyTarget === 3 ? "selected" : ""}>3x/week</option>
+          <option value="4" ${task.weeklyTarget === 4 ? "selected" : ""}>4x/week</option>
+          <option value="5" ${task.weeklyTarget === 5 ? "selected" : ""}>5x/week</option>
+        </select>
+      </div>
+      <div class="days-picker">
+        ${dayNames.map((d, dayIndex) => `<button type="button" class="day-chip ${task.days.includes(dayIndex) ? "active" : ""}" data-streak-day-chip="${dayIndex}">${d}</button>`).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+function openDay(k) {
+  selectedDateKey = k;
+  const data = read();
+  const date = fromKey(k);
+  modalEntry = normalizeEntry(data.days[k], data.setup.tasks.length);
+  s$("streakDayModalTitle").textContent = dayName(date);
+  if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus || "auto";
+  s$("streakDayNote").value = modalEntry.note || "";
+  renderDayModal();
+  s$("streakDayModal").classList.add("open");
+}
+
+function closeDay() {
+  s$("streakDayModal").classList.remove("open");
+  selectedDateKey = null;
+  modalEntry = null;
+}
+
+function renderDayModal() {
+  const data = read();
+  const date = fromKey(selectedDateKey);
+  const r = result(modalEntry, data.setup, date, data);
+  const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
+  const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
+  const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
+    ? `<br><span class="manual-status-banner">Manual edit active</span>`
+    : `<br><span class="manual-status-banner">Auto mode</span>`;
+  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
+
+  document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
+  });
+  if (s$("streakUseAutoBtn")) {
+    s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
+  }
+
+  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
+    const state = modalEntry.states[i] || "skip";
+    const isActive = active(task,date,i,data);
+    const isRequired = requiredToday(task,date,i,data);
+    const meta = isActive ? (isRequired ? "Active today \u00B7 required" : "Optional/bonus") : "Not active today";
+    return `
+      <div class="check-row ${isActive ? "" : "inactive"}">
+        <i class="quest-color" style="background:${color(i)}"></i>
+        <div>
+          <div class="check-head">
+            <div>
+              <div class="check-name">${escapeHtml(task.name)}</div>
+              <div class="check-rule">${escapeHtml(meta)}</div>
+            </div>
+          </div>
+        </div>
+        <div class="check-buttons">
+          <button class="good ${state === "done" ? "active" : ""}" data-streak-state="done" data-streak-index="${i}">Done</button>
+          <button class="warn ${state === "protected" ? "active" : ""}" data-streak-state="protected" data-streak-index="${i}">Safe</button>
+          <button class="danger ${state === "fail" ? "active" : ""}" data-streak-state="fail" data-streak-index="${i}">Fail</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function setState(i, state) {
+  modalEntry.states[i] = modalEntry.states[i] === state ? "skip" : state;
+  renderDayModal();
+}
+
+function saveDay() {
+  const data = read();
+  modalEntry.note = s$("streakDayNote").value.trim();
+  modalEntry.manualStatus = s$("streakManualStatus") ? s$("streakManualStatus").value : "auto";
+
+  if (modalEntry.manualStatus === "empty" && !modalEntry.note && modalEntry.states.every(s => s === "skip")) {
+    delete data.days[selectedDateKey];
+  } else {
+    data.days[selectedDateKey] = normalizeEntry(modalEntry, data.setup.tasks.length);
+  }
+
+  write(data);
+  closeDay();
+  render();
+}
+
+function clearDay() {
+  const data = read();
+  delete data.days[selectedDateKey];
+  write(data);
+  closeDay();
+  render();
+}
+
+function resetDemo() {
+  if (!confirm("Reset demo data?")) return;
+  localStorage.removeItem(STORE);
+  selectedMonth = new Date();
+  selectedMonth.setDate(1);
+  closeSetup();
+  render();
+}
+
+function escapeHtml(v) {
+  return String(v)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function render() {
+  renderMain();
+  renderQuickUpdate();
+  renderCalendar();
+  bindStreakCalendarDirectClick();
+  stats();
+  renderLog();
+  renderMedals();
+}
+
+document.addEventListener("click", event => {
+  const delTask = event.target.closest("[data-streak-delete-task]");
+  if (delTask) return deleteTask(Number(delTask.dataset.streakDeleteTask));
+
+  const chip = event.target.closest("[data-streak-day-chip]");
+  if (chip) return chip.classList.toggle("active");
+
+  const state = event.target.closest("[data-streak-state]");
+  if (state) return setState(Number(state.dataset.streakIndex), state.dataset.streakState);
+});
+
+if (s$("streakQuickAllDoneBtn")) s$("streakQuickAllDoneBtn").addEventListener("click", () => quickSetToday("all"));
+if (s$("streakQuickRequiredDoneBtn")) s$("streakQuickRequiredDoneBtn").addEventListener("click", () => quickSetToday("required"));
+if (s$("streakQuickClearTodayBtn")) s$("streakQuickClearTodayBtn").addEventListener("click", () => quickSetToday("clear"));
+
+s$("streakOpenSetupBtn").addEventListener("click", openSetup);
+s$("streakCloseSetupBtn").addEventListener("click", closeSetup);
+s$("streakSaveSetupBtn").addEventListener("click", saveSetup);
+s$("streakResetDemoBtn").addEventListener("click", resetDemo);
+s$("streakAddTaskBtn").addEventListener("click", addTask);
+s$("streakNewTaskInput").addEventListener("keydown", e => { if (e.key === "Enter") addTask(); });
+
+s$("streakPrevMonthBtn").addEventListener("click", () => {
+  selectedMonth.setMonth(selectedMonth.getMonth() - 1);
+  render();
+});
+s$("streakNextMonthBtn").addEventListener("click", () => {
+  selectedMonth.setMonth(selectedMonth.getMonth() + 1);
+  render();
+});
+
+s$("streakCloseDayBtn").addEventListener("click", closeDay);
+s$("streakSaveDayBtn").addEventListener("click", saveDay);
+s$("streakClearDayBtn").addEventListener("click", clearDay);
+document.addEventListener("click", function(event) {
+  const manualButton = event.target.closest("[data-streak-manual-pick]");
+  if (manualButton) {
+    if (!modalEntry) return;
+    modalEntry.manualStatus = manualButton.dataset.streakManualPick;
+    if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus;
+    renderDayModal();
+    return;
+  }
+
+  if (event.target.closest("#streakUseAutoBtn")) {
+    if (!modalEntry) return;
+    modalEntry.manualStatus = "auto";
+    if (s$("streakManualStatus")) s$("streakManualStatus").value = "auto";
+    renderDayModal();
+    return;
+  }
+});
+
+s$("streakSetupModal").addEventListener("click", e => { if (e.target.id === "streakSetupModal") closeSetup(); });
+s$("streakDayModal").addEventListener("click", e => { if (e.target.id === "streakDayModal") closeDay(); });
+
+render();
+
+})();
+
 </script>
 
 
@@ -14940,7 +16599,7 @@ document.addEventListener('click', function(event) {
 
   function resetAllQuestCards() {
     document.querySelectorAll('.quest-card').forEach(resetQuestCardStretch);
-  }
+  
 
   document.addEventListener('click', function(event) {
     var btn = event.target.closest && event.target.closest('[data-action="more"], .steps-toggle, .qt-steps-button');
