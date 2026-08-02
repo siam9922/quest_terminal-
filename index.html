@@ -8480,7 +8480,7 @@ header .player-card {
   .tabs .tab[data-view="archiveView"]::before { content: "\2022 \2022 \2022 " !important; }
   .tabs .tab[data-view="questsView"]::after { content: "Quests" !important; }
   .tabs .tab[data-view="elementsView"]::after { content: "Elements" !important; }
-  .tabs .tab[data-view="streakView"]::after { content: "Archive" !important; }
+  .tabs .tab[data-view="streakView"]::after { content: "Streak" !important; }
   .tabs .tab[data-view="saveView"]::after { content: "Save" !important; }
   .tabs .tab[data-view="archiveView"]::after { content: "Saves" !important; }
   .tabs .tab.active, .tabs button.tab.active { color: #f4df95 !important; text-shadow: 0 0 14px rgba(244,196,48,0.28) !important; box-shadow: none !important; }
@@ -10861,1787 +10861,1638 @@ header .player-card {
   }
 }
 
-</style>
+/* ===== QUEST TERMINAL OPENING COMMAND CENTER ===== */
+/* Rearranges only the opening experience. Existing quest cards and quest logic stay intact. */
+body.qt-modal-open {
+  overflow: hidden !important;
+}
 
-<style>
-/* ===== COMPACT GROWTH HOME + QUEST CREATOR DRAWER ===== */
-.player-growth-meta {
+#questsView .progress-tracker-card,
+#questsView .forge-quest-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(224,200,120,0.24);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(224,200,120,0.09), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 42%),
+    linear-gradient(180deg, #12120f, #070707);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.018),
+    0 12px 30px rgba(0,0,0,0.28);
+}
+
+#questsView .qt-opening-intro::before,
+#questsView .forge-quest-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #f4df95, #9d762d 70%, transparent);
+  box-shadow: 0 0 16px rgba(224,200,120,0.30);
+}
+
+#questsView .qt-opening-intro {
+  padding: 19px 20px 18px 24px;
+  margin-bottom: 12px;
+}
+
+#questsView .qt-intro-kicker,
+#questsView .command-kicker,
+#questsView .forge-kicker,
+#questsView .active-quests-kicker {
+  color: rgba(224,200,120,0.72);
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+#questsView .qt-opening-intro h2 {
+  margin: 5px 0 6px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif) !important;
+  font-size: clamp(25px, 5vw, 38px) !important;
+  line-height: 1 !important;
+  letter-spacing: 1.8px !important;
+  text-shadow: 0 0 18px rgba(224,200,120,0.14);
+}
+
+#questsView .qt-opening-intro p {
+  margin: 0;
+  color: #a9a294;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#questsView .daily-command-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+  gap: 16px;
+  padding: 17px;
+  margin-bottom: 12px;
+  border-color: rgba(216,208,189,0.20);
+}
+
+#questsView .command-main {
+  min-width: 0;
+  padding-right: 16px;
+  border-right: 1px solid rgba(216,208,189,0.13);
+}
+
+#questsView .command-title-row {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 6px 12px;
-  margin-top: 7px;
-  color: #c9b77e;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+#questsView .command-status {
+  flex: 0 0 auto;
+  border: 1px solid rgba(224,200,120,0.30);
+  background: rgba(224,200,120,0.055);
+  color: #e6d6a0;
+  padding: 6px 8px;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+#questsView .command-mission-label {
+  color: rgba(216,208,189,0.54);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+#questsView .command-mission-text {
+  margin: 4px 0 4px;
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif);
+  font-size: clamp(19px, 3vw, 25px);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+#questsView .command-main-line {
+  color: #999286;
   font-size: 11px;
-  line-height: 1.35;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#questsView {
-  display: none;
-  flex-direction: column;
-}
-
-#questsView.active {
+#questsView .command-progress-row {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  color: #b7b0a4;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
 }
 
+#questsView .command-progress-track {
+  height: 4px;
+  margin-top: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(216,208,189,0.13);
+  background: rgba(0,0,0,0.36);
+}
+
+#questsView .command-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #9d762d, #f4df95);
+  box-shadow: 0 0 10px rgba(224,200,120,0.28);
+  transition: width 180ms ease;
+}
+
+#questsView .command-side {
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-width: 0;
+}
+
+#questsView .command-counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+#questsView .command-count {
+  min-width: 0;
+  padding: 9px 4px 8px;
+  border: 1px solid rgba(216,208,189,0.13);
+  background: rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+#questsView .command-count strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif);
+  font-size: 17px;
+  line-height: 1;
+}
+
+#questsView .command-count span {
+  display: block;
+  overflow: hidden;
+  color: #8d877d;
+  font-size: 7px;
+  font-weight: 950;
+  letter-spacing: 0.55px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#questsView .command-actions {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 7px;
+}
+
+#questsView .command-actions button {
+  min-height: 38px;
+  padding: 8px;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+#questsView .command-view-btn {
+  border-color: rgba(224,200,120,0.36);
+  color: #f1dd92;
+  background: rgba(224,200,120,0.07);
+}
+
+#questsView .progress-tracker-card {
+  padding: 18px;
+  margin-bottom: 27px;
+  border-color: rgba(224,200,120,0.27);
+}
+
+#questsView .tracker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+#questsView .tracker-heading h2 {
+  margin: 4px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif) !important;
+  font-size: clamp(22px, 3vw, 28px) !important;
+  letter-spacing: 1px !important;
+}
+
+#questsView .victory-percent {
+  flex: 0 0 auto;
+  min-width: 72px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,216,61,0.40);
+  background: rgba(255,216,61,0.07);
+  color: #ffe16a;
+  font-family: var(--quest-display-font, Georgia, serif);
+  font-size: 19px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 13px rgba(255,216,61,0.24);
+}
+
+#questsView .victory-meter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #c5bcaa;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+#questsView .victory-meter-row strong {
+  color: #e8ddbf;
+  font-size: 9px;
+  text-align: right;
+}
+
+#questsView .progress-tracker-card .command-progress-track {
+  height: 10px;
+  margin-top: 8px;
+  border-color: rgba(255,216,61,0.24);
+  background: #050503;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+}
+
+#questsView .progress-tracker-card .command-progress-fill {
+  background: linear-gradient(90deg, #b47a05, #ffd426 68%, #fff0a0);
+  box-shadow: 0 0 14px rgba(255,212,38,0.42);
+}
+
+#questsView .victory-weight-key {
+  margin: 7px 0 15px;
+  color: #817a6d;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.75px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+#questsView .victory-weight-key span {
+  margin: 0 4px;
+  color: rgba(224,200,120,0.62);
+}
+
+#questsView .progress-tracker-card .command-counts {
+  margin-bottom: 10px;
+}
+
+#questsView .progress-tracker-card .command-actions {
+  grid-template-columns: 1fr;
+}
+
+#questsView .progress-tracker-card .command-actions button {
+  min-height: 42px;
+}
+
+#questsView .forge-quest-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 0.42fr);
+  gap: 18px;
+  align-items: center;
+  min-height: 92px;
+  padding: 17px 17px 17px 24px;
+  margin-bottom: 21px;
+}
+
+#questsView .forge-copy h2 {
+  margin: 4px 0 5px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif) !important;
+  font-size: clamp(21px, 3vw, 28px) !important;
+  letter-spacing: 1px !important;
+}
+
+#questsView .forge-copy p {
+  margin: 0;
+  color: #918b81;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+#questsView .forge-button {
+  width: 100%;
+  min-height: 49px;
+  border: 1px solid rgba(255,255,255,0.82);
+  background: linear-gradient(180deg, #fffdf7, #dcd8ce);
+  color: #11110f;
+  box-shadow:
+    0 0 0 1px rgba(224,200,120,0.22),
+    0 0 22px rgba(224,200,120,0.13),
+    inset 0 1px 0 #ffffff;
+  font-family: var(--quest-display-font, Georgia, serif);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 1.35px;
+  text-transform: uppercase;
+}
+
+#questsView .forge-button:hover,
+#questsView .forge-button:focus-visible {
+  transform: translateY(-1px);
+  border-color: #f4df95;
+  background: #ffffff;
+}
+
+#questsView .active-quests-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 13px;
+  padding: 0 2px 11px;
+  border-bottom: 1px solid rgba(224,200,120,0.18);
+}
+
+#questsView .active-quests-heading h2 {
+  margin: 3px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #f4ead3;
+  font-size: 19px !important;
+  letter-spacing: 1.4px !important;
+}
+
+#questsView .active-quests-note {
+  color: #756f66;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+/* The creator is no longer a permanent column, so the quest board gets full width. */
 #questsView .grid-quests {
-  order: 1;
   display: block !important;
-  grid-template-columns: none !important;
-}
-
-#questsView .daily-briefing {
-  order: 2;
-}
-
-#questsView .mission-reminder {
-  order: 3;
+  grid-template-columns: 1fr !important;
+  width: 100% !important;
 }
 
 #questsView .quest-sections-stack {
-  width: 100%;
-  display: block !important;
+  width: 100% !important;
   grid-column: auto !important;
   grid-row: auto !important;
 }
 
-.quest-create-launcher {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 12px;
-  padding: 11px 12px;
-  border: 1px solid rgba(212, 175, 55, 0.42);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(45, 39, 24, 0.92), rgba(20, 19, 17, 0.96));
+.qt-command-modal,
+.qt-quest-creator-modal {
+  z-index: 260 !important;
+  padding: 22px;
+  background: rgba(0,0,0,0.82) !important;
+  backdrop-filter: blur(5px);
 }
 
-.quest-create-launcher-copy {
-  min-width: 0;
-}
-
-.quest-create-launcher-copy strong {
-  display: block;
-  color: #f1d77a;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-}
-
-.quest-create-launcher-copy span {
-  display: block;
-  margin-top: 2px;
-  color: #a8a39a;
-  font-size: 11px;
-}
-
-#openQuestEditorBtn {
-  flex: 0 0 auto;
-  border-color: #d4af37;
-  background: #b58a16;
-  color: #100d05;
-  font-weight: 900;
-}
-
-.quest-editor-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 9997;
-  display: none;
-  background: rgba(0, 0, 0, 0.72);
-}
-
-body.quest-editor-open {
-  overflow: hidden;
-}
-
-body.quest-editor-open .quest-editor-backdrop {
-  display: block;
-}
-
-#questEditorPanel {
-  position: fixed;
-  z-index: 9998;
-  left: 50%;
-  top: 50%;
-  width: min(680px, calc(100vw - 28px));
-  max-height: min(820px, calc(100vh - 28px));
-  overflow-y: auto;
+.qt-command-modal .qt-sheet-card,
+.qt-quest-creator-modal .qt-sheet-card {
+  width: min(920px, 100%);
+  max-height: min(88vh, 850px);
+  overflow: auto;
   overscroll-behavior: contain;
-  transform: translate(-50%, -48%) scale(0.98);
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 150ms ease, transform 150ms ease;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(224,200,120,0.30);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,200,120,0.08), transparent 28%),
+    linear-gradient(180deg, #151511, #080808 42%);
+  box-shadow: 0 28px 90px rgba(0,0,0,0.70), inset 0 0 0 1px rgba(255,255,255,0.025);
 }
 
-body.quest-editor-open #questEditorPanel {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.quest-editor-heading {
+.qt-sheet-header {
   position: sticky;
-  top: -1px;
-  z-index: 3;
+  top: 0;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin: -1px -1px 14px;
-  padding: 11px 12px;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-  background: #171612;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(224,200,120,0.20);
+  background: rgba(12,12,10,0.97);
+  backdrop-filter: blur(8px);
 }
 
-.quest-editor-heading h2 {
-  margin: 0;
+.qt-sheet-title {
+  color: #f4ead3;
+  font-family: var(--quest-display-font, Georgia, serif);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-#closeQuestEditorBtn {
-  min-width: 70px;
+.qt-sheet-header button {
+  min-height: 36px;
+  padding: 7px 11px;
+  color: #cfc7b7;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
 }
 
-.quest-complete-toast {
-  position: fixed;
-  z-index: 10010;
-  left: 50%;
-  top: 18px;
-  width: min(430px, calc(100vw - 24px));
-  padding: 13px 15px;
-  border: 1px solid rgba(73, 220, 140, 0.72);
-  border-radius: 10px;
-  background: rgba(10, 24, 18, 0.98);
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.52);
-  color: #d8ffe8;
-  transform: translate(-50%, -22px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 160ms ease, transform 160ms ease;
+.qt-sheet-body {
+  padding: 14px;
 }
 
-.quest-complete-toast.show {
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-.quest-complete-toast strong {
-  display: block;
-  color: #64e39c;
-  font-size: 14px;
-  letter-spacing: 0.55px;
-}
-
-.quest-complete-toast span {
-  display: block;
-  margin-top: 4px;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.mission-reminder #missionMainLine {
-  display: block;
-}
-
-@media (max-width: 720px) {
-  header .player-card {
-    padding: 10px 11px !important;
-  }
-
-  .player-growth-meta {
-    font-size: 10px;
-  }
-
-  .quest-create-launcher {
-    position: sticky;
-    top: 5px;
-    z-index: 50;
-    padding: 9px 10px;
-  }
-
-  .quest-create-launcher-copy span {
-    display: none;
-  }
-
-  #questEditorPanel {
-    left: 0;
-    right: 0;
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    max-height: 88vh;
-    margin: 0;
-    border-radius: 16px 16px 0 0;
-    transform: translateY(24px);
-  }
-
-  body.quest-editor-open #questEditorPanel {
-    transform: translateY(0);
-  }
-
-  .quest-editor-heading {
-    padding-top: 13px;
-  }
-
-  #questsView .daily-briefing,
-  #questsView .mission-reminder {
-    margin-top: 10px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #questEditorPanel,
-  .quest-complete-toast {
-    transition: none;
-  }
-}
-
-/* ===== DEFAULTS / DAY TEMPLATE MENU LAYER FIX ===== */
-/* These menus are opened from inside the Create Quest drawer, so they must
-   sit above both the drawer (9998) and its backdrop (9997). */
-#defaultsModal,
-#dayTemplatesModal {
-  z-index: 10020 !important;
-}
-
-#defaultsModal .modal-card,
-#dayTemplatesModal .modal-card {
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 720px) {
-  #defaultsModal,
-  #dayTemplatesModal {
-    align-items: flex-end;
-    padding: 0;
-  }
-
-  #defaultsModal .modal-card,
-  #dayTemplatesModal .modal-card {
-    width: 100%;
-    max-height: 82dvh;
-    padding: 14px 14px calc(18px + env(safe-area-inset-bottom, 0px));
-    border-radius: 16px 16px 0 0;
-  }
-
-  #defaultsModal .modal-header,
-  #dayTemplatesModal .modal-header {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    background: #10100e;
-  }
-}
-
-/* ===== PROGRESS ARCHIVE: PHONE-FIRST STREAK REWORK ===== */
-#streakView {
-  --archive-gold: #e2c873;
-  --archive-green: #4fca7d;
-  --archive-orange: #e0a554;
-  --archive-blue: #75a9e8;
-  --archive-red: #d66b72;
-  --archive-surface: #11100d;
-  --archive-surface-2: #171510;
-  --archive-line: rgba(226, 200, 115, 0.20);
-}
-
-#streakView .streak-embedded-screen {
-  width: min(1080px, 100%) !important;
-  margin: 0 auto !important;
-}
-
-#streakView .archive-header {
-  align-items: flex-end !important;
-  margin-bottom: 12px !important;
-  padding: 2px 2px 0 !important;
-}
-
-#streakView .archive-eyebrow,
-#streakSetupModal .archive-eyebrow,
-#streakView .archive-section-label {
-  color: #af9a5f !important;
-  font-size: 9px !important;
-  font-weight: 950 !important;
-  letter-spacing: 1.35px !important;
-  line-height: 1.2 !important;
-  text-transform: uppercase !important;
-}
-
-#streakView .archive-header h1 {
-  margin: 4px 0 3px !important;
-  font-size: clamp(22px, 5vw, 34px) !important;
-  letter-spacing: 0.5px !important;
-}
-
-#streakView .archive-header .subtitle {
-  max-width: 560px;
-  font-size: 12px !important;
-}
-
-#streakView .archive-header .edit-main-btn {
-  min-height: 38px !important;
-  padding: 9px 13px !important;
-  border-color: rgba(226, 200, 115, 0.48) !important;
-  background: rgba(226, 200, 115, 0.08) !important;
-  color: #f2dc91 !important;
-  font-size: 10px !important;
-}
-
-#streakView .panel {
-  border: 1px solid var(--archive-line) !important;
-  border-radius: 12px !important;
-  background: var(--archive-surface) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
-}
-
-#streakView .archive-today-panel {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 5px 16px !important;
-  align-items: center !important;
+.qt-command-modal .daily-briefing,
+.qt-command-modal .mission-reminder {
   margin: 0 0 12px !important;
-  padding: 12px 14px !important;
-  border-left: 3px solid var(--archive-gold) !important;
-  background:
-    linear-gradient(90deg, rgba(226, 200, 115, 0.075), transparent 42%),
-    var(--archive-surface) !important;
 }
 
-#streakView .archive-today-panel > .archive-section-label {
-  grid-column: 1 !important;
+.qt-quest-creator-modal .qt-sheet-card {
+  width: min(700px, 100%);
 }
 
-#streakView .archive-today-panel .streak-today-summary {
-  grid-column: 1 !important;
-  min-width: 0 !important;
-}
-
-#streakView .streak-today-title {
-  display: none !important;
-}
-
-#streakView .streak-today-chips {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, auto)) !important;
-  justify-content: start !important;
-  gap: 6px !important;
-}
-
-#streakView .streak-today-chip {
-  min-height: 26px !important;
-  padding: 5px 8px !important;
-  border-radius: 6px !important;
-  background: rgba(0, 0, 0, 0.22) !important;
-  font-size: 9px !important;
-  letter-spacing: 0.35px !important;
-  white-space: nowrap !important;
-}
-
-#streakView .streak-quick-actions {
-  grid-column: 2 !important;
-  grid-row: 1 / span 2 !important;
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(120px, 1fr)) !important;
-  gap: 7px !important;
+.qt-quest-creator-modal #questEditorPanel {
+  width: 100% !important;
   margin: 0 !important;
-}
-
-#streakView .streak-quick-actions button,
-#streakView .streak-quick-actions #streakQuickAllDoneBtn {
-  grid-column: auto !important;
-  min-height: 38px !important;
-  padding: 7px 9px !important;
-  font-size: 9px !important;
-}
-
-#streakView .streak-quick-actions #streakQuickRequiredDoneBtn {
-  border-color: rgba(79, 202, 125, 0.62) !important;
-  background: rgba(79, 202, 125, 0.12) !important;
-  color: #d5f9e1 !important;
-}
-
-#streakView .streak-quick-actions #streakQuickClearTodayBtn {
-  grid-column: 1 / -1 !important;
-  min-height: 28px !important;
-  border-color: rgba(255, 255, 255, 0.10) !important;
+  padding: 15px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   background: transparent !important;
-  color: #8e897f !important;
+  box-shadow: none !important;
 }
 
-#streakView .archive-calendar-panel {
-  padding: 14px !important;
-}
-
-#streakView .archive-panel-heading {
-  display: flex !important;
-  align-items: flex-end !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  margin-bottom: 10px !important;
-}
-
-#streakView .archive-panel-heading h2 {
-  margin: 3px 0 0 !important;
-  font-size: 17px !important;
-}
-
-#streakView .archive-calendar-hint {
-  color: #898377 !important;
-  font-size: 10px !important;
-}
-
-#streakView .archive-stats {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 7px !important;
-  margin: 0 0 10px !important;
-}
-
-#streakView .archive-stats .stat {
-  min-width: 0 !important;
-  padding: 8px 6px !important;
-  border: 1px solid rgba(226, 200, 115, 0.13) !important;
-  border-radius: 8px !important;
-  background: rgba(255, 255, 255, 0.018) !important;
-  text-align: center !important;
-}
-
-#streakView .archive-stats .stat strong {
-  display: block !important;
-  font-size: 17px !important;
-  line-height: 1 !important;
-}
-
-#streakView .archive-stats .stat span {
-  display: block !important;
-  margin-top: 4px !important;
-  font-size: 8px !important;
-  letter-spacing: 0.45px !important;
-  white-space: normal !important;
-}
-
-#streakView .calendar-shell {
-  min-width: 0 !important;
-  padding: 10px !important;
-  border: 1px solid rgba(226, 200, 115, 0.15) !important;
-  border-radius: 10px !important;
-  background: #0b0b09 !important;
-  overflow: hidden !important;
-}
-
-#streakView .calendar-header {
-  display: grid !important;
-  grid-template-columns: 38px minmax(0, 1fr) 38px !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin-bottom: 9px !important;
-}
-
-#streakView .calendar-header button {
-  width: 38px !important;
-  min-width: 38px !important;
-  min-height: 34px !important;
-  padding: 4px !important;
-  border-radius: 7px !important;
-  font-size: 22px !important;
-  line-height: 1 !important;
-}
-
-#streakView .month-title {
-  min-width: 0 !important;
-  overflow: hidden !important;
-  font-size: 15px !important;
-  text-align: center !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-}
-
-#streakView .weekdays,
-#streakView .calendar-grid {
-  display: grid !important;
-  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-  width: 100% !important;
-  min-width: 0 !important;
-  gap: 6px !important;
-}
-
-#streakView .weekday {
-  min-width: 0 !important;
-  overflow: hidden !important;
-  font-size: 9px !important;
-  text-align: center !important;
-  text-overflow: clip !important;
-  white-space: nowrap !important;
-}
-
-#streakView .day-cell {
-  position: relative !important;
-  display: grid !important;
-  grid-template-rows: auto 1fr auto !important;
-  align-items: start !important;
-  min-width: 0 !important;
-  width: 100% !important;
-  min-height: 66px !important;
-  padding: 7px 6px !important;
-  border-radius: 8px !important;
-  overflow: hidden !important;
-}
-
-#streakView .day-number {
-  display: block !important;
-  min-width: 2ch !important;
-  width: max-content !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  font-size: 12px !important;
-  font-variant-numeric: tabular-nums !important;
-  font-weight: 950 !important;
-  letter-spacing: 0 !important;
-  line-height: 1.1 !important;
-  text-align: left !important;
-  white-space: nowrap !important;
-}
-
-#streakView .day-dots {
-  align-self: center !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 3px !important;
-  max-height: 14px !important;
-  margin: 5px 0 !important;
-  overflow: hidden !important;
-}
-
-#streakView .dot {
-  flex: 0 0 5px !important;
-  width: 5px !important;
-  height: 5px !important;
-  border-width: 1px !important;
-}
-
-#streakView .day-label {
-  min-width: 0 !important;
-  overflow: hidden !important;
-  font-size: 7px !important;
-  letter-spacing: 0.25px !important;
-  line-height: 1 !important;
-  text-overflow: ellipsis !important;
-  text-transform: uppercase !important;
-  white-space: nowrap !important;
-}
-
-#streakView .archive-calendar-legend {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 7px 12px !important;
-  margin-top: 9px !important;
-  color: #9b9589 !important;
-  font-size: 8px !important;
-  font-weight: 850 !important;
-  letter-spacing: 0.45px !important;
-  text-transform: uppercase !important;
-}
-
-#streakView .archive-calendar-legend span {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-}
-
-#streakView .archive-calendar-legend span::before {
-  content: "" !important;
-  width: 6px !important;
-  height: 6px !important;
-  border-radius: 50% !important;
-  background: currentColor !important;
-}
-
-#streakView .archive-calendar-legend .is-win { color: var(--archive-green) !important; }
-#streakView .archive-calendar-legend .is-partial { color: var(--archive-orange) !important; }
-#streakView .archive-calendar-legend .is-safe { color: var(--archive-blue) !important; }
-#streakView .archive-calendar-legend .is-failed { color: var(--archive-red) !important; }
-
-#streakView .archive-more-panel {
-  margin-top: 12px !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-#streakView .archive-more-panel > summary {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 14px !important;
-  min-height: 62px !important;
-  padding: 12px 14px !important;
-  cursor: pointer !important;
-  list-style: none !important;
-  user-select: none !important;
-}
-
-#streakView .archive-more-panel > summary::-webkit-details-marker {
+.qt-quest-creator-modal #questEditorPanel > h2 {
   display: none !important;
 }
 
-#streakView .archive-more-panel > summary b {
-  display: block !important;
-  color: #e7dfcc !important;
-  font-size: 12px !important;
-  letter-spacing: 0.4px !important;
-  text-transform: uppercase !important;
-}
-
-#streakView .archive-more-panel > summary small {
-  display: block !important;
-  margin-top: 3px !important;
-  color: #8e887c !important;
-  font-size: 10px !important;
-}
-
-#streakView .archive-summary-action {
-  flex: 0 0 auto !important;
-  min-width: 52px !important;
-  padding: 6px 8px !important;
-  border: 1px solid rgba(226, 200, 115, 0.24) !important;
-  border-radius: 6px !important;
-  color: transparent !important;
-  font-size: 0 !important;
-  text-align: center !important;
-}
-
-#streakView .archive-summary-action::before {
-  content: "Open" !important;
-  color: #d9c374 !important;
-  font-size: 9px !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.4px !important;
-  text-transform: uppercase !important;
-}
-
-#streakView .archive-more-panel[open] .archive-summary-action::before {
-  content: "Close" !important;
-}
-
-#streakView .archive-more-panel[open] > summary {
-  border-bottom: 1px solid rgba(226, 200, 115, 0.13) !important;
-}
-
-#streakView .archive-more-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  padding: 12px !important;
-}
-
-#streakView .archive-detail-block {
-  min-width: 0 !important;
-  padding: 11px !important;
-  border: 1px solid rgba(255, 255, 255, 0.055) !important;
-  border-radius: 9px !important;
-  background: rgba(0, 0, 0, 0.18) !important;
-}
-
-#streakView .archive-detail-heading {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-  margin-bottom: 9px !important;
-}
-
-#streakView .archive-detail-heading h3,
-#streakView .archive-log-heading {
-  margin: 0 !important;
-  color: #d9c374 !important;
-  font-size: 10px !important;
-  letter-spacing: 0.75px !important;
-  text-transform: uppercase !important;
-}
-
-#streakView .archive-inline-edit {
-  min-height: 28px !important;
-  padding: 5px 9px !important;
-  border-radius: 6px !important;
-  font-size: 8px !important;
-}
-
-#streakView .archive-detail-block .quest-list {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 7px !important;
-}
-
-#streakView .archive-detail-block .quest-pill {
-  min-width: 0 !important;
-  border-radius: 7px !important;
-}
-
-#streakView .archive-detail-block .rule-box {
-  margin-top: 8px !important;
-  padding: 9px !important;
-  border-radius: 7px !important;
-}
-
-#streakView .archive-detail-block .streak-medal-box {
-  margin: 0 0 12px !important;
-}
-
-#streakView .archive-detail-block .streak-medal-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 6px !important;
-}
-
-#streakView .archive-log-heading {
-  margin-bottom: 8px !important;
-}
-
-#streakView .archive-detail-block .log {
-  max-height: 250px !important;
-  gap: 6px !important;
-  overflow-y: auto !important;
-}
-
-#streakView .archive-detail-block .log-item {
-  padding: 8px !important;
-  border-radius: 7px !important;
-}
-
-/* Routine editor */
-#streakSetupModal,
-#streakDayModal {
-  z-index: 10030 !important;
-}
-
-#streakSetupModal .modal-card {
-  width: min(760px, calc(100vw - 24px)) !important;
-  max-height: min(860px, calc(100dvh - 24px)) !important;
-  padding: 14px !important;
-  border-radius: 14px !important;
-  background: #0f0f0d !important;
-}
-
-#streakSetupModal .modal-header {
-  position: sticky !important;
-  top: -14px !important;
-  z-index: 5 !important;
-  margin: -14px -14px 12px !important;
-  padding: 12px 14px !important;
-  border-bottom: 1px solid rgba(226, 200, 115, 0.18) !important;
-  background: #0f0f0d !important;
-}
-
-#streakSetupModal .modal-title {
-  margin-top: 3px !important;
-  font-size: 18px !important;
-}
-
-#streakSetupModal .setup-grid {
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 10px !important;
-}
-
-#streakSetupModal .streak-setup-intro {
-  padding: 10px 11px !important;
-  border-left: 3px solid rgba(226, 200, 115, 0.62) !important;
-  border-radius: 7px !important;
-  background: rgba(226, 200, 115, 0.055) !important;
-  color: #bbb3a2 !important;
-  font-size: 11px !important;
-  line-height: 1.45 !important;
-}
-
-#streakSetupModal .streak-setup-section {
-  padding: 11px !important;
-  border: 1px solid rgba(226, 200, 115, 0.13) !important;
-  border-radius: 9px !important;
-  background: rgba(255, 255, 255, 0.018) !important;
-}
-
-#streakSetupModal .streak-setup-section-title {
-  margin-bottom: 9px !important;
-  color: #d9c374 !important;
-  font-size: 10px !important;
-  font-weight: 950 !important;
-  letter-spacing: 0.8px !important;
-  text-transform: uppercase !important;
-}
-
-#streakSetupModal .streak-setup-section-note {
-  margin: -4px 0 9px !important;
-  color: #8f897e !important;
-  font-size: 10px !important;
-  line-height: 1.35 !important;
-}
-
-#streakSetupModal .streak-setup-fields {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 9px !important;
-}
-
-#streakSetupModal label,
-#streakSetupModal .streak-field-label {
-  display: grid !important;
-  gap: 5px !important;
-  color: #a8a195 !important;
-  font-size: 9px !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.45px !important;
-  text-transform: uppercase !important;
-}
-
-#streakSetupModal input,
-#streakSetupModal select,
-#streakSetupModal textarea {
-  width: 100% !important;
-  min-width: 0 !important;
-  border-radius: 7px !important;
-  font-size: 12px !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-}
-
-#streakSetupModal textarea {
-  min-height: 74px !important;
-  resize: vertical !important;
-}
-
-#streakSetupModal .streak-add-task-row {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 104px !important;
-  gap: 7px !important;
-}
-
-#streakSetupModal #streakAddTaskBtn {
-  min-width: 0 !important;
-  border-color: rgba(226, 200, 115, 0.46) !important;
-  background: rgba(226, 200, 115, 0.085) !important;
-  color: #eed98e !important;
-  font-size: 9px !important;
-}
-
-#streakSetupModal #streakTaskEditorList {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 9px !important;
-  max-height: none !important;
-  margin-top: 10px !important;
-  padding: 0 !important;
-  overflow: visible !important;
-}
-
-#streakSetupModal .task-editor {
-  position: relative !important;
-  min-width: 0 !important;
-  padding: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.075) !important;
-  border-radius: 9px !important;
-  background: #14130f !important;
-}
-
-#streakSetupModal .task-editor::before,
-#streakSetupModal .task-details::before,
-#streakSetupModal .days-picker::before {
-  display: none !important;
-  content: none !important;
-}
-
-#streakSetupModal .task-top {
-  display: grid !important;
-  grid-template-columns: 7px minmax(0, 1fr) auto !important;
-  align-items: end !important;
-  gap: 8px !important;
-  margin: 0 0 9px !important;
-  padding: 0 0 9px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-}
-
-#streakSetupModal .task-top .quest-color {
-  align-self: stretch !important;
-  width: 7px !important;
-  min-height: 40px !important;
-  border-radius: 4px !important;
-}
-
-#streakSetupModal .task-top label {
-  min-width: 0 !important;
-}
-
-#streakSetupModal .task-top label > span {
-  color: #d9c374 !important;
-}
-
-#streakSetupModal .task-top button {
-  width: auto !important;
-  min-width: 58px !important;
-  min-height: 36px !important;
-  padding: 6px 8px !important;
-  border-radius: 6px !important;
-  font-size: 8px !important;
-}
-
-#streakSetupModal .task-details {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 8px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-}
-
-#streakSetupModal .task-details > label[data-streak-weekly-field] {
-  grid-column: 1 / -1 !important;
-}
-
-#streakSetupModal [hidden],
-#streakSetupModal .streak-days-field[hidden] {
-  display: none !important;
-}
-
-#streakSetupModal .streak-days-field {
-  margin-top: 9px !important;
-  padding-top: 9px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-}
-
-#streakSetupModal .days-picker {
-  display: grid !important;
-  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-  gap: 4px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-}
-
-#streakSetupModal .day-chip {
-  width: 100% !important;
-  min-width: 0 !important;
-  min-height: 30px !important;
-  padding: 4px 1px !important;
-  border-radius: 6px !important;
-  font-size: 8px !important;
-}
-
-#streakSetupModal .streak-setup-actions {
-  position: sticky !important;
-  bottom: -14px !important;
-  z-index: 4 !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 8px !important;
-  margin: 0 -14px -14px !important;
-  padding: 11px 14px calc(11px + env(safe-area-inset-bottom, 0px)) !important;
-  border-top: 1px solid rgba(226, 200, 115, 0.16) !important;
-  background: #0f0f0d !important;
-}
-
-#streakSetupModal .streak-setup-actions button {
-  min-height: 40px !important;
-}
-
-/* Day editor stays powerful but reads as one clean phone sheet. */
-#streakDayModal .modal-card {
-  width: min(680px, calc(100vw - 24px)) !important;
-  max-height: min(820px, calc(100dvh - 24px)) !important;
-  padding: 14px !important;
-  border-radius: 14px !important;
-  background: #0f0f0d !important;
-}
-
-#streakDayModal .streak-manual-editor,
-#streakDayModal .result-box,
-#streakDayModal .check-row {
-  border-radius: 9px !important;
-}
-
-#streakDayModal .streak-status-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+/* Defaults/templates and the mission editor must remain above their parent sheets. */
+#defaultsModal,
+#dayTemplatesModal,
+#missionEditModal {
+  z-index: 520 !important;
 }
 
 @media (max-width: 760px) {
-  #streakView .archive-today-panel {
-    grid-template-columns: 1fr !important;
+  #questsView .qt-opening-intro {
+    padding: 16px 15px 15px 19px;
+    margin-bottom: 9px;
   }
 
-  #streakView .archive-today-panel > .archive-section-label,
-  #streakView .archive-today-panel .streak-today-summary,
-  #streakView .streak-quick-actions {
-    grid-column: 1 !important;
-    grid-row: auto !important;
+  #questsView .qt-opening-intro h2 {
+    font-size: clamp(24px, 7.7vw, 31px) !important;
+    letter-spacing: 1.2px !important;
   }
 
-  #streakView .streak-quick-actions {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    margin-top: 4px !important;
+  #questsView .progress-tracker-card {
+    padding: 14px;
+    margin-bottom: 25px;
   }
 
-  #streakView .streak-quick-actions #streakQuickClearTodayBtn {
-    grid-column: auto !important;
-    min-height: 38px !important;
+  #questsView .tracker-heading {
+    margin-bottom: 13px;
   }
 
-  #streakView .archive-more-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 520px) {
-  #streakView .streak-embedded-screen {
-    padding: 0 2px 8px !important;
+  #questsView .tracker-heading h2 {
+    font-size: clamp(20px, 6.4vw, 25px) !important;
   }
 
-  #streakView .archive-header {
-    align-items: center !important;
-    gap: 8px !important;
+  #questsView .victory-percent {
+    min-width: 64px;
+    padding: 7px 8px;
+    font-size: 17px;
   }
 
-  #streakView .archive-header h1 {
-    font-size: 22px !important;
+  #questsView .victory-meter-row {
+    align-items: flex-end;
+    font-size: 9px;
   }
 
-  #streakView .archive-header .subtitle {
-    display: none !important;
+  #questsView .victory-meter-row strong {
+    max-width: 145px;
+    line-height: 1.3;
   }
 
-  #streakView .archive-header .edit-main-btn {
-    position: static !important;
-    width: auto !important;
-    min-width: 88px !important;
-    margin: 0 !important;
+  #questsView .victory-weight-key {
+    margin-bottom: 13px;
+    font-size: 7px;
+    letter-spacing: 0.35px;
   }
 
-  #streakView .archive-today-panel {
-    padding: 11px !important;
+  #questsView .command-count {
+    padding: 8px 2px 7px;
   }
 
-  #streakView .streak-today-chips {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  #questsView .command-count strong {
+    font-size: 16px;
   }
 
-  #streakView .streak-today-chip {
-    justify-content: center !important;
-    min-width: 0 !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+  #questsView .command-count span {
+    font-size: 6.5px;
+    letter-spacing: 0.2px;
   }
 
-  #streakView .streak-quick-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  #questsView .forge-quest-card {
+    grid-template-columns: 1fr;
+    gap: 11px;
+    min-height: 0;
+    padding: 15px 13px 15px 19px;
+    margin-bottom: 19px;
   }
 
-  #streakView .streak-quick-actions #streakQuickClearTodayBtn {
-    grid-column: 1 / -1 !important;
-    min-height: 30px !important;
+  #questsView .forge-copy p {
+    font-size: 10px;
   }
 
-  #streakView .archive-calendar-panel {
-    padding: 10px !important;
+  #questsView .forge-button {
+    min-height: 47px;
   }
 
-  #streakView .archive-calendar-hint {
-    display: none !important;
+  #questsView .active-quests-heading {
+    align-items: start;
+    margin-bottom: 13px;
   }
 
-  #streakView .archive-stats {
-    gap: 5px !important;
+  #questsView .active-quests-note {
+    max-width: 130px;
+    text-align: right;
+    line-height: 1.35;
   }
 
-  #streakView .archive-stats .stat {
-    padding: 7px 3px !important;
-  }
-
-  #streakView .archive-stats .stat strong {
-    font-size: 15px !important;
-  }
-
-  #streakView .archive-stats .stat span {
-    font-size: 7px !important;
-  }
-
-  #streakView .calendar-shell {
-    padding: 7px !important;
-  }
-
-  #streakView .weekdays,
-  #streakView .calendar-grid {
-    gap: 4px !important;
-  }
-
-  #streakView .weekday {
-    font-size: 8px !important;
-  }
-
-  #streakView .day-cell {
-    min-height: 52px !important;
-    padding: 5px 4px !important;
-    border-radius: 6px !important;
-  }
-
-  #streakView .day-number {
-    min-width: 2ch !important;
-    width: max-content !important;
-    font-size: 11px !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-  }
-
-  #streakView .day-dots {
-    gap: 2px !important;
-    max-height: 11px !important;
-    margin: 4px 0 !important;
-  }
-
-  #streakView .dot {
-    flex-basis: 4px !important;
-    width: 4px !important;
-    height: 4px !important;
-  }
-
-  #streakView .day-dots .dot:nth-child(n + 6) {
-    display: none !important;
-  }
-
-  #streakView .day-label {
-    font-size: 6px !important;
-  }
-
-  #streakView .archive-calendar-legend {
-    gap: 6px 9px !important;
-    font-size: 7px !important;
-  }
-
-  #streakView .archive-more-panel > summary {
-    min-height: 58px !important;
-    padding: 10px 11px !important;
-  }
-
-  #streakView .archive-more-grid {
-    padding: 9px !important;
-  }
-
-  #streakView .archive-detail-block {
-    padding: 9px !important;
-  }
-
-  #streakView .archive-detail-block .quest-list {
-    grid-template-columns: 1fr !important;
-  }
-
-  #streakSetupModal,
-  #streakDayModal {
+  .qt-command-modal,
+  .qt-quest-creator-modal {
     align-items: flex-end !important;
     padding: 0 !important;
   }
 
-  #streakSetupModal .modal-card,
-  #streakDayModal .modal-card {
+  .qt-command-modal .qt-sheet-card,
+  .qt-quest-creator-modal .qt-sheet-card {
     width: 100% !important;
-    max-height: 92dvh !important;
-    border-radius: 16px 16px 0 0 !important;
+    max-width: 100% !important;
+    max-height: calc(91dvh - env(safe-area-inset-bottom, 0px));
+    margin: 0 !important;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 18px 18px 0 0;
   }
 
-  #streakSetupModal .streak-setup-fields,
-  #streakSetupModal #streakTaskEditorList {
-    grid-template-columns: 1fr !important;
+  .qt-sheet-header {
+    padding: 13px 14px;
   }
 
-  #streakSetupModal .task-editor {
-    padding: 9px !important;
+  .qt-sheet-body {
+    padding: 10px 10px calc(18px + env(safe-area-inset-bottom, 0px));
   }
 
-  #streakSetupModal .task-details {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  #streakSetupModal .streak-add-task-row {
-    grid-template-columns: minmax(0, 1fr) 92px !important;
-  }
-
-  #streakSetupModal .days-picker {
-    gap: 3px !important;
-  }
-
-  #streakSetupModal .day-chip {
-    min-height: 32px !important;
-    font-size: 7px !important;
-  }
-
-  #streakDayModal .streak-status-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  .qt-quest-creator-modal #questEditorPanel {
+    padding: 11px !important;
   }
 }
 
-@media (max-width: 350px) {
-  #streakView .weekdays,
-  #streakView .calendar-grid {
-    gap: 3px !important;
+@media (max-width: 380px) {
+  #questsView .command-actions {
+    grid-template-columns: 1fr 0.72fr;
   }
 
-  #streakView .day-cell {
-    min-height: 49px !important;
-    padding: 4px 3px !important;
+  #questsView .command-actions button {
+    padding: 7px 4px;
+    font-size: 8px;
   }
 
-  #streakView .day-number {
-    font-size: 10px !important;
-  }
-
-  #streakSetupModal .task-details {
-    grid-template-columns: 1fr !important;
+  #questsView .active-quests-note {
+    display: none;
   }
 }
-</style>
 
-<style>
-/* ===== PLAYER PROFILE VISIBILITY + QUEST CREATOR POLISH ===== */
-/* Final, lightweight overrides. No quest, XP, save, or archive logic changes. */
-
-/* Keep decorative layers behind every piece of player information. */
-header .player-card {
-  box-sizing: border-box !important;
-  isolation: isolate !important;
-  overflow: hidden !important;
-  min-height: 0 !important;
-  padding: 18px 22px 16px 28px !important;
-}
-
-header .player-card > * {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-header .player-card::before {
-  z-index: 0 !important;
-  width: 44px !important;
-  height: 34px !important;
-}
-
-header .player-card::after {
-  z-index: 0 !important;
-  right: 18px !important;
-  top: 34px !important;
-  width: 78px !important;
-  height: 96px !important;
-  opacity: 0.18 !important;
-}
-
-header .player-card .player-label {
-  padding-left: 12px !important;
-  color: rgba(236, 236, 236, 0.68) !important;
-}
-
-header .player-card .player-name,
-header .player-card .player-status,
-header .player-card .rank-title,
-header .player-card .level-row,
-header .player-card .xp-bar,
-header .player-card .xp-note,
-header .player-card .player-growth-meta {
-  max-width: 100% !important;
-}
-
-header .player-card .xp-note {
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-  line-height: 1.4 !important;
-}
-
-header .player-card .player-growth-meta {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-  align-items: start !important;
-  gap: 5px 12px !important;
-}
-
-header .player-card .player-growth-meta span {
-  min-width: 0 !important;
-  white-space: normal !important;
-  overflow-wrap: anywhere !important;
-}
-
-header .player-card .player-growth-meta span:last-child {
-  text-align: right !important;
-}
-
-/* Quest Board launcher */
-.quest-create-launcher {
-  position: relative !important;
-  overflow: hidden !important;
-  min-height: 60px !important;
-  padding: 11px 12px 11px 15px !important;
-  border: 1px solid rgba(224, 200, 120, 0.42) !important;
-  border-left: 4px solid #d4af37 !important;
-  border-radius: 12px !important;
+/* ===== ACTIVE QUESTS TITLE HIERARCHY V35 ===== */
+/* Makes the board title dominant while keeping each quest type as a category below it. */
+#questsView .active-quests-heading {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  margin: 0 0 17px !important;
+  padding: 13px 16px 12px 18px !important;
+  overflow: hidden;
+  border: 1px solid rgba(224,200,120,0.28) !important;
+  border-left: 3px solid #d8bd67 !important;
+  border-radius: 5px 16px 5px 16px;
   background:
-    linear-gradient(90deg, rgba(212, 175, 55, 0.10), transparent 42%),
-    #11100d !important;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28) !important;
-}
-
-.quest-create-launcher::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 7px !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.045) !important;
-  border-right: 1px solid rgba(224, 200, 120, 0.10) !important;
-  border-radius: 8px !important;
-}
-
-.quest-create-launcher > * {
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-.quest-create-launcher-copy strong {
-  color: #ffe08b !important;
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 15px !important;
-}
-
-.quest-create-launcher-copy span {
-  color: #aaa397 !important;
-  line-height: 1.35 !important;
-}
-
-#openQuestEditorBtn {
-  min-height: 36px !important;
-  padding: 7px 12px !important;
-  font-size: 13px !important;
-  border: 1px solid #e5c04b !important;
-  border-radius: 9px !important;
-  background: #c49a22 !important;
-  color: #120f07 !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
-}
-
-#openQuestEditorBtn:hover,
-#openQuestEditorBtn:focus-visible {
-  background: #ddba45 !important;
-  border-color: #ffe28a !important;
-}
-
-/* Main quest editor shell */
-#questEditorPanel {
-  --creator-gold: #e2c873;
-  --creator-line: rgba(226, 200, 115, 0.25);
-  box-sizing: border-box !important;
-  padding: 0 18px 20px !important;
-  border: 1px solid rgba(226, 200, 115, 0.48) !important;
-  border-radius: 16px !important;
-  background:
-    linear-gradient(180deg, rgba(226, 200, 115, 0.055), transparent 150px),
-    #0a0a08 !important;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.68) !important;
-  scrollbar-color: rgba(226, 200, 115, 0.48) #080806;
-  scrollbar-width: thin;
-}
-
-#questEditorPanel::-webkit-scrollbar {
-  width: 8px;
-}
-
-#questEditorPanel::-webkit-scrollbar-track {
-  background: #080806;
-}
-
-#questEditorPanel::-webkit-scrollbar-thumb {
-  border: 2px solid #080806;
-  border-radius: 999px;
-  background: rgba(226, 200, 115, 0.48);
-}
-
-#questEditorPanel .quest-editor-heading {
-  margin: 0 -18px 16px !important;
-  padding: 13px 16px !important;
-  border-bottom: 1px solid rgba(226, 200, 115, 0.28) !important;
-  border-radius: 15px 15px 0 0 !important;
-  background:
-    linear-gradient(90deg, rgba(226, 200, 115, 0.10), transparent 52%),
-    #12110e !important;
-}
-
-#questEditorPanel .quest-editor-heading h2 {
-  color: #f7df94 !important;
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 22px !important;
-  letter-spacing: 0.5px !important;
-}
-
-#closeQuestEditorBtn {
-  min-width: 74px !important;
-  min-height: 35px !important;
-  border-color: rgba(226, 200, 115, 0.34) !important;
-  border-radius: 8px !important;
-  background: #090907 !important;
-  color: #d8d0be !important;
-}
-
-#closeQuestEditorBtn:hover,
-#closeQuestEditorBtn:focus-visible {
-  border-color: #e2c873 !important;
-  color: #fff1c2 !important;
-}
-
-#questEditorPanel > label {
-  display: block !important;
-  margin: 15px 0 6px !important;
-  color: #cfbd88 !important;
-  font-size: 10px !important;
-  font-weight: 900 !important;
-  letter-spacing: 1.15px !important;
-  text-transform: uppercase !important;
-}
-
-#questEditorPanel input:not([type="checkbox"]):not([type="hidden"]),
-#questEditorPanel textarea,
-#questEditorPanel select {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  border: 1px solid rgba(226, 200, 115, 0.24) !important;
-  border-radius: 9px !important;
-  background: #050504 !important;
-  color: #eee7d8 !important;
-  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.52) !important;
-}
-
-#questEditorPanel input:not([type="checkbox"]):not([type="hidden"]),
-#questEditorPanel select {
-  min-height: 43px !important;
-  padding: 9px 11px !important;
-}
-
-#questEditorPanel textarea {
-  min-height: 112px !important;
-  padding: 11px 12px !important;
-  line-height: 1.5 !important;
-  resize: vertical !important;
-}
-
-#questEditorPanel input::placeholder,
-#questEditorPanel textarea::placeholder {
-  color: #6f6b62 !important;
-  opacity: 1 !important;
-}
-
-#questEditorPanel input:focus,
-#questEditorPanel textarea:focus,
-#questEditorPanel select:focus {
-  outline: none !important;
-  border-color: #d9bb59 !important;
+    radial-gradient(circle at 12% 15%, rgba(224,200,120,0.12), transparent 38%),
+    linear-gradient(100deg, rgba(224,200,120,0.075), rgba(0,0,0,0.08) 48%, rgba(0,0,0,0.42)),
+    #070706;
   box-shadow:
-    inset 0 1px 8px rgba(0, 0, 0, 0.52),
-    0 0 0 2px rgba(217, 187, 89, 0.12) !important;
+    inset 0 1px 0 rgba(255,255,255,0.035),
+    0 0 22px rgba(224,200,120,0.075);
 }
 
-/* Group related controls into readable cards. */
-#questEditorPanel .mission-time-box,
-#questEditorPanel .template-box,
-#questEditorPanel .time-lock-box {
-  box-sizing: border-box !important;
-  margin: 12px 0 !important;
-  padding: 12px !important;
-  border: 1px solid var(--creator-line) !important;
-  border-radius: 11px !important;
-  background: #0e0e0b !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025) !important;
+#questsView .active-quests-heading::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  width: 82px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(224,200,120,0.58));
+  pointer-events: none;
 }
 
-#questEditorPanel .mission-time-box {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  border-left: 3px solid rgba(101, 220, 255, 0.62) !important;
+#questsView .active-quests-kicker {
+  color: #c9ad5d;
+  font-family: var(--quest-ui-font, "Segoe UI", sans-serif);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 2.35px;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-#questEditorPanel .mission-time-label,
-#questEditorPanel .template-label {
-  color: #b9ad8e !important;
-  font-size: 9px !important;
-  font-weight: 900 !important;
-  letter-spacing: 1.05px !important;
+#questsView .active-quests-heading h2 {
+  margin: 6px 0 0 !important;
+  color: #f5dd8b !important;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
+  font-size: clamp(28px, 3.1vw, 37px) !important;
+  font-weight: 950 !important;
+  letter-spacing: 1.8px !important;
+  line-height: 0.98 !important;
   text-transform: uppercase !important;
+  text-shadow:
+    0 0 12px rgba(224,200,120,0.25),
+    0 0 28px rgba(224,200,120,0.10),
+    0 2px 0 #000 !important;
 }
 
-#questEditorPanel .mission-time-value {
-  color: #dff9ff !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  text-align: right !important;
+#questsView .active-quests-note {
+  position: relative;
+  z-index: 1;
+  max-width: 156px;
+  color: #9b917d;
+  font-family: var(--quest-ui-font, "Segoe UI", sans-serif);
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.75px;
+  line-height: 1.35;
+  text-align: right;
+  text-transform: uppercase;
 }
 
-#questEditorPanel .template-preview,
-#questEditorPanel .time-lock-preview {
-  margin-top: 7px !important;
-  padding: 8px 9px !important;
-  border: 1px solid rgba(255, 255, 255, 0.07) !important;
-  border-radius: 8px !important;
-  background: #080807 !important;
-  color: #9f9a90 !important;
-  font-size: 11px !important;
-  line-height: 1.4 !important;
+/* Category names now share one type system and sit below the board title. */
+#questsView .quest-section-panel .section-toggle,
+#questsView .main-heading,
+#questsView .side-heading,
+#questsView .filler-heading,
+#questsView .scheduled-heading,
+#questsView .complete-heading,
+#questsView .failed-heading {
+  font-family: var(--quest-display-font, Georgia, serif) !important;
+  font-size: clamp(21px, 2.25vw, 28px) !important;
+  letter-spacing: 1.15px !important;
+  line-height: 1.08 !important;
 }
 
-#questEditorPanel .day-template-divider {
-  margin: 13px 0 !important;
-  border-color: rgba(226, 200, 115, 0.14) !important;
+@media (max-width: 700px) {
+  #questsView .active-quests-heading {
+    grid-template-columns: minmax(0, 1fr) 108px;
+    gap: 10px;
+    min-height: 82px;
+    padding: 14px 12px 13px 14px !important;
+    border-radius: 4px 13px 4px 13px;
+  }
+
+  #questsView .active-quests-heading h2 {
+    font-size: clamp(28px, 7.8vw, 32px) !important;
+    letter-spacing: 1.05px !important;
+  }
+
+  #questsView .active-quests-kicker {
+    font-size: 7.5px;
+    letter-spacing: 2px;
+  }
+
+  #questsView .active-quests-note {
+    max-width: 108px;
+    font-size: 7.5px;
+    letter-spacing: 0.45px;
+  }
+
+  #questsView .quest-section-panel .section-toggle,
+  #questsView .main-heading,
+  #questsView .side-heading,
+  #questsView .filler-heading,
+  #questsView .scheduled-heading,
+  #questsView .complete-heading,
+  #questsView .failed-heading {
+    font-size: clamp(22px, 6.35vw, 26px) !important;
+    letter-spacing: 0.85px !important;
+  }
 }
 
-#questEditorPanel .template-box .actions {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 8px !important;
-  margin-top: 8px !important;
+@media (max-width: 380px) {
+  #questsView .active-quests-heading {
+    grid-template-columns: 1fr;
+    min-height: 76px;
+  }
+
+  #questsView .active-quests-note {
+    display: none;
+  }
 }
 
-#questEditorPanel .template-box .actions button {
-  min-width: 0 !important;
-  min-height: 36px !important;
-  padding: 7px 8px !important;
-  border-radius: 8px !important;
-  font-size: 10px !important;
-  line-height: 1.2 !important;
+/* ===== QUEST / LIST MODE V36 ===== */
+#questsView .qt-mode-content[hidden] {
+  display: none !important;
 }
 
-#openDefaultsBtn,
-#openDayTemplatesBtn {
-  border-color: rgba(101, 220, 255, 0.36) !important;
-  background: #0b1518 !important;
-  color: #bdeffc !important;
+#questsView .qt-mode-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  margin: 0 0 17px;
+  padding: 5px;
+  border: 1px solid rgba(224,200,120,0.24);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(18,18,15,0.98), rgba(5,5,5,0.98));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018), 0 10px 28px rgba(0,0,0,0.22);
 }
 
-#saveFormDefaultBtn,
-#saveDayTemplateBtn {
-  border-color: rgba(226, 200, 115, 0.38) !important;
-  background: #17140b !important;
-  color: #efd98f !important;
+#questsView .qt-mode-button {
+  min-height: 43px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #777168;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
 }
 
-#questEditorPanel .time-lock-box {
-  border-left: 3px solid rgba(101, 220, 255, 0.58) !important;
+#questsView .qt-mode-button:hover,
+#questsView .qt-mode-button:focus-visible {
+  color: #e8ddbf;
+  border-color: rgba(224,200,120,0.22);
 }
 
-#questEditorPanel .time-lock-toggle {
-  display: flex !important;
-  align-items: center !important;
-  gap: 9px !important;
-  margin: 0 !important;
-  color: #d8eef2 !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
+#questsView .qt-mode-button.active {
+  border-color: rgba(224,200,120,0.46);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224,200,120,0.16), transparent 68%),
+    rgba(224,200,120,0.075);
+  color: #f5dd8b;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025), 0 0 15px rgba(224,200,120,0.07);
 }
 
-#questEditorPanel .time-lock-toggle input[type="checkbox"] {
-  width: 18px !important;
-  height: 18px !important;
-  accent-color: #65dcff !important;
+#questsView .qt-list-mode {
+  display: grid;
+  gap: 15px;
 }
 
-#questEditorPanel .time-lock-fields label {
-  display: block !important;
-  margin: 11px 0 6px !important;
-  color: #9ccbd4 !important;
-  font-size: 9px !important;
+#questsView .list-mode-heading,
+#questsView .list-victory-card,
+#questsView .list-task-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(216,208,189,0.17);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(224,200,120,0.075), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.022), transparent 42%),
+    linear-gradient(180deg, #11110e, #070707);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015), 0 12px 30px rgba(0,0,0,0.24);
+}
+
+#questsView .list-mode-heading {
+  padding: 19px 20px 18px 23px;
+  border-color: rgba(224,200,120,0.26);
+  border-left: 3px solid #d8bd67;
+  border-radius: 5px 15px 5px 15px;
+}
+
+#questsView .list-mode-kicker,
+#questsView .list-section-kicker {
+  color: #bca454;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 2px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#questsView .list-mode-heading h2,
+#questsView .list-task-title h3 {
+  margin: 6px 0 5px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #f4ead3;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
+  font-size: clamp(28px, 4vw, 36px) !important;
   font-weight: 900 !important;
-  letter-spacing: 0.8px !important;
-  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  line-height: 1 !important;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(224,200,120,0.16), 0 2px 0 #000;
 }
 
-#questEditorPanel .reward-picker-grid,
-#questEditorPanel .reward-custom-grid {
-  gap: 9px !important;
+#questsView .list-mode-heading p {
+  max-width: 720px;
+  margin: 0;
+  color: #918b81;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-#questEditorPanel .reward-field {
-  min-width: 0 !important;
+#questsView .list-victory-card {
+  padding: 16px;
+  border-color: rgba(255,216,61,0.23);
+  border-radius: 6px;
 }
 
-#questEditorPanel .reward-field span {
-  display: block !important;
-  margin: 8px 0 5px !important;
-  color: #a99f88 !important;
+#questsView .list-victory-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  margin-bottom: 12px;
+}
+
+#questsView .list-victory-top h3 {
+  margin: 4px 0 0;
+  color: #f4ead3;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: clamp(20px, 3vw, 25px);
+  letter-spacing: 0.9px;
+}
+
+#questsView .list-victory-percent {
+  flex: 0 0 auto;
+  min-width: 70px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,216,61,0.42);
+  background: rgba(255,216,61,0.065);
+  color: #ffe16a;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 19px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 13px rgba(255,216,61,0.24);
+}
+
+#questsView .list-victory-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #bbb3a4;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+#questsView .list-victory-meta strong {
+  color: #e8ddbf;
+  font-size: 9px;
+  text-align: right;
+}
+
+#questsView .list-victory-track {
+  height: 11px;
+  margin-top: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,216,61,0.25);
+  background: #050503;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.82);
+}
+
+#questsView .list-victory-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #b47a05, #ffd426 68%, #fff0a0);
+  box-shadow: 0 0 14px rgba(255,212,38,0.42);
+  transition: width 190ms ease;
+}
+
+#questsView .list-milestones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 12px;
+}
+
+#questsView .list-milestone {
+  min-width: 0;
+  padding: 8px 6px 7px;
+  border: 1px solid rgba(216,208,189,0.12);
+  background: rgba(0,0,0,0.24);
+  color: #716b61;
+  text-align: center;
+}
+
+#questsView .list-milestone strong,
+#questsView .list-milestone span {
+  display: block;
+}
+
+#questsView .list-milestone strong {
+  color: #9a9284;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 13px;
+}
+
+#questsView .list-milestone span {
+  margin-top: 3px;
+  font-size: 7px;
+  font-weight: 950;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+#questsView .list-milestone.reached {
+  border-color: rgba(255,216,61,0.34);
+  background: rgba(255,216,61,0.055);
+  color: #d5b84d;
+  box-shadow: inset 0 0 12px rgba(255,216,61,0.035);
+}
+
+#questsView .list-milestone.reached strong {
+  color: #ffe16a;
+}
+
+#questsView .list-reward-note {
+  margin: 10px 0 0;
+  color: #7f786c;
+  font-size: 9px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+#questsView .list-task-panel {
+  padding: 17px;
+  border-radius: 6px;
+}
+
+#questsView .list-task-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+#questsView .list-task-title h3 {
+  font-size: clamp(24px, 3.3vw, 30px) !important;
+}
+
+#questsView .list-task-count {
+  color: #918a7d;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+#questsView .list-add-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  margin-bottom: 13px;
+}
+
+#questsView .list-add-row textarea,
+#questsView .list-edit-input {
+  min-width: 0;
+  min-height: 43px;
+  border: 1px solid rgba(216,208,189,0.20);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.38);
+  color: #eee7d9;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 12px;
+}
+
+#questsView .list-add-row textarea:focus,
+#questsView .list-edit-input:focus {
+  border-color: rgba(224,200,120,0.58);
+  box-shadow: 0 0 0 2px rgba(224,200,120,0.07);
+  outline: none;
+}
+
+#questsView .list-add-row textarea {
+  width: 100%;
+  min-height: 132px;
+  padding: 12px 13px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+#questsView .list-writing-help {
+  margin: -2px 0 0;
+  color: #817b70;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+#questsView .list-add-button {
+  justify-self: end;
+  min-width: 118px;
+  min-height: 43px;
+  border: 1px solid rgba(255,255,255,0.78);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #fffdf7, #dcd8ce);
+  color: #11110f;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+#questsView .list-task-list {
+  display: grid;
+  gap: 8px;
+}
+
+#questsView .list-task-empty {
+  padding: 27px 14px;
+  border: 1px dashed rgba(216,208,189,0.16);
+  color: #777168;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+#questsView .list-task-row {
+  display: grid;
+  grid-template-columns: 25px auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 54px;
+  padding: 9px 10px;
+  border: 1px solid rgba(216,208,189,0.14);
+  border-radius: 5px;
+  background: rgba(0,0,0,0.26);
+}
+
+#questsView .list-task-number {
+  color: #a29b8e;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+}
+
+#questsView .list-task-row.completed {
+  border-color: rgba(255,216,61,0.20);
+  background: rgba(255,216,61,0.035);
+}
+
+#questsView .list-task-check {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  margin: 0;
+  border: 1px solid rgba(224,200,120,0.38);
+  border-radius: 50%;
+  background: #080807;
+  color: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+#questsView .list-task-check:checked {
+  border-color: #42df7c;
+  background: linear-gradient(180deg, #40db78, #168c48);
+  color: #06160b;
+  box-shadow: 0 0 12px rgba(49,201,107,0.32);
+}
+
+#questsView .list-task-check:checked::after {
+  content: "\2713";
+  color: #041108;
+  font-size: 17px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+#questsView .list-task-text {
+  min-width: 0;
+  color: #e9e1d3;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+#questsView .list-task-row.completed .list-task-text {
+  color: #8b857b;
+  text-decoration: line-through;
+  text-decoration-color: rgba(66,223,124,0.62);
+  text-decoration-thickness: 1px;
+}
+
+#questsView .list-task-actions,
+#questsView .list-edit-actions {
+  display: flex;
+  gap: 5px;
+}
+
+#questsView .list-task-actions button,
+#questsView .list-edit-actions button {
+  min-height: 31px;
+  padding: 6px 8px;
+  border-color: rgba(216,208,189,0.16);
+  color: #aaa397;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
+}
+
+#questsView .list-task-actions .list-delete-button {
+  color: #d99b9b;
+  border-color: rgba(201,107,107,0.24);
+}
+
+#questsView .list-edit-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 7px;
+  grid-column: 3 / 5;
+}
+
+#questsView .list-manual-progress {
+  margin-top: 13px;
+  padding: 12px;
+  border: 1px solid rgba(66,223,124,0.18);
+  border-radius: 5px;
+  background: rgba(20,92,48,0.07);
+}
+
+#questsView .list-manual-progress label {
+  display: block;
+  margin: 0 0 7px;
+  color: #d5d0c5;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+#questsView .list-completed-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+#questsView .list-completed-row input {
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid rgba(216,208,189,0.20);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.38);
+  color: #eef6f0;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 13px;
+}
+
+#questsView .list-completed-row input:focus {
+  border-color: rgba(66,223,124,0.52);
+  box-shadow: 0 0 0 2px rgba(66,223,124,0.07);
+  outline: none;
+}
+
+#questsView .list-record-button {
+  min-height: 40px;
+  padding: 8px 13px;
+  border: 1px solid rgba(66,223,124,0.34);
+  border-radius: 4px;
+  background: rgba(24,128,64,0.18);
+  color: #81e7a6;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+#questsView .list-manual-progress p {
+  margin: 7px 0 0;
+  color: #7f897f;
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+#questsView .list-task-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 13px;
+  margin: 12px 0 0;
+  padding-top: 11px;
+  border-top: 1px solid rgba(216,208,189,0.10);
+  color: #7d776e;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+
+#questsView .list-mode-status {
+  min-height: 20px;
+  margin-top: 9px;
+  color: #c8bd9c;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+#questsView .list-mode-status.reward {
+  color: #ffe16a;
+  text-shadow: 0 0 12px rgba(255,216,61,0.18);
+}
+
+#questsView .list-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
+}
+
+#questsView .list-new-button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border-color: rgba(224,200,120,0.27);
+  color: #d9c77f;
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  #questsView .qt-mode-switch {
+    margin-bottom: 14px;
+  }
+
+  #questsView .qt-mode-button {
+    min-height: 41px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  #questsView .list-mode-heading {
+    padding: 17px 14px 16px 17px;
+  }
+
+  #questsView .list-mode-heading h2 {
+    font-size: clamp(27px, 8vw, 32px) !important;
+  }
+
+  #questsView .list-victory-card,
+  #questsView .list-task-panel {
+    padding: 13px;
+  }
+
+  #questsView .list-victory-meta {
+    align-items: flex-end;
+  }
+
+  #questsView .list-milestones {
+    gap: 5px;
+  }
+
+  #questsView .list-milestone {
+    padding: 7px 3px;
+  }
+
+  #questsView .list-task-title {
+    align-items: start;
+  }
+
+  #questsView .list-add-button {
+    min-width: 112px;
+  }
+
+  #questsView .list-task-row {
+    grid-template-columns: 22px auto minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  #questsView .list-task-actions {
+    grid-column: 3;
+    justify-content: flex-start;
+  }
+
+  #questsView .list-edit-form {
+    grid-column: 3;
+    grid-template-columns: 1fr;
+  }
+
+  #questsView .list-edit-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* ===== PHONE READABILITY + COLLAPSIBLE ACTIVE QUESTS V38 ===== */
+#questsView #activeQuestBoard[hidden] {
+  display: none !important;
+}
+
+#questsView button.active-quests-heading {
+  width: 100%;
+  min-height: 64px;
+  margin: 0 0 14px !important;
+  padding: 12px 14px !important;
+  border: 1px solid rgba(224,200,120,0.25) !important;
+  border-left: 3px solid #d8bd67 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(18,18,15,0.98), rgba(7,7,7,0.98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 8px 22px rgba(0,0,0,0.22) !important;
+  color: #f4ead3;
+  cursor: pointer;
+  text-align: left;
+  transform: none !important;
+}
+
+#questsView button.active-quests-heading::after {
+  display: none !important;
+}
+
+#questsView button.active-quests-heading:hover,
+#questsView button.active-quests-heading:focus-visible {
+  border-color: rgba(224,200,120,0.48) !important;
+  background: linear-gradient(180deg, rgba(24,23,18,0.99), rgba(8,8,8,0.99)) !important;
+  transform: none !important;
+}
+
+#questsView .active-quests-title-group {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+#questsView .active-quests-kicker {
+  display: block;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
   font-size: 9px !important;
   font-weight: 850 !important;
-  letter-spacing: 0.7px !important;
-  text-transform: uppercase !important;
+  letter-spacing: 1.25px !important;
 }
 
-#questEditorPanel .helper-text {
-  margin-top: 6px !important;
-  color: #837f76 !important;
+#questsView .active-quests-title {
+  display: block;
+  color: #f3e6c7;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
+  font-size: 22px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.35px !important;
+  line-height: 1.05 !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+}
+
+#questsView .active-quests-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+#questsView .active-quests-note {
+  color: #aaa293 !important;
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
   font-size: 10px !important;
-  line-height: 1.4 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.35px !important;
+  line-height: 1.2 !important;
+  text-align: right;
+  text-transform: uppercase;
 }
 
-#questEditorPanel .micro-builder {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 8px !important;
+#questsView .active-quests-chevron {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: -5px 3px 0 0;
+  border-right: 2px solid #e4cf7b;
+  border-bottom: 2px solid #e4cf7b;
+  transform: rotate(45deg);
+  transition: transform 150ms ease, margin 150ms ease;
 }
 
-#questEditorPanel #addMicroBtn {
-  min-width: 76px !important;
-  min-height: 43px !important;
-  border-color: rgba(143, 101, 255, 0.44) !important;
-  border-radius: 9px !important;
-  background: #151021 !important;
-  color: #d9c3ff !important;
+#questsView .active-quests-heading.is-collapsed .active-quests-chevron {
+  margin-top: 0;
+  transform: rotate(-45deg);
 }
 
-#questEditorPanel .draft-list {
-  display: grid !important;
-  gap: 7px !important;
+/* Quest Mode category labels use the clean interface typeface. */
+#questsView #questModeContent .quest-section-panel .section-toggle,
+#questsView #questModeContent .main-heading,
+#questsView #questModeContent .side-heading,
+#questsView #questModeContent .filler-heading,
+#questsView #questModeContent .scheduled-heading,
+#questsView #questModeContent .complete-heading,
+#questsView #questModeContent .failed-heading {
+  font-family: var(--quest-ui-font, "Segoe UI", Arial, sans-serif) !important;
+  font-size: 20px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.35px !important;
+  line-height: 1.15 !important;
 }
 
-#questEditorPanel > .actions {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 9px !important;
-  margin-top: 18px !important;
-  padding-top: 14px !important;
-  border-top: 1px solid rgba(226, 200, 115, 0.18) !important;
+/* Keep the completed symbol centered instead of hanging below the green circle. */
+#questsView .list-task-check {
+  position: relative;
+  flex: 0 0 auto;
 }
 
-#submitQuestBtn {
-  min-height: 45px !important;
-  border: 1px solid #e6c754 !important;
-  border-radius: 9px !important;
-  background: #c79b1e !important;
-  color: #120e04 !important;
-  font-weight: 950 !important;
+#questsView .list-task-check:checked::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  width: 7px;
+  height: 12px;
+  border: solid #ffffff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
 }
 
-#submitQuestBtn:hover,
-#submitQuestBtn:focus-visible {
-  background: #e0bd47 !important;
-}
-
-#cancelEditBtn {
-  min-height: 45px !important;
-  border-radius: 9px !important;
-}
-
-#questStatusText {
-  margin-top: 9px !important;
-  min-height: 18px !important;
-  font-size: 11px !important;
-  line-height: 1.4 !important;
-}
-
-@media (max-width: 720px) {
-  header .player-card {
-    width: 100% !important;
-    padding: 15px 14px 14px 20px !important;
+@media (max-width: 620px) {
+  #questsView button.active-quests-heading {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 12px !important;
+    min-height: 62px !important;
+    padding: 11px 12px !important;
   }
 
-  header .player-card .player-label {
-    padding-left: 15px !important;
+  #questsView .active-quests-title {
+    font-size: 21px !important;
   }
 
-  header .player-card::after {
-    right: 9px !important;
-    top: 42px !important;
-    width: 60px !important;
-    height: 76px !important;
-    opacity: 0.13 !important;
-  }
-
-  header .player-card .player-growth-meta {
-    grid-template-columns: 1fr 1fr !important;
+  #questsView .active-quests-kicker {
     font-size: 9px !important;
   }
 
-  #questEditorPanel {
-    max-height: calc(100dvh - 10px) !important;
-    padding: 0 14px calc(18px + env(safe-area-inset-bottom)) !important;
-    border-radius: 17px 17px 0 0 !important;
+  #questsView .active-quests-note {
+    display: block !important;
+    max-width: none !important;
+    font-size: 10px !important;
   }
 
-  #questEditorPanel .quest-editor-heading {
-    margin: 0 -14px 14px !important;
-    padding: 12px 14px !important;
-    border-radius: 16px 16px 0 0 !important;
+  #questsView #questModeContent .quest-section-panel .section-toggle,
+  #questsView #questModeContent .main-heading,
+  #questsView #questModeContent .side-heading,
+  #questsView #questModeContent .filler-heading,
+  #questsView #questModeContent .scheduled-heading,
+  #questsView #questModeContent .complete-heading,
+  #questsView #questModeContent .failed-heading {
+    font-size: 19px !important;
+    letter-spacing: 0.2px !important;
   }
 
-  #questEditorPanel .quest-editor-heading h2 {
-    font-size: 20px !important;
-  }
-
-  #questEditorPanel .mission-time-box {
-    align-items: flex-start !important;
-    flex-direction: column !important;
-    gap: 4px !important;
-  }
-
-  #questEditorPanel .mission-time-value {
-    text-align: left !important;
-  }
-
-  #questEditorPanel input:not([type="checkbox"]):not([type="hidden"]),
-  #questEditorPanel textarea,
-  #questEditorPanel select,
-  #questEditorPanel button {
-    font-size: 16px !important;
-  }
-
-  #questEditorPanel .template-box .actions button,
-  #questEditorPanel #addMicroBtn,
-  #questEditorPanel .helper-text,
-  #questEditorPanel #questStatusText {
+  #questsView .qt-mode-button {
     font-size: 11px !important;
   }
 
-  #questEditorPanel > .actions {
-    grid-template-columns: 1fr !important;
+  #questsView .list-mode-kicker,
+  #questsView .list-section-kicker {
+    font-size: 10px;
   }
 
-  #cancelEditBtn {
-    width: 100% !important;
+  #questsView .list-mode-heading p,
+  #questsView .list-task-empty {
+    font-size: 13px;
+  }
+
+  #questsView .list-victory-meta,
+  #questsView .list-victory-meta strong {
+    font-size: 11px;
+  }
+
+  #questsView .list-milestone span {
+    font-size: 9px;
+  }
+
+  #questsView .list-reward-note,
+  #questsView .list-writing-help {
+    font-size: 11px;
+  }
+
+  #questsView .list-task-count {
+    font-size: 11px;
+  }
+
+  #questsView .list-add-row textarea,
+  #questsView .list-edit-input {
+    font-size: 14px;
+  }
+
+  #questsView .list-task-row {
+    position: relative;
+    grid-template-columns: 23px 29px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    min-height: 61px;
+    padding: 11px 10px;
+  }
+
+  #questsView .list-task-number {
+    margin-top: 7px;
+    font-size: 13px;
+  }
+
+  #questsView .list-task-check {
+    margin-top: 1px;
+  }
+
+  #questsView .list-task-text {
+    min-height: 29px;
+    padding: 5px 98px 4px 0;
+    font-size: 14px;
+    line-height: 1.42;
+  }
+
+  #questsView .list-task-actions {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    z-index: 2;
+    grid-column: auto;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  #questsView .list-task-actions button,
+  #questsView .list-edit-actions button {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  #questsView .list-edit-form {
+    grid-column: 3;
+  }
+
+  #questsView .list-manual-progress label {
+    font-size: 11px;
+  }
+
+  #questsView .list-manual-progress p {
+    font-size: 10px;
+  }
+
+  #questsView .list-record-button,
+  #questsView .list-new-button {
+    font-size: 10px;
+  }
+
+  #questsView .list-task-summary {
+    gap: 8px 14px;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  #questsView .list-mode-status {
+    min-height: 24px;
+    font-size: 12px;
   }
 }
 
-@media (max-width: 390px) {
-  .quest-create-launcher {
-    align-items: stretch !important;
-    flex-direction: column !important;
-  }
-
-  #openQuestEditorBtn {
-    width: 100% !important;
-  }
-
-  header .player-card .player-growth-meta {
-    grid-template-columns: 1fr !important;
-  }
-
-  header .player-card .player-growth-meta span:last-child {
-    text-align: left !important;
-  }
-
-  #questEditorPanel .template-box .actions {
-    grid-template-columns: 1fr !important;
-  }
-
-  #questEditorPanel .micro-builder {
-    grid-template-columns: 1fr !important;
-  }
-
-  #questEditorPanel #addMicroBtn {
-    width: 100% !important;
-  }
-}
 </style>
 </head>
 
@@ -12663,10 +12514,6 @@ header .player-card .player-growth-meta span:last-child {
         </div>
         <div class="xp-bar"><div id="xpFill" class="xp-fill"></div></div>
         <div id="xpNote" class="xp-note">Complete quests to rank up</div>
-        <div class="player-growth-meta">
-          <span id="weeklyGrowthText">7-day growth: 0 quests</span>
-          <span id="nextUnlockText">Next unlock: Level 2</span>
-        </div>
       </div>
     </header>
 
@@ -12674,37 +12521,68 @@ header .player-card .player-growth-meta span:last-child {
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
         <button class="tab" data-view="elementsView">Elements</button>
-        <button class="tab" data-view="streakView">Archive</button>
+        <button class="tab" data-view="streakView">Streak</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
       </nav>
 
       <section id="questsView" class="view active">
-        <div id="questCompleteToast" class="quest-complete-toast" role="status" aria-live="polite"></div>
-        <div class="daily-briefing panel">
-          <div class="briefing-header">
-            <div>
-              <h2>Daily Briefing</h2>
-              <div class="helper-text">Quick scan of today&#x2019;s mission board.</div>
-            </div>
-            <div class="section-toggle-wrap">
-              <div id="briefingStatus" class="briefing-status">Standing by</div>
-              <button type="button" id="toggleBriefingBtn" class="mini-toggle-btn">Hide</button>
-            </div>
-          </div>
-          <div id="dailyBriefingBody" class="briefing-grid">
-            <div class="briefing-item"><span id="briefMainCount">0</span><small>Main Active</small></div>
-            <div class="briefing-item"><span id="briefSideCount">0</span><small>Side Active</small></div>
-            <div class="briefing-item"><span id="briefCompleteCount">0</span><small>Complete</small></div>
-            <div class="briefing-item"><span id="briefFailedCount">0</span><small>Failed</small></div>
-            <div class="briefing-item"><span id="briefMainClear">0 / 0</span><small>Main Progress</small></div>
-          </div>
+        <div class="qt-mode-switch" role="tablist" aria-label="Quest Terminal mode">
+          <button type="button" id="questModeButton" class="qt-mode-button active" data-quest-terminal-mode="quest" role="tab" aria-selected="true" aria-controls="questModeContent">Quest Mode</button>
+          <button type="button" id="listModeButton" class="qt-mode-button" data-quest-terminal-mode="list" role="tab" aria-selected="false" aria-controls="listModeContent">List Mode</button>
         </div>
+
+        <div id="questModeContent" class="qt-mode-content">
+        <section class="forge-quest-card" aria-labelledby="forgeQuestTitle">
+          <div class="forge-copy">
+            <div class="forge-kicker">New Objective</div>
+            <h2 id="forgeQuestTitle">Forge a New Quest</h2>
+            <p>Choose the mission, set its priority, and break it into clear steps.</p>
+          </div>
+          <button type="button" id="openQuestCreatorBtn" class="forge-button">Forge New Quest</button>
+        </section>
+
+        <section class="progress-tracker-card" aria-labelledby="progressTrackerTitle">
+          <div class="tracker-heading">
+            <div>
+              <div class="command-kicker">Mission Progress</div>
+              <h2 id="progressTrackerTitle">Progress Tracker</h2>
+            </div>
+            <strong id="victoryPercent" class="victory-percent">0%</strong>
+          </div>
+
+          <div class="victory-meter-row">
+            <span>Victory Meter</span>
+            <strong id="commandProgressText">0 / 0 victory points</strong>
+          </div>
+          <div class="command-progress-track" role="progressbar" aria-label="Victory Meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="commandProgressFill" class="command-progress-fill"></div>
+          </div>
+          <div class="victory-weight-key">Main +5 <span>&#x2022;</span> Side +2 <span>&#x2022;</span> Emergency +1</div>
+
+          <div class="command-counts" aria-label="Quest counts">
+            <div class="command-count"><strong id="commandMainCount">0</strong><span>Main</span></div>
+            <div class="command-count"><strong id="commandSideCount">0</strong><span>Side</span></div>
+            <div class="command-count"><strong id="commandEmergencyCount">0</strong><span>Emergency</span></div>
+            <div class="command-count"><strong id="commandCompleteCount">0</strong><span>Cleared</span></div>
+          </div>
+          <div class="command-actions">
+            <button type="button" id="openDailyCommandBtn" class="command-view-btn">View Mission</button>
+          </div>
+        </section>
+
+        <div id="dailyCommandModal" class="modal qt-command-modal" aria-hidden="true">
+          <div class="qt-sheet-card" role="dialog" aria-modal="true" aria-labelledby="dailyCommandSheetTitle">
+            <div class="qt-sheet-header">
+              <div id="dailyCommandSheetTitle" class="qt-sheet-title">View Mission</div>
+              <button type="button" id="closeDailyCommandBtn">Close</button>
+            </div>
+            <div class="qt-sheet-body">
 <div class="mission-reminder panel">
   <div class="mission-reminder-header">
     <div>
-      <h2>Everyday Mission</h2>
-      <div class="helper-text">Read this before you touch the quest board.</div>
+      <h2>Mission</h2>
+      <div class="helper-text">Review the mission, then return to the board.</div>
     </div>
     <div class="section-toggle-wrap">
       <div class="mission-reminder-badge">Execute</div>
@@ -12752,20 +12630,31 @@ header .player-card .player-growth-meta span:last-child {
     Build skills. Apply anyway. Train. Pray. Sleep. Repeat.
   </div>
 </div>
-        <div class="grid-quests">
-          <div class="quest-create-launcher">
-            <div class="quest-create-launcher-copy">
-              <strong>Quest Board</strong>
-              <span>Open the creator only when you need to add or edit a quest.</span>
             </div>
-            <button type="button" id="openQuestEditorBtn">+ Create Quest</button>
           </div>
-          <div id="questEditorBackdrop" class="quest-editor-backdrop"></div>
+</div>
+
+        <button type="button" id="activeQuestsToggle" class="active-quests-heading" aria-expanded="true" aria-controls="activeQuestBoard">
+          <span class="active-quests-title-group">
+            <span class="active-quests-kicker">Mission Board</span>
+            <span class="active-quests-title">Active Quests</span>
+          </span>
+          <span class="active-quests-control">
+            <span class="active-quests-note">Hide quests</span>
+            <span class="active-quests-chevron" aria-hidden="true"></span>
+          </span>
+        </button>
+
+        <div class="grid-quests">
+          <div id="questCreatorModal" class="modal qt-quest-creator-modal" aria-hidden="true">
+            <div class="qt-sheet-card" role="dialog" aria-modal="true" aria-labelledby="questCreatorSheetTitle">
+              <div class="qt-sheet-header">
+                <div id="questCreatorSheetTitle" class="qt-sheet-title">Forge New Quest</div>
+                <button type="button" id="closeQuestCreatorBtn">Close</button>
+              </div>
+              <div class="qt-sheet-body">
           <div class="panel" id="questEditorPanel">
-            <div class="quest-editor-heading">
-              <h2 id="questEditorTitle">Create Quest</h2>
-              <button type="button" id="closeQuestEditorBtn">Close</button>
-            </div>
+            <h2>Create Quest</h2>
 
             <div class="mission-time-box">
               <div class="mission-time-label">Current Date / Time</div>
@@ -12866,8 +12755,11 @@ header .player-card .player-growth-meta span:last-child {
             </div>
             <div id="questStatusText" class="status-message"></div>
           </div>
+              </div>
+            </div>
+          </div>
 
-          <div class="quest-sections-stack">
+          <div id="activeQuestBoard" class="quest-sections-stack">
           <div class="panel quest-section-panel" data-section="main">
             <button type="button" class="section-toggle main-heading" data-collapse-target="mainQuestList">&#x25BC; Main Quests</button>
             <div id="mainQuestList" class="quest-list collapsible-content"></div>
@@ -12900,6 +12792,73 @@ header .player-card .player-growth-meta span:last-child {
           </div>
           </div>
         </div>
+        </div>
+
+        <section id="listModeContent" class="qt-list-mode qt-mode-content" hidden aria-labelledby="listModeTitle">
+          <div class="list-mode-heading">
+            <div class="list-mode-kicker">List Mode</div>
+            <h2 id="listModeTitle">Checklist</h2>
+            <p>Write normally, one task per line. Your list will be numbered automatically.</p>
+          </div>
+
+          <section class="list-victory-card" aria-labelledby="listVictoryTitle">
+            <div class="list-victory-top">
+              <div>
+                <div class="list-section-kicker">List Progress</div>
+                <h3 id="listVictoryTitle">Victory Meter</h3>
+              </div>
+              <strong id="listVictoryPercent" class="list-victory-percent">0%</strong>
+            </div>
+
+            <div class="list-victory-meta">
+              <span id="listVictoryCount">0 / 0 tasks complete</span>
+              <strong id="listXpEarned">0 / 0 XP earned</strong>
+            </div>
+            <div class="list-victory-track" role="progressbar" aria-label="List Victory Meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="listVictoryFill" class="list-victory-fill"></div>
+            </div>
+
+            <div class="list-milestones" aria-label="List XP milestones">
+              <div class="list-milestone" data-list-milestone="50"><strong>50%</strong><span id="listMilestone50Xp">0 XP</span></div>
+              <div class="list-milestone" data-list-milestone="75"><strong>75%</strong><span id="listMilestone75Xp">0 XP</span></div>
+              <div class="list-milestone" data-list-milestone="100"><strong>100%</strong><span id="listMilestone100Xp">0 XP</span></div>
+            </div>
+            <p id="listRewardNote" class="list-reward-note">XP grows with the size of your list and is unlocked once per list.</p>
+
+            <div class="list-manual-progress">
+              <label for="listCompletedCountInput">How many tasks did you complete?</label>
+              <div class="list-completed-row">
+                <input id="listCompletedCountInput" type="number" min="0" step="1" inputmode="numeric" placeholder="Type a number" aria-label="Number of completed tasks" />
+                <button type="button" id="recordListProgressButton" class="list-record-button">Record</button>
+              </div>
+              <p>Use this when you do not want to tap every circle. The checklist will update to match.</p>
+            </div>
+          </section>
+
+          <section class="list-task-panel" aria-labelledby="listTasksTitle">
+            <div class="list-task-title">
+              <div>
+                <div class="list-section-kicker">Current List</div>
+                <h3 id="listTasksTitle">Tasks</h3>
+              </div>
+              <div id="listVisibleCount" class="list-task-count">0 tasks</div>
+            </div>
+
+            <div class="list-add-row">
+              <textarea id="listTaskInput" autocomplete="off" placeholder="1. Review DP-300&#10;2. Practice SQL&#10;3. Send an application" aria-label="Write checklist tasks, one per line"></textarea>
+              <div class="list-writing-help">One line becomes one task. You may type numbers yourself or leave them out.</div>
+              <button type="button" id="addListTaskButton" class="list-add-button">Add to List</button>
+            </div>
+
+            <div id="listTaskList" class="list-task-list" aria-live="polite"></div>
+            <div id="listTaskSummary" class="list-task-summary"></div>
+            <div id="listModeStatus" class="list-mode-status" role="status" aria-live="polite"></div>
+
+            <div class="list-footer-actions">
+              <button type="button" id="startNewListButton" class="list-new-button">Start New List</button>
+            </div>
+          </section>
+        </section>
       </section>
 <section id="elementsView" class="view">
         <div class="panel elements-panel">
@@ -12956,46 +12915,44 @@ header .player-card .player-growth-meta span:last-child {
       
 <section id="streakView" class="view">
   <div class="streak-embedded-screen">
-    <div class="topbar archive-header">
-      <div>
-        <div class="archive-eyebrow">Consistency record</div>
-        <h1>Progress Archive</h1>
-        <div class="subtitle">A clear record of the days you showed up.</div>
-      </div>
-      <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Routine</button>
+<div class="topbar">
+    <div>
+      <h1>Smart Streak</h1>
+      <div class="subtitle">Click any calendar square. Big buttons let you set Perfect, Win, Partial, Protected, Failed, or Blank.</div>
     </div>
+    <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
+  </div>
 
-    <section class="panel streak-quick-panel archive-today-panel">
-      <div class="archive-section-label">Today</div>
-      <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
-      <div class="streak-quick-actions">
-        <button id="streakQuickRequiredDoneBtn" class="good">Complete Core Tasks</button>
-        <button id="streakQuickAllDoneBtn" class="warn">Complete All Active</button>
-        <button id="streakQuickClearTodayBtn" class="archive-reset-btn">Reset Today</button>
+  <section class="panel streak-quick-panel">
+    <div class="streak-quick-head">
+      <div>
+        <h2>Today Quick Update</h2>
+        <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
       </div>
-    </section>
+    </div>
+    <div class="streak-quick-actions">
+      <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
+      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
+      <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
+    </div>
+  </section>
 
-    <section class="panel archive-calendar-panel">
-      <div class="archive-panel-heading">
-        <div>
-          <div class="archive-section-label">Monthly record</div>
-          <h2>Your Progress</h2>
-        </div>
-        <div class="archive-calendar-hint">Tap a day to edit it</div>
-      </div>
+  <section class="layout">
+    <section class="panel">
+      <h2>Month Proof</h2>
 
-      <div class="stats archive-stats">
+      <div class="stats">
         <div class="stat"><strong id="streakCurrentStreak">0</strong><span>Current</span></div>
         <div class="stat"><strong id="streakBestStreak">0</strong><span>Best</span></div>
-        <div class="stat"><strong id="streakMonthWins">0</strong><span>This Month</span></div>
-        <div class="stat"><strong id="streakProofScore">0%</strong><span>Completion</span></div>
+        <div class="stat"><strong id="streakMonthWins">0</strong><span>Wins</span></div>
+        <div class="stat"><strong id="streakProofScore">0%</strong><span>Score</span></div>
       </div>
 
       <div class="calendar-shell">
         <div class="calendar-header">
-          <button id="streakPrevMonthBtn" aria-label="Previous month">&#x2039;</button>
+          <button id="streakPrevMonthBtn">&#x2039;</button>
           <div id="streakMonthTitle" class="month-title"></div>
-          <button id="streakNextMonthBtn" aria-label="Next month">&#x203A;</button>
+          <button id="streakNextMonthBtn">&#x203A;</button>
         </div>
 
         <div class="weekdays">
@@ -13004,55 +12961,32 @@ header .player-card .player-growth-meta span:last-child {
         </div>
 
         <div id="streakCalendarGrid" class="calendar-grid"></div>
-
-        <div class="archive-calendar-legend" aria-label="Calendar status guide">
-          <span class="is-win">Complete</span>
-          <span class="is-partial">Partial</span>
-          <span class="is-safe">Protected</span>
-          <span class="is-failed">Failed</span>
-        </div>
+        <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
       </div>
+
+      <div class="rule-box">
+        <div class="rule-title">Win rule</div>
+        <div id="streakWinRuleText" class="rule-text"></div>
+      </div>
+
+      <div class="log" id="streakProofLog"></div>
     </section>
 
-    <details class="panel archive-more-panel">
-      <summary>
-        <span>
-          <b>Routine Details</b>
-          <small>Tasks, rules, milestones, and recent days</small>
-        </span>
-        <span class="archive-summary-action">Open</span>
-      </summary>
+    <aside class="panel">
+      <h2>Active Tasks</h2>
+      <div id="streakTaskList" class="quest-list"></div>
 
-      <div class="archive-more-grid">
-        <section class="archive-detail-block">
-          <div class="archive-detail-heading">
-            <h3>Active Tasks</h3>
-            <button type="button" class="archive-inline-edit" data-open-streak-setup>Edit</button>
-          </div>
-          <div id="streakTaskList" class="quest-list"></div>
-
-          <div class="rule-box">
-            <div class="rule-title">Daily win rule</div>
-            <div id="streakWinRuleText" class="rule-text"></div>
-          </div>
-
-          <div class="rule-box">
-            <div class="rule-title">Recovery rule</div>
-            <div id="streakConsequenceTextView" class="rule-text"></div>
-          </div>
-        </section>
-
-        <section class="archive-detail-block">
-          <div class="streak-medal-box">
-            <div class="streak-medal-title">Milestones</div>
-            <div id="streakMedalCase" class="streak-medal-grid"></div>
-          </div>
-
-          <h3 class="archive-log-heading">Recent Days</h3>
-          <div class="log" id="streakProofLog"></div>
-        </section>
+      <div class="streak-medal-box">
+        <div class="streak-medal-title">Medal Case</div>
+        <div id="streakMedalCase" class="streak-medal-grid"></div>
       </div>
-    </details>
+
+      <div class="rule-box">
+        <div class="rule-title">Consequence</div>
+        <div id="streakConsequenceTextView" class="rule-text"></div>
+      </div>
+    </aside>
+  </section>
   </div>
 </section>
 
@@ -13183,60 +13117,36 @@ header .player-card .player-growth-meta span:last-child {
   <div id="streakSetupModal" class="modal">
   <div class="modal-card">
     <div class="modal-header">
-      <div>
-        <div class="archive-eyebrow">Progress Archive</div>
-        <div class="modal-title">Edit Routine</div>
-      </div>
+      <div class="modal-title">Edit Streak Rules</div>
       <button id="streakCloseSetupBtn">Close</button>
     </div>
 
     <div class="setup-grid">
-      <div class="streak-setup-intro">
-        Keep core tasks small. Optional tasks can still be recorded without deciding whether the whole day counts.
+      <label for="streakNameInput">Streak name</label>
+      <input id="streakNameInput" />
+
+      <label for="streakRequiredCount">Daily win rule</label>
+      <select id="streakRequiredCount">
+        <option value="1">Need 1 active required task</option>
+        <option value="2">Need 2 active required tasks</option>
+        <option value="3">Need 3 active required tasks</option>
+        <option value="all">Need all active required tasks</option>
+      </select>
+
+      <label>Add task</label>
+      <div style="display:grid;grid-template-columns:1fr 82px;gap:8px;">
+        <input id="streakNewTaskInput" placeholder="Example: Reading" />
+        <button id="streakAddTaskBtn">Add</button>
       </div>
 
-      <section class="streak-setup-section">
-        <div class="streak-setup-section-title">Archive Settings</div>
-        <div class="streak-setup-fields">
-          <label for="streakNameInput">
-            Routine name
-            <input id="streakNameInput" placeholder="Example: Daily Foundation" />
-          </label>
+      <div id="streakTaskEditorList"></div>
 
-          <label for="streakRequiredCount">
-            Daily completion rule
-            <select id="streakRequiredCount">
-              <option value="1">Complete 1 active core task</option>
-              <option value="2">Complete 2 active core tasks</option>
-              <option value="3">Complete 3 active core tasks</option>
-              <option value="all">Complete every active core task</option>
-            </select>
-          </label>
-        </div>
-      </section>
+      <label for="streakConsequenceInput">Consequence for failed days</label>
+      <textarea id="streakConsequenceInput"></textarea>
 
-      <section class="streak-setup-section streak-task-builder">
-        <div class="streak-setup-section-title">Routine Tasks</div>
-        <div class="streak-setup-section-note">Add the task first, then choose when it appears and whether it is core or optional.</div>
-        <label for="streakNewTaskInput">New task</label>
-        <div class="streak-add-task-row">
-          <input id="streakNewTaskInput" placeholder="Example: Reading" />
-          <button id="streakAddTaskBtn">Add Task</button>
-        </div>
-
-        <div id="streakTaskEditorList"></div>
-      </section>
-
-      <section class="streak-setup-section">
-        <label for="streakConsequenceInput">
-          Recovery rule after a failed day
-          <textarea id="streakConsequenceInput" placeholder="Example: Review the day and restart tomorrow."></textarea>
-        </label>
-      </section>
-
-      <div class="actions streak-setup-actions">
-        <button id="streakSaveSetupBtn" class="good">Save Routine</button>
-        <button id="streakResetDemoBtn" class="danger">Reset Archive</button>
+      <div class="actions">
+        <button id="streakSaveSetupBtn" class="good">Save Rules</button>
+        <button id="streakResetDemoBtn" class="danger">Reset Demo</button>
       </div>
     </div>
   </div>
@@ -13358,7 +13268,7 @@ header .player-card .player-growth-meta span:last-child {
     var STORE_ROUTINE = 'qt_daily_routine_hour_blocks_v1';
     var STORE_ROUTINE_SAVED = 'qt_daily_routine_saved_snapshot_v1';
     var STORE_MISSION_TEXT = 'qt_everyday_mission_text_v1';
-    var VERSION = 'growth-home-v1-permanent-xp-ledger';
+    var VERSION = 'merged-old-save-v15-numbered-list-mode';
     var editingQuestId = null;
     var draftTasks = [];
     var currentElementWeek = getWeekStart(new Date());
@@ -13450,6 +13360,8 @@ header .player-card .player-growth-meta span:last-child {
       var dailyList = byId('missionDailyList');
       var truthList = byId('missionTruthList');
       var line = byId('missionMainLine');
+      var commandMission = byId('commandMissionText');
+      var commandLine = byId('commandMissionLine');
 
       if (dailyList) {
         dailyList.innerHTML = mission.daily.map(function(item) {
@@ -13464,6 +13376,8 @@ header .player-card .player-growth-meta span:last-child {
       }
 
       if (line) line.textContent = mission.line;
+      if (commandMission) commandMission.textContent = mission.daily[0] || 'Prepare the mission board';
+      if (commandLine) commandLine.textContent = mission.line;
     }
 
     function openMissionEditModal() {
@@ -13581,23 +13495,11 @@ header .player-card .player-growth-meta span:last-child {
 
 
 
-    function normalizeXpData(value) {
-      if (!value || typeof value !== 'object' || Array.isArray(value)) value = {};
-      value.totalXp = Math.max(0, Number(value.totalXp) || 0);
-      if (!Array.isArray(value.awardedQuestIds)) value.awardedQuestIds = [];
-      value.awardedQuestIds = value.awardedQuestIds.map(String);
-      if (!value.questXpById || typeof value.questXpById !== 'object' || Array.isArray(value.questXpById)) {
-        value.questXpById = {};
-      }
-      return value;
-    }
-
     function getXpData() {
-      return normalizeXpData(readStore(STORE_XP, {
+      return readStore(STORE_XP, {
         totalXp: 0,
-        awardedQuestIds: [],
-        questXpById: {}
-      }));
+        awardedQuestIds: []
+      });
     }
 
     function getLegacyRewardData() {
@@ -13872,7 +13774,7 @@ header .player-card .player-growth-meta span:last-child {
     }
 
     function setXpData(value) {
-      writeStore(STORE_XP, normalizeXpData(value));
+      writeStore(STORE_XP, value);
     }
 
     function getQuestTypeLabel(type, longLabel) {
@@ -13902,68 +13804,34 @@ header .player-card .player-growth-meta span:last-child {
       return 2;
     }
 
-    var questCompleteToastTimer = null;
-
-    function showQuestCompleteResult(quest, xpGained, totalXp, beforeLevel, afterLevel) {
-      var toast = byId('questCompleteToast');
-      if (!toast || !quest) return;
-
-      var level = calculateLevel(totalXp);
-      var levelMessage = afterLevel > beforeLevel ?
-        ' Level up: Level ' + afterLevel + ' reached.' :
-        ' ' + level.toNext + ' XP until Level ' + Math.min(100, level.level + 1) + '.';
-
-      toast.innerHTML =
-        '<strong>QUEST COMPLETE</strong>' +
-        '<span>' + escapeHtml(quest.title || 'Quest') + ' gained +' +
-        escapeHtml(String(xpGained)) + ' XP. Total XP: ' +
-        escapeHtml(String(totalXp)) + '.' + escapeHtml(levelMessage) + '</span>';
-
-      toast.classList.remove('show');
-      void toast.offsetWidth;
-      toast.classList.add('show');
-
-      if (questCompleteToastTimer) clearTimeout(questCompleteToastTimer);
-      questCompleteToastTimer = setTimeout(function() {
-        toast.classList.remove('show');
-      }, 3600);
-    }
-
     function awardQuestXpOnce(quest) {
     if (!quest || quest.status !== 'complete') return;
 
     var data = getXpData();
-    var questId = String(quest.id);
-    if (data.awardedQuestIds.indexOf(questId) !== -1) return;
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
+    if (data.awardedQuestIds.indexOf(quest.id) !== -1) return;
 
     var beforeLevel = calculateLevel(data.totalXp || 0).level;
-    var xpGained = getQuestXp(quest);
 
-    data.totalXp = (data.totalXp || 0) + xpGained;
-    data.awardedQuestIds.push(questId);
-    data.questXpById[questId] = xpGained;
+    data.totalXp = (data.totalXp || 0) + getQuestXp(quest);
+    data.awardedQuestIds.push(quest.id);
     setXpData(data);
 
     var afterLevel = calculateLevel(data.totalXp || 0).level;
     awardMealPassesForLevelUp(beforeLevel, afterLevel);
     awardQuestRewardOnce(quest);
-    showQuestCompleteResult(quest, xpGained, data.totalXp || 0, beforeLevel, afterLevel);
   }
 
   function revokeQuestXpIfAwarded(quest) {
     if (!quest) return;
     var data = getXpData();
-    var questId = String(quest.id);
+    if (!Array.isArray(data.awardedQuestIds)) data.awardedQuestIds = [];
 
-    var index = data.awardedQuestIds.indexOf(questId);
+    var index = data.awardedQuestIds.indexOf(quest.id);
     if (index === -1) return;
 
-    var recordedXp = Number(data.questXpById[questId]);
-    if (!Number.isFinite(recordedXp) || recordedXp < 0) recordedXp = getQuestXp(quest);
-
     data.awardedQuestIds.splice(index, 1);
-    delete data.questXpById[questId];
-    data.totalXp = Math.max(0, (data.totalXp || 0) - recordedXp);
+    data.totalXp = Math.max(0, (data.totalXp || 0) - getQuestXp(quest));
     setXpData(data);
     }
 
@@ -14733,7 +14601,6 @@ function useMealPass() {
       byId('microInput').value = '';
       byId('submitQuestBtn').textContent = 'Add Quest';
       byId('cancelEditBtn').style.display = 'none';
-      if (byId('questEditorTitle')) byId('questEditorTitle').textContent = 'Create Quest';
       renderDraftTasks();
     }
 
@@ -15149,14 +15016,6 @@ function useMealPass() {
       var quests = getQuests();
 
       if (editingQuestId) {
-        var questBeforeEdit = quests.find(function(oldQuest) {
-          return oldQuest.id === editingQuestId;
-        });
-
-        if (questBeforeEdit && questBeforeEdit.status === 'complete' && status !== 'complete') {
-          revokeQuestXpIfAwarded(questBeforeEdit);
-        }
-
         quests = quests.map(function(oldQuest) {
           if (oldQuest.id !== editingQuestId) return oldQuest;
           quest.createdAt = oldQuest.createdAt || time;
@@ -15174,8 +15033,8 @@ function useMealPass() {
       if (quest.status === 'complete') awardQuestXpOnce(quest);
       beep('click');
       resetQuestForm();
-      closeQuestEditor();
       renderAll();
+      closeQuestCreator();
     }
 
     function updateQuestStatus(id, nextStatus) {
@@ -15267,27 +15126,44 @@ function useMealPass() {
       renderAll();
     }
 
-    function openQuestEditor(targetId) {
-      document.body.classList.add('quest-editor-open');
-      if (byId('questEditorTitle')) {
-        byId('questEditorTitle').textContent = editingQuestId ? 'Edit Quest' : 'Create Quest';
-      }
-
-      if (targetId) {
-        setTimeout(function() {
-          var target = byId(targetId);
-          if (!target) return;
-          try {
-            target.focus({ preventScroll: true });
-          } catch (error) {
-            target.focus();
-          }
-        }, 170);
-      }
+    function syncCommandCenterModalLock() {
+      var creatorOpen = byId('questCreatorModal') && byId('questCreatorModal').classList.contains('open');
+      var commandOpen = byId('dailyCommandModal') && byId('dailyCommandModal').classList.contains('open');
+      document.body.classList.toggle('qt-modal-open', Boolean(creatorOpen || commandOpen));
     }
 
-    function closeQuestEditor() {
-      document.body.classList.remove('quest-editor-open');
+    function openQuestCreator(title) {
+      var modal = byId('questCreatorModal');
+      if (!modal) return;
+      var sheetTitle = byId('questCreatorSheetTitle');
+      if (sheetTitle) sheetTitle.textContent = title || (editingQuestId ? 'Edit Quest' : 'Forge New Quest');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      syncCommandCenterModalLock();
+    }
+
+    function closeQuestCreator() {
+      var modal = byId('questCreatorModal');
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      syncCommandCenterModalLock();
+    }
+
+    function openDailyCommand() {
+      var modal = byId('dailyCommandModal');
+      if (!modal) return;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      syncCommandCenterModalLock();
+    }
+
+    function closeDailyCommand() {
+      var modal = byId('dailyCommandModal');
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      syncCommandCenterModalLock();
     }
 
     function focusQuestEditor(targetId) {
@@ -15295,7 +15171,7 @@ function useMealPass() {
       var editorPanel = byId('questEditorPanel') || target;
       if (!target) return;
 
-      openQuestEditor();
+      openQuestCreator(editingQuestId ? 'Edit Quest' : 'Forge New Quest');
 
       setTimeout(function() {
         try {
@@ -15333,7 +15209,6 @@ function useMealPass() {
       });
       byId('submitQuestBtn').textContent = 'Update Quest';
       byId('cancelEditBtn').style.display = 'inline-block';
-      if (byId('questEditorTitle')) byId('questEditorTitle').textContent = 'Edit Quest';
       byId('questStatusText').textContent = 'Editing quest. Make changes, then update.';
       renderDraftTasks();
       focusQuestEditor('questTitle');
@@ -15711,32 +15586,6 @@ function useMealPass() {
       '</div>';
     }
 
-    function getSevenDayCompletedCount() {
-      var cutoff = Date.now() - (7 * 24 * 60 * 60 * 1000);
-      var seen = {};
-      var count = 0;
-      var collections = [getQuests()];
-
-      getSaves().forEach(function(save) {
-        collections.push(Array.isArray(save.quests) ? save.quests : []);
-      });
-
-      collections.forEach(function(quests) {
-        quests.forEach(function(quest) {
-          if (!quest || quest.status !== 'complete' || !quest.completedAt) return;
-          var completedTime = new Date(quest.completedAt).getTime();
-          if (!Number.isFinite(completedTime) || completedTime < cutoff) return;
-
-          var key = String(quest.id || ((quest.title || 'quest') + '|' + quest.completedAt));
-          if (seen[key]) return;
-          seen[key] = true;
-          count += 1;
-        });
-      });
-
-      return count;
-    }
-
     function renderStats() {
       var quests = getQuests();
       var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
@@ -15760,15 +15609,6 @@ function useMealPass() {
       byId('xpText').textContent = level.current + ' / ' + level.needed + ' XP';
       byId('xpFill').style.width = level.percent + '%';
       byId('xpNote').textContent = level.level >= 100 ? 'Maximum rank reached' : level.toNext + ' XP until next level \u00B7 Main +5 / Side +2 / Emergency +1';
-      if (byId('weeklyGrowthText')) {
-        var weeklyCount = getSevenDayCompletedCount();
-        byId('weeklyGrowthText').textContent = '7-day growth: ' + weeklyCount + ' quest' + (weeklyCount === 1 ? '' : 's');
-      }
-      if (byId('nextUnlockText')) {
-        byId('nextUnlockText').textContent = level.level >= 100 ?
-          'Maximum rank reached' :
-          'Next unlock: Meal Pass at Level ' + (level.level + 1);
-      }
       syncManualXpInputs();
       renderRoutineTop();
     }
@@ -15895,16 +15735,16 @@ function useMealPass() {
     if (Array.isArray(save.defaults)) setCustomDefaults(save.defaults);
     if (Array.isArray(save.dayTemplates)) setDayTemplates(save.dayTemplates);
     if (save.elements && typeof save.elements === 'object') setElementsStore(save.elements);
+    if (save.xp && typeof save.xp === 'object') setXpData(save.xp);
+    if (save.levelRewards && typeof save.levelRewards === 'object') setLevelRewardData(save.levelRewards);
     if (save.questRewards && typeof save.questRewards === 'object') setQuestRewardData(save.questRewards);
-    if (!save.questRewards && save.rewards && typeof save.rewards === 'object') {
-      setQuestRewardData(save.rewards.questRewards || save.rewards);
-    }
+    if (!save.levelRewards && !save.questRewards && save.rewards && typeof save.rewards === 'object') setRewardData(save.rewards);
     if (save.routine && typeof save.routine === 'object') setRoutineData(save.routine);
     if (save.savedRoutine && typeof save.savedRoutine === 'object') setSavedRoutineData(save.savedRoutine);
 
     setActiveSaveId(save.id);
     byId('savePrompt').textContent = 'Active save: ' + save.name + '. Save Current Day will overwrite this save.';
-    byId('saveStatusText').textContent = 'Save loaded. Player XP was kept at its current total.';
+    byId('saveStatusText').textContent = 'Save loaded. You are now editing this save.';
     beep('load');
     showView('questsView');
   }
@@ -16012,7 +15852,8 @@ function useMealPass() {
         levelRewards: getLevelRewardData(),
         questRewards: getQuestRewardData(),
         routine: getRoutineData(),
-        savedRoutine: getSavedRoutineData()
+        savedRoutine: getSavedRoutineData(),
+        listMode: typeof getListModeData === 'function' ? getListModeData() : null
       };
       byId('dataBox').value = JSON.stringify(payload, null, 2);
       byId('dataBox').focus();
@@ -16087,6 +15928,7 @@ function useMealPass() {
       if (data.routine && typeof data.routine === 'object') setRoutineData(data.routine);
       else if (data.savedRoutine && typeof data.savedRoutine === 'object') setRoutineData(data.savedRoutine);
       if (data.missionText && typeof data.missionText === 'object') setMissionText(data.missionText);
+      if (data.listMode && typeof data.listMode === 'object' && typeof setListModeData === 'function') setListModeData(data.listMode);
       byId('saveStatusText').textContent = 'Import complete.';
       byId('savePrompt').textContent = 'Imported quest archive loaded.';
       beep('load');
@@ -16094,6 +15936,7 @@ function useMealPass() {
       renderDayTemplateSummary();
       renderMissionText();
       renderAll();
+      if (typeof renderListMode === 'function') renderListMode();
     }
 
     function countElementDone(key, data, config) {
@@ -16518,10 +16361,28 @@ function useMealPass() {
       var sideActive = quests.filter(function(quest) {
         return quest.type === 'side' && quest.status !== 'complete' && quest.status !== 'failed';
       });
+      var emergencyActive = quests.filter(function(quest) {
+        return quest.type === 'filler' && quest.status !== 'complete' && quest.status !== 'failed';
+      });
       var completed = quests.filter(function(quest) { return quest.status === 'complete'; });
       var failed = quests.filter(function(quest) { return quest.status === 'failed'; });
       var mainAll = quests.filter(function(quest) { return quest.type === 'main'; });
       var mainComplete = mainAll.filter(function(quest) { return quest.status === 'complete'; });
+      var boardQuests = quests.filter(function(quest) { return quest.status !== 'failed'; });
+      var clearedOnBoard = boardQuests.filter(function(quest) { return quest.status === 'complete'; }).length;
+      var victoryWeight = function(quest) {
+        if (quest.type === 'main') return 5;
+        if (quest.type === 'side') return 2;
+        if (quest.type === 'filler') return 1;
+        return 0;
+      };
+      var totalVictoryPoints = boardQuests.reduce(function(total, quest) {
+        return total + victoryWeight(quest);
+      }, 0);
+      var earnedVictoryPoints = boardQuests.reduce(function(total, quest) {
+        return total + (quest.status === 'complete' ? victoryWeight(quest) : 0);
+      }, 0);
+      var boardPercent = totalVictoryPoints ? Math.round((earnedVictoryPoints / totalVictoryPoints) * 100) : 0;
 
       if (byId('briefMainCount')) byId('briefMainCount').textContent = mainActive.length;
       if (byId('briefSideCount')) byId('briefSideCount').textContent = sideActive.length;
@@ -16529,10 +16390,29 @@ function useMealPass() {
       if (byId('briefFailedCount')) byId('briefFailedCount').textContent = failed.length;
       if (byId('briefMainClear')) byId('briefMainClear').textContent = mainComplete.length + ' / ' + mainAll.length;
 
+      if (byId('commandMainCount')) byId('commandMainCount').textContent = mainActive.length;
+      if (byId('commandSideCount')) byId('commandSideCount').textContent = sideActive.length;
+      if (byId('commandEmergencyCount')) byId('commandEmergencyCount').textContent = emergencyActive.length;
+      if (byId('commandCompleteCount')) byId('commandCompleteCount').textContent = completed.length;
+      if (byId('commandProgressText')) byId('commandProgressText').textContent = earnedVictoryPoints + ' / ' + totalVictoryPoints + ' victory points';
+      if (byId('victoryPercent')) byId('victoryPercent').textContent = boardPercent + '%';
+      if (byId('commandProgressFill')) {
+        byId('commandProgressFill').style.width = boardPercent + '%';
+        if (byId('commandProgressFill').parentElement) {
+          byId('commandProgressFill').parentElement.setAttribute('aria-valuenow', String(boardPercent));
+        }
+      }
+
       if (byId('briefingStatus')) {
         if (mainAll.length === 0) byId('briefingStatus').textContent = 'No main quests';
         else if (mainComplete.length === mainAll.length) byId('briefingStatus').textContent = 'Main Quests Complete';
         else byId('briefingStatus').textContent = 'Mission active';
+      }
+
+      if (byId('commandStatus')) {
+        if (quests.length === 0) byId('commandStatus').textContent = 'Standing by';
+        else if (boardQuests.length > 0 && clearedOnBoard === boardQuests.length) byId('commandStatus').textContent = 'Board cleared';
+        else byId('commandStatus').textContent = 'Mission active';
       }
     }
 
@@ -16579,41 +16459,10 @@ function useMealPass() {
     }
 
     function bindEvents() {
-      var questEditorPanel = byId('questEditorPanel');
-      var questEditorBackdrop = byId('questEditorBackdrop');
-      if (questEditorBackdrop && questEditorBackdrop.parentNode !== document.body) {
-        document.body.appendChild(questEditorBackdrop);
-      }
-      if (questEditorPanel && questEditorPanel.parentNode !== document.body) {
-        document.body.appendChild(questEditorPanel);
-      }
-
       document.querySelector('.tabs').addEventListener('click', function(event) {
         var button = event.target.closest('[data-view]');
         if (!button) return;
         showView(button.getAttribute('data-view'));
-      });
-
-      if (byId('openQuestEditorBtn')) {
-        byId('openQuestEditorBtn').addEventListener('click', function() {
-          resetQuestForm();
-          openQuestEditor('questTitle');
-          beep('click');
-        });
-      }
-
-      if (byId('closeQuestEditorBtn')) {
-        byId('closeQuestEditorBtn').addEventListener('click', closeQuestEditor);
-      }
-
-      if (byId('questEditorBackdrop')) {
-        byId('questEditorBackdrop').addEventListener('click', closeQuestEditor);
-      }
-
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && document.body.classList.contains('quest-editor-open')) {
-          closeQuestEditor();
-        }
       });
 
       byId('addMicroBtn').addEventListener('click', addDraftTask);
@@ -16705,8 +16554,8 @@ function useMealPass() {
 
       byId('cancelEditBtn').addEventListener('click', function() {
         resetQuestForm();
-        closeQuestEditor();
         byId('questStatusText').textContent = 'Edit cancelled.';
+        closeQuestCreator();
       });
 
       document.body.addEventListener('click', function(event) {
@@ -17561,12 +17410,56 @@ function useMealPass() {
 
 
     function setupMobileSectionToggles() {
+      var openDailyCommandBtn = byId('openDailyCommandBtn');
+      var closeDailyCommandBtn = byId('closeDailyCommandBtn');
+      var dailyCommandModal = byId('dailyCommandModal');
+      var quickEditMissionBtn = byId('quickEditMissionBtn');
+      var openQuestCreatorBtn = byId('openQuestCreatorBtn');
+      var closeQuestCreatorBtn = byId('closeQuestCreatorBtn');
+      var questCreatorModal = byId('questCreatorModal');
+
+      if (openDailyCommandBtn) openDailyCommandBtn.addEventListener('click', openDailyCommand);
+      if (closeDailyCommandBtn) closeDailyCommandBtn.addEventListener('click', closeDailyCommand);
+      if (quickEditMissionBtn) quickEditMissionBtn.addEventListener('click', openMissionEditModal);
+      if (openQuestCreatorBtn) {
+        openQuestCreatorBtn.addEventListener('click', function() {
+          openQuestCreator('Forge New Quest');
+          setTimeout(function() {
+            try {
+              byId('questTitle').focus({ preventScroll: true });
+            } catch (error) {
+              byId('questTitle').focus();
+            }
+          }, 100);
+        });
+      }
+      if (closeQuestCreatorBtn) closeQuestCreatorBtn.addEventListener('click', closeQuestCreator);
+      if (dailyCommandModal) {
+        dailyCommandModal.addEventListener('click', function(event) {
+          if (event.target === dailyCommandModal) closeDailyCommand();
+        });
+      }
+      if (questCreatorModal) {
+        questCreatorModal.addEventListener('click', function(event) {
+          if (event.target === questCreatorModal) closeQuestCreator();
+        });
+      }
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key !== 'Escape') return;
+        if (byId('questCreatorModal') && byId('questCreatorModal').classList.contains('open')) {
+          closeQuestCreator();
+          return;
+        }
+        if (byId('dailyCommandModal') && byId('dailyCommandModal').classList.contains('open')) {
+          closeDailyCommand();
+        }
+      });
+
       var briefingBtn = byId('toggleBriefingBtn');
       var briefingBody = byId('dailyBriefingBody');
 
       if (briefingBtn && briefingBody) {
-        briefingBody.classList.add('collapsed-section');
-        briefingBtn.textContent = 'Show';
         briefingBtn.addEventListener('click', function() {
           briefingBody.classList.toggle('collapsed-section');
           briefingBtn.textContent = briefingBody.classList.contains('collapsed-section') ? 'Show' : 'Hide';
@@ -17578,11 +17471,10 @@ function useMealPass() {
       var missionLine = byId('missionMainLine');
 
       if (missionBtn && missionBody && missionLine) {
-        missionBody.classList.add('collapsed-section');
-        missionLine.classList.remove('collapsed-section');
-        missionBtn.textContent = 'Show';
         missionBtn.addEventListener('click', function() {
           missionBody.classList.toggle('collapsed-section');
+          missionLine.classList.toggle('collapsed-section');
+
           var isClosed = missionBody.classList.contains('collapsed-section');
           missionBtn.textContent = isClosed ? 'Show' : 'Hide';
         });
@@ -17820,9 +17712,9 @@ function requiredToday(task, date, index, data) {
 }
 
 function taskRule(task) {
-  if (task.schedule === "daily") return "Daily" + (task.required ? " \u00B7 core" : " \u00B7 optional");
-  if (task.schedule === "specific") return task.days.map(d => fullDays[d]).join(", ") + (task.required ? " \u00B7 core" : " \u00B7 optional");
-  if (task.schedule === "weekly") return (task.weeklyTarget || 1) + "x/week" + (task.required ? " \u00B7 core" : " \u00B7 optional");
+  if (task.schedule === "daily") return "Daily" + (task.required ? " \u00B7 required" : " \u00B7 optional");
+  if (task.schedule === "specific") return task.days.map(d => fullDays[d]).join(", ") + (task.required ? " \u00B7 required" : " \u00B7 optional");
+  if (task.schedule === "weekly") return (task.weeklyTarget || 1) + "x/week" + (task.required ? " \u00B7 required" : " \u00B7 optional");
   return "Optional/random \u00B7 bonus";
 }
 
@@ -17907,8 +17799,8 @@ function renderMain() {
   const data = read();
   s$("streakConsequenceTextView").textContent = data.setup.consequence;
   s$("streakWinRuleText").textContent = data.setup.requiredCount === "all"
-    ? "Complete every active core task. Inactive and optional tasks do not hurt the day."
-    : "Complete at least " + data.setup.requiredCount + " active core task(s). Inactive and optional tasks do not hurt the day.";
+    ? "Win = all active required tasks completed. Inactive and optional tasks do not hurt the day."
+    : "Win = at least " + data.setup.requiredCount + " active required task(s) completed. Inactive and optional tasks do not hurt the day.";
 
   s$("streakTaskList").innerHTML = data.setup.tasks.map((task, i) => `
     <div class="quest-pill">
@@ -17960,8 +17852,8 @@ function renderQuickUpdate() {
   });
 
   const winRule = data.setup.requiredCount === "all"
-    ? "Need every active core task"
-    : "Need " + data.setup.requiredCount + " core task(s)";
+    ? "Need all active required tasks"
+    : "Need " + data.setup.requiredCount + " required task(s)";
 
   box.innerHTML = `
     <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
@@ -18134,7 +18026,7 @@ function renderLog() {
     const date = fromKey(k);
     const r = result(e, data.setup, date, data);
     const icon = r === "perfect" ? "\u2605" : r === "win" ? "\u2713" : r === "partial" ? "\u25D0" : r === "protected" ? "\u25C6" : r === "failed" ? "\u00D7" : "\u00B7";
-    const consequence = r === "failed" ? "<br><b>Recovery rule:</b> " + escapeHtml(data.setup.consequence) : "";
+    const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
     const manual = e.manualStatus && e.manualStatus !== "auto" ? '<span class="manual-status-banner">Manual</span> ' : "";
     return `
       <div class="log-item">
@@ -18227,17 +18119,6 @@ function closeSetup() {
   s$("streakSetupModal").classList.remove("open");
 }
 
-function updateStreakTaskCardControls(card) {
-  if (!card) return;
-  const scheduleSelect = card.querySelector("[data-streak-task-schedule]");
-  const schedule = scheduleSelect ? scheduleSelect.value : "daily";
-  const weeklyField = card.querySelector("[data-streak-weekly-field]");
-  const daysField = card.querySelector("[data-streak-days-field]");
-
-  if (weeklyField) weeklyField.hidden = schedule !== "weekly";
-  if (daysField) daysField.hidden = schedule !== "specific";
-}
-
 function renderSetupModal() {
   const data = read();
   s$("streakNameInput").value = data.setup.name;
@@ -18248,50 +18129,33 @@ function renderSetupModal() {
     <div class="task-editor" data-streak-task-card="${i}">
       <div class="task-top">
         <i class="quest-color" style="background:${color(i)}"></i>
-        <label>
-          <span>Task ${i + 1}</span>
-          <input data-streak-task-name value="${escapeHtml(task.name)}" aria-label="Task ${i + 1} name">
-        </label>
-        <button class="danger" type="button" title="Delete task" aria-label="Delete task ${i + 1}" data-streak-delete-task="${i}">Delete</button>
+        <input data-streak-task-name value="${escapeHtml(task.name)}">
+        <button class="danger" title="Delete task" data-streak-delete-task="${i}">\u00D7</button>
       </div>
       <div class="task-details">
-        <label>
-          Schedule
-          <select data-streak-task-schedule>
-            <option value="daily" ${task.schedule === "daily" ? "selected" : ""}>Every day</option>
-            <option value="specific" ${task.schedule === "specific" ? "selected" : ""}>Selected days</option>
-            <option value="weekly" ${task.schedule === "weekly" ? "selected" : ""}>Weekly target</option>
-            <option value="optional" ${task.schedule === "optional" ? "selected" : ""}>Random / optional</option>
-          </select>
-        </label>
-        <label>
-          Importance
-          <select data-streak-task-required>
-            <option value="required" ${task.required ? "selected" : ""}>Core task</option>
-            <option value="optional" ${!task.required ? "selected" : ""}>Optional task</option>
-          </select>
-        </label>
-        <label data-streak-weekly-field>
-          Weekly goal
-          <select data-streak-weekly-target>
-            <option value="1" ${task.weeklyTarget === 1 ? "selected" : ""}>1 time per week</option>
-            <option value="2" ${task.weeklyTarget === 2 ? "selected" : ""}>2 times per week</option>
-            <option value="3" ${task.weeklyTarget === 3 ? "selected" : ""}>3 times per week</option>
-            <option value="4" ${task.weeklyTarget === 4 ? "selected" : ""}>4 times per week</option>
-            <option value="5" ${task.weeklyTarget === 5 ? "selected" : ""}>5 times per week</option>
-          </select>
-        </label>
+        <select data-streak-task-schedule>
+          <option value="daily" ${task.schedule === "daily" ? "selected" : ""}>Daily</option>
+          <option value="specific" ${task.schedule === "specific" ? "selected" : ""}>Specific days</option>
+          <option value="weekly" ${task.schedule === "weekly" ? "selected" : ""}>Weekly target</option>
+          <option value="optional" ${task.schedule === "optional" ? "selected" : ""}>Optional/random</option>
+        </select>
+        <select data-streak-task-required>
+          <option value="required" ${task.required ? "selected" : ""}>Required</option>
+          <option value="optional" ${!task.required ? "selected" : ""}>Optional</option>
+        </select>
+        <select data-streak-weekly-target>
+          <option value="1" ${task.weeklyTarget === 1 ? "selected" : ""}>1x/week</option>
+          <option value="2" ${task.weeklyTarget === 2 ? "selected" : ""}>2x/week</option>
+          <option value="3" ${task.weeklyTarget === 3 ? "selected" : ""}>3x/week</option>
+          <option value="4" ${task.weeklyTarget === 4 ? "selected" : ""}>4x/week</option>
+          <option value="5" ${task.weeklyTarget === 5 ? "selected" : ""}>5x/week</option>
+        </select>
       </div>
-      <div class="streak-days-field" data-streak-days-field>
-        <div class="streak-field-label">Active days</div>
-        <div class="days-picker">
-          ${dayNames.map((d, dayIndex) => `<button type="button" class="day-chip ${task.days.includes(dayIndex) ? "active" : ""}" data-streak-day-chip="${dayIndex}">${d}</button>`).join("")}
-        </div>
+      <div class="days-picker">
+        ${dayNames.map((d, dayIndex) => `<button type="button" class="day-chip ${task.days.includes(dayIndex) ? "active" : ""}" data-streak-day-chip="${dayIndex}">${d}</button>`).join("")}
       </div>
     </div>
   `).join("");
-
-  document.querySelectorAll("#streakTaskEditorList [data-streak-task-card]").forEach(updateStreakTaskCardControls);
 }
 
 function openDay(k) {
@@ -18321,7 +18185,7 @@ function renderDayModal() {
   const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
     ? `<br><span class="manual-status-banner">Manual edit active</span>`
     : `<br><span class="manual-status-banner">Auto mode</span>`;
-  s$("streakDayResultBox").innerHTML = `<b>Current day result:</b> ${r.toUpperCase()}<br>Active core: ${requiredActive}. Completed core: ${completedRequired}. ${manualLine}`;
+  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
 
   document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
@@ -18334,7 +18198,7 @@ function renderDayModal() {
     const state = modalEntry.states[i] || "skip";
     const isActive = active(task,date,i,data);
     const isRequired = requiredToday(task,date,i,data);
-    const meta = isActive ? (isRequired ? "Active today \u00B7 core" : "Optional/bonus") : "Not active today";
+    const meta = isActive ? (isRequired ? "Active today \u00B7 required" : "Optional/bonus") : "Not active today";
     return `
       <div class="check-row ${isActive ? "" : "inactive"}">
         <i class="quest-color" style="background:${color(i)}"></i>
@@ -18386,7 +18250,7 @@ function clearDay() {
 }
 
 function resetDemo() {
-  if (!confirm("Reset the entire Progress Archive? This removes its routine tasks and day records.")) return;
+  if (!confirm("Reset demo data?")) return;
   localStorage.removeItem(STORE);
   selectedMonth = new Date();
   selectedMonth.setDate(1);
@@ -18414,9 +18278,6 @@ function render() {
 }
 
 document.addEventListener("click", event => {
-  const editRoutine = event.target.closest("[data-open-streak-setup]");
-  if (editRoutine) return openSetup();
-
   const delTask = event.target.closest("[data-streak-delete-task]");
   if (delTask) return deleteTask(Number(delTask.dataset.streakDeleteTask));
 
@@ -18425,11 +18286,6 @@ document.addEventListener("click", event => {
 
   const state = event.target.closest("[data-streak-state]");
   if (state) return setState(Number(state.dataset.streakIndex), state.dataset.streakState);
-});
-
-document.addEventListener("change", event => {
-  if (!event.target.matches("[data-streak-task-schedule]")) return;
-  updateStreakTaskCardControls(event.target.closest("[data-streak-task-card]"));
 });
 
 if (s$("streakQuickAllDoneBtn")) s$("streakQuickAllDoneBtn").addEventListener("click", () => quickSetToday("all"));
@@ -18657,6 +18513,537 @@ render();
   }, true);
 
   window.addEventListener('resize', resetAllQuestCards);
+})();
+</script>
+
+<script>
+/* ===== QUEST TERMINAL NUMBERED LIST MODE V37 JS ===== */
+(function() {
+  var STORE_LIST_MODE = 'qt_list_mode_v1';
+  var listEditingTaskId = null;
+
+  function listMakeId() {
+    if (typeof makeId === 'function') return makeId();
+    return 'list-' + String(Date.now()) + '-' + String(Math.random()).slice(2);
+  }
+
+  function createFreshList() {
+    return {
+      id: listMakeId(),
+      createdAt: new Date().toISOString(),
+      awardedXp: 0,
+      tasks: []
+    };
+  }
+
+  function normalizeListModeData(data) {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) data = {};
+    if (!data.current || typeof data.current !== 'object' || Array.isArray(data.current)) data.current = createFreshList();
+    if (!data.current.id) data.current.id = listMakeId();
+    if (!data.current.createdAt) data.current.createdAt = new Date().toISOString();
+    data.current.awardedXp = Math.max(0, Math.min(5, Math.floor(Number(data.current.awardedXp) || 0)));
+    if (!Array.isArray(data.current.tasks)) data.current.tasks = [];
+
+    data.current.tasks = data.current.tasks.map(function(task) {
+      if (!task || typeof task !== 'object' || Array.isArray(task)) task = {};
+      return {
+        id: task.id || listMakeId(),
+        text: String(task.text || '').trim().slice(0, 160),
+        done: Boolean(task.done),
+        removed: Boolean(task.removed),
+        createdAt: task.createdAt || new Date().toISOString(),
+        completedAt: task.completedAt || null,
+        removedAt: task.removedAt || null
+      };
+    }).filter(function(task) {
+      return Boolean(task.text);
+    });
+
+    if (!Array.isArray(data.history)) data.history = [];
+    data.history = data.history.slice(0, 50);
+    data.version = 1;
+    return data;
+  }
+
+  function getListModeData() {
+    var stored = typeof readStore === 'function' ? readStore(STORE_LIST_MODE, null) : null;
+    return normalizeListModeData(stored || { current: createFreshList(), history: [] });
+  }
+
+  function setListModeData(data) {
+    data = normalizeListModeData(data);
+    if (typeof writeStore === 'function') writeStore(STORE_LIST_MODE, data);
+    else localStorage.setItem(STORE_LIST_MODE, JSON.stringify(data));
+  }
+
+  function getListMetrics(data) {
+    data = normalizeListModeData(data);
+    var tasks = data.current.tasks;
+    var total = tasks.length;
+    var completed = tasks.filter(function(task) { return task.done; }).length;
+    var removed = tasks.filter(function(task) { return task.removed; }).length;
+    var visible = tasks.filter(function(task) { return !task.removed; }).length;
+    var percent = total ? Math.round((completed / total) * 100) : 0;
+    var maxXp = total ? Math.max(1, Math.min(5, Math.ceil(total / 10))) : 0;
+    maxXp = Math.max(maxXp, Math.max(0, Math.min(5, Number(data.current.awardedXp) || 0)));
+
+    return {
+      total: total,
+      completed: completed,
+      removed: removed,
+      visible: visible,
+      percent: Math.max(0, Math.min(100, percent)),
+      maxXp: maxXp
+    };
+  }
+
+  function getListXpTier(percent, maxXp) {
+    maxXp = Math.max(0, Math.min(5, Math.floor(Number(maxXp) || 0)));
+    if (!maxXp) return 0;
+    if (percent >= 100) return maxXp;
+    if (percent >= 75) return Math.max(1, Math.round(maxXp * 0.6));
+    if (percent >= 50) return Math.max(1, Math.floor(maxXp * 0.25));
+    return 0;
+  }
+
+  function awardListMilestoneXp(data) {
+    var metrics = getListMetrics(data);
+    var targetXp = getListXpTier(metrics.percent, metrics.maxXp);
+    var currentXp = Math.max(0, Math.min(5, Number(data.current.awardedXp) || 0));
+    var xpData = typeof getXpData === 'function' ? getXpData() : { totalXp: 0, awardedQuestIds: [] };
+
+    if (!xpData.listModeAwards || typeof xpData.listModeAwards !== 'object' || Array.isArray(xpData.listModeAwards)) {
+      xpData.listModeAwards = {};
+    }
+
+    var ledgerXp = Math.max(0, Math.min(5, Number(xpData.listModeAwards[data.current.id]) || 0));
+    currentXp = Math.max(currentXp, ledgerXp);
+    targetXp = Math.max(currentXp, targetXp);
+    data.current.awardedXp = targetXp;
+    xpData.listModeAwards[data.current.id] = targetXp;
+
+    var addedXp = targetXp - currentXp;
+    if (addedXp <= 0) return 0;
+
+    var beforeLevel = typeof calculateLevel === 'function' ? calculateLevel(Number(xpData.totalXp) || 0).level : 1;
+    xpData.totalXp = Math.max(0, Number(xpData.totalXp) || 0) + addedXp;
+    if (!Array.isArray(xpData.awardedQuestIds)) xpData.awardedQuestIds = [];
+    if (typeof setXpData === 'function') setXpData(xpData);
+
+    if (typeof calculateLevel === 'function' && typeof awardMealPassesForLevelUp === 'function') {
+      var afterLevel = calculateLevel(xpData.totalXp).level;
+      awardMealPassesForLevelUp(beforeLevel, afterLevel);
+    }
+
+    return addedXp;
+  }
+
+  function listEscape(value) {
+    if (typeof escapeHtml === 'function') return escapeHtml(String(value || ''));
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function setListStatus(message, isReward) {
+    var status = document.getElementById('listModeStatus');
+    if (!status) return;
+    status.textContent = message || '';
+    status.classList.toggle('reward', Boolean(isReward));
+  }
+
+  function renderListMode() {
+    var data = getListModeData();
+    var metrics = getListMetrics(data);
+    var visibleTasks = data.current.tasks.filter(function(task) { return !task.removed; });
+    var list = document.getElementById('listTaskList');
+    var percent = document.getElementById('listVictoryPercent');
+    var fill = document.getElementById('listVictoryFill');
+    var count = document.getElementById('listVictoryCount');
+    var xpEarned = document.getElementById('listXpEarned');
+    var visibleCount = document.getElementById('listVisibleCount');
+    var summary = document.getElementById('listTaskSummary');
+    var completedInput = document.getElementById('listCompletedCountInput');
+    var milestone50 = document.getElementById('listMilestone50Xp');
+    var milestone75 = document.getElementById('listMilestone75Xp');
+    var milestone100 = document.getElementById('listMilestone100Xp');
+    var rewardNote = document.getElementById('listRewardNote');
+
+    setListModeData(data);
+
+    if (percent) percent.textContent = metrics.percent + '%';
+    if (fill) {
+      fill.style.width = metrics.percent + '%';
+      if (fill.parentElement) fill.parentElement.setAttribute('aria-valuenow', String(metrics.percent));
+    }
+    if (count) count.textContent = metrics.completed + ' / ' + metrics.total + ' tasks complete';
+    if (xpEarned) xpEarned.textContent = data.current.awardedXp + ' / ' + metrics.maxXp + ' XP earned';
+    if (visibleCount) visibleCount.textContent = metrics.visible + (metrics.visible === 1 ? ' task' : ' tasks');
+    if (completedInput && document.activeElement !== completedInput) completedInput.value = String(metrics.completed);
+    if (completedInput) completedInput.max = String(metrics.total);
+    if (milestone50) milestone50.textContent = getListXpTier(50, metrics.maxXp) + ' XP total';
+    if (milestone75) milestone75.textContent = getListXpTier(75, metrics.maxXp) + ' XP total';
+    if (milestone100) milestone100.textContent = getListXpTier(100, metrics.maxXp) + ' XP total';
+    if (rewardNote) rewardNote.textContent = metrics.total
+      ? 'This ' + metrics.total + '-task list can earn up to ' + metrics.maxXp + ' XP. XP milestones are awarded once.'
+      : 'XP grows with the size of your list: up to 5 XP for 41 or more tasks.';
+
+    document.querySelectorAll('[data-list-milestone]').forEach(function(milestone) {
+      var threshold = Number(milestone.getAttribute('data-list-milestone'));
+      var milestoneXp = getListXpTier(threshold, metrics.maxXp);
+      milestone.classList.toggle('reached', milestoneXp > 0 && data.current.awardedXp >= milestoneXp);
+    });
+
+    if (summary) {
+      summary.innerHTML =
+        '<span>Original: ' + metrics.total + '</span>' +
+        '<span>Completed: ' + metrics.completed + '</span>' +
+        '<span>Removed: ' + metrics.removed + '</span>' +
+        '<span>List XP: ' + data.current.awardedXp + '</span>';
+    }
+
+    if (!list) return;
+    list.innerHTML = '';
+
+    if (!visibleTasks.length) {
+      list.innerHTML = '<div class="list-task-empty">' +
+        (metrics.total ? 'No tasks remain on the board. Removed tasks still count in the original total.' : 'Your list is empty. Add the next thing you need to do.') +
+        '</div>';
+      return;
+    }
+
+    visibleTasks.forEach(function(task, index) {
+      var row = document.createElement('div');
+      row.className = 'list-task-row' + (task.done ? ' completed' : '');
+      row.setAttribute('data-list-task-id', task.id);
+
+      if (listEditingTaskId === task.id) {
+        row.innerHTML =
+          '<span class="list-task-number">' + (index + 1) + '.</span>' +
+          '<input class="list-task-check" type="checkbox" ' + (task.done ? 'checked ' : '') + 'disabled aria-label="Task completion locked while editing" />' +
+          '<div class="list-edit-form">' +
+            '<input class="list-edit-input" type="text" maxlength="160" value="' + listEscape(task.text) + '" aria-label="Edit task" />' +
+            '<div class="list-edit-actions">' +
+              '<button type="button" data-list-action="save-edit">Save</button>' +
+              '<button type="button" data-list-action="cancel-edit">Cancel</button>' +
+            '</div>' +
+          '</div>';
+      } else {
+        row.innerHTML =
+          '<span class="list-task-number">' + (index + 1) + '.</span>' +
+          '<input class="list-task-check" type="checkbox" data-list-action="toggle" ' + (task.done ? 'checked ' : '') + 'aria-label="' + (task.done ? 'Mark task unfinished' : 'Complete task') + '" />' +
+          '<div class="list-task-text">' + listEscape(task.text) + '</div>' +
+          '<div class="list-task-actions">' +
+            '<button type="button" data-list-action="edit">Edit</button>' +
+            '<button type="button" class="list-delete-button" data-list-action="delete">Delete</button>' +
+          '</div>';
+      }
+
+      list.appendChild(row);
+    });
+  }
+
+  function setQuestTerminalMode(mode, playSound) {
+    mode = mode === 'list' ? 'list' : 'quest';
+    var questContent = document.getElementById('questModeContent');
+    var listContent = document.getElementById('listModeContent');
+
+    if (questContent) questContent.hidden = mode !== 'quest';
+    if (listContent) listContent.hidden = mode !== 'list';
+
+    document.querySelectorAll('[data-quest-terminal-mode]').forEach(function(button) {
+      var isActive = button.getAttribute('data-quest-terminal-mode') === mode;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      button.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+
+    if (mode === 'list') renderListMode();
+    if (playSound && typeof beep === 'function') beep('click');
+  }
+
+  function addListTask() {
+    var input = document.getElementById('listTaskInput');
+    var rawText = input ? input.value : '';
+    var taskLines = rawText.split(/\r?\n/).map(function(line) {
+      return line.replace(/^\s*(?:\d+[.)]|[-*\u2022])\s*/, '').trim().slice(0, 160);
+    }).filter(function(line) { return Boolean(line); });
+    if (!taskLines.length) {
+      setListStatus('Write at least one task before adding it.', false);
+      return;
+    }
+
+    var data = getListModeData();
+    taskLines.forEach(function(text) {
+      data.current.tasks.push({
+        id: listMakeId(),
+        text: text,
+        done: false,
+        removed: false,
+        createdAt: new Date().toISOString(),
+        completedAt: null,
+        removedAt: null
+      });
+    });
+
+    setListModeData(data);
+    input.value = '';
+    renderListMode();
+    setListStatus(taskLines.length + (taskLines.length === 1 ? ' task added.' : ' tasks added.'), false);
+    if (typeof beep === 'function') beep('save');
+    input.focus();
+  }
+
+  function recordListCompletedCount() {
+    var input = document.getElementById('listCompletedCountInput');
+    var requested = input ? Number(input.value) : NaN;
+    if (!Number.isFinite(requested)) {
+      setListStatus('Type how many tasks you completed.', false);
+      if (input) input.focus();
+      return;
+    }
+
+    var data = getListModeData();
+    var visibleTasks = data.current.tasks.filter(function(task) { return !task.removed; });
+    var completedRemoved = data.current.tasks.filter(function(task) { return task.removed && task.done; }).length;
+    var maxCompletable = completedRemoved + visibleTasks.length;
+    var target = Math.max(completedRemoved, Math.min(maxCompletable, Math.floor(requested)));
+    var desiredVisible = target - completedRemoved;
+    var currentVisible = visibleTasks.filter(function(task) { return task.done; }).length;
+
+    if (desiredVisible > currentVisible) {
+      var remainingToComplete = desiredVisible - currentVisible;
+      visibleTasks.forEach(function(task) {
+        if (!task.done && remainingToComplete > 0) {
+          task.done = true;
+          task.completedAt = new Date().toISOString();
+          remainingToComplete -= 1;
+        }
+      });
+    } else if (desiredVisible < currentVisible) {
+      var remainingToReopen = currentVisible - desiredVisible;
+      visibleTasks.slice().reverse().forEach(function(task) {
+        if (task.done && remainingToReopen > 0) {
+          task.done = false;
+          task.completedAt = null;
+          remainingToReopen -= 1;
+        }
+      });
+    }
+
+    var addedXp = awardListMilestoneXp(data);
+    setListModeData(data);
+    renderListMode();
+    var metrics = getListMetrics(data);
+
+    if (addedXp > 0) {
+      setListStatus('Progress recorded: ' + metrics.completed + ' of ' + metrics.total + ' complete. +' + addedXp + ' XP unlocked.', true);
+      if (typeof beep === 'function') beep('complete');
+    } else {
+      setListStatus('Progress recorded: ' + metrics.completed + ' of ' + metrics.total + ' tasks complete.', false);
+      if (typeof beep === 'function') beep('save');
+    }
+    if (typeof renderStats === 'function') renderStats();
+  }
+
+  function saveListTaskEdit(taskId) {
+    var row = document.querySelector('[data-list-task-id="' + taskId + '"]');
+    var input = row ? row.querySelector('.list-edit-input') : null;
+    var text = input ? input.value.trim() : '';
+    if (!text) {
+      setListStatus('A task needs a name.', false);
+      if (input) input.focus();
+      return;
+    }
+
+    var data = getListModeData();
+    var task = data.current.tasks.find(function(item) { return item.id === taskId; });
+    if (!task) return;
+    task.text = text;
+    listEditingTaskId = null;
+    setListModeData(data);
+    renderListMode();
+    setListStatus('Task updated.', false);
+    if (typeof beep === 'function') beep('save');
+  }
+
+  function toggleListTask(taskId) {
+    var data = getListModeData();
+    var task = data.current.tasks.find(function(item) { return item.id === taskId; });
+    if (!task || task.removed) return;
+
+    task.done = !task.done;
+    task.completedAt = task.done ? new Date().toISOString() : null;
+    var addedXp = awardListMilestoneXp(data);
+    setListModeData(data);
+    renderListMode();
+
+    var metrics = getListMetrics(data);
+    if (addedXp > 0) {
+      setListStatus('Victory milestone reached: +' + addedXp + ' XP. The List Victory Meter is now ' + metrics.percent + '%.', true);
+      if (typeof beep === 'function') beep('complete');
+    } else if (task.done) {
+      setListStatus('Task complete. Victory Meter: ' + metrics.percent + '%.', false);
+      if (typeof beep === 'function') beep('complete');
+    } else {
+      setListStatus('Task reopened. XP already unlocked by this list is not awarded again.', false);
+      if (typeof beep === 'function') beep('click');
+    }
+
+    if (typeof renderStats === 'function') renderStats();
+  }
+
+  function removeListTask(taskId) {
+    var data = getListModeData();
+    var task = data.current.tasks.find(function(item) { return item.id === taskId; });
+    if (!task || task.removed) return;
+
+    var message = task.done
+      ? 'Remove this completed task from view? Its completion and earned XP will remain recorded for this list.'
+      : 'Delete this unfinished task? It will leave the board, but it will remain in the original task total and will not raise the Victory Meter.';
+    if (!confirm(message)) return;
+
+    task.removed = true;
+    task.removedAt = new Date().toISOString();
+    if (listEditingTaskId === taskId) listEditingTaskId = null;
+    setListModeData(data);
+    renderListMode();
+    setListStatus(task.done ? 'Completed task removed from view. Its completion remains recorded.' : 'Task removed. It still counts in the original total as unfinished.', false);
+    if (typeof beep === 'function') beep('fail');
+  }
+
+  function startNewList() {
+    var data = getListModeData();
+    var metrics = getListMetrics(data);
+
+    if (metrics.total > 0 && !confirm('Start a new blank list? The current list will leave the board. XP already earned will stay on your Player File.')) return;
+
+    if (metrics.total > 0) {
+      data.history.unshift({
+        id: data.current.id,
+        createdAt: data.current.createdAt,
+        endedAt: new Date().toISOString(),
+        originalTasks: metrics.total,
+        completedTasks: metrics.completed,
+        removedTasks: metrics.removed,
+        percent: metrics.percent,
+        awardedXp: data.current.awardedXp
+      });
+      data.history = data.history.slice(0, 50);
+    }
+
+    data.current = createFreshList();
+    listEditingTaskId = null;
+    setListModeData(data);
+    renderListMode();
+    setListStatus('New list started. Previous List Mode XP remains on your Player File.', false);
+    if (typeof beep === 'function') beep('load');
+    var input = document.getElementById('listTaskInput');
+    if (input) input.focus();
+  }
+
+  function bindListMode() {
+    var switcher = document.querySelector('#questsView .qt-mode-switch');
+    var activeQuestToggle = document.getElementById('activeQuestsToggle');
+    var activeQuestBoard = document.getElementById('activeQuestBoard');
+    var addButton = document.getElementById('addListTaskButton');
+    var input = document.getElementById('listTaskInput');
+    var taskList = document.getElementById('listTaskList');
+    var newListButton = document.getElementById('startNewListButton');
+    var completedInput = document.getElementById('listCompletedCountInput');
+    var recordButton = document.getElementById('recordListProgressButton');
+
+    if (switcher) {
+      switcher.addEventListener('click', function(event) {
+        var button = event.target.closest('[data-quest-terminal-mode]');
+        if (!button) return;
+        setQuestTerminalMode(button.getAttribute('data-quest-terminal-mode'), true);
+      });
+    }
+
+    if (activeQuestToggle && activeQuestBoard) {
+      activeQuestToggle.addEventListener('click', function() {
+        var willCollapse = !activeQuestBoard.hidden;
+        var label = activeQuestToggle.querySelector('.active-quests-note');
+
+        activeQuestBoard.hidden = willCollapse;
+        activeQuestToggle.classList.toggle('is-collapsed', willCollapse);
+        activeQuestToggle.setAttribute('aria-expanded', willCollapse ? 'false' : 'true');
+        if (label) label.textContent = willCollapse ? 'Show quests' : 'Hide quests';
+        if (typeof beep === 'function') beep('click');
+      });
+    }
+
+    if (addButton) addButton.addEventListener('click', addListTask);
+    if (input) {
+      input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+          event.preventDefault();
+          addListTask();
+        }
+      });
+    }
+
+    if (recordButton) recordButton.addEventListener('click', recordListCompletedCount);
+    if (completedInput) {
+      completedInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          recordListCompletedCount();
+        }
+      });
+    }
+
+    if (taskList) {
+      taskList.addEventListener('click', function(event) {
+        var actionElement = event.target.closest('[data-list-action]');
+        if (!actionElement) return;
+        var row = actionElement.closest('[data-list-task-id]');
+        if (!row) return;
+        var taskId = row.getAttribute('data-list-task-id');
+        var action = actionElement.getAttribute('data-list-action');
+
+        if (action === 'toggle') toggleListTask(taskId);
+        if (action === 'edit') {
+          listEditingTaskId = taskId;
+          renderListMode();
+          var editInput = document.querySelector('[data-list-task-id="' + taskId + '"] .list-edit-input');
+          if (editInput) {
+            editInput.focus();
+            editInput.select();
+          }
+        }
+        if (action === 'save-edit') saveListTaskEdit(taskId);
+        if (action === 'cancel-edit') {
+          listEditingTaskId = null;
+          renderListMode();
+          setListStatus('Edit cancelled.', false);
+        }
+        if (action === 'delete') removeListTask(taskId);
+      });
+
+      taskList.addEventListener('keydown', function(event) {
+        if (event.key !== 'Enter' || !event.target.classList.contains('list-edit-input')) return;
+        event.preventDefault();
+        var row = event.target.closest('[data-list-task-id]');
+        if (row) saveListTaskEdit(row.getAttribute('data-list-task-id'));
+      });
+    }
+
+    if (newListButton) newListButton.addEventListener('click', startNewList);
+  }
+
+  window.getListModeData = getListModeData;
+  window.setListModeData = setListModeData;
+  window.renderListMode = renderListMode;
+  window.setQuestTerminalMode = setQuestTerminalMode;
+
+  bindListMode();
+  renderListMode();
+  setQuestTerminalMode('quest', false);
 })();
 </script>
 
