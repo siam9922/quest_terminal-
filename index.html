@@ -12493,6 +12493,45 @@ body.qt-modal-open {
   }
 }
 
+
+/* ===== PERFORMANCE OPTIMIZATION PATCH =====
+   Reduces mobile paint/compositing cost without removing features. */
+.view:not(.active), [hidden] { display: none !important; }
+.quest-list, .save-list, .draft-list, .default-list,
+#streakCalendarGrid, #routineBoard, #listTaskList {
+  contain: layout style paint;
+}
+.quest-card, .save-card, .routine-hour-block, .day-cell {
+  contain: layout style;
+}
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  html { scroll-behavior: auto !important; }
+  body, .screen, .panel, .quest-card, .save-card, .modal-card,
+  .qt-sheet-card, .player-card, .day-cell, button, input, textarea, select {
+    background-attachment: scroll !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    text-shadow: none !important;
+  }
+  .screen, .panel, .quest-card, .save-card, .modal-card, .qt-sheet-card,
+  .player-card, .day-cell {
+    box-shadow: none !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 </style>
 </head>
 
@@ -12521,7 +12560,6 @@ body.qt-modal-open {
       <nav class="tabs">
         <button class="tab active" data-view="questsView">Quests</button>
         <button class="tab" data-view="elementsView">Elements</button>
-        <button class="tab" data-view="streakView">Streak</button>
         <button class="tab" data-view="saveView">Save Folder</button>
         <button class="tab" data-view="archiveView">Previous Saves</button>
       </nav>
@@ -12913,281 +12951,6 @@ body.qt-modal-open {
       </section>
 
       
-<section id="streakView" class="view">
-  <div class="streak-embedded-screen">
-<div class="topbar">
-    <div>
-      <h1>Smart Streak</h1>
-      <div class="subtitle">Click any calendar square. Big buttons let you set Perfect, Win, Partial, Protected, Failed, or Blank.</div>
-    </div>
-    <button id="streakOpenSetupBtn" class="edit-main-btn">Edit Rules</button>
-  </div>
-
-  <section class="panel streak-quick-panel">
-    <div class="streak-quick-head">
-      <div>
-        <h2>Today Quick Update</h2>
-        <div id="streakTodayQuickSummary" class="streak-today-summary">Today status loading...</div>
-      </div>
-    </div>
-    <div class="streak-quick-actions">
-      <button id="streakQuickAllDoneBtn" class="good">Mark All Done Today</button>
-      <button id="streakQuickRequiredDoneBtn" class="warn">Required Done</button>
-      <button id="streakQuickClearTodayBtn" class="danger">Clear Today</button>
-    </div>
-  </section>
-
-  <section class="layout">
-    <section class="panel">
-      <h2>Month Proof</h2>
-
-      <div class="stats">
-        <div class="stat"><strong id="streakCurrentStreak">0</strong><span>Current</span></div>
-        <div class="stat"><strong id="streakBestStreak">0</strong><span>Best</span></div>
-        <div class="stat"><strong id="streakMonthWins">0</strong><span>Wins</span></div>
-        <div class="stat"><strong id="streakProofScore">0%</strong><span>Score</span></div>
-      </div>
-
-      <div class="calendar-shell">
-        <div class="calendar-header">
-          <button id="streakPrevMonthBtn">&#x2039;</button>
-          <div id="streakMonthTitle" class="month-title"></div>
-          <button id="streakNextMonthBtn">&#x203A;</button>
-        </div>
-
-        <div class="weekdays">
-          <div class="weekday">Sun</div><div class="weekday">Mon</div><div class="weekday">Tue</div>
-          <div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div>
-        </div>
-
-        <div id="streakCalendarGrid" class="calendar-grid"></div>
-        <div class="small-note" style="margin-top:10px;">Click any day square to edit its status.</div>
-      </div>
-
-      <div class="rule-box">
-        <div class="rule-title">Win rule</div>
-        <div id="streakWinRuleText" class="rule-text"></div>
-      </div>
-
-      <div class="log" id="streakProofLog"></div>
-    </section>
-
-    <aside class="panel">
-      <h2>Active Tasks</h2>
-      <div id="streakTaskList" class="quest-list"></div>
-
-      <div class="streak-medal-box">
-        <div class="streak-medal-title">Medal Case</div>
-        <div id="streakMedalCase" class="streak-medal-grid"></div>
-      </div>
-
-      <div class="rule-box">
-        <div class="rule-title">Consequence</div>
-        <div id="streakConsequenceTextView" class="rule-text"></div>
-      </div>
-    </aside>
-  </section>
-  </div>
-</section>
-
-<section id="saveView" class="view">
-        <div class="grid-save">
-          <div class="panel">
-            <h2>Save Folder</h2>
-            <div id="savePrompt" class="prompt">Create quests. Save the quest log. Export your archive when moving devices.</div>
-
-            <label for="saveName">Save file name</label>
-            <input id="saveName" type="text" maxlength="40" placeholder="Example: Monday Reset Save" />
-
-            <div class="helper-text">Current time: <span id="clock"></span></div>
-
-            <div class="actions">
-              <button id="saveBtn">Save Current Day</button>
-              <button id="resetBoardBtn">Start New Day</button>
-              <button id="renameSaveBtn" type="button">Rename Active Save</button>
-              <button id="soundBtn">Sound: On</button>
-              <button id="clearSavesBtn" class="danger">Clear Saves</button>
-              <button id="clearCompletedBtn" class="danger">Clear Completed Quests</button>
-            </div>
-            <div id="saveStatusText" class="status-message"></div>
-
-            <div style="margin-top:18px;">
-              <h2>Export / Import</h2>
-              <label for="dataBox">Save data</label>
-              <textarea id="dataBox" class="data-box" placeholder="Click Export Data to generate backup text. Paste backup text here to import."></textarea>
-              <div class="helper-text">Export = copy current quests/saves/defaults/elements/routine. Import = replace this browser with pasted backup data.</div>
-              <div class="actions">
-                <button id="exportBtn">Export Data</button>
-                <button id="copyBtn">Copy Export</button>
-                <button id="downloadBtn">Download Backup</button>
-                <button id="importBtn">Import Data</button>
-                <button id="clearBoxBtn">Clear Box</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <h2>Current Progress</h2>
-            <div class="stats">
-              <div class="stat"><div id="totalQuests" class="stat-number">0</div><div class="stat-label">Total quests</div></div>
-              <div class="stat"><div id="newQuests" class="stat-number">0</div><div class="stat-label">New</div></div>
-              <div class="stat"><div id="progressQuests" class="stat-number">0</div><div class="stat-label">In Progress</div></div>
-              <div class="stat"><div id="completeQuests" class="stat-number">0</div><div class="stat-label">Complete</div></div>
-              <div class="stat"><div id="failedQuests" class="stat-number">0</div><div class="stat-label">Failed</div></div>
-              <div class="stat"><div id="xpCount" class="stat-number">0</div><div class="stat-label">XP</div></div>
-              <div class="stat"><div id="levelCount" class="stat-number">1</div><div class="stat-label">Level</div></div>
-              <div class="stat">
-                <div id="mealPassCount" class="stat-number">0</div>
-                <div class="stat-label">Meal Passes (Level Up Only)</div>
-                <button type="button" id="useMealPassBtn" class="action-done" style="width:100%; margin-top:10px;">Use Meal Pass</button>
-              </div>
-
-            </div>
-
-            <div class="xp-manual-panel">
-              <div class="xp-manual-title">Manual XP / Level Control</div>
-              <div class="xp-manual-grid">
-                <label>
-                  Total XP
-                  <input id="manualXpInput" type="number" min="0" step="1" placeholder="Example: 250">
-                </label>
-                <label>
-                  Level
-                  <input id="manualLevelInput" type="number" min="1" max="100" step="1" placeholder="Example: 5">
-                </label>
-                <button type="button" id="saveManualXpBtn">Save XP</button>
-              </div>
-              <div class="helper-text">Use this if you delete saves or need to restore your level manually.</div>
-            </div>
-
-            <div class="reward-vault">
-              <div class="reward-vault-title">Quest Reward Vault</div>
-              <div id="rewardVaultSummary" class="reward-vault-grid"></div>
-              <div class="reward-vault-actions">
-                <button type="button" id="clearRewardVaultBtn" class="danger">Clear Reward Vault</button>
-              </div>
-            </div>
-<div class="failed-zone">
-              <h2 class="failed-heading">Failed Quests</h2>
-              <div class="helper-text">Quests you could not meet by the end. They stay here instead of cluttering Main or Side.</div>
-              <div id="failedQuestList" class="quest-list" style="margin-top:10px;"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="archiveView" class="view">
-        <div class="panel">
-          <h2>Previous Saves</h2>
-          <div id="saveArchive" class="save-list"></div>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <div id="infoModal" class="modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div id="modalTitle" class="modal-title">Quest</div>
-        <button id="closeModal">Close</button>
-      </div>
-      <div id="modalBody" class="modal-body"></div>
-    </div>
-  </div>
-
-  <div id="defaultsModal" class="modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">Default Folder</div>
-        <button id="closeDefaultsModal">Close</button>
-      </div>
-      <div id="defaultsModalBody" class="default-list"></div>
-    </div>
-  </div>
-
-  <div id="dayTemplatesModal" class="modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">Day Templates</div>
-        <button id="closeDayTemplatesModal">Close</button>
-      </div>
-      <div id="dayTemplatesModalBody" class="default-list"></div>
-    </div>
-  </div>
-  <div id="streakSetupModal" class="modal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <div class="modal-title">Edit Streak Rules</div>
-      <button id="streakCloseSetupBtn">Close</button>
-    </div>
-
-    <div class="setup-grid">
-      <label for="streakNameInput">Streak name</label>
-      <input id="streakNameInput" />
-
-      <label for="streakRequiredCount">Daily win rule</label>
-      <select id="streakRequiredCount">
-        <option value="1">Need 1 active required task</option>
-        <option value="2">Need 2 active required tasks</option>
-        <option value="3">Need 3 active required tasks</option>
-        <option value="all">Need all active required tasks</option>
-      </select>
-
-      <label>Add task</label>
-      <div style="display:grid;grid-template-columns:1fr 82px;gap:8px;">
-        <input id="streakNewTaskInput" placeholder="Example: Reading" />
-        <button id="streakAddTaskBtn">Add</button>
-      </div>
-
-      <div id="streakTaskEditorList"></div>
-
-      <label for="streakConsequenceInput">Consequence for failed days</label>
-      <textarea id="streakConsequenceInput"></textarea>
-
-      <div class="actions">
-        <button id="streakSaveSetupBtn" class="good">Save Rules</button>
-        <button id="streakResetDemoBtn" class="danger">Reset Demo</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="streakDayModal" class="modal">
-  <div class="modal-card">
-    <div class="modal-header">
-      <div id="streakDayModalTitle" class="modal-title">Day</div>
-      <button id="streakCloseDayBtn">Close</button>
-    </div>
-
-    <div id="streakDayResultBox" class="result-box"></div>
-
-    <div class="streak-manual-editor">
-      <div class="streak-manual-title">Edit this calendar square</div>
-      <div class="streak-status-grid">
-        <button type="button" data-streak-manual-pick="perfect">&#x2605; Perfect</button>
-        <button type="button" data-streak-manual-pick="win">&#x2713; Win</button>
-        <button type="button" data-streak-manual-pick="partial">&#x25D0; Partial</button>
-        <button type="button" data-streak-manual-pick="protected">&#x25C6; Protected</button>
-        <button type="button" data-streak-manual-pick="failed">&#xD7; Failed</button>
-        <button type="button" data-streak-manual-pick="empty">Blank</button>
-      </div>
-      <button type="button" id="streakUseAutoBtn" class="streak-auto-btn">Use task checks instead</button>
-      <input id="streakManualStatus" type="hidden" value="auto" />
-      <div class="small-note">Pick one status. This directly controls the calendar square until you change it.</div>
-    </div>
-
-    <div id="streakDayChecklist" class="checklist"></div>
-
-    <label for="streakDayNote">Proof note</label>
-    <textarea id="streakDayNote" placeholder="Optional note"></textarea>
-
-    <div class="actions">
-      <button id="streakSaveDayBtn" class="good">Save Day</button>
-      <button id="streakClearDayBtn" class="danger">Clear Day</button>
-    </div>
-
-    <div class="small-note">Dimmed tasks are not active today and do not hurt the result.</div>
-  </div>
-</div>
 <div id="elementEditModal" class="modal">
     <div class="modal-card element-edit-card">
       <div class="modal-header">
@@ -13284,18 +13047,30 @@ body.qt-modal-open {
       return document.getElementById(id);
     }
 
+    /* Parsed storage values are cached to avoid repeated synchronous JSON work
+       during a single render cycle. Returned objects keep the original behavior. */
+    var storeCache = Object.create(null);
+
     function readStore(key, fallback) {
+      if (Object.prototype.hasOwnProperty.call(storeCache, key)) return storeCache[key];
       try {
         var raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : fallback;
+        storeCache[key] = raw ? JSON.parse(raw) : fallback;
       } catch (error) {
-        return fallback;
+        storeCache[key] = fallback;
       }
+      return storeCache[key];
     }
 
     function writeStore(key, value) {
+      storeCache[key] = value;
       localStorage.setItem(key, JSON.stringify(value));
     }
+
+    window.addEventListener('storage', function(event) {
+      if (event.key) delete storeCache[event.key];
+      else storeCache = Object.create(null);
+    });
 
 
     function getDefaultMissionText() {
@@ -17401,6 +17176,7 @@ function useMealPass() {
     }
 
     function updateDateTimeDisplays() {
+      if (document.hidden) return;
       var current = formatDateTime();
       byId('clock').textContent = current;
       byId('missionDateTime').textContent = current;
@@ -17508,7 +17284,12 @@ function useMealPass() {
     renderDraftTasks();
     setSound(isSoundOn());
     updateDateTimeDisplays();
-    setInterval(updateDateTimeDisplays, 1000);
+    /* Once per 30 seconds is enough for the visible clock and time locks.
+       The old one-second loop repeatedly scanned and rerendered locked quests. */
+    setInterval(updateDateTimeDisplays, 30000);
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) updateDateTimeDisplays();
+    });
     renderAll();
   </script>
 
@@ -17551,791 +17332,6 @@ document.addEventListener('click', function(event) {
   }, 0);
 }, true);
 
-
-// ===== Smart Streak Section From Uploaded Code =====
-(function() {
-
-const STORE = "qt_simple_smart_streak_v1";
-const s$ = (id) => document.getElementById(id);
-const colors = ["#4fc27a", "#67aee8", "#d99a45", "#a78be8", "#d8d0bd", "#e0c878", "#7ad9c2", "#d78484"];
-const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const fullDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-let selectedMonth = new Date();
-selectedMonth.setDate(1);
-let selectedDateKey = null;
-let modalEntry = null;
-
-function defaults() {
-  return {
-    setup: {
-      name: "Skill Building",
-      requiredCount: "2",
-      consequence: "Before entertainment tomorrow, complete 20 minutes of the missed required task or clean/reset your space for 10 minutes.",
-      tasks: [
-        { name:"DP-300", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
-        { name:"SQL", schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 },
-        { name:"Kickboxing", schedule:"specific", days:[2,4], required:true, weeklyTarget:0 },
-        { name:"Driving", schedule:"optional", days:[], required:false, weeklyTarget:0 },
-        { name:"Gym", schedule:"weekly", days:[], required:true, weeklyTarget:3 }
-      ]
-    },
-    days: seedDemo()
-  };
-}
-
-function seedDemo() {
-  const days = {};
-  const today = new Date();
-  [
-    [-1, ["done","done","skip","done","skip"], "Good study day."],
-    [-2, ["done","done","done","skip","done"], "Strong day."],
-    [-3, ["protected","protected","skip","skip","skip"], "Protected recovery."],
-    [-4, ["done","skip","skip","skip","done"], "Partial."],
-    [-5, ["fail","skip","skip","skip","skip"], "Missed."]
-  ].forEach(([offset, states, note]) => {
-    days[key(add(today, offset))] = { states, note };
-  });
-  return days;
-}
-
-function read() {
-  try {
-    const raw = localStorage.getItem(STORE);
-    if (raw) return normalize(JSON.parse(raw));
-  } catch {}
-  return defaults();
-}
-
-function write(data) {
-  localStorage.setItem(STORE, JSON.stringify(normalize(data)));
-}
-
-function normalize(data) {
-  const base = defaults();
-  data = data || base;
-  data.setup = Object.assign({}, base.setup, data.setup || {});
-  if (!Array.isArray(data.setup.tasks) || !data.setup.tasks.length) data.setup.tasks = base.setup.tasks;
-  data.setup.tasks = data.setup.tasks.map(normalizeTask).filter(t => t.name);
-  data.days = data.days && typeof data.days === "object" ? data.days : {};
-  Object.keys(data.days).forEach(k => {
-    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
-  });
-  return data;
-}
-
-function normalizeTask(task) {
-  task = task || {};
-  const schedule = ["daily","specific","weekly","optional"].includes(task.schedule) ? task.schedule : "daily";
-  return {
-    name: String(task.name || "").trim(),
-    schedule,
-    days: Array.isArray(task.days) ? task.days.map(Number).filter(d => d >= 0 && d <= 6) : [],
-    required: task.required !== false && schedule !== "optional",
-    weeklyTarget: Number(task.weeklyTarget || 0)
-  };
-}
-
-function normalizeEntry(entry, count) {
-  entry = entry || {};
-  let states = Array.isArray(entry.states) ? entry.states.slice(0, count) : [];
-  while (states.length < count) states.push("skip");
-  states = states.map(s => ["done","fail","protected","skip"].includes(s) ? s : "skip");
-  const manualStatus = ["auto","perfect","win","partial","protected","failed","empty"].includes(entry.manualStatus) ? entry.manualStatus : "auto";
-  return { states, note: String(entry.note || ""), manualStatus };
-}
-
-function key(date) {
-  return date.getFullYear() + "-" + String(date.getMonth()+1).padStart(2,"0") + "-" + String(date.getDate()).padStart(2,"0");
-}
-
-function fromKey(k) {
-  const [y,m,d] = k.split("-").map(Number);
-  return new Date(y, m-1, d);
-}
-
-function add(date, amount) {
-  const d = new Date(date);
-  d.setDate(d.getDate() + amount);
-  return d;
-}
-
-function monthName(date) {
-  return new Intl.DateTimeFormat(undefined, { month:"long", year:"numeric" }).format(date);
-}
-
-function dayName(date) {
-  return new Intl.DateTimeFormat(undefined, { weekday:"long", month:"short", day:"numeric" }).format(date);
-}
-
-function daysInMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-}
-
-function sameMonth(a,b) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
-}
-
-function weekStart(date) {
-  const d = new Date(date);
-  d.setHours(0,0,0,0);
-  const diff = d.getDay() === 0 ? -6 : 1 - d.getDay();
-  d.setDate(d.getDate() + diff);
-  return d;
-}
-
-function color(i) {
-  return colors[i % colors.length];
-}
-
-function weeklyDone(taskIndex, date, data) {
-  const start = weekStart(date);
-  let count = 0;
-  for (let i=0; i<7; i++) {
-    const entry = data.days[key(add(start, i))];
-    if (entry && entry.states[taskIndex] === "done") count++;
-  }
-  return count;
-}
-
-function active(task, date, index, data) {
-  const day = date.getDay();
-  if (task.schedule === "daily") return true;
-  if (task.schedule === "specific") return task.days.includes(day);
-  if (task.schedule === "weekly") return weeklyDone(index, date, data) < Number(task.weeklyTarget || 1);
-  if (task.schedule === "optional") return false;
-  return true;
-}
-
-function requiredToday(task, date, index, data) {
-  return task.required && active(task, date, index, data);
-}
-
-function taskRule(task) {
-  if (task.schedule === "daily") return "Daily" + (task.required ? " \u00B7 required" : " \u00B7 optional");
-  if (task.schedule === "specific") return task.days.map(d => fullDays[d]).join(", ") + (task.required ? " \u00B7 required" : " \u00B7 optional");
-  if (task.schedule === "weekly") return (task.weeklyTarget || 1) + "x/week" + (task.required ? " \u00B7 required" : " \u00B7 optional");
-  return "Optional/random \u00B7 bonus";
-}
-
-function result(entry, setup, date, data) {
-  if (!entry) return "empty";
-
-  if (entry.manualStatus && entry.manualStatus !== "auto") {
-    return entry.manualStatus === "empty" ? "empty" : entry.manualStatus;
-  }
-
-  const req = [];
-  setup.tasks.forEach((task, i) => {
-    if (requiredToday(task, date, i, data)) req.push(i);
-  });
-
-  if (!req.length) return entry.states.some(s => s === "done") ? "win" : "empty";
-
-  const done = req.filter(i => entry.states[i] === "done").length;
-  const safe = req.filter(i => entry.states[i] === "protected").length;
-  const fail = req.filter(i => entry.states[i] === "fail").length;
-
-  if (fail > 0) return "failed";
-  if (safe === req.length) return "protected";
-
-  const min = setup.requiredCount === "all" ? req.length : Math.min(Number(setup.requiredCount || 1), req.length);
-
-  if (done === req.length) return "perfect";
-  if (done >= min) return "win";
-  if (done > 0 || safe > 0) return "partial";
-  return "empty";
-}
-
-function valid(r) {
-  return r === "perfect" || r === "win" || r === "protected";
-}
-
-function saveSetup() {
-  const data = read();
-  data.setup.name = s$("streakNameInput").value.trim() || "Untitled Streak";
-  data.setup.requiredCount = s$("streakRequiredCount").value;
-  data.setup.consequence = s$("streakConsequenceInput").value.trim() || "Repair before entertainment tomorrow.";
-  data.setup.tasks = Array.from(document.querySelectorAll("[data-streak-task-card]")).map(card => ({
-    name: card.querySelector("[data-streak-task-name]").value,
-    schedule: card.querySelector("[data-streak-task-schedule]").value,
-    required: card.querySelector("[data-streak-task-required]").value === "required",
-    weeklyTarget: Number(card.querySelector("[data-streak-weekly-target]").value || 1),
-    days: Array.from(card.querySelectorAll("[data-streak-day-chip].active")).map(b => Number(b.dataset.streakDayChip))
-  })).map(normalizeTask).filter(t => t.name);
-
-  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
-  write(data);
-  closeSetup();
-  render();
-}
-
-function addTask() {
-  const value = s$("streakNewTaskInput").value.trim();
-  if (!value) return;
-  const data = read();
-  data.setup.tasks.push({ name:value, schedule:"daily", days:[0,1,2,3,4,5,6], required:true, weeklyTarget:0 });
-  Object.keys(data.days).forEach(k => data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length));
-  write(data);
-  s$("streakNewTaskInput").value = "";
-  renderSetupModal();
-  render();
-}
-
-function deleteTask(index) {
-  const data = read();
-  if (data.setup.tasks.length <= 1) return;
-  data.setup.tasks.splice(index, 1);
-  Object.keys(data.days).forEach(k => {
-    if (data.days[k].states) data.days[k].states.splice(index, 1);
-    data.days[k] = normalizeEntry(data.days[k], data.setup.tasks.length);
-  });
-  write(data);
-  renderSetupModal();
-  render();
-}
-
-function renderMain() {
-  const data = read();
-  s$("streakConsequenceTextView").textContent = data.setup.consequence;
-  s$("streakWinRuleText").textContent = data.setup.requiredCount === "all"
-    ? "Win = all active required tasks completed. Inactive and optional tasks do not hurt the day."
-    : "Win = at least " + data.setup.requiredCount + " active required task(s) completed. Inactive and optional tasks do not hurt the day.";
-
-  s$("streakTaskList").innerHTML = data.setup.tasks.map((task, i) => `
-    <div class="quest-pill">
-      <i class="quest-color" style="background:${color(i)}"></i>
-      <div>
-        <div class="quest-name">${escapeHtml(task.name)}</div>
-        <div class="quest-rule">${escapeHtml(taskRule(task))}</div>
-      </div>
-    </div>
-  `).join("");
-}
-
-
-
-function resultChipClass(r) {
-  if (r === "perfect" || r === "win") return "good";
-  if (r === "partial") return "warn";
-  if (r === "protected") return "purple";
-  if (r === "failed") return "danger";
-  return "";
-}
-
-function renderQuickUpdate() {
-  const box = s$("streakTodayQuickSummary");
-  if (!box) return;
-
-  const data = read();
-  const todayDate = new Date();
-  const today = key(todayDate);
-  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
-  const r = result(data.days[today], data.setup, todayDate, data);
-
-  let activeCount = 0;
-  let activeDone = 0;
-  let requiredCount = 0;
-  let requiredDone = 0;
-
-  data.setup.tasks.forEach((task, i) => {
-    const isActive = active(task, todayDate, i, data);
-    const isRequired = requiredToday(task, todayDate, i, data);
-    if (isActive) {
-      activeCount++;
-      if (entry.states[i] === "done") activeDone++;
-    }
-    if (isRequired) {
-      requiredCount++;
-      if (entry.states[i] === "done") requiredDone++;
-    }
-  });
-
-  const winRule = data.setup.requiredCount === "all"
-    ? "Need all active required tasks"
-    : "Need " + data.setup.requiredCount + " required task(s)";
-
-  box.innerHTML = `
-    <div class="streak-today-title">${escapeHtml(dayName(todayDate))}</div>
-    <div class="streak-today-chips">
-      <span class="streak-today-chip ${resultChipClass(r)}">Status: ${escapeHtml(r.toUpperCase())}</span>
-      <span class="streak-today-chip good">Required: ${requiredDone}/${requiredCount}</span>
-      <span class="streak-today-chip warn">Active: ${activeDone}/${activeCount}</span>
-      <span class="streak-today-chip purple">${escapeHtml(winRule)}</span>
-    </div>
-  `;
-}
-
-function quickSetToday(mode) {
-  const data = read();
-  const todayDate = new Date();
-  const today = key(todayDate);
-
-  if (mode === "clear") {
-    delete data.days[today];
-    write(data);
-    selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-    render();
-    return;
-  }
-
-  const entry = normalizeEntry(data.days[today], data.setup.tasks.length);
-  entry.manualStatus = "auto";
-
-  data.setup.tasks.forEach((task, i) => {
-    const isActive = active(task, todayDate, i, data);
-    const isRequired = requiredToday(task, todayDate, i, data);
-
-    if (mode === "all" && isActive) {
-      entry.states[i] = "done";
-      return;
-    }
-
-    if (mode === "required" && isRequired) {
-      entry.states[i] = "done";
-    }
-  });
-
-  data.days[today] = normalizeEntry(entry, data.setup.tasks.length);
-  write(data);
-  selectedMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-  render();
-}
-
-function renderCalendar() {
-  const data = read();
-  const grid = s$("streakCalendarGrid");
-  const y = selectedMonth.getFullYear();
-  const m = selectedMonth.getMonth();
-  const total = daysInMonth(selectedMonth);
-  const first = new Date(y,m,1).getDay();
-  const today = key(new Date());
-
-  s$("streakMonthTitle").textContent = monthName(selectedMonth);
-  grid.innerHTML = "";
-
-  for (let i=0; i<first; i++) {
-    const empty = document.createElement("div");
-    empty.className = "day-cell empty";
-    grid.appendChild(empty);
-  }
-
-  for (let day=1; day<=total; day++) {
-    const date = new Date(y,m,day);
-    const k = key(date);
-    const entry = data.days[k];
-    const r = result(entry, data.setup, date, data);
-    const cell = document.createElement("div");
-    cell.className = "day-cell " + r + (k === today ? " today" : "");
-    cell.setAttribute("role", "button");
-    cell.setAttribute("tabindex", "0");
-    cell.dataset.streakDate = k;
-
-    const label = r === "perfect" ? "Perfect" : r === "win" ? "Win" : r === "partial" ? "Partial" : r === "failed" ? "Fail" : r === "protected" ? "Safe" : "Open";
-    const states = entry ? entry.states : [];
-
-    cell.innerHTML = `
-      <div class="day-number">${day}</div>
-      <div class="day-dots">
-        ${data.setup.tasks.map((task, i) => {
-          const state = states[i] || "skip";
-          const isActive = active(task, date, i, data);
-          const isOptional = !requiredToday(task, date, i, data);
-          const bg = state === "done" ? `background:${color(i)};border-color:${color(i)};` : "";
-          return `<i class="dot ${isActive ? "" : "inactive"} ${isOptional ? "optional" : ""} ${state === "done" ? "done" : state === "fail" ? "failed" : state === "protected" ? "protected" : ""}" style="${bg}"></i>`;
-        }).join("")}
-      </div>
-      <div class="day-label">${label}</div>
-    `;
-
-    grid.appendChild(cell);
-  }
-}
-
-
-function bindStreakCalendarDirectClick() {
-  const grid = s$("streakCalendarGrid");
-  if (!grid || grid.dataset.directClickBound === "true") return;
-  grid.dataset.directClickBound = "true";
-
-  grid.addEventListener("click", function(event) {
-    const cell = event.target.closest("[data-streak-date]");
-    if (!cell || !grid.contains(cell)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    openDay(cell.dataset.streakDate);
-  });
-
-  grid.addEventListener("keydown", function(event) {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    const cell = event.target.closest("[data-streak-date]");
-    if (!cell || !grid.contains(cell)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    openDay(cell.dataset.streakDate);
-  });
-}
-
-function stats() {
-  const data = read();
-  const today = new Date();
-  today.setHours(0,0,0,0);
-
-  let current = 0;
-  let cursor = new Date(today);
-  while (true) {
-    const r = result(data.days[key(cursor)], data.setup, cursor, data);
-    if (valid(r)) {
-      current++;
-      cursor = add(cursor, -1);
-    } else break;
-  }
-
-  let best = 0, run = 0, prev = null;
-  Object.keys(data.days).sort().forEach(k => {
-    const date = fromKey(k);
-    const r = result(data.days[k], data.setup, date, data);
-    if (!valid(r)) {
-      run = 0;
-      prev = date;
-      return;
-    }
-    if (prev) {
-      const diff = Math.round((date - prev) / 86400000);
-      run = diff === 1 ? run + 1 : 1;
-    } else run = 1;
-    best = Math.max(best, run);
-    prev = date;
-  });
-
-  const monthEntries = Object.entries(data.days).filter(([k]) => sameMonth(fromKey(k), selectedMonth));
-  const wins = monthEntries.filter(([k,e]) => valid(result(e, data.setup, fromKey(k), data))).length;
-  const score = Math.round((wins / daysInMonth(selectedMonth)) * 100);
-
-  s$("streakCurrentStreak").textContent = current;
-  s$("streakBestStreak").textContent = best;
-  s$("streakMonthWins").textContent = wins;
-  s$("streakProofScore").textContent = score + "%";
-}
-
-function renderLog() {
-  const data = read();
-  const entries = Object.entries(data.days).sort((a,b) => b[0].localeCompare(a[0])).slice(0,5);
-
-  s$("streakProofLog").innerHTML = entries.map(([k,e]) => {
-    const date = fromKey(k);
-    const r = result(e, data.setup, date, data);
-    const icon = r === "perfect" ? "\u2605" : r === "win" ? "\u2713" : r === "partial" ? "\u25D0" : r === "protected" ? "\u25C6" : r === "failed" ? "\u00D7" : "\u00B7";
-    const consequence = r === "failed" ? "<br><b>Consequence:</b> " + escapeHtml(data.setup.consequence) : "";
-    const manual = e.manualStatus && e.manualStatus !== "auto" ? '<span class="manual-status-banner">Manual</span> ' : "";
-    return `
-      <div class="log-item">
-        <div class="log-title"><span>${icon}</span><span>${dayName(date)}</span></div>
-        <div class="log-meta">${manual}<span class="log-result-badge ${r}">${r}</span>${escapeHtml(e.note || "No note.")}${consequence}</div>
-      </div>
-    `;
-  }).join("");
-}
-
-
-function renderMedals() {
-  const data = read();
-
-  let current = 0;
-  let best = 0;
-  let run = 0;
-  let prev = null;
-  let wins = 0;
-  let perfects = 0;
-  let failed = 0;
-  let protectedDays = 0;
-  let latestKey = null;
-  let latestResult = "empty";
-
-  Object.keys(data.days).sort().forEach(k => {
-    const date = fromKey(k);
-    const r = result(data.days[k], data.setup, date, data);
-
-    if (r !== "empty") {
-      latestKey = k;
-      latestResult = r;
-    }
-
-    if (r === "perfect") perfects++;
-    if (r === "failed") failed++;
-    if (r === "protected") protectedDays++;
-    if (valid(r)) wins++;
-
-    if (!valid(r)) {
-      run = 0;
-      prev = date;
-      return;
-    }
-
-    if (prev) {
-      const diff = Math.round((date - prev) / 86400000);
-      run = diff === 1 ? run + 1 : 1;
-    } else {
-      run = 1;
-    }
-
-    best = Math.max(best, run);
-    prev = date;
-  });
-
-  current = run;
-  const latestFailed = latestKey && latestResult === "failed";
-
-  const medals = [
-    { icon: "\uD83E\uDD49", name: "3 Day Spark", unlock: current >= 3 },
-    { icon: "\uD83E\uDD48", name: "7 Day Chain", unlock: current >= 7 },
-    { icon: "\uD83E\uDD47", name: "14 Day Medal", unlock: current >= 14 },
-    { icon: "\uD83D\uDEE1\uFE0F", name: "Safe Day", unlock: protectedDays >= 1 },
-    { icon: "\uD83D\uDD28", name: "Repairer", unlock: failed >= 1 && !latestFailed },
-    { icon: "\uD83D\uDC8E", name: "30 Wins", unlock: wins >= 30 },
-    { icon: "\u2605", name: "Perfect Day", unlock: perfects >= 1 },
-    { icon: "\uD83D\uDC51", name: "10 Wins", unlock: wins >= 10 },
-    { icon: "\u2694", name: "Comeback", unlock: failed >= 1 && current >= 3 }
-  ];
-
-  const box = s$("streakMedalCase");
-  if (!box) return;
-
-  box.innerHTML = medals.map(medal => `
-    <div class="streak-medal ${medal.unlock ? "unlocked" : ""}">
-      <div class="streak-medal-icon">${medal.icon}</div>
-      <span class="streak-medal-name">${medal.name}</span>
-    </div>
-  `).join("");
-}
-
-
-function openSetup() {
-  renderSetupModal();
-  s$("streakSetupModal").classList.add("open");
-}
-
-function closeSetup() {
-  s$("streakSetupModal").classList.remove("open");
-}
-
-function renderSetupModal() {
-  const data = read();
-  s$("streakNameInput").value = data.setup.name;
-  s$("streakRequiredCount").value = data.setup.requiredCount;
-  s$("streakConsequenceInput").value = data.setup.consequence;
-
-  s$("streakTaskEditorList").innerHTML = data.setup.tasks.map((task, i) => `
-    <div class="task-editor" data-streak-task-card="${i}">
-      <div class="task-top">
-        <i class="quest-color" style="background:${color(i)}"></i>
-        <input data-streak-task-name value="${escapeHtml(task.name)}">
-        <button class="danger" title="Delete task" data-streak-delete-task="${i}">\u00D7</button>
-      </div>
-      <div class="task-details">
-        <select data-streak-task-schedule>
-          <option value="daily" ${task.schedule === "daily" ? "selected" : ""}>Daily</option>
-          <option value="specific" ${task.schedule === "specific" ? "selected" : ""}>Specific days</option>
-          <option value="weekly" ${task.schedule === "weekly" ? "selected" : ""}>Weekly target</option>
-          <option value="optional" ${task.schedule === "optional" ? "selected" : ""}>Optional/random</option>
-        </select>
-        <select data-streak-task-required>
-          <option value="required" ${task.required ? "selected" : ""}>Required</option>
-          <option value="optional" ${!task.required ? "selected" : ""}>Optional</option>
-        </select>
-        <select data-streak-weekly-target>
-          <option value="1" ${task.weeklyTarget === 1 ? "selected" : ""}>1x/week</option>
-          <option value="2" ${task.weeklyTarget === 2 ? "selected" : ""}>2x/week</option>
-          <option value="3" ${task.weeklyTarget === 3 ? "selected" : ""}>3x/week</option>
-          <option value="4" ${task.weeklyTarget === 4 ? "selected" : ""}>4x/week</option>
-          <option value="5" ${task.weeklyTarget === 5 ? "selected" : ""}>5x/week</option>
-        </select>
-      </div>
-      <div class="days-picker">
-        ${dayNames.map((d, dayIndex) => `<button type="button" class="day-chip ${task.days.includes(dayIndex) ? "active" : ""}" data-streak-day-chip="${dayIndex}">${d}</button>`).join("")}
-      </div>
-    </div>
-  `).join("");
-}
-
-function openDay(k) {
-  selectedDateKey = k;
-  const data = read();
-  const date = fromKey(k);
-  modalEntry = normalizeEntry(data.days[k], data.setup.tasks.length);
-  s$("streakDayModalTitle").textContent = dayName(date);
-  if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus || "auto";
-  s$("streakDayNote").value = modalEntry.note || "";
-  renderDayModal();
-  s$("streakDayModal").classList.add("open");
-}
-
-function closeDay() {
-  s$("streakDayModal").classList.remove("open");
-  selectedDateKey = null;
-  modalEntry = null;
-}
-
-function renderDayModal() {
-  const data = read();
-  const date = fromKey(selectedDateKey);
-  const r = result(modalEntry, data.setup, date, data);
-  const requiredActive = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data)).length;
-  const completedRequired = data.setup.tasks.filter((t,i) => requiredToday(t,date,i,data) && modalEntry.states[i] === "done").length;
-  const manualLine = modalEntry.manualStatus && modalEntry.manualStatus !== "auto"
-    ? `<br><span class="manual-status-banner">Manual edit active</span>`
-    : `<br><span class="manual-status-banner">Auto mode</span>`;
-  s$("streakDayResultBox").innerHTML = `<b>Current square result:</b> ${r.toUpperCase()}<br>Active required: ${requiredActive}. Completed required: ${completedRequired}. ${manualLine}`;
-
-  document.querySelectorAll("[data-streak-manual-pick]").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.streakManualPick === modalEntry.manualStatus);
-  });
-  if (s$("streakUseAutoBtn")) {
-    s$("streakUseAutoBtn").classList.toggle("active", !modalEntry.manualStatus || modalEntry.manualStatus === "auto");
-  }
-
-  s$("streakDayChecklist").innerHTML = '<div class="checklist-label">Optional task details</div>' + data.setup.tasks.map((task, i) => {
-    const state = modalEntry.states[i] || "skip";
-    const isActive = active(task,date,i,data);
-    const isRequired = requiredToday(task,date,i,data);
-    const meta = isActive ? (isRequired ? "Active today \u00B7 required" : "Optional/bonus") : "Not active today";
-    return `
-      <div class="check-row ${isActive ? "" : "inactive"}">
-        <i class="quest-color" style="background:${color(i)}"></i>
-        <div>
-          <div class="check-head">
-            <div>
-              <div class="check-name">${escapeHtml(task.name)}</div>
-              <div class="check-rule">${escapeHtml(meta)}</div>
-            </div>
-          </div>
-        </div>
-        <div class="check-buttons">
-          <button class="good ${state === "done" ? "active" : ""}" data-streak-state="done" data-streak-index="${i}">Done</button>
-          <button class="warn ${state === "protected" ? "active" : ""}" data-streak-state="protected" data-streak-index="${i}">Safe</button>
-          <button class="danger ${state === "fail" ? "active" : ""}" data-streak-state="fail" data-streak-index="${i}">Fail</button>
-        </div>
-      </div>
-    `;
-  }).join("");
-}
-
-function setState(i, state) {
-  modalEntry.states[i] = modalEntry.states[i] === state ? "skip" : state;
-  renderDayModal();
-}
-
-function saveDay() {
-  const data = read();
-  modalEntry.note = s$("streakDayNote").value.trim();
-  modalEntry.manualStatus = s$("streakManualStatus") ? s$("streakManualStatus").value : "auto";
-
-  if (modalEntry.manualStatus === "empty" && !modalEntry.note && modalEntry.states.every(s => s === "skip")) {
-    delete data.days[selectedDateKey];
-  } else {
-    data.days[selectedDateKey] = normalizeEntry(modalEntry, data.setup.tasks.length);
-  }
-
-  write(data);
-  closeDay();
-  render();
-}
-
-function clearDay() {
-  const data = read();
-  delete data.days[selectedDateKey];
-  write(data);
-  closeDay();
-  render();
-}
-
-function resetDemo() {
-  if (!confirm("Reset demo data?")) return;
-  localStorage.removeItem(STORE);
-  selectedMonth = new Date();
-  selectedMonth.setDate(1);
-  closeSetup();
-  render();
-}
-
-function escapeHtml(v) {
-  return String(v)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-function render() {
-  renderMain();
-  renderQuickUpdate();
-  renderCalendar();
-  bindStreakCalendarDirectClick();
-  stats();
-  renderLog();
-  renderMedals();
-}
-
-document.addEventListener("click", event => {
-  const delTask = event.target.closest("[data-streak-delete-task]");
-  if (delTask) return deleteTask(Number(delTask.dataset.streakDeleteTask));
-
-  const chip = event.target.closest("[data-streak-day-chip]");
-  if (chip) return chip.classList.toggle("active");
-
-  const state = event.target.closest("[data-streak-state]");
-  if (state) return setState(Number(state.dataset.streakIndex), state.dataset.streakState);
-});
-
-if (s$("streakQuickAllDoneBtn")) s$("streakQuickAllDoneBtn").addEventListener("click", () => quickSetToday("all"));
-if (s$("streakQuickRequiredDoneBtn")) s$("streakQuickRequiredDoneBtn").addEventListener("click", () => quickSetToday("required"));
-if (s$("streakQuickClearTodayBtn")) s$("streakQuickClearTodayBtn").addEventListener("click", () => quickSetToday("clear"));
-
-s$("streakOpenSetupBtn").addEventListener("click", openSetup);
-s$("streakCloseSetupBtn").addEventListener("click", closeSetup);
-s$("streakSaveSetupBtn").addEventListener("click", saveSetup);
-s$("streakResetDemoBtn").addEventListener("click", resetDemo);
-s$("streakAddTaskBtn").addEventListener("click", addTask);
-s$("streakNewTaskInput").addEventListener("keydown", e => { if (e.key === "Enter") addTask(); });
-
-s$("streakPrevMonthBtn").addEventListener("click", () => {
-  selectedMonth.setMonth(selectedMonth.getMonth() - 1);
-  render();
-});
-s$("streakNextMonthBtn").addEventListener("click", () => {
-  selectedMonth.setMonth(selectedMonth.getMonth() + 1);
-  render();
-});
-
-s$("streakCloseDayBtn").addEventListener("click", closeDay);
-s$("streakSaveDayBtn").addEventListener("click", saveDay);
-s$("streakClearDayBtn").addEventListener("click", clearDay);
-document.addEventListener("click", function(event) {
-  const manualButton = event.target.closest("[data-streak-manual-pick]");
-  if (manualButton) {
-    if (!modalEntry) return;
-    modalEntry.manualStatus = manualButton.dataset.streakManualPick;
-    if (s$("streakManualStatus")) s$("streakManualStatus").value = modalEntry.manualStatus;
-    renderDayModal();
-    return;
-  }
-
-  if (event.target.closest("#streakUseAutoBtn")) {
-    if (!modalEntry) return;
-    modalEntry.manualStatus = "auto";
-    if (s$("streakManualStatus")) s$("streakManualStatus").value = "auto";
-    renderDayModal();
-    return;
-  }
-});
-
-s$("streakSetupModal").addEventListener("click", e => { if (e.target.id === "streakSetupModal") closeSetup(); });
-s$("streakDayModal").addEventListener("click", e => { if (e.target.id === "streakDayModal") closeDay(); });
-
-render();
-
-})();
 
 </script>
 
