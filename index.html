@@ -12627,17 +12627,57 @@ body.qt-modal-open {
   min-height: 44px;
   padding: 9px 10px 9px 13px;
   border: 1px solid rgba(216, 208, 189, .22);
-  border-left: 3px solid var(--side-blue);
-  background: linear-gradient(90deg, rgba(110, 182, 255, .09), rgba(255,255,255,.02));
+  border-left: 1px solid rgba(216, 208, 189, .22);
+  background: linear-gradient(180deg, rgba(255,255,255,.025), transparent 40%), linear-gradient(180deg, #191918, #111110);
 }
 
 .draft-item.micro-draft-item::before {
-  content: "STEP";
-  flex: 0 0 auto;
-  color: #9ccfff;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  content: none;
+  display: none;
+}
+
+.draft-item.micro-draft-item {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 50px 34px !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-width: 0;
+}
+
+.draft-item.micro-draft-item .micro-draft-text {
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-overflow: clip;
+  line-height: 1.4;
+}
+
+.draft-item.micro-draft-item .micro-mini-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 40px;
+  margin: 0;
+  padding: 8px 10px;
+}
+
+.draft-item.micro-draft-item .micro-remove-btn {
+  grid-column: auto !important;
+  min-width: 0 !important;
+  margin-left: 0;
+}
+
+@media (max-width: 520px) {
+  .draft-item.micro-draft-item {
+    grid-template-columns: minmax(0, 1fr) 48px 32px !important;
+  }
+
+  .draft-item.micro-draft-item .micro-mini-btn {
+    min-width: 0;
+    padding: 7px 5px;
+    font-size: 11px;
+  }
 }
 
 .tabs {
