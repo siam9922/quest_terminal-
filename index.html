@@ -12714,6 +12714,196 @@ body.qt-modal-open {
   .tabs .tab[data-view="archiveView"]::after { content: "Previous" !important; }
 }
 
+/* ===== FEATURE 1: DAY & NIGHT CYCLE ===== */
+body[data-cycle="day"] {
+  --bg: #17150f;
+  --panel: #252016;
+  --panel-2: #30291b;
+  --text: #f5ead5;
+  --muted: #c6b99d;
+  --line: rgba(244, 201, 121, 0.29);
+  --accent: #f3d494;
+  --main-gold: #e6ad47;
+  --main-gold-soft: #ffe2a1;
+  background: rgb(48, 41, 29) !important;
+}
+body[data-cycle="day"] .screen {
+  background: rgb(48, 41, 29) !important;
+  border-color: rgba(255, 217, 151, .4) !important;
+}
+body[data-cycle="day"] header {
+  background: rgb(48, 41, 29) !important;
+  border-color: rgba(255, 207, 121, .44) !important;
+}
+body[data-cycle="day"] header h1 { color: #ffe0a1 !important; }
+body[data-cycle="day"] header .player-card {
+  background: linear-gradient(135deg, #3e301e, #1a1711) !important;
+  border-color: rgba(255, 211, 135, .48) !important;
+}
+body[data-cycle="day"] .tabs {
+  background: rgb(48, 41, 29) !important;
+  border-color: rgba(255, 211, 135, .37) !important;
+}
+body[data-cycle="day"] .panel,
+body[data-cycle="day"] .quest-section-panel,
+body[data-cycle="day"] .forge-quest-card,
+body[data-cycle="day"] .progress-tracker-card {
+  border-color: rgba(244, 201, 121, .34) !important;
+  background-color: #241f17 !important;
+}
+
+body[data-cycle="night"] {
+  --bg: #00000e;
+  --panel: #101a2b;
+  --panel-2: #172338;
+  --text: #e5ecfc;
+  --muted: #a6b8d4;
+  --line: rgba(137, 178, 243, .26);
+  --accent: #9cbef9;
+  --main-gold: #779ed8;
+  --main-gold-soft: #c1d6ff;
+  background: rgb(0, 0, 14) !important;
+}
+body[data-cycle="night"] .screen {
+  background: rgb(0, 0, 14) !important;
+  border-color: rgba(153, 183, 243, .34) !important;
+}
+body[data-cycle="night"] header {
+  background: rgb(0, 0, 14) !important;
+  border-color: rgba(146, 181, 247, .38) !important;
+}
+body[data-cycle="night"] header h1 { color: #d6e3ff !important; }
+body[data-cycle="night"] header .player-card {
+  background: linear-gradient(135deg, #1a2944, #0b1120) !important;
+  border-color: rgba(157, 191, 249, .4) !important;
+}
+body[data-cycle="night"] .tabs {
+  background: rgb(0, 0, 14) !important;
+  border-color: rgba(145, 180, 246, .35) !important;
+}
+body[data-cycle="night"] .panel,
+body[data-cycle="night"] .quest-section-panel,
+body[data-cycle="night"] .forge-quest-card,
+body[data-cycle="night"] .progress-tracker-card {
+  border-color: rgba(145, 180, 246, .3) !important;
+  background-color: #10192a !important;
+}
+
+.cycle-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font: 700 11px/1.2 "Segoe UI", Arial, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+body[data-cycle="day"] .cycle-indicator { color: #f7cf86; background: rgba(255, 206, 117, .09); }
+body[data-cycle="night"] .cycle-indicator { color: #bdd4ff; background: rgba(143, 182, 255, .09); }
+
+/* Feature 2: give quest-editor headings a visible, compact hierarchy. */
+#questEditorPanel > label,
+#questEditorPanel .template-label,
+#questEditorPanel .mission-time-label {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 32px;
+  padding: 7px 10px !important;
+  margin: 15px 0 8px !important;
+  border-left: 3px solid var(--accent) !important;
+  border-bottom: 1px solid var(--line) !important;
+  background: linear-gradient(90deg, rgba(216,208,189,.13), rgba(216,208,189,.025) 80%, transparent) !important;
+  color: var(--text) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.1px !important;
+  line-height: 1.3 !important;
+  text-transform: uppercase !important;
+}
+#questEditorPanel .template-label:first-child,
+#questEditorPanel .mission-time-label:first-child { margin-top: 0 !important; }
+body[data-cycle="day"] #questEditorPanel > label,
+body[data-cycle="day"] #questEditorPanel .template-label,
+body[data-cycle="day"] #questEditorPanel .mission-time-label {
+  background: linear-gradient(90deg, rgba(255,211,135,.16), rgba(255,211,135,.025) 80%, transparent) !important;
+}
+body[data-cycle="night"] #questEditorPanel > label,
+body[data-cycle="night"] #questEditorPanel .template-label,
+body[data-cycle="night"] #questEditorPanel .mission-time-label {
+  background: linear-gradient(90deg, rgba(157,191,249,.16), rgba(157,191,249,.025) 80%, transparent) !important;
+}
+
+/* Text, Edit, Delete, Up, Down all remain on one row on narrow phones. */
+#draftList .draft-item.micro-draft-item {
+  grid-template-columns: minmax(0, 1fr) 50px 34px 34px 34px !important;
+  gap: 5px !important;
+}
+#draftList .draft-item.micro-draft-item .micro-mini-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 5px 2px !important;
+}
+#draftList .draft-item.micro-draft-item .micro-edit-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+@media (max-width: 520px) {
+  #draftList .draft-item.micro-draft-item {
+    grid-template-columns: minmax(0, 1fr) 44px 30px 30px 30px !important;
+    gap: 4px !important;
+    padding: 8px 6px !important;
+  }
+}
+
+/* Feature 3: Enter creates an intentional line break in a quest name. */
+#questEditorPanel #questTitle {
+  min-height: 72px;
+  resize: vertical;
+  line-height: 1.4;
+}
+#questsView .quest-card.qt-card-epic .qt-title,
+#questsView .quest-card.scheduled-mini .scheduled-mini-title {
+  white-space: pre-line !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+/* Feature 4: optional start/end window in the existing quest editor. */
+#questEditorPanel .timed-quest-box {
+  border: 1px solid var(--line);
+  padding: 12px;
+  margin: 12px 0 16px;
+  background: rgba(255,255,255,.025);
+}
+#questEditorPanel .timed-quest-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-weight: 800;
+}
+#questEditorPanel .timed-quest-toggle input { width: auto; flex: 0 0 auto; }
+#questEditorPanel .timed-quest-fields { display: none; margin-top: 12px; }
+#questEditorPanel .timed-quest-fields.open { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+#questEditorPanel .timed-quest-fields label { display: grid; gap: 6px; min-width: 0; }
+#questEditorPanel .timed-quest-fields input { width: 100%; min-width: 0; color-scheme: dark; }
+#questEditorPanel .timed-quest-hint { grid-column: 1 / -1; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.quest-card .qt-timed-line {
+  border-left: 3px solid var(--accent);
+  padding: 7px 10px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 750;
+  background: rgba(255,255,255,.045);
+}
+.quest-card .qt-timed-line.expired { border-color: var(--failed-red); color: #ffb2b2; }
+@media (max-width: 520px) {
+  #questEditorPanel .timed-quest-fields.open { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 
@@ -12723,6 +12913,7 @@ body.qt-modal-open {
       <div>
         <h1>Quest Terminal</h1>
         <div class="subtitle">Save room archive / mission tracker</div>
+        <div id="cycleIndicator" class="cycle-indicator" role="status" aria-live="polite"></div>
       </div>
       <div class="player-card">
         <div class="player-label">Player File</div>
@@ -12902,7 +13093,7 @@ body.qt-modal-open {
             </select>
 
             <label for="questTitle">Quest name</label>
-            <input id="questTitle" type="text" maxlength="50" placeholder="Example: Clean the room" />
+            <textarea id="questTitle" rows="2" maxlength="50" placeholder="Example: Clean the room (press Enter for a new line)"></textarea>
 
             <label for="questPriority">Priority</label>
             <select id="questPriority">
@@ -12920,6 +13111,18 @@ body.qt-modal-open {
                 <label for="questUnlockTime">Unlock time / next 24 hours</label>
                 <input id="questUnlockTime" type="time" />
                 <div id="questUnlockPreview" class="time-lock-preview">Time lock off. This quest will be available immediately.</div>
+              </div>
+            </div>
+
+            <div class="timed-quest-box">
+              <label class="timed-quest-toggle" for="timedQuestEnabled">
+                <input id="timedQuestEnabled" type="checkbox" />
+                Timed quest (start and end)
+              </label>
+              <div id="timedQuestFields" class="timed-quest-fields">
+                <label for="timedQuestStart">Starts <input id="timedQuestStart" type="datetime-local" /></label>
+                <label for="timedQuestEnd">Ends <input id="timedQuestEnd" type="datetime-local" /></label>
+                <div id="timedQuestHint" class="timed-quest-hint">The quest opens at the start time and fails automatically after the end time.</div>
               </div>
             </div>
 
@@ -13466,6 +13669,24 @@ body.qt-modal-open {
       <div id="missionEditStatus" class="status-message"></div>
     </div>
   </div>
+
+<script>
+/* Feature 1 follows the device's local clock, including while this tab stays open. */
+(function () {
+  function updateDayNightCycle() {
+    var hour = new Date().getHours();
+    var isDay = hour >= 6 && hour < 18;
+    document.body.dataset.cycle = isDay ? 'day' : 'night';
+    var indicator = document.getElementById('cycleIndicator');
+    if (indicator) indicator.textContent = isDay ? '☀ Day Mode · 6 AM–6 PM' : '☾ Night Mode · 6 PM–6 AM';
+  }
+  updateDayNightCycle();
+  setInterval(updateDayNightCycle, 30000);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) updateDayNightCycle();
+  });
+})();
+</script>
 
 <script>
     
@@ -14172,17 +14393,88 @@ function useMealPass() {
     }
 
     function isQuestScheduled(quest) {
-      return !!(quest && quest.unlockAt && quest.status !== 'complete' && quest.status !== 'failed');
+      return !!(quest && (quest.unlockAt || getTimedQuestPhase(quest) === 'upcoming') && quest.status !== 'complete' && quest.status !== 'failed');
     }
 
     function isQuestLocked(quest) {
       if (!isQuestScheduled(quest)) return false;
-      var unlockDate = new Date(quest.unlockAt);
+      var unlockDate = new Date(quest.startAt || quest.unlockAt);
       if (isNaN(unlockDate.getTime())) return false;
       return unlockDate.getTime() > Date.now();
     }
 
+    function getTimedQuestPhase(quest, now) {
+      if (!quest || !quest.startAt || !quest.endAt) return null;
+      var start = new Date(quest.startAt).getTime();
+      var end = new Date(quest.endAt).getTime();
+      if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return null;
+      var current = typeof now === 'number' ? now : Date.now();
+      return current < start ? 'upcoming' : current < end ? 'active' : 'expired';
+    }
+
+    function formatLocalDateTimeInput(value) {
+      var date = value ? new Date(value) : null;
+      if (!date || isNaN(date.getTime())) return '';
+      return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' +
+        String(date.getDate()).padStart(2, '0') + 'T' + String(date.getHours()).padStart(2, '0') + ':' +
+        String(date.getMinutes()).padStart(2, '0');
+    }
+
+    function setTimedQuestFormValue(quest) {
+      var enabled = byId('timedQuestEnabled');
+      enabled.checked = Boolean(quest && quest.startAt && quest.endAt);
+      byId('timedQuestStart').value = enabled.checked ? formatLocalDateTimeInput(quest.startAt) : '';
+      byId('timedQuestEnd').value = enabled.checked ? formatLocalDateTimeInput(quest.endAt) : '';
+      updateTimedQuestPreview();
+    }
+
+    function updateTimedQuestPreview() {
+      var enabled = byId('timedQuestEnabled').checked;
+      byId('timedQuestFields').classList.toggle('open', enabled);
+      if (!enabled) return;
+      var start = new Date(byId('timedQuestStart').value);
+      var end = new Date(byId('timedQuestEnd').value);
+      byId('timedQuestHint').textContent = !isNaN(start.getTime()) && !isNaN(end.getTime()) && end > start
+        ? 'Opens ' + formatDateTime(start) + ' · Ends ' + formatDateTime(end) + ' · ' +
+          (Date.now() < start.getTime() ? 'Starts later' : Date.now() < end.getTime() ? formatTimeRemaining(end.getTime() - Date.now()) : 'Time expired')
+        : 'Choose a start and an end after it. The quest will fail if the window closes before completion.';
+    }
+
+    function getTimedQuestWindowFromForm() {
+      if (!byId('timedQuestEnabled').checked) return null;
+      var startValue = byId('timedQuestStart').value;
+      var endValue = byId('timedQuestEnd').value;
+      var start = startValue ? new Date(startValue) : null;
+      var end = endValue ? new Date(endValue) : null;
+      if (!start || !end || isNaN(start.getTime()) || isNaN(end.getTime()) || end <= start) {
+        byId('questStatusText').textContent = 'Choose a valid start time and a later end time.';
+        return false;
+      }
+      return { startAt: start.toISOString(), endAt: end.toISOString() };
+    }
+
+    function expireTimedQuests() {
+      var now = Date.now();
+      var changed = false;
+      var quests = getQuests().map(function(quest) {
+        if (getTimedQuestPhase(quest, now) !== 'expired' || quest.status === 'complete' || quest.status === 'failed') return quest;
+        changed = true;
+        return Object.assign({}, quest, { status: 'failed', failedAt: new Date(now).toISOString(), updatedAt: new Date(now).toISOString() });
+      });
+      if (changed) setQuests(quests);
+      return changed;
+    }
+
     function getQuestTimeLockHtml(quest) {
+      var phase = getTimedQuestPhase(quest);
+      if (phase) {
+        var windowText = '⏱ ' + formatDateTime(quest.startAt) + ' → ' + formatDateTime(quest.endAt);
+        var stateText = quest.status === 'complete' ? ' · Completed in time' :
+          quest.status === 'failed' ? ' · Failed' : phase === 'expired' ? ' · Time expired' :
+          phase === 'upcoming' ? ' · Starts in ' + formatTimeRemaining(new Date(quest.startAt).getTime() - Date.now()).replace(/ left$/, '') :
+          ' · ' + formatTimeRemaining(new Date(quest.endAt).getTime() - Date.now());
+        return '<div class="qt-timed-line ' + (phase === 'expired' && quest.status !== 'complete' ? 'expired' : '') + '">' + escapeHtml(windowText + stateText) + '</div>';
+      }
       if (!isQuestScheduled(quest)) return '';
       var unlockDate = new Date(quest.unlockAt);
       if (isNaN(unlockDate.getTime())) return '';
@@ -14195,6 +14487,7 @@ function useMealPass() {
     }
 
     function getQuestUnlockAtFromForm() {
+      if (byId('timedQuestEnabled').checked) return null;
       var enabled = byId('questTimeLockEnabled');
       var timeInput = byId('questUnlockTime');
       if (!enabled || !timeInput || !enabled.checked) return null;
@@ -14252,20 +14545,24 @@ function useMealPass() {
     }
 
     function refreshTimeLockedQuests() {
+      var expired = expireTimedQuests();
       var quests = getQuests();
-      var scheduled = quests.filter(isQuestScheduled);
+      var scheduled = quests.filter(function(quest) {
+        return isQuestScheduled(quest) || (getTimedQuestPhase(quest) === 'active' && quest.status !== 'complete' && quest.status !== 'failed');
+      });
       if (scheduled.length === 0) {
         lastTimeLockSignature = '';
         lastTimeLockRenderMinute = null;
+        if (expired) renderAll();
         return;
       }
 
       var minuteKey = Math.floor(Date.now() / 60000);
       var signature = scheduled.map(function(quest) {
-        return quest.id + ':' + (isQuestLocked(quest) ? 'locked' : 'ready');
+        return quest.id + ':' + (isQuestLocked(quest) ? 'locked' : getTimedQuestPhase(quest) || 'ready');
       }).join('|');
 
-      if (signature !== lastTimeLockSignature || minuteKey !== lastTimeLockRenderMinute) {
+      if (expired || signature !== lastTimeLockSignature || minuteKey !== lastTimeLockRenderMinute) {
         lastTimeLockSignature = signature;
         lastTimeLockRenderMinute = minuteKey;
         renderAll();
@@ -14793,7 +15090,9 @@ function useMealPass() {
         item.innerHTML =
           '<span class="micro-draft-text">' + (index + 1) + '. ' + escapeHtml(task.text) + '</span>' +
           '<button type="button" class="micro-mini-btn micro-edit-btn" data-draft-action="edit" data-draft-index="' + index + '">Edit</button>' +
-          '<button type="button" class="micro-mini-btn micro-remove-btn" data-draft-action="remove" data-draft-id="' + task.id + '">\u00D7</button>';
+          '<button type="button" class="micro-mini-btn micro-remove-btn" data-draft-action="remove" data-draft-id="' + task.id + '" aria-label="Delete microtask ' + (index + 1) + '">\u00D7</button>' +
+          '<button type="button" class="micro-mini-btn micro-move-btn" data-draft-action="up" data-draft-index="' + index + '" aria-label="Move microtask ' + (index + 1) + ' up" ' + (index === 0 ? 'disabled' : '') + '>\u2191</button>' +
+          '<button type="button" class="micro-mini-btn micro-move-btn" data-draft-action="down" data-draft-index="' + index + '" aria-label="Move microtask ' + (index + 1) + ' down" ' + (index === draftTasks.length - 1 ? 'disabled' : '') + '>\u2193</button>';
         box.appendChild(item);
       });
     }
@@ -14824,6 +15123,7 @@ function useMealPass() {
       byId('questStatus').value = 'new';
       setRewardFormValue(REWARD_CATEGORIES.none);
       setTimeLockFormValue(null);
+      setTimedQuestFormValue(null);
       byId('microInput').value = '';
       byId('submitQuestBtn').textContent = 'Add Quest';
       byId('cancelEditBtn').style.display = 'none';
@@ -15055,6 +15355,10 @@ function useMealPass() {
         }
       }
 
+      var timedStart = quest.startAt ? formatLocalDateTimeInput(quest.startAt).slice(11) : null;
+      var timedEnd = quest.endAt ? formatLocalDateTimeInput(quest.endAt).slice(11) : null;
+      var timedEndsNextDay = Boolean(quest.startAt && quest.endAt && dateKey(quest.startAt) !== dateKey(quest.endAt));
+
       return {
         type: quest.type || 'main',
         priority: quest.priority || 'normal',
@@ -15062,7 +15366,10 @@ function useMealPass() {
         desc: quest.desc || '',
         reward: normalizeReward(quest.reward || REWARD_CATEGORIES.none),
         tasks: (quest.microTasks || []).map(function(task) { return task.text; }),
-        unlockTime: unlockTime
+        unlockTime: unlockTime,
+        timedStart: timedStart,
+        timedEnd: timedEnd,
+        timedEndsNextDay: timedEndsNextDay
       };
     }
 
@@ -15073,6 +15380,27 @@ function useMealPass() {
       if (templateQuest.unlockTime && typeof getNext24HourUnlockDate === 'function') {
         var unlockDate = getNext24HourUnlockDate(templateQuest.unlockTime);
         if (unlockDate) unlockAt = unlockDate.toISOString();
+      }
+
+      var startAt = null;
+      var endAt = null;
+      if (templateQuest.timedStart && templateQuest.timedEnd) {
+        var partsStart = templateQuest.timedStart.split(':').map(Number);
+        var partsEnd = templateQuest.timedEnd.split(':').map(Number);
+        var startDate = new Date();
+        startDate.setHours(partsStart[0], partsStart[1], 0, 0);
+        var endDate = new Date(startDate);
+        endDate.setHours(partsEnd[0], partsEnd[1], 0, 0);
+        if (templateQuest.timedEndsNextDay || endDate <= startDate) endDate.setDate(endDate.getDate() + 1);
+        if (endDate.getTime() <= Date.now()) {
+          startDate.setDate(startDate.getDate() + 1);
+          endDate.setDate(endDate.getDate() + 1);
+        }
+        if (endDate > startDate && Number.isFinite(startDate.getTime())) {
+          startAt = startDate.toISOString();
+          endAt = endDate.toISOString();
+          unlockAt = null;
+        }
       }
 
       return {
@@ -15086,6 +15414,8 @@ function useMealPass() {
           return { id: makeId(), text: text, done: false };
         }),
         unlockAt: unlockAt,
+        startAt: startAt,
+        endAt: endAt,
         status: 'new',
         createdAt: time,
         updatedAt: time,
@@ -15218,11 +15548,28 @@ function useMealPass() {
         return;
       }
 
+      var timedWindow = getTimedQuestWindowFromForm();
+      if (timedWindow === false) return;
       var unlockAt = getQuestUnlockAtFromForm();
       if (unlockAt === false) return;
 
       var time = nowIso();
       var status = byId('questStatus').value;
+      var previousQuest = editingQuestId && getQuests().find(function(item) { return item.id === editingQuestId; });
+      if (timedWindow) {
+        var phase = getTimedQuestPhase(timedWindow);
+        var previousCompletedInWindow = previousQuest && previousQuest.status === 'complete' && previousQuest.completedAt &&
+          new Date(previousQuest.completedAt).getTime() >= new Date(timedWindow.startAt).getTime() &&
+          new Date(previousQuest.completedAt).getTime() < new Date(timedWindow.endAt).getTime();
+        if (phase === 'expired' && !previousCompletedInWindow) {
+          byId('questStatusText').textContent = 'The end time has passed. Choose a future end time.';
+          return;
+        }
+        if (status === 'complete' && phase !== 'active' && !previousCompletedInWindow) {
+          byId('questStatusText').textContent = 'A timed quest can only be completed during its window.';
+          return;
+        }
+      }
       var quest = {
         id: editingQuestId || makeId(),
         type: byId('questType').value,
@@ -15232,6 +15579,8 @@ function useMealPass() {
         reward: getQuestRewardFromForm(),
         microTasks: draftTasks.slice(),
         unlockAt: unlockAt,
+        startAt: timedWindow ? timedWindow.startAt : null,
+        endAt: timedWindow ? timedWindow.endAt : null,
         status: status,
         createdAt: time,
         updatedAt: time,
@@ -15255,6 +15604,7 @@ function useMealPass() {
         byId('questStatusText').textContent = 'Quest added.';
       }
 
+      if (previousQuest && previousQuest.status === 'complete' && status !== 'complete') revokeQuestXpIfAwarded(previousQuest);
       setQuests(quests);
       if (quest.status === 'complete') awardQuestXpOnce(quest);
       beep('click');
@@ -15267,6 +15617,18 @@ function useMealPass() {
       var time = nowIso();
       var completedQuest = null;
       var questBeforeChange = getQuests().find(function(item) { return item.id === id; });
+
+      var phase = getTimedQuestPhase(questBeforeChange);
+      if (phase === 'expired' && (nextStatus !== 'failed' || questBeforeChange.status === 'complete')) {
+        expireTimedQuests();
+        byId('questStatusText').textContent = 'Time expired. This quest is closed as Failed.';
+        renderAll();
+        return;
+      }
+      if (phase === 'upcoming' && nextStatus === 'complete') {
+        byId('questStatusText').textContent = 'This quest has not opened yet.';
+        return;
+      }
 
       if (questBeforeChange && questBeforeChange.status === 'complete' && nextStatus !== 'complete') {
         revokeQuestXpIfAwarded(questBeforeChange);
@@ -15304,6 +15666,14 @@ function useMealPass() {
       var time = nowIso();
       var completedQuest = null;
       var questBeforeChange = getQuests().find(function(item) { return item.id === questId; });
+      var phase = getTimedQuestPhase(questBeforeChange);
+      if (phase && phase !== 'active') {
+        if (phase === 'expired') expireTimedQuests();
+        byId('questStatusText').textContent = phase === 'upcoming' ? 'This timed quest has not opened yet.' : 'Time expired. This quest is closed as Failed.';
+        renderAll();
+        return;
+      }
+      if (questBeforeChange && questBeforeChange.status === 'failed' && phase) return;
 
       var quests = getQuests().map(function(quest) {
         if (quest.id !== questId) return quest;
@@ -15430,6 +15800,7 @@ function useMealPass() {
       byId('questStatus').value = quest.status || 'new';
       setRewardFormValue(quest.reward || REWARD_CATEGORIES.none);
       setTimeLockFormValue(quest.unlockAt || null);
+      setTimedQuestFormValue(quest);
       draftTasks = (quest.microTasks || []).map(function(task) {
         return Object.assign({}, task);
       });
@@ -15454,6 +15825,10 @@ function useMealPass() {
       if (quest.unlockAt) {
         lines.push('');
         lines.push(isQuestLocked(quest) ? 'Scheduled: Opens ' + formatQuestUnlockTime(quest.unlockAt) + ' (' + formatTimeRemaining(new Date(quest.unlockAt).getTime() - Date.now()) + ')' : 'Scheduled: Ready now');
+      }
+      if (getTimedQuestPhase(quest)) {
+        lines.push('');
+        lines.push('Timed quest: ' + formatDateTime(quest.startAt) + ' → ' + formatDateTime(quest.endAt));
       }
       lines.push('');
       lines.push('Micro Tasks:');
@@ -15480,11 +15855,14 @@ function useMealPass() {
       var cardType = getQuestCardType(quest);
       var questIsLocked = isQuestLocked(quest);
       var questIsScheduled = isQuestScheduled(quest);
+      var timedPhase = getTimedQuestPhase(quest);
       card.className = 'quest-card qt-card-epic ' + cardType + (questIsLocked ? ' time-locked' : '') + (questIsScheduled && !questIsLocked ? ' time-ready' : '');
       card.setAttribute('data-quest-id', quest.id);
       card.setAttribute('data-quest-number', String(typeof index === 'number' ? index + 1 : 1));
 
-      var tasks = quest.microTasks || [];
+      var tasks = (quest.microTasks || []).filter(function(task) {
+        return task && typeof task.text === 'string' && task.text.trim() !== '';
+      });
       var doneCount = tasks.filter(function(task) { return task.done; }).length;
       var totalCount = tasks.length;
       var percent = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
@@ -15510,8 +15888,7 @@ function useMealPass() {
       var rank = String(questNumber).padStart(2, '0');
 
       var taskNodeHtml = '';
-      var nodeTotal = Math.max(totalCount, 3);
-      for (var nodeIndex = 0; nodeIndex < nodeTotal; nodeIndex += 1) {
+      for (var nodeIndex = 0; nodeIndex < totalCount; nodeIndex += 1) {
         taskNodeHtml += '<span class="qt-task-node ' + (nodeIndex < doneCount ? 'done' : '') + '"></span>';
       }
 
@@ -15574,8 +15951,8 @@ function useMealPass() {
       }
 
       if (questIsLocked) {
-        var unlockDate = new Date(quest.unlockAt);
-        var unlockText = formatQuestUnlockTime(quest.unlockAt);
+        var unlockDate = new Date(quest.startAt || quest.unlockAt);
+        var unlockText = timedPhase ? formatDateTime(unlockDate) : formatQuestUnlockTime(quest.unlockAt);
         var countdownText = formatTimeRemaining(unlockDate.getTime() - Date.now());
         var miniTypeLabel = getQuestTypeLabel(quest.type, true);
         card.className = 'quest-card qt-card-epic scheduled-mini time-locked';
@@ -15585,7 +15962,7 @@ function useMealPass() {
             '<span class="scheduled-mini-type">' + escapeHtml(miniTypeLabel) + '</span>' +
           '</div>' +
           '<div class="scheduled-mini-title">' + cardTitle + '</div>' +
-          '<div class="scheduled-mini-time">Opens ' + escapeHtml(unlockText) + '</div>' +
+          '<div class="scheduled-mini-time">Opens ' + escapeHtml(unlockText) + (timedPhase ? '<br>Ends ' + escapeHtml(formatDateTime(quest.endAt)) : '') + '</div>' +
           '<div class="scheduled-mini-countdown"><span>Opens in</span><strong>' + escapeHtml(countdownText.replace(' left', '')) + '</strong></div>' +
           '<div class="scheduled-mini-actions">' +
             '<button class="action-info" data-action="info">Details</button>' +
@@ -15649,7 +16026,7 @@ function useMealPass() {
               :
                 '<button class="action-new" data-action="new">New</button>' +
                 '<button class="action-progress" data-action="progress">Progress</button>' +
-                '<button class="action-fail" data-action="failed">' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
+                '<button class="action-fail" data-action="failed" ' + (timedPhase === 'expired' && quest.status === 'failed' ? 'disabled' : '') + '>' + (quest.status === "failed" ? "Undo Fail" : "Fail") + '</button>' +
                 '<button class="action-info" data-action="info">Details</button>' +
                 '<button class="action-edit" data-action="edit">Edit Time</button>' +
                 (quest.status !== "complete" && quest.status !== "failed" ?
@@ -16641,6 +17018,7 @@ function useMealPass() {
     }
 
     function renderAll() {
+      expireTimedQuests();
       var quests = getQuests();
       renderBriefing(quests);
 
@@ -16757,8 +17135,17 @@ function useMealPass() {
         renderDraftTasks();
       });
 
-      if (byId('questTimeLockEnabled')) byId('questTimeLockEnabled').addEventListener('change', updateTimeLockPreview);
+      if (byId('questTimeLockEnabled')) byId('questTimeLockEnabled').addEventListener('change', function() {
+        if (this.checked) setTimedQuestFormValue(null);
+        updateTimeLockPreview();
+      });
       if (byId('questUnlockTime')) byId('questUnlockTime').addEventListener('input', updateTimeLockPreview);
+      byId('timedQuestEnabled').addEventListener('change', function() {
+        if (this.checked) setTimeLockFormValue(null);
+        updateTimedQuestPreview();
+      });
+      byId('timedQuestStart').addEventListener('input', updateTimedQuestPreview);
+      byId('timedQuestEnd').addEventListener('input', updateTimedQuestPreview);
 
       byId('questRewardType').addEventListener('change', function() { updateCustomRewardVisibility(true); });
       byId('questRewardCustomEmoji').addEventListener('input', function() {
@@ -16836,13 +17223,13 @@ function useMealPass() {
           var actionQuest = getQuests().find(function(item) { return item.id === questId; });
 
           if (action === 'locked') {
-            if (actionQuest && actionQuest.unlockAt) byId('questStatusText').textContent = 'Quest locked until ' + formatQuestUnlockTime(actionQuest.unlockAt) + '.';
+            if (actionQuest) byId('questStatusText').textContent = 'Quest locked until ' + (actionQuest.startAt ? formatDateTime(actionQuest.startAt) : formatQuestUnlockTime(actionQuest.unlockAt)) + '.';
             beep('fail');
             return;
           }
 
           if (actionQuest && isQuestLocked(actionQuest) && (action === 'new' || action === 'progress' || action === 'complete' || action === 'failed')) {
-            byId('questStatusText').textContent = 'Quest locked until ' + formatQuestUnlockTime(actionQuest.unlockAt) + '.';
+            byId('questStatusText').textContent = 'Quest locked until ' + (actionQuest.startAt ? formatDateTime(actionQuest.startAt) : formatQuestUnlockTime(actionQuest.unlockAt)) + '.';
             beep('fail');
             return;
           }
@@ -17622,6 +18009,7 @@ function useMealPass() {
       byId('clock').textContent = current;
       byId('missionDateTime').textContent = current;
       updateTimeLockPreview();
+      updateTimedQuestPreview();
       refreshTimeLockedQuests();
     }
 
